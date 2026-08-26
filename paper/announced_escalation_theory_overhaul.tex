@@ -1,69 +1,79 @@
-\documentclass[11pt]{article}
+\documentclass[mnsc,dblanonrev]{informs4}
 
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{booktabs,array,tabularx}
+\usepackage{eqndefns-left}
+% The audited theorem numbering uses explicit equation tags throughout.
+% INFORMS' optional width validator rewrites display environments in a way
+% that rejects those tags, so retain the official style but disable validation.
+\Equationvalidatefalse
+\RequirePackage{tgtermes}
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage{bm}
+\RequirePackage{endnotes}
+
+\OneAndAHalfSpacedXII
+
+\usepackage{mathtools}
+\usepackage{booktabs,tabularx}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
-\usepackage{microtype}
 \usepackage{natbib}
+\bibpunct[, ]{(}{)}{,}{a}{}{,}
+\def\bibfont{\small}
+\def\bibsep{\smallskipamount}
+\def\bibhang{24pt}
+\def\newblock{\ }
+\def\BIBand{and}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\theoremstyle{remark}
-\newtheorem{remark}{Remark}
+\EquationsNumberedThrough
+\TheoremsNumberedThrough
+\ECRepeatTheorems
 
 \newcommand{\E}{\mathbb E}
 \newcommand{\calE}{\mathcal E}
 \newcommand{\R}{\mathbb R}
 \newcommand{\ind}{\mathbf 1}
 \newcommand{\ph}{\phi}
-\DeclareMathOperator*{\argmax}{arg\,max}
 
-\title{\bfseries Announced Rescue Payments with Strategic Drivers\\
-\large Commitment, Universal Rejection, and Latent Local Supply}
-\author{}
-\date{}
+\MANUSCRIPTNO{}
+\RUNAUTHOR{Anonymous Authors}
+\RUNTITLE{Announced Rescue Payments with Strategic Drivers}
+\TITLE{Announced Rescue Payments with Strategic Drivers: Commitment,
+Universal Rejection, and Latent Local Supply}
+\ARTICLEAUTHORS{}
 
 \begin{document}
-\maketitle
 
-\begin{abstract}
-We study a platform that commits ex ante to a payment for a request and a
-higher payment that becomes available only after universal rejection.  The
-realized local driver pool is Poisson and unobserved; private-cost incumbents
-simultaneously choose whether to accept now or preserve a discounted option
-to wait.
-The rider privately decides whether to post and, after failure, whether to
-abandon, repeat, or activate rescue.  We first characterize every anonymous
-symmetric pure-cutoff weak perfect Bayesian equilibrium under an arbitrary
-menu, including beliefs and boundary actions.  Whenever a positive rider mass
-uses marginal rescue, a small announced increase strictly raises completion
-for every fresh-entry rate.  In the no-entry baseline, we prove the stronger
-result that every menu has a unique cutoff.  This yields an
-exact solution of the platform's full policy problem: conditional on the
-first payment, the optimal rescue payment is either a reject-all boundary, a
-unique tangent rescue, or an irrelevant repeat-only payment.  A Lambert-$W$
-envelope reduces the global two-price problem to a continuous scalar maximum,
-so an optimal menu exists.  The dynamic policy strictly dominates the
-optimized flat payment whenever rider patience exceeds an endogenous
-threshold; in particular, it does so for every finite market thickness when
-$\beta\ge1/2$.  The gain is continuous in thickness and has an attained
-interior maximum.  Driver impatience changes the thin-market order: for
-$\beta>1/2$ the gain is first order in $m$ when drivers strictly discount,
-but only second order at the no-discount boundary.  The thick-market rate
-remains $(\log m)/m$.  We do not prove strict single-peakedness; when
-$\beta<1/2$, an initial zero plateau rules it out.  A public-$N$ benchmark
-separates two local mechanisms: intertemporal compensation already operates
-with one incumbent, while assignment competition amplifies it with several.
-\end{abstract}
+\ABSTRACT{We study a platform that commits before private actions to an
+initial payment for one request and a higher payment available only after
+universal rejection.  The realized local driver pool is Poisson and
+unobserved.  Private-cost incumbents simultaneously accept or preserve a
+discounted option to wait, while a private-value rider chooses whether to
+post and, after failure, whether to abandon, repeat, or activate rescue.
+Within the anonymous symmetric pure-cutoff class, we characterize every weak
+perfect Bayesian equilibrium under arbitrary survival and fresh entry.  For
+any fixed entry rate satisfying the active-rescue condition, a small
+announced escalation strictly raises completion.  In the uniform no-entry
+benchmark, every menu has a unique cutoff.  Conditional rescue design splits
+exactly into reject-all, tangent-rescue, and repeat-only regimes, and a
+Lambert-W envelope reduces the two-price problem to a continuous scalar
+maximum.  The optimized dynamic menu strictly dominates the optimized flat
+payment above an endogenous rider-patience threshold.  With positive
+incumbent survival, half patience suffices at every finite market thickness.
+The gain is continuous in thickness, vanishes in both limiting markets, and
+attains an interior maximum, although strict single-peakedness is not proved.
+A public deterministic-supply benchmark separates intertemporal compensation,
+which operates with one incumbent under positive survival and an interior first
+payment when drivers discount, from an additional positive
+assignment-competition term with several incumbents.}
+
+\KEYWORDS{dynamic pricing, ride-hailing platforms, strategic delay, market
+thickness, Poisson games}
+
+\maketitle
 
 \section{Introduction}
 \label{sec:introduction}
@@ -86,7 +96,8 @@ drivers can enter before the terminal acceptance decision.
 The information structure is central.  Market thickness $m$ is public, but
 the realized incumbent count is not observed by the platform, rider, or any
 individual driver.  Conditional on a focal driver being present, her rival
-count remains Poisson by Palm conditioning.  Universal rejection consequently
+count remains Poisson by Palm conditioning, as in the population-uncertainty
+logic of Poisson games \citep{Myerson1998}.  Universal rejection consequently
 does two jobs: it activates rescue and reveals that no incumbent below the
 equilibrium cutoff accepted.  A driver's assignment probability after
 accepting now is
@@ -106,15 +117,17 @@ Forward-looking consumers in announced-markdown models wait for a lower price
 and risk stockout; our suppliers wait for a higher payment and risk losing the
 request to a rival.
 
-The paper makes four contributions.  First, it gives a complete cutoff-WPBE
+The paper makes four contributions.  First, within the anonymous symmetric
+pure-cutoff class it gives a cutoff-WPBE
 characterization under arbitrary survival and entry, with the Palm posterior,
 failure posterior, rider continuation choices, boundary cutoffs, and
 tie-breaking stated explicitly.  The assessment is conservative only within
 the anonymous symmetric pure-cutoff class; it is not a worst case over every
-mixed or asymmetric PBE.  We then prove a uniform local result across fresh
-entry rates: if marginal rescue is active for positive rider mass, the unique
-nearby cutoff moves according to an explicit coefficient and completion rises
-strictly.
+mixed or asymmetric PBE.  We then prove a pointwise local result: for any fixed
+fresh-entry rate, if marginal rescue is active for positive rider mass, the
+unique nearby cutoff moves according to an explicit coefficient and completion
+rises strictly.  The theorem does not assert one common escalation neighborhood
+uniformly over unbounded entry rates.
 
 Second, for the uniform no-entry baseline we solve the global menu problem.
 Every strict active menu has one cutoff, not merely a locally selected branch.
@@ -124,11 +137,12 @@ then invert the fixed-price solution with the feasible root of one quadratic.
 The outer problem is a continuous one-dimensional maximum, which proves
 policy attainment and gives an exact optimizer correspondence.
 
-Third, we characterize rider patience and market thickness.  Strict dynamic
-gain occurs exactly for $\beta>\beta_c(m,\alpha,\delta)$, where the threshold has an
-independently checkable scalar test and explicit bounds.  Since the unique
-flat optimizer is below $1/2$, the sufficient condition extends to
-$\beta=1/2$.  In thickness, the optimized gain is continuous, vanishes at
+Third, within the same no-entry baseline, we characterize rider patience and
+market thickness.  Strict dynamic gain occurs exactly for
+$\beta>\beta_c(m,\alpha,\delta)$, where the threshold has an
+  independently checkable scalar test and explicit bounds.  When $\alpha>0$,
+the unique flat optimizer is below $1/2$, so the sufficient condition extends
+to $\beta=1/2$.  In thickness, the optimized gain is continuous, vanishes at
 both endpoints, and attains a positive interior maximum.  We prove optimized
 endpoint rates rather than transferring a local derivative through an
 optimization.  We deliberately do not call this single-peaked: the required
@@ -136,8 +150,9 @@ global derivative theorem is unavailable, and for $\beta<1/2$ strict
 single-peakedness is false because the value is initially zero.
 
 Fourth, a public deterministic-supply benchmark separates latent information,
-driver impatience, and assignment competition.  With $\delta<1$, a marginal
-rescue strictly raises completion even for one known incumbent.  At
+driver impatience, and assignment competition.  Fixing positive survival and
+an interior first payment, with $\delta<1$ a marginal rescue strictly raises
+completion even for one known incumbent.  At
 $\delta=1$, that temporal term disappears: the one-incumbent derivative is
 zero and the derivative is positive exactly when $n\ge2$.  Latent Poisson
 supply shapes inference and global design, but is not required for either
@@ -146,37 +161,71 @@ local mechanism.
 \section{Related literature and contribution boundary}
 \label{sec:literature}
 
-We do not claim to introduce multistage bonuses or failure-contingent payment
-increases.  The closest operational work is \citet{WuEtAl2022}, who optimize
-multistage order-specific bonuses in meal delivery and document substantial
-reductions in cancellation.  Their stage acceptance model depends on the
-current bonus; it does not model a driver who strategically responds to an ex
-ante announced future bonus.  Two-round broadcast and notification mechanisms
-also study a second attempt after no response, but vary reach or assignment
-rather than solve an announced same-request wage game
-\citep{SunEtAl2020,QinEtAl2025}.
+We do not claim to introduce a reverse-Dutch-style procurement clock,
+multistage bonuses, or failure-contingent payment increases.  The sharpest
+structural precedent is \citet{LiKuo2013}.  Their discrete Dutch auction fixes
+a finite price clock before bidding, advances only after universal
+nonacceptance, allows a Poisson number of bidders, randomly resolves
+simultaneous acceptance, and optimizes the price path.  Reversing the transfer
+direction gives the low-to-high procurement skeleton used here.  Their bidders,
+however, accept when the clock reaches value rather than solve an equilibrium
+of strategic delay; there is no private rider continuation, survivor/entrant
+pool, or completion-versus-flat design theorem.
 
-The closest behavioral work studies strategic supplier rejection.
+Strategic clock timing is also established auction territory.
+\citet{BuchananEtAl2016} derive symmetric Bayesian bidding when realized group
+size is hidden and nonacceptance along a multi-unit Dutch clock changes beliefs.
+\citet{CarareRothkopf2005} solve slow-Dutch equilibria with waiting transaction
+costs, and \citet{Shneyerov2014} characterizes an optimal dynamic clock when
+buyers are less patient than the seller.  These papers rule out a broad claim
+to hidden-population learning, strategic delay, impatience, or clock
+optimization; our residual distinction must come from the rider continuation
+game and the completion results built around it.
+
+The closest operational work is \citet{WuEtAl2022}, who optimize multistage
+order-specific bonuses in meal delivery.  Their reduced-form acceptance model
+depends on the current bonus.  In an ablation that assigns a fixed later bonus,
+they report no detectable anticipatory waiting before that bonus; at the same
+time, their mechanism does not specify an ex ante announcement of the entire
+future path.  This evidence is therefore an external-validity challenge to our
+strategic channel, not a test of a disclosed and committed menu.  Two-round
+broadcast, supplier-menu, and notification models already study simultaneous
+outreach, contention, and a second attempt after no response, but they vary
+reach, assignment, or future-demand batching rather than solve an announced
+same-request wage game \citep{SunEtAl2020,HornerEtAl2021,AusseilEtAl2022,
+FengEtAl2023,QinEtAl2025}.
+
+Several papers separately cover strategic rejection or hidden supply.
 \citet{SiggEtAl2025} model workers who reject a delivery request so that it is
 reoffered at a higher payment, emphasizing labor oversupply and collective
 action.  \citet{Chen2012} derives private-cost sellers' willingness to wait
 for higher buyer offers when the seller count is fixed and known and the buyer
-does not precommit.  Related work examines failure-contingent rewards,
-rejection in anticipation of future surge, and strategic withholding of
-available supply \citep{AcemogluEtAl2014,GargNazerzadeh2022,BaiEtAl2023}.
-Our narrower object is the intersection of ex ante commitment, simultaneous
-same-request competition, an unobserved realized rival pool, and universal
-rejection as an endogenous public signal.
+does not precommit.  \citet{BaiEtAl2023} let a platform announce a
+supply-contingent price and compensation rule when true supply is random and
+unobserved, and providers strategically hide availability.  Driver rejection,
+relocation, and acceptance incentives are also well established
+\citep{GudaSubramanian2019,GargNazerzadeh2022,AfecheEtAl2023,
+FengWang2023,MeskarEtAl2023}.  Thus neither supplier delay, latent supply,
+announced compensation rules, nor rejection after a dispatch is individually
+new here.
 
-Finally, two-sided dynamic pricing already incorporates forward-looking
-buyers and sellers.  \citet{ChenHu2020} study Poisson arrivals and strategic
-waiting in a dynamic matching market.  \citet{HuHuZhu2022} obtain both
-high--low and low--high two-period surge paths under rider and driver temporal
-responses.  Announced and contingent pricing with strategic consumers
-provides the methodological mirror \citep{AvivPazgal2008,CorreaEtAl2016}.
-Relative to these papers, our policy is attached to one request, available
-only after universal rejection, and optimized over the equilibrium delay it
-induces among the same incumbents.
+Finally, two-sided dynamic pricing already incorporates forward-looking buyers
+and sellers.  \citet{ChenHu2020} study Poisson arrivals and strategic waiting
+in a dynamic matching market, while \citet{HuHuZhu2022} obtain both high--low
+and low--high two-period surge paths under rider and driver temporal responses.
+Announced and contingent pricing with strategic consumers provides the
+methodological mirror \citep{AvivPazgal2008,CorreaEtAl2016}.  Aviv and Pazgal's
+policy--threshold--optimization sequence is especially useful for organizing
+our analysis, but their consumers wait for a markdown and risk stockout; it is
+not the closest institutional model.
+
+To our knowledge, among the models reviewed, none combines an ex ante
+same-request payment menu with endogenous private-cost incumbent delay under
+latent competition, a private-value rider's post-failure continuation choice,
+the resulting failure posterior with survival and entry, and completion
+theorems comparing optimized dynamic and flat menus.  Our contribution is this
+equilibrium and completion-design analysis within the stated cutoff-WPBE class,
+not the clock architecture or any one of its component mechanisms.
 
 \section{Model}
 \label{sec:model}
@@ -225,9 +274,9 @@ $q$ exactly when $c\le q$.
 Figure~\ref{fig:timing} gives the reduced extensive form.  The driver nodes
 represent simultaneous Bayesian moves, not observation of a realized pool.
 
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[
+\begin{figure}
+\FIGURE
+{\begin{tikzpicture}[
   x=1cm,y=1cm,>={Latex[length=2mm]},
   flow/.style={->,line width=.65pt},
   box/.style={draw,rounded corners=2pt,align=center,minimum height=8mm,
@@ -268,10 +317,11 @@ represent simultaneous Bayesian moves, not observation of a realized pool.
 \draw[flow] (supply2)--(drivers2);
 \draw[flow] (drivers2)--node[edge,below left]{some accept}(done2);
 \draw[flow] (drivers2)--node[edge,below right]{none}(expire);
-\end{tikzpicture}
-\caption{Reduced extensive form.  The realized incumbent count, rival costs,
-survival, and fresh entry remain latent at the indicated decisions.}
-\label{fig:timing}
+\end{tikzpicture}}
+{Reduced extensive form.  The realized incumbent count, rival costs,
+survival, and fresh entry remain latent at the indicated decisions.
+\label{fig:timing}}
+{}
 \end{figure}
 
 \subsection{Equilibrium class, beliefs, and tie-breaking}
@@ -630,9 +680,9 @@ At any positive cutoff, indifference gives
 \]
 Using $1-e^{-ma}=ma\ph(ma)$ in (9) yields
 \[
- \boxed{M_m^{\alpha,\delta,0}(p,q;a)
+ M_m^{\alpha,\delta,0}(p,q;a)
  =(1-p)m\ph(ma)\left[a+\frac{p-a}\delta\right],
- \qquad a>0.}                                               \tag{20}
+ \qquad a>0.                                                \tag{20}
 \]
 At a reject-all equilibrium,
 \[
@@ -759,9 +809,8 @@ The tangent equation is
 Because $Q(a)<(1+a)/2$ and the left side is increasing in $p$ below that
 vertex, the unique feasible root is the lower quadratic branch
 \[
- \boxed{
  P_\delta(a)=
- \frac{1+a-\sqrt{(1-a)^2-4R_\delta(a)}}2.}                 \tag{33}
+ \frac{1+a-\sqrt{(1-a)^2-4R_\delta(a)}}2.                  \tag{33}
 \]
 The upper branch is not a fixed-$p$ rescue optimum.  The map $P_\delta$ is
 continuous and strictly increasing from $[0,\beta]$ onto $[p_z,\beta]$.
@@ -781,12 +830,11 @@ Extend $P_\delta(\beta)=Q(\beta)=\beta$ and set
 Then $J_\delta(\beta)=(1-\beta)(1-e^{-m\beta})$, and the complete outer
 problem is
 \[
- \boxed{
  D_{\alpha,\delta,0}^*(m)=
  \max\left\{
  \max_{a\in[0,\beta]}J_\delta(a),
  \max_{p\in[\beta,1]}(1-p)(1-e^{-mp})
- \right\}.}                                                 \tag{35}
+ \right\}.                                                  \tag{35}
 \]
 
 \begin{theorem}[Policy attainment and optimized-flat dominance]
@@ -1066,7 +1114,7 @@ For the thick limit put $x=ma$, $p=P_m^\delta(a)$, and $T=T_m(a)$.  Equation
 (53) gives the same exact nonnegative loss decomposition for every fixed
 $\delta>0$:
 \[
- \boxed{1-J_m^\delta(a)=p(1-e^{-x})+(1-T)e^{-x}.}           \tag{55}
+ 1-J_m^\delta(a)=p(1-e^{-x})+(1-T)e^{-x}.                  \tag{55}
 \]
 The feasible choice $x=\log\log m$ and the policy-uniform lower bound obtained
 by splitting at $Q_m(a)=\beta/2$ give the first rate in (50).  The exact flat
@@ -1129,8 +1177,8 @@ the cutoff driver is
 Substitution of (58)--(59) into unconditional completion gives the exact
 finite-population counterpart of (20):
 \[
- \boxed{M_n(p_1,p_2;a)
- =(1-p_1)n s_n(a)\left[a+\frac{p_1-a}\delta\right].}       \tag{60}
+ M_n(p_1,p_2;a)
+ =(1-p_1)n s_n(a)\left[a+\frac{p_1-a}\delta\right].       \tag{60}
 \]
 
 \begin{proposition}[Public $n$ and local announced rescue]
@@ -1174,29 +1222,33 @@ every $n$.
 \section{Managerial interpretation and institutional scope}
 \label{sec:discussion}
 
-The rescue payment is valuable because it is a commitment, not because a
-platform can mechanically raise pay after observing failure.  Announcing the
-second payment before drivers act makes delay incentive compatible with the
-policy and therefore forces the platform to price the delay externality.  In
-the no-entry model, the exact fixed-$p_1$ solution says more than ``raise the
-payment a little.''  Low first payments optimally generate reject-all and use
-the unique rescue-envelope maximizer; intermediate first payments use the
-unique tangent rescue that implements the smallest feasible cutoff; once the
-first payment reaches rider patience $\beta$, rescue is irrelevant.
+We evaluate a committed rescue schedule while internalizing the delay it
+induces; we do not identify the causal value of commitment relative to an
+unannounced or adaptive policy.  Institutionally, the menu is a two-tick
+reverse-Dutch-like procurement clock, an architecture with clear auction
+precedents.  What the model adds to that architecture is private rider
+continuation, latent same-request supply, and an endogenous driver waiting
+equilibrium.  In the no-entry model, the exact fixed-$p_1$ solution says more
+than ``raise the payment a little.''  Low first payments optimally generate
+reject-all and use the unique rescue-envelope maximizer; intermediate first
+payments use the unique tangent rescue that implements the smallest feasible
+cutoff; once the first payment reaches rider patience $\beta$, rescue is
+irrelevant.
 
 Three operational implications follow.  First, the relevant demand-side
 state is rider patience, not only nominal willingness to pay.  The exact
-threshold $\beta_c(m,\alpha,\delta)$ identifies when commitment beats the best flat
-payment, while the simple condition $\beta\ge1/2$ guarantees gain at every
-finite thickness.  Second, market thickness changes the form of the optimal
+threshold $\beta_c(m,\alpha,\delta)$ identifies when the dynamic menu beats the best flat
+payment, while, for $\alpha>0$, the simple condition $\beta\ge1/2$ guarantees
+gain at every finite thickness.  Second, market thickness changes the form of the optimal
 policy.  In a very thick market the dynamic policy closes the request with
 loss of order $\log\log m/m$, compared with $\log m/m$ under the best flat
 payment.  Yet the absolute difference still vanishes, so a large percentage
 reduction in the small residual failure probability should not be confused
 with a large unconditional completion gain.  Third, publishing realized
 local supply is not enough to eliminate the local mechanism.  Driver
-impatience already makes rescue productive with one publicly known incumbent;
-assignment competition adds a second gain when there are two or more.
+impatience already makes rescue productive with one publicly known incumbent
+under positive survival and an interior first payment; assignment competition
+adds a second gain when there are two or more.
 
 The maintained transfer is paid by the rider to the selected driver, and the
 objective is completion.  This maps most directly to bidding, tipping,
@@ -1221,22 +1273,24 @@ thickness when $\beta\ge1/2$.
 
 An announced rescue payment changes both continuation coverage and current
 acceptance.  Solving those effects jointly reveals a tractable global design
-problem.  In the no-entry baseline, every menu has a unique cutoff, the
-conditional rescue problem is a concave envelope, and the full two-price
-problem reduces to one continuous scalar maximum.  Commitment strictly
-beats the optimized flat payment above an endogenous patience threshold and
-always does so at $\beta\ge1/2$.  Optimized thickness effects have distinct
+problem.  In the uniform no-entry baseline and stated cutoff class, every menu
+has a unique cutoff, the conditional rescue problem is a concave envelope, and
+the two-price problem reduces to one continuous scalar maximum.  The optimized
+dynamic menu strictly beats the optimized flat payment above an endogenous
+patience threshold and, when $\alpha>0$, does so for every finite $m$ at
+$\beta\ge1/2$.  Optimized thickness effects have distinct
 thin-market regimes and matching thick-market rates, while strict
 single-peakedness is either false or still unproved.  The public-$n$
 benchmark decomposes the local gain into intertemporal compensation and
 assignment competition, assigning latent supply the narrower role of shaping
 inference and global design.
 
-\appendix
+\begin{APPENDICES}
+\renewcommand{\theHsection}{app.\Alph{section}}
 \section{Proofs for the equilibrium characterization}
 \label{app:equilibrium}
 
-\begin{proof}[Proof of Lemma~\ref{lem:poisson}]
+\begin{proof}{Proof of Lemma~\ref{lem:poisson}.}
 Poisson marking splits the incumbent process into costs below and above $a$,
 with independent counts of means $ma$ and $m(1-a)$.  Thus first-period
 coverage is $1-e^{-ma}$.  Under Palm conditioning a focal driver's accepting
@@ -1253,9 +1307,9 @@ thins its eligible interval $(a,p_j]$ to intensity
 $m\alpha(p_j-a)$, while fresh eligible drivers contribute $m\gamma p_j$.
 Superposition gives $\lambda_j$ in (1), terminal coverage $C_j$, and the
 same integral identity gives terminal assignment share $\ph(\lambda_j)$.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:wpbe}]
+\begin{proof}{Proof of Proposition~\ref{prop:wpbe}.}
 Given a posted request, failure is independent of $v$, so the rider retains
 the posterior $U[p_1,1]$.  Comparing the two affine continuation payoffs
 gives $v^M$ and the masses in (2); the stated priority rule assigns the
@@ -1290,9 +1344,9 @@ nonempty equilibrium set is closed in $[0,p_1]$ and therefore compact.
 The separately stated $p_1=0$ and $(1,1)$ conventions close the remaining
 endpoints.  Formula (9) is continuous on the compact equilibrium set, making
 the minimum in (10) well defined.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:flat}]
+\begin{proof}{Proof of Proposition~\ref{prop:flat}.}
 For $a<p$, the cutoff margin is $(p-a)$ times the bracket displayed below
 (13).  If $a>0$, then $\ph(ma)>e^{-ma}$ and
 $\delta\alpha\rho(p)\ph(m\{\alpha(p-a)+\gamma p\})\le1$, so the bracket is
@@ -1304,9 +1358,9 @@ intensity $\gamma mp$, and the mass of posting riders with nonnegative
 delayed surplus is $[1-p/\beta]^+/(1-p)$.  Adding initial and terminal
 completion yields (12).  The continuous objective on $[0,1]$ attains the
 flat maximum.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:localentry}]
+\begin{proof}{Proof of Theorem~\ref{thm:localentry}.}
 Put $d=p-a$.  Under $(p,p+\varepsilon)$ the two terminal intensities are
 \[
  \lambda_1=m(\alpha d+\gamma p),\qquad
@@ -1403,12 +1457,12 @@ differentiation at zero gives
 \]
 Differentiating (9), substituting (L3), and collecting terms yields exactly
 (L5)--(L6).  All remaining factors are positive, completing the proof.
-\end{proof}
+\Halmos\end{proof}
 
 \section{Proofs for global no-entry design}
 \label{app:global}
 
-\begin{proof}[Proof of Theorem~\ref{thm:unique}]
+\begin{proof}{Proof of Theorem~\ref{thm:unique}.}
 The cancellation leading to (16) follows by substituting the rider switch
 type into the sum of repeat and rescue coverage.  Inequality (18) excludes
 the repeat branch and its kink from the zero set.  Every zero is therefore a
@@ -1431,9 +1485,9 @@ theorem, including the equality case at zero.  Flat and repeat-only menus use
 the strict flat inequality and have cutoff $p$; if $p\ge\beta$, no positive
 mass continues; if $\alpha=0$, waiting has zero payoff; and $p=0$ has only
 the lower numeric cutoff.  These observations cover every no-entry menu.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:fixedp}]
+\begin{proof}{Proof of Theorem~\ref{thm:fixedp}.}
 For a target cutoff $a$, active-rescue implementability is exactly (31).
 The strict flat inequality makes its right side larger than $A(a,p)$, so an
 implementer is strictly inside the rescue region.  The function $A(a,q)$ is
@@ -1463,9 +1517,9 @@ $a^*(p)$.  Completion in (20) decreases with a positive cutoff; therefore
 the tangent menu $q=Q(a^*)$ is the unique maximizer.  For $p\ge\beta$, no
 positive mass uses rescue and all $q\ge p$ are outcome-equivalent to the flat
 payment.  This proves all three regimes and attainment.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:global}]
+\begin{proof}{Proof of Theorem~\ref{thm:global}.}
 Let $g_a(p)=(1-p)(p-a)$.  Equation (26) implies
 $Q(a)<(1+a)/2$, so $g_a$ is strictly increasing on $(a,Q(a))$.  The strict
 flat inequality gives $g_a(Q(a))>R_\delta(a)$, while
@@ -1487,9 +1541,9 @@ The reject-all boundary and $p\ge\beta$ flat region do not beat $F_0^*$,
 whereas the strict comparison does, so every global maximizer is a strict
 interior menu parameterized as in (36).  No step requires uniqueness of the
 outer argmax.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:patience}]
+\begin{proof}{Proof of Theorem~\ref{thm:patience}.}
 First fix a strict menu $p<q$.  If $\beta\le q$, rescue has no positive-mass
 use and the strict flat inequality forces cutoff $p$, so the menu value is
 $F_m(p)$.  If $q<\beta_1<\beta_2$, the coefficients
@@ -1522,12 +1576,12 @@ optimum by (22), proving the upper bound.  Finally, the second maximum in
 (35) never exceeds $F_0^*$, so strict gain is equivalent to the scalar test
 (42).  If $\alpha=0$, no incumbent can complete after waiting and the
 dynamic and flat values coincide.
-\end{proof}
+\Halmos\end{proof}
 
 \section{Proofs for thickness and the public-supply benchmark}
 \label{app:thickness}
 
-\begin{proof}[Proof of Theorem~\ref{thm:thickness}]
+\begin{proof}{Proof of Theorem~\ref{thm:thickness}.}
 Equations (51)--(53) are the fixed-coordinate form of (26)--(34).  The
 inverse of $z\mapsto z+\log(1+z)$ is continuous.  Since multiplying the old
 envelope term by $0<\delta\le1$ only enlarges the lower-root discriminant,
@@ -1606,9 +1660,9 @@ $R_\delta=\delta R_1$ implies $P_m^\delta(a)\le P_m^1(a)$, while
 $T_m(a)$ is independent of $\delta$.  Hence the estimate is uniform over
 $\delta\in(0,1]$ for each fixed positive $(\alpha,\beta)$; only sequences
 with $\alpha\downarrow0$ or $\beta\downarrow0$ fall outside this uniformity.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Corollary~\ref{cor:bestm}]
+\begin{proof}{Proof of Corollary~\ref{cor:bestm}.}
 The thin regimes imply $V(m)\to0$ as $m\downarrow0$, and (50) gives both
 $V(m)\to0$ and $V(m)>0$ for all sufficiently large finite $m$.  Choose one
 such point.  Endpoint vanishing makes the value outside some compact
@@ -1616,9 +1670,9 @@ subinterval smaller than half its value at that point; continuity supplies a
 positive global maximizer on the compact interval.  Equation (49) directly
 contradicts strict increase near zero when $\beta<1/2$.  No analogous
 derivative or optimizer-switch control has been proved for $\beta\ge1/2$.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:publicN}]
+\begin{proof}{Proof of Proposition~\ref{prop:publicN}.}
 The binomial identity in (57) follows by integrating
 $\E[t^X]=(1-a+at)^{n-1}$.  Given universal rejection, each rival cost is
 uniform on $(a,1)$, giving $\theta_j$, (58), and cutoff indifference (59).
@@ -1665,94 +1719,11 @@ whose slope is the positive denominator in (61).  Existence from the general
 cutoff argument and this one-crossing limit give local uniqueness.  Finally,
 $s_n(a)=n^{-1}\sum_{r=0}^{n-1}(1-a)^r$ is strictly decreasing iff $n\ge2$,
 which proves the sign statement.
-\end{proof}
+\Halmos\end{proof}
 
-\begin{thebibliography}{99}
-\small
-\raggedright
+\end{APPENDICES}
 
-\bibitem[Acemoglu et~al.(2014)Acemoglu, Mostagir, and Ozdaglar]{AcemogluEtAl2014}
-D. Acemoglu, M. Mostagir, and A. Ozdaglar.
-Managing innovation in a crowd.
-\emph{NBER Working Paper} 19852, 2014.
-\href{https://doi.org/10.3386/w19852}{doi:10.3386/w19852}.
-
-\bibitem[Aviv and Pazgal(2008)]{AvivPazgal2008}
-Y. Aviv and A. Pazgal.
-Optimal pricing of seasonal products in the presence of forward-looking
-consumers.
-\emph{Manufacturing \& Service Operations Management}, 10(3):339--359,
-2008.
-\href{https://doi.org/10.1287/msom.1070.0183}{doi:10.1287/msom.1070.0183}.
-
-\bibitem[Bai et~al.(2023)Bai, Heese, and Tripathy]{BaiEtAl2023}
-J. Bai, H. S. Heese, and M. Tripathy.
-Hiding in plain sight: Surge pricing and strategic providers.
-\emph{Production and Operations Management}, 32(12):3837--3855, 2023.
-\href{https://doi.org/10.1111/poms.14064}{doi:10.1111/poms.14064}.
-
-\bibitem[Chen(2012)]{Chen2012}
-C.-H. Chen.
-Name your own price at Priceline.com: Strategic bidding and lockout periods.
-\emph{Review of Economic Studies}, 79(4):1341--1369, 2012.
-\href{https://doi.org/10.1093/restud/rds005}{doi:10.1093/restud/rds005}.
-
-\bibitem[Chen and Hu(2020)]{ChenHu2020}
-Y. Chen and M. Hu.
-Pricing and matching with forward-looking buyers and sellers.
-\emph{Manufacturing \& Service Operations Management}, 22(4):717--734,
-2020.
-\href{https://doi.org/10.1287/msom.2018.0769}{doi:10.1287/msom.2018.0769}.
-
-\bibitem[Correa et~al.(2016)Correa, Montoya, and Thraves]{CorreaEtAl2016}
-J. Correa, R. Montoya, and C. Thraves.
-Contingent preannounced pricing policies with strategic consumers.
-\emph{Operations Research}, 64(1):251--272, 2016.
-\href{https://doi.org/10.1287/opre.2015.1452}{doi:10.1287/opre.2015.1452}.
-
-\bibitem[Garg and Nazerzadeh(2022)]{GargNazerzadeh2022}
-N. Garg and H. Nazerzadeh.
-Driver surge pricing.
-\emph{Management Science}, 68(5):3219--3235, 2022.
-\href{https://doi.org/10.1287/mnsc.2021.4058}{doi:10.1287/mnsc.2021.4058}.
-
-\bibitem[Hu et~al.(2022)Hu, Hu, and Zhu]{HuHuZhu2022}
-B. Hu, M. Hu, and H. Zhu.
-Surge pricing and two-sided temporal responses in ride hailing.
-\emph{Manufacturing \& Service Operations Management}, 24(1):91--109,
-2022.
-\href{https://doi.org/10.1287/msom.2020.0960}{doi:10.1287/msom.2020.0960}.
-
-\bibitem[Qin et~al.(2025)Qin, Yang, and Liu]{QinEtAl2025}
-Y. Qin, H. Yang, and R. Liu.
-A two-round broadcasting matching mechanism in ride-sourcing markets.
-\emph{Transportation Research Part C: Emerging Technologies}, 180:105318,
-2025.
-\href{https://doi.org/10.1016/j.trc.2025.105318}{doi:10.1016/j.trc.2025.105318}.
-
-\bibitem[Sigg et~al.(2025)Sigg, Hardt, and Mendler-D\"unner]{SiggEtAl2025}
-D. Sigg, M. Hardt, and C. Mendler-D\"unner.
-Decline now: A combinatorial model for algorithmic collective action.
-In \emph{Proceedings of the 2025 CHI Conference on Human Factors in Computing
-Systems}, Article 912, 2025.
-\href{https://doi.org/10.1145/3706598.3713966}{doi:10.1145/3706598.3713966}.
-
-\bibitem[Sun et~al.(2020)Sun, Teunter, Hua, and Wu]{SunEtAl2020}
-H. Sun, R. Teunter, G. Hua, and T. Wu.
-Taxi-hailing platforms: Inform or assign drivers?
-\emph{Transportation Research Part B: Methodological}, 142:197--212, 2020.
-\href{https://doi.org/10.1016/j.trb.2020.10.001}{doi:10.1016/j.trb.2020.10.001}.
-
-\bibitem[Wu et~al.(2022)Wu, Wang, Huang, Zhou, Song, Ye, Nie, Ren, Hao, He,
-and Sun]{WuEtAl2022}
-Z. Wu, L. Wang, F. Huang, L. Zhou, Y. Song, C. Ye, P. Nie, H. Ren, J. Hao,
-R. He, and Z. Sun.
-A framework for multi-stage bonus allocation in meal delivery platform.
-In \emph{Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery
-and Data Mining}, pages 4195--4203, 2022.
-\href{https://arxiv.org/abs/2202.10695}{arXiv:2202.10695}.
-
-\end{thebibliography}
-\normalsize
+\bibliographystyle{informs2014}
+\bibliography{announced_escalation_references}
 
 \end{document}
