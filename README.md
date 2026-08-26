@@ -21,6 +21,8 @@ eligibility, or completion.
 
 - [Management Science-formatted audited paper (PDF)](paper/announced_escalation_theory_overhaul.pdf)
 - [LaTeX source](paper/announced_escalation_theory_overhaul.tex)
+- [Group-meeting note on the exact benchmark and market thickness (PDF)](output/pdf/group_meeting_market_thickness.pdf)
+- [Group-meeting note LaTeX source](group_meeting/group_meeting_market_thickness.tex)
 - [BibTeX database](paper/announced_escalation_references.bib)
 - [Adversarial nearest-literature and novelty memo](literature/adversarial_literature_novelty_memo.md)
 - [Proof-claim ledger](analysis/proof_claim_ledger.md)
@@ -33,13 +35,13 @@ eligibility, or completion.
 Within anonymous symmetric pure driver-cutoff WPBE:
 
 1. Every announced menu admits an equilibrium. In the no-fresh-entry model,
-   every menu has a unique numeric cutoff.
-2. A flat menu retains the unique cutoff \(a=p\), and its physical completion
+   every menu has a unique equilibrium cutoff value.
+2. A flat menu retains the unique cutoff \(a=p_1\), and its physical completion
    probability is independent of \(\delta\).
 3. Active marginal rescue raises completion. The local wedge decomposes as
    \[
-   \phi(mp)-\delta e^{-mp}
-   =\{\phi(mp)-e^{-mp}\}+(1-\delta)e^{-mp},
+   \phi(mp_1)-\delta e^{-mp_1}
+   =\{\phi(mp_1)-e^{-mp_1}\}+(1-\delta)e^{-mp_1},
    \]
    separating assignment competition from incumbent impatience.
 4. With \(\gamma=0\), \(\alpha>0\), and \(\beta\ge 1/2\), the globally
@@ -66,6 +68,7 @@ thickness remain open.
 
 ```text
 paper/       current paper, PDF, bibliography, and official INFORMS style files
+group_meeting/ exact benchmark, formal thickness setup, and V(m) note
 figures/     extensive-form source and rendered formats
 analysis/    claim ledger, counterexample registry, numerical reports
 audits/      independent derivations and adversarial proof checks
@@ -91,6 +94,13 @@ Run all 20 regression tests:
 
 ```bash
 PYTHONPATH=code python -m unittest discover -s code -p 'test_*.py' -v
+```
+
+Reproduce the two type-region figures in the group-meeting note:
+
+```bash
+python code/exact_one_driver_regions.py
+python code/thickness_regions.py
 ```
 
 Run the corrected deterministic audit:

@@ -21,6 +21,10 @@ escalation model.  It does not import or modify the manuscript.
   high-precision stationary-point certificates.
 - `run_falsification.py`: reproducible scans summarized in the report.
 - `test_engine.py`: regression suite.
+- `exact_one_driver_regions.py`: solves the exact-one-driver WPBE envelope and
+  reproduces the $(\beta,\delta)$ type-region figure in the group-meeting note.
+- `thickness_regions.py`: re-solves the latent-thickness cutoff WPBE at
+  $m=1,5,10,20$ and reproduces its rider and driver type-region widths.
 
 From the repository root:
 
