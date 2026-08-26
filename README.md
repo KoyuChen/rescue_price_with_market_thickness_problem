@@ -19,8 +19,10 @@ eligibility, or completion.
 
 ## Current paper
 
-- [Audited paper (PDF)](paper/announced_escalation_theory_overhaul.pdf)
+- [Management Science-formatted audited paper (PDF)](paper/announced_escalation_theory_overhaul.pdf)
 - [LaTeX source](paper/announced_escalation_theory_overhaul.tex)
+- [BibTeX database](paper/announced_escalation_references.bib)
+- [Adversarial nearest-literature and novelty memo](literature/adversarial_literature_novelty_memo.md)
 - [Proof-claim ledger](analysis/proof_claim_ledger.md)
 - [Approach and counterexample registry](analysis/approach_and_counterexample_registry.md)
 - [Final integration red-team](audits/incumbent_discount_final_redteam.md)
@@ -50,9 +52,10 @@ Within anonymous symmetric pure driver-cutoff WPBE:
 6. For fixed positive \((\alpha,\beta)\), the thick-market rates are uniform
    over \(\delta\in(0,1]\): dynamic loss is \((\log\log m)/m\), and the gain
    over optimized flat is \((\log m)/m\).
-7. In the public deterministic-\(n\) benchmark, rescue is locally productive
-   for every \(n\ge1\) when \(\delta<1\). At \(\delta=1\), the derivative is
-   zero for \(n=1\) and positive for \(n\ge2\).
+7. In the public deterministic-\(n\) benchmark, for positive survival and an
+   interior first payment, rescue is locally productive for every \(n\ge1\)
+   when \(\delta<1\). At \(\delta=1\), the derivative is zero for \(n=1\) and
+   positive for \(n\ge2\).
 
 Strict single-peakedness in market thickness is false for \(\beta<1/2\)
 because the optimized gain has an exact initial zero plateau. For
@@ -62,7 +65,7 @@ thickness remain open.
 ## Repository layout
 
 ```text
-paper/       current standalone paper and compiled PDF
+paper/       current paper, PDF, bibliography, and official INFORMS style files
 figures/     extensive-form source and rendered formats
 analysis/    claim ledger, counterexample registry, numerical reports
 audits/      independent derivations and adversarial proof checks
@@ -100,7 +103,9 @@ done
 ```
 
 Run `make paper`, `make figure`, or `make test` for the common build and test
-targets.
+targets. The repository bundles the official INFORMS class, bibliography
+style, equation-style helper, and logo. A full TeX installation should provide
+the remaining standard packages, including `newtx` and `tex-gyre`.
 
 ## Verification record
 
@@ -110,5 +115,7 @@ targets.
   failure.
 - 108 thickness profiles and 90 rider-patience curves produced no additional
   counterexample. These scans are falsification evidence, not proofs.
-- The 24-page paper compiles without unresolved references, warnings, or box
-  errors and has been visually checked page by page.
+- The 30-page double-anonymous Management Science manuscript compiles without
+  unresolved references, citation errors, overfull boxes, or duplicate PDF
+  anchors and has been visually checked page by page.
+- The current manuscript source contains no boxed-formula commands.
