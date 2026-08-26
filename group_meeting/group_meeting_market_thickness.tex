@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=1.18}
 \usepackage{float,enumitem,multicol,microtype}
 \usepackage[round]{natbib}
@@ -24,6 +25,9 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcommand{\ch}{\widehat c}
 \newcommand{\E}{\mathbb E}
+\newcommand{\regionkey}[2]{%
+  \tikz[baseline=-0.45ex]{\draw[fill=#1,draw=black,line width=.25pt]
+  (0,0) rectangle (.24,.15);}\,#2}
 
 \begin{document}
 
@@ -342,94 +346,68 @@ $\beta$ & $\delta$ & $\ch^*$ & $p_1^*$ & $p_2^*$ & $M_1^*$\\
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\begin{axis}[
-  xbar stacked,
-  width=.88\textwidth,
-  height=5.0cm,
-  xmin=0,xmax=1,
-  ymin=-.6,ymax=5.6,
-  bar width=9pt,
-  xtick={0,.2,.4,.6,.8,1},
-  ytick={0,1,2,3,4,5},
-  yticklabels={{$(.9,.8)$},{$(.9,.5)$},{$(.8,.8)$},{$(.8,.5)$},{$(.6,.8)$},{$(.6,.5)$}},
-  ylabel={$(\beta,\delta)$},
-  xlabel={share of rider-value interval},
-  title={Rider regions under the optimal menu},
-  title style={font=\small},
-  axis x line*=bottom,
-  axis y line*=left,
-  y axis line style={draw=none},
-  y tick style={draw=none},
+\begin{groupplot}[
+  group style={group size=2 by 2,horizontal sep=1.0cm,vertical sep=1.15cm},
+  width=.45\textwidth,
+  height=4.05cm,
+  xmin=.59,xmax=.91,
+  ymin=0,ymax=1,
+  xtick={.6,.8,.9},
+  ytick={0,.2,.4,.6,.8,1},
+  stack plots=y,
+  area style,
+  axis on top,
+  ymajorgrids,
+  grid style={white,line width=.25pt},
   tick label style={font=\scriptsize},
   label style={font=\small},
-  legend style={
-    at={(0.5,1.04)},anchor=south,draw=none,
-    legend columns=4,font=\scriptsize,
-    /tikz/every even column/.append style={column sep=7pt}
-  }
+  title style={font=\small,yshift=-1mm},
+  every axis plot/.append style={draw=black,line width=.35pt,mark=none}
 ]
-\addplot[fill=black!78,draw=black] coordinates
-  {(.453693,0) (.405843,1) (.463746,2) (.420148,3) (.488210,4) (.467733,5)};
-\addlegendentry{no post}
-\addplot[fill=black!53,draw=black] coordinates
-  {(.050410,0) (.045094,1) (.115936,2) (.105037,3) (.325473,4) (.311822,5)};
-\addlegendentry{cancel}
-\addplot[fill=black!30,draw=black] coordinates
-  {(.325546,0) (.316746,1) (.260953,2) (.268487,3) (.101156,4) (.116609,5)};
-\addlegendentry{repeat $p_1$}
-\addplot[fill=black!10,draw=black] coordinates
-  {(.170351,0) (.232317,1) (.159365,2) (.206329,3) (.085161,4) (.103836,5)};
-\addlegendentry{rescue $p_2$}
-\end{axis}
-\end{tikzpicture}
 
-\vspace{4pt}
-\begin{tikzpicture}
-\begin{axis}[
-  xbar stacked,
-  width=.88\textwidth,
-  height=5.0cm,
-  xmin=0,xmax=1,
-  ymin=-.6,ymax=5.6,
-  bar width=9pt,
-  xtick={0,.2,.4,.6,.8,1},
-  ytick={0,1,2,3,4,5},
-  yticklabels={{$(.9,.8)$},{$(.9,.5)$},{$(.8,.8)$},{$(.8,.5)$},{$(.6,.8)$},{$(.6,.5)$}},
-  ylabel={$(\beta,\delta)$},
-  xlabel={share of driver-cost interval},
-  title={Driver regions under the optimal menu},
-  title style={font=\small},
-  axis x line*=bottom,
-  axis y line*=left,
-  y axis line style={draw=none},
-  y tick style={draw=none},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
-  legend style={
-    at={(0.5,1.04)},anchor=south,draw=none,
-    legend columns=4,font=\scriptsize,
-    /tikz/every even column/.append style={column sep=6pt}
-  }
-]
-\addplot[fill=black!78,draw=black] coordinates
-  {(.314018,0) (.329857,1) (.382475,2) (.370421,3) (.478613,4) (.460069,5)};
-\addlegendentry{accept now}
-\addplot[fill=black!53,draw=black] coordinates
-  {(.139675,0) (.075986,1) (.081271,2) (.049727,3) (.009597,4) (.007664,5)};
-\addlegendentry{accept either later}
-\addplot[fill=black!30,draw=black] coordinates
-  {(.153316,0) (.209086,1) (.127492,2) (.165063,3) (.051097,4) (.062302,5)};
-\addlegendentry{rescue only}
-\addplot[fill=black!10,draw=black] coordinates
-  {(.392991,0) (.385072,1) (.408762,2) (.414790,3) (.460694,4) (.469966,5)};
-\addlegendentry{never accept}
-\end{axis}
+\nextgroupplot[title={Rider types, $\delta=.5$},ylabel={rider value $v$}]
+\addplot[fill=black!78] coordinates {(.6,.467733) (.8,.420148) (.9,.405843)} \closedcycle;
+\addplot[fill=black!53] coordinates {(.6,.311822) (.8,.105037) (.9,.045094)} \closedcycle;
+\addplot[fill=black!30] coordinates {(.6,.116609) (.8,.268487) (.9,.316746)} \closedcycle;
+\addplot[fill=black!10] coordinates {(.6,.103836) (.8,.206329) (.9,.232317)} \closedcycle;
+
+\nextgroupplot[title={Rider types, $\delta=.8$},yticklabels=\empty]
+\addplot[fill=black!78] coordinates {(.6,.488210) (.8,.463746) (.9,.453693)} \closedcycle;
+\addplot[fill=black!53] coordinates {(.6,.325473) (.8,.115936) (.9,.050410)} \closedcycle;
+\addplot[fill=black!30] coordinates {(.6,.101156) (.8,.260953) (.9,.325546)} \closedcycle;
+\addplot[fill=black!10] coordinates {(.6,.085161) (.8,.159365) (.9,.170351)} \closedcycle;
+
+\nextgroupplot[title={Driver types, $\delta=.5$},xlabel={rider discount $\beta$},ylabel={driver cost $c$}]
+\addplot[fill=black!78] coordinates {(.6,.460069) (.8,.370421) (.9,.329857)} \closedcycle;
+\addplot[fill=black!53] coordinates {(.6,.007664) (.8,.049727) (.9,.075986)} \closedcycle;
+\addplot[fill=black!30] coordinates {(.6,.062302) (.8,.165063) (.9,.209086)} \closedcycle;
+\addplot[fill=black!10] coordinates {(.6,.469966) (.8,.414790) (.9,.385072)} \closedcycle;
+
+\nextgroupplot[title={Driver types, $\delta=.8$},xlabel={rider discount $\beta$},yticklabels=\empty]
+\addplot[fill=black!78] coordinates {(.6,.478613) (.8,.382475) (.9,.314018)} \closedcycle;
+\addplot[fill=black!53] coordinates {(.6,.009597) (.8,.081271) (.9,.139675)} \closedcycle;
+\addplot[fill=black!30] coordinates {(.6,.051097) (.8,.127492) (.9,.153316)} \closedcycle;
+\addplot[fill=black!10] coordinates {(.6,.460694) (.8,.408762) (.9,.392991)} \closedcycle;
+\end{groupplot}
 \end{tikzpicture}
-\caption{Equilibrium type-region sizes for six optimal active menus.  The first
-panel partitions $v\in[0,1]$; the second partitions $c\in[0,1]$.  Within the
-displayed calibrations, holding $\beta$ fixed, lower $\delta$ is associated
-with a larger rescue-only driver interval and rider rescue region; holding
-$\delta$ fixed, larger $\beta$ shifts rider mass away from cancellation.}
+\vspace{1pt}
+
+{\scriptsize Rider:\quad
+\regionkey{black!78}{no post}\quad
+\regionkey{black!53}{cancel}\quad
+\regionkey{black!30}{repeat $p_1$}\quad
+\regionkey{black!10}{rescue $p_2$}\par
+Driver:\quad
+\regionkey{black!78}{accept now}\quad
+\regionkey{black!53}{accept either later}\quad
+\regionkey{black!30}{rescue only}\quad
+\regionkey{black!10}{never accept}}
+\caption{Equilibrium type maps for six optimal active menus.  A vertical slice
+partitions the full type interval $[0,1]$; hence its shaded heights are the
+uniform-population shares reported above.  The vertices are the recomputed
+calibrations at $\beta=.6,.8,.9$ and the connecting segments are visual guides,
+not a continuous comparative-statics claim.  Continuation labels describe
+actions conditional on initial failure, not realized path probabilities.}
 \label{fig:type-regions}
 \end{figure}
 
@@ -1108,92 +1086,61 @@ recomputed at every $m$.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\begin{axis}[
-  xbar stacked,
-  width=.88\textwidth,
-  height=4.15cm,
-  xmin=0,xmax=1,
-  ymin=-.6,ymax=3.6,
-  bar width=9pt,
-  xtick={0,.2,.4,.6,.8,1},
-  ytick={0,1,2,3},
-  yticklabels={$20$,$10$,$5$,$1$},
-  ylabel={$m$},
-  xlabel={share of rider-value interval},
-  axis x line*=bottom,
-  axis y line*=left,
-  y axis line style={draw=none},
-  y tick style={draw=none},
+\begin{groupplot}[
+  group style={group size=2 by 1,horizontal sep=1.0cm},
+  width=.46\textwidth,
+  height=5.15cm,
+  xmode=log,
+  log basis x=10,
+  xmin=.85,xmax=23,
+  ymin=0,ymax=1,
+  xtick={1,5,10,20},
+  xticklabels={$1$,$5$,$10$,$20$},
+  ytick={0,.2,.4,.6,.8,1},
+  stack plots=y,
+  area style,
+  axis on top,
+  ymajorgrids,
+  grid style={white,line width=.25pt},
   tick label style={font=\scriptsize},
   label style={font=\small},
-  legend style={
-    at={(0.5,1.04)},anchor=south,draw=none,
-    legend columns=4,font=\scriptsize,
-    /tikz/every even column/.append style={column sep=7pt}
-  }
+  title style={font=\small,yshift=-1mm},
+  every axis plot/.append style={draw=black,line width=.35pt,mark=none}
 ]
-\addplot[fill=black!78,draw=black] coordinates
-  {(.092538,0) (.155922,1) (.236946,2) (.391928,3)};
-\addlegendentry{no post}
-\addplot[fill=black!53,draw=black] coordinates
-  {(.023134,0) (.038981,1) (.059237,2) (.097982,3)};
-\addlegendentry{cancel}
-\addplot[fill=black!30,draw=black] coordinates
-  {(.188316,0) (.256619,1) (.301516,2) (.293176,3)};
-\addlegendentry{repeat $p_1$}
-\addplot[fill=black!10,draw=black] coordinates
-  {(.696012,0) (.548478,1) (.402301,2) (.216915,3)};
-\addlegendentry{rescue $p_2$}
-\end{axis}
-\end{tikzpicture}
 
-\vspace{3pt}
-\begin{tikzpicture}
-\begin{axis}[
-  xbar stacked,
-  width=.88\textwidth,
-  height=4.15cm,
-  xmin=0,xmax=1,
-  ymin=-.6,ymax=3.6,
-  bar width=9pt,
-  xtick={0,.2,.4,.6,.8,1},
-  ytick={0,1,2,3},
-  yticklabels={$20$,$10$,$5$,$1$},
-  ylabel={$m$},
-  xlabel={share of driver-cost interval},
-  axis x line*=bottom,
-  axis y line*=left,
-  y axis line style={draw=none},
-  y tick style={draw=none},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
-  legend style={
-    at={(0.5,1.04)},anchor=south,draw=none,
-    legend columns=4,font=\scriptsize,
-    /tikz/every even column/.append style={column sep=6pt}
-  }
-]
-\addplot[fill=black!78,draw=black] coordinates
-  {(.080430,0) (.132863,1) (.197789,2) (.320340,3)};
-\addlegendentry{accept now}
-\addplot[fill=black!53,draw=black] coordinates
-  {(.012107,0) (.023059,1) (.039157,2) (.071587,3)};
-\addlegendentry{accept either later}
-\addplot[fill=black!30,draw=black] coordinates
-  {(.115517,0) (.154384,1) (.176151,2) (.154450,3)};
-\addlegendentry{rescue only}
-\addplot[fill=black!10,draw=black] coordinates
-  {(.791946,0) (.689694,1) (.586902,2) (.453622,3)};
-\addlegendentry{never accept}
-\end{axis}
+\nextgroupplot[title={Rider type map},xlabel={market thickness $m$ (log scale)},ylabel={rider value $v$}]
+\addplot[fill=black!78] coordinates {(1,.391928) (5,.236946) (10,.155922) (20,.092538)} \closedcycle;
+\addplot[fill=black!53] coordinates {(1,.097982) (5,.059237) (10,.038981) (20,.023134)} \closedcycle;
+\addplot[fill=black!30] coordinates {(1,.293176) (5,.301516) (10,.256619) (20,.188316)} \closedcycle;
+\addplot[fill=black!10] coordinates {(1,.216915) (5,.402301) (10,.548478) (20,.696012)} \closedcycle;
+
+\nextgroupplot[title={Driver type map},xlabel={market thickness $m$ (log scale)},yticklabels=\empty]
+\addplot[fill=black!78] coordinates {(1,.320340) (5,.197789) (10,.132863) (20,.080430)} \closedcycle;
+\addplot[fill=black!53] coordinates {(1,.071587) (5,.039157) (10,.023059) (20,.012107)} \closedcycle;
+\addplot[fill=black!30] coordinates {(1,.154450) (5,.176151) (10,.154384) (20,.115517)} \closedcycle;
+\addplot[fill=black!10] coordinates {(1,.453622) (5,.586902) (10,.689694) (20,.791946)} \closedcycle;
+\end{groupplot}
 \end{tikzpicture}
-\caption{Equilibrium type-region sizes at $m=1,5,10,20$ for
-$(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$.  These are normalized type shares,
-not realized path probabilities; expected incumbent counts equal $m$ times the
-driver widths.  As $m$ rises, optimized payments fall and the rider rescue
-region grows from $.2169$ to $.6960$.  The individual driver never-accept
-interval also grows, yet pool-level rescue coverage $C_2^*(m)$ rises from
-$.2023$ to $.9221$ because the platform draws from more drivers.}
+\vspace{1pt}
+
+{\scriptsize Rider:\quad
+\regionkey{black!78}{no post}\quad
+\regionkey{black!53}{cancel}\quad
+\regionkey{black!30}{repeat $p_1$}\quad
+\regionkey{black!10}{rescue $p_2$}\par
+Driver:\quad
+\regionkey{black!78}{accept now}\quad
+\regionkey{black!53}{accept either later}\quad
+\regionkey{black!30}{rescue only}\quad
+\regionkey{black!10}{never accept}}
+\caption{Equilibrium type maps at $m=1,5,10,20$ for
+$(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$.  Each vertical slice partitions
+$[0,1]$ and the logarithmic horizontal scale separates the four recomputed
+markets; connecting segments are visual guides.  The bands are normalized
+type shares, not realized path probabilities; expected incumbent counts equal
+$m$ times the driver shares.  The rider rescue region grows from $.2169$ to
+$.6960$, while pool-level rescue coverage $C_2^*(m)$ rises from $.2023$ to
+$.9221$.}
 \label{fig:thickness-regions}
 \end{figure}
 
