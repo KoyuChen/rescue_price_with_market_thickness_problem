@@ -44,12 +44,16 @@ class Params:
     both the first-window incumbent intensity and the fresh-arrival intensity
     in a unit-area second-window catchment.  ``pickup_rate`` is the extra
     driver-paid pickup cost per normalized radial unit beyond the core.
+    ``incumbent_retention`` is the probability that a first-window rejector
+    both remains physically available and remains eligible for the focal
+    order's terminal lottery.  It is independent of cost in this benchmark.
     """
 
     m: float
     beta: float
     delta: float
     pickup_rate: float = 0.25
+    incumbent_retention: float = 1.0
 
     def __post_init__(self) -> None:
         if self.m <= 0:
@@ -60,6 +64,8 @@ class Params:
             raise ValueError("delta must lie in (0,1]")
         if self.pickup_rate < 0:
             raise ValueError("pickup_rate must be nonnegative")
+        if not (0 <= self.incumbent_retention <= 1):
+            raise ValueError("incumbent_retention must lie in [0,1]")
 
 
 @dataclass(frozen=True)
@@ -243,7 +249,7 @@ def solve_terminal_market(
 ) -> TerminalMarket:
     """Terminal volunteer market conditional on universal rejection."""
 
-    incumbent = params.m * max(
+    incumbent = params.incumbent_retention * params.m * max(
         float(uniform_cdf(payment)) - float(uniform_cdf(cutoff)), 0.0
     )
     fresh = fresh_accept_intensity(payment, reach, params)
@@ -346,7 +352,7 @@ def cutoff_residual(cutoff: float, policy: Policy, params: Params) -> float:
         policy.p1 - cutoff
     )
     universal_rejection = np.exp(-params.m * uniform_cdf(cutoff))
-    waiting = params.delta * universal_rejection * (
+    waiting = params.delta * params.incumbent_retention * universal_rejection * (
         eta_repeat
         * repeat.assignment_probability
         * max(policy.p1 - cutoff, 0.0)
@@ -371,7 +377,7 @@ def _payoff_difference(
         policy.p1 - cost
     )
     universal_rejection = np.exp(-params.m * uniform_cdf(cutoff))
-    waiting = params.delta * universal_rejection * (
+    waiting = params.delta * params.incumbent_retention * universal_rejection * (
         eta_repeat
         * repeat.assignment_probability
         * max(policy.p1 - cost, 0.0)
@@ -697,6 +703,7 @@ def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool]:
         "beta": outcome.params.beta,
         "delta": outcome.params.delta,
         "pickup_rate": outcome.params.pickup_rate,
+        "incumbent_retention": outcome.params.incumbent_retention,
         "p1": outcome.policy.p1,
         "p2": outcome.policy.p2,
         "s": outcome.policy.s,

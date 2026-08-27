@@ -1,6 +1,6 @@
 """Outer mechanism design over inner cutoff-WPBE outcomes.
 
-For each environment omega=(m,beta,delta), the platform solves three nested
+For each environment theta=(m,beta,delta), the platform solves three nested
 problems under conservative equilibrium selection:
 
     baseline:        max_p              W(p,p,1)
@@ -39,9 +39,16 @@ class Environment:
     beta: float
     delta: float
     pickup_rate: float = 0.25
+    incumbent_retention: float = 1.0
 
     def params(self) -> Params:
-        return Params(self.m, self.beta, self.delta, self.pickup_rate)
+        return Params(
+            self.m,
+            self.beta,
+            self.delta,
+            self.pickup_rate,
+            self.incumbent_retention,
+        )
 
 
 @dataclass(frozen=True)

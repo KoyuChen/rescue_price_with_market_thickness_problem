@@ -114,8 +114,8 @@ cutoff-WPBE.  Only then does the platform compare mechanisms.}
 \subsection{Information and timing for the same focal order}
 
 \begin{center}
-\small
-\renewcommand{\arraystretch}{1.10}
+\footnotesize
+\renewcommand{\arraystretch}{1.04}
 \begin{tabularx}{.995\textwidth}{@{}L{1.15cm}Y L{4.2cm}@{}}
 \toprule
 Stage & Action & Information\\
@@ -130,7 +130,8 @@ or rescue at $p_2$. & The rider sees failure but no driver count or future
 fresh responses; beliefs are induced by the equilibrium cutoff.\\
 3 & The chosen terminal notification is sent; fresh drivers see the order for
 the first time and may respond. & Rejectors and fresh volunteers enter one
-anonymous lottery.  Pickup cost is paid only by the selected driver.\\
+anonymous lottery.  A rejector may first exit or lose eligibility; pickup cost
+is paid only by the selected driver.\\
 \bottomrule
 \end{tabularx}
 \end{center}
@@ -151,11 +152,13 @@ payment and pickup cost,
 e(p,s)=m\int_0^s F\!\left(p-d(u)\right)du.
 \tag{8}
 \]
-There is no sunk relocation cost and no fresh-entry fixed point.  Given
-incumbent cutoff $a$, let $s_1=1,s_2=s$ and
+There is no sunk relocation cost and no fresh-entry fixed point.  Let a
+rejector remain available with probability $\alpha$ and remain eligible
+conditional on availability with probability $\chi$; write
+$\omega=\alpha\chi$.  Given cutoff $a$, let $s_1=1,s_2=s$ and
 \[
-I_j(a)=m[F(p_j)-F(a)]_+,\quad
-\lambda_j(a)=I_j(a)+e(p_j,s_j),\quad C_j(a)=1-e^{-\lambda_j(a)}.
+I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+,\quad
+\lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),\quad C_j(a)=1-e^{-\lambda_j(a)}.
 \tag{9}
 \]
 The rider compares $0$, $C_1(\beta v-p_1)$, and $C_2(\beta v-p_2)$; let the
@@ -167,7 +170,7 @@ For a proposed aggregate cutoff, a type-$c$ incumbent's accept-minus-wait
 payoff is
 \[
 D(c;a)=h(mF(a))(p_1-c)-\delta e^{-mF(a)}
-\sum_{j=1}^2\eta_j(a)h(\lambda_j(a))(p_j-c)_+.
+\omega\sum_{j=1}^2\eta_j(a)h(\lambda_j(a))(p_j-c)_+.
 \tag{10}
 \]
 Together with the rider and fresh-driver strategies above, $a$ is a cutoff-WPBE
@@ -185,8 +188,8 @@ not on a sampled type grid.  The computation respects the nesting
 \ \longrightarrow\ \max_{p_1},
 \tag{12}
 \]
-and enumerates the entire cutoff correspondence before applying the
-conservative equilibrium selection in (7).
+and enumerates the entire cutoff correspondence before conservative selection.
+The archived curves set $\omega=1$; lower retention is an explicit primitive.
 \endgroup
 
 \clearpage
@@ -207,8 +210,8 @@ fixed-rescue policy.}
 \end{figure}
 
 Under repeat, the terminal pool contains screened incumbents
-$m[F(p_1)-F(a)]_+$ and core fresh volunteers $e(p_1,1)$.  Under rescue, it
-contains $m[F(p_2)-F(a)]_+$ and $e(p_2,1)$.  For uniform costs,
+$\omega m[F(p_1)-F(a)]_+$ and core fresh volunteers $e(p_1,1)$.  Under rescue,
+it contains $\omega m[F(p_2)-F(a)]_+$ and $e(p_2,1)$.  For uniform costs,
 \[
 e(p,1)=mp.
 \tag{13}
@@ -260,8 +263,15 @@ Its marginal outer supply is
 s^{\mathrm{sat}}(p)=(1+p/\tau)^2.
 \tag{15}
 \]
-So $s$ is a meaningful multiplier even without a platform search-cost term:
-beyond the saturation radius, extra notifications attract no willing drivers.
+Thus pickup friction creates a physical response saturation.  It does not make
+notifications economically free.  If expanded rescue is executed with
+ex-ante probability $q_R$, expected extra contacts are
+\[
+Q^O=q_Rm(s-1),\qquad J_\kappa=BM-\kappa Q^O.
+\tag{16}
+\]
+Completion with $\kappa=0$ is a maximal-completion frontier; an economic scope
+optimum requires $\kappa>0$ or an equivalent notification budget.
 
 At $(\beta,\delta,\tau)=(.8,.8,.25)$, the incremental value of expanded search
 over optimized fixed rescue peaks at $12.64$ percentage points near $m=1$ and
@@ -269,112 +279,152 @@ falls to $1.42$ points at $m=16$.  The optimized multiplier declines from its
 cap $s^*=4$ in thin markets to $s^*=2.09$ at $m=16$.
 
 \noindent\textbf{Interpretation.}
-Search primarily repairs geographic scarcity.  Price chooses which reached
-drivers are willing; $s$ chooses who can first learn about the failed order.
-Both affect the incumbent's waiting option through terminal coverage and
-assignment competition, so the blue line is not a mechanical pool-size effect.
+Price chooses which reached drivers are willing; $s$ chooses who can first
+learn about the failed order.  With free contacts, $s^*$ may hit $\bar s$ or
+the physical saturation set.  With $\kappa>0$, search expands only while its
+marginal completion value exceeds the opportunity cost of another expected
+contact.
 
 \clearpage
-\section{Under which market conditions does each tool work best?}
+\section{The two controls peak in different thickness regions}
+
+\takeaway{In the fully optimized cutoff-WPBE numerics, expanded search creates
+its largest incremental gain first; contingent pricing reaches its maximum
+later.  The right panel gives the common-branch theorem that explains this
+ordering.  The left panel is evidence for the re-optimized model, not its proof.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.99\textwidth]{../figures/figure4_market_conditions.pdf}
-\caption{Top: value of adding fixed-reach rescue,
-$100(V_F-V_0)$.  Bottom: incremental value of expanded search,
-$100(V_E-V_F)$.  Every environment re-solves the inner WPBE and all outer
-policy variables; the shaded range is across the displayed $\delta$ values,
-not a confidence interval.}
-\label{fig:conditions}
+\includegraphics[width=.995\textwidth]{../figures/figure5_ordered_peaks.pdf}
+\caption{Left: every point separately re-solves the inner cutoff-WPBE and
+re-optimizes all controls available in that mechanism class.  Right: one
+illustrative set of effective rates for the closed-form theorem; the ordering
+holds for every $0\le\lambda_0<\lambda_F<\lambda_E$ with
+$r+\lambda_0>0$.}
+\label{fig:ordered-peaks}
 \end{figure}
 
-\vspace{-2pt}
 \begin{center}
 \small
-\begin{tabularx}{.98\textwidth}{@{}L{2.4cm}Y Y@{}}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{.98\textwidth}{@{}L{2.25cm}Y Y@{}}
 \toprule
-Condition & Fixed-reach rescue & Expanded-search increment\\
+Thickness regime & Expanded-search layer $V_E-V_F$ & Price layer $V_F-V_0$\\
 \midrule
-Thin $m$ & A price wedge acts on a small core and is modest. & Largest value:
-the main failure is insufficient geographic reach.\\
-Intermediate $m$ & Value rises as the screened/core backup becomes usable. &
-Still material, but begins to decline after its thin-market peak.\\
-Thick $m$ & Hump-shaped: the flat benchmark eventually leaves little room. &
-Falls sharply because core coverage is already high.\\
-Higher $\beta$ & More riders continue after failure, making contingent pay
-more useful. & Also raises the level of search value.\\
-Higher $\delta$ & More patient incumbents wait more; the price layer is
-noticeably affected. & Much less sensitive in this grid because added outer
-supply is fresh to the focal order.\\
+Scarce & Geographic reach is binding; the gain peaks near $m=1$ in the main
+slice. & Repricing a small core acts on little supply.\\
+Intermediate & Its marginal value falls as the core itself becomes reliable. &
+The screened and core-fresh backup pools are now large enough for contingent
+pay to peak near $m=6$.\\
+Ample & Added outer coverage has little room to improve completion. & The flat
+optimized mechanism also becomes reliable, so the price increment declines.\\
 \bottomrule
 \end{tabularx}
 \end{center}
-
-\takeaway{The numerical policy reversal is not ``pay in thick, search in thin''
-holding other controls fixed.  It compares separately optimized, nested
-mechanism classes, each evaluated at its own cutoff-WPBE.}
-
-\clearpage
-\section{Closest papers and a short proposition chain}
-
-\takeaway{Search radius, two-round broadcasting, and spatial pickup frictions
-are known.  The proposed contribution is their integration with a committed
-same-order price path, Bayesian continuation after universal rejection, and
-outer mechanism design over the full cutoff-WPBE correspondence.}
-
-\begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.13}
-\begin{tabularx}{\textwidth}{@{}L{2.45cm}L{4.15cm}Y@{}}
-\toprule
-Closest paper & Its mechanism / friction & Distinction here\\
-\midrule
-Hu, Hu, Zhu (2022), M\&SOM & Two-period surge and driver relocation; a driver
-pays a sunk cost before matching. & We use their fixed-plus-distance language,
-but pickup cost is assignment-contingent; the platform also commits to the
-notification reach of a failed focal order.\\
-Yang, Qin, Ke, Ye (2020), TR-B & Joint matching interval and maximum pickup
-radius. & Supplies the radius trade-off, but has no committed $(p_1,p_2)$ or
-strategic reject-and-wait response.\\
-Qin, Yang, Liu (2025), TR-C & Two-round broadcast with round-specific radii
-under spatial Poisson arrivals. & Closest search design; it does not embed the
-radius choice in the same-order cutoff-WPBE and price mechanism.\\
-Wang, Zhang, Zhang (2024), OR & Pickup begins after matching and occupies
-driver capacity; matching is controlled by pickup-time quality. & Supports
-winner-only pickup timing, but not order-level rescue pricing or Bayesian
-rider continuation.\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-\subsection{Deliberately short proposition chain}
-
-\begin{enumerate}
-\item \textbf{Spatial thinning.}  Derive (14)--(15): $e_p>0$, $e_s\ge0$, and
-search saturates at $s^{\mathrm{sat}}(p)$.  This is the closed-form supply
-foundation, not the headline contribution.
-\item \textbf{Cutoff-WPBE foundation.}  Characterize
-$\mathcal E^{\WPBE}(p_1,p_2,s)$ using (10)--(11), establish existence, and give
-conditions for uniqueness.  The full correspondence, rather than one local
-root, is the constraint set faced by the platform.
-\item \textbf{Market-condition allocation.}  Give sufficient conditions under
-which the incremental optimum shifts from expanded reach in thin markets to
-contingent pay in thicker markets, accounting for rider continuation and
-incumbent holdout.  The current figure is evidence, not yet a global theorem.
-\end{enumerate}
 
 \noindent\colorbox{softgray}{\parbox{.965\textwidth}{\small
-\textbf{Numerical audit.}  The formal grid contains 77 environments and three
-mechanism classes (231 outer optima).  Every optimum has one cutoff-WPBE and
-the same correspondence on grids 401, 801, and 1601.  Independent dense
-re-optimization changes completion by at most 0.0112 percentage points.
-Thirteen model/solver tests pass; a 300,000-draw Poisson-thinning audit agrees
-with exact coverage within sampling error.}}
+\textbf{Exact status.}  The numerical peak locations use
+$(\beta,\delta,\tau,\omega)=(.8,.8,.25,1)$.  Af\`eche--Liu--Maglaras-style
+``scarce--intermediate--ample'' language is appropriate for these regimes;
+one should not call the re-optimized value envelopes globally single-peaked
+until branch switching and rider composition are controlled.}}
+
+\clearpage
+\section{A benchmark theorem, a full-model target, and the boundary}
+
+\takeaway{The strict peak order is proved on a common Poisson-WPBE branch.
+For the fully re-optimized mechanism, the honest theorem target is an ordering
+of argmax sets under an explicit branch-stability condition.}
+
+\begingroup\small
+\noindent\colorbox{softblue}{\parbox{.965\textwidth}{
+\textbf{Theorem (ordered peaks of nested rescue controls).}
+Fix one active cutoff-WPBE and rider-continuation branch.  Suppose first-window
+failure contributes $e^{-rm}$ and the nested terminal mechanisms induce
+$0\le\lambda_0<\lambda_F<\lambda_E$, with $r+\lambda_0>0$.  Then
+\[
+\Delta_P^0=e^{-rm}(e^{-\lambda_0m}-e^{-\lambda_Fm}),\qquad
+\Delta_S^0=e^{-rm}(e^{-\lambda_Fm}-e^{-\lambda_Em})
+\]
+are strictly single-peaked, with
+\[
+m_P^*=\frac{\log[(r+\lambda_F)/(r+\lambda_0)]}{\lambda_F-\lambda_0},\qquad
+m_S^*=\frac{\log[(r+\lambda_E)/(r+\lambda_F)]}{\lambda_E-\lambda_F},
+\]
+and
+\[
+\boxed{\ m_S^*<1/(r+\lambda_F)<m_P^*\ }.
+\tag{17}
+\]}}
+
+\begin{multicols}{2}
+\subsection{Proof and full-model lift}
+
+For $g_{a,b}(m)=e^{-am}-e^{-bm}$, $0<a<b$, the derivative changes sign once
+and
+\[
+m^*(a,b)=\frac{\log(b/a)}{b-a},\qquad \frac1b<m^*(a,b)<\frac1a.
+\]
+Apply this to the adjacent pairs
+$(r+\lambda_0,r+\lambda_F)$ and
+$(r+\lambda_F,r+\lambda_E)$.
+
+For the optimized model define
+\[
+\mathcal S=\arg\max_m(V_E-V_F),\qquad
+\mathcal P=\arg\max_m(V_F-V_0).
+\]
+The desired statement is
+$\sup\mathcal S<\inf\mathcal P$.  A sufficient condition is that both optimized
+gaps remain uniformly within half of their benchmark separation margins at
+$\bar m=1/(r+\lambda_F)$.  This condition permits multiple optimal policies;
+it does not assume differentiable envelopes.
+
+\subsection{Adversarial boundary}
+
+The common branch is essential.  Let
+$\Delta_P=e^{-m}-e^{-2m}$ and multiply the search gain by the
+mechanism-specific continuation factor
+$\eta(m)=(1-e^{-m})^2$.  Then
+\[
+m_P^*=\log2,\qquad m_S^*=\log(5/2)>m_P^*.
+\]
+Both gains remain smooth and uniquely peaked.  Rider-composition changes alone
+can reverse their order; policy switching can additionally create multiple
+peaks.
+
+\subsection{Closest theorem styles}
+
+\begin{itemize}
+\item Af\`eche--Liu--Maglaras: scarce/moderate/ample thresholds and
+zero--positive--zero control value, not a unique peak.
+\item Zhao--Papier--Teo: quasi-convex thickness cost and an intermediate
+optimum; weak quasi-convexity does not imply uniqueness.
+\item Wang--Zhang--Zhang: characterize search scope by a scalar index crossing.
+\item Here: order the peaks of two \emph{adjacent nested controls} after the
+inner cutoff-WPBE is made explicit.
+\end{itemize}
+\end{multicols}
+
+\vspace{-3pt}
+\noindent\colorbox{softgray}{\parbox{.965\textwidth}{\small
+\textbf{Economic closure for search.}
+On a common branch, let added scope create willing rate $\sigma(s)$ and contact
+rate $n(s)$.  Under $J_\kappa=BM-\kappa Q^O$, an interior scope satisfies
+\[
+\Psi(s;m)=
+\frac{B e^{-[\lambda_F+\sigma(s)]m}\sigma'(s)}
+{\kappa n'(s)}=1.
+\]
+Expand for $\Psi>1$ and contract for $\Psi<1$.  With $\kappa=0$, the solution
+is governed by the search cap or physical saturation, so it should be reported
+as the maximal-completion benchmark.}}
+\endgroup
 
 \paragraph{References.}\footnotesize
+Af\`eche, Liu, Maglaras (2023), \emph{M\&SOM} 25(5), 1890--1908.
+Zhao, Papier, Teo (2024), \emph{M\&SOM}.
 Hu, Hu, Zhu (2022), \emph{M\&SOM} 24(1), 91--109.
-Yang, Qin, Ke, Ye (2020), \emph{TR-B} 131, 84--105.
-Qin, Yang, Liu (2025), \emph{TR-C} 180, 105318.
 Wang, Zhang, Zhang (2024), \emph{Operations Research} 72(3), 1278--1297.
 
 \end{document}

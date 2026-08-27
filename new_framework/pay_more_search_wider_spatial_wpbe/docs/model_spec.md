@@ -10,6 +10,18 @@
 - Incumbent delay factor: `delta`.
 - Incremental pickup-cost slope: `tau`.
 - Search-area cap: `s_bar`.
+- Incumbent physical-retention probability: `alpha`.
+- Conditional platform-recall/eligibility probability: `chi`.
+
+Write
+
+\[
+\omega=\alpha\chi\in[0,1].
+\]
+
+The archived numerical grid uses `omega=1`; the solver exposes the combined
+primitive as `incumbent_retention` so that exit and loss of eligibility affect
+both the terminal pool and the focal rejector's waiting payoff consistently.
 
 The platform publicly commits to `mu=(p1,p2,s)` before drivers act. The
 baseline and fixed-reach classes impose `s=1`; the flat class additionally
@@ -87,11 +99,11 @@ For proposed incumbent cutoff `a`, terminal action `j` uses
 The willing-driver intensities and coverage are
 
 \[
-I_j(a)=m[F(p_j)-F(a)]_+,
+I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+,
 \]
 
 \[
-\lambda_j(a)=I_j(a)+e(p_j,s_j),
+\lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),
 \qquad
 C_j(a)=1-e^{-\lambda_j(a)}.
 \]
@@ -112,7 +124,7 @@ accept-minus-wait payoff is
 
 \[
 D(c;a)=h(mF(a))(p_1-c)
--\delta e^{-mF(a)}
+-\delta\omega e^{-mF(a)}
 \sum_{j=1}^2\eta_j(a)h(\lambda_j(a))(p_j-c)_+.
 \]
 
@@ -155,3 +167,25 @@ M(\mu,a)
 The archived objective is completion, not platform profit or welfare. Pickup
 cost is borne by the assigned driver and affects willingness through the
 response threshold; it is not subtracted a second time from completion.
+
+## Search-resource extension
+
+Free `s` under a completion objective is a maximal-completion benchmark, not
+an economic optimum for notification scope.  Let `q_R(mu,a)` be the ex-ante
+probability that expanded rescue is executed.  The expected number of extra
+outer contacts is
+
+\[
+Q^O(\mu,a)=q_R(\mu,a)m(s-1).
+\]
+
+A notification-cost version of the outer objective is
+
+\[
+J_\kappa(\mu,a)=B M(\mu,a)-\kappa Q^O(\mu,a),
+\]
+
+or one can maximize completion subject to a budget on `Q^O`.  This objective
+should be called completion net of notification opportunity cost.  Calling it
+platform profit additionally requires separate rider fare and driver-payment
+variables.

@@ -20,6 +20,7 @@ from spatial_design import (  # noqa: E402
 from spatial_wpbe import (  # noqa: E402
     Params,
     Policy,
+    cutoff_residual,
     extra_pickup_cost,
     fresh_accept_intensity,
     fresh_pickup_cost_intensity,
@@ -43,6 +44,26 @@ class SpatialThinningTests(unittest.TestCase):
         self.assertAlmostEqual(terminal.potential_fresh_intensity, 2.0)
         self.assertAlmostEqual(terminal.fresh_accept_intensity, 1.2)
         self.assertAlmostEqual(terminal.incumbent_intensity, 0.7)
+
+    def test_incumbent_retention_scales_pool_and_waiting_option(self):
+        retained = Params(
+            m=2.0,
+            beta=0.8,
+            delta=0.75,
+            pickup_rate=0.25,
+            incumbent_retention=0.4,
+        )
+        terminal = solve_terminal_market(0.25, 0.6, 1.0, retained)
+        self.assertAlmostEqual(terminal.incumbent_intensity, 0.4 * 0.7)
+
+        policy = Policy(0.30, 0.50, 1.0)
+        full_residual = cutoff_residual(0.22, policy, self.params)
+        retained_residual = cutoff_residual(0.22, policy, retained)
+        self.assertGreater(retained_residual, full_residual)
+
+    def test_incumbent_retention_must_be_a_probability(self):
+        with self.assertRaises(ValueError):
+            Params(2.0, 0.8, 0.75, 0.25, 1.01)
 
     def test_closed_form_matches_radial_quadrature(self):
         payment, reach = 0.6, 2.25

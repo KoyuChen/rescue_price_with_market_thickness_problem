@@ -3,6 +3,7 @@
 Formal configuration:
 
 - `tau=.25`, `s_bar=4`.
+- `omega=1` (all first-window rejectors remain available and eligible).
 - `m in {.5,.75,1,1.5,2,3,4,6,8,12,16}`.
 - Main slice: `beta=delta=.8`.
 - Market-condition slices: `beta in {.6,.9}` and
@@ -24,6 +25,8 @@ Formal configuration:
 
 The fixed-rescue increment peaks near `m=6` in the main slice. The expanded
 search increment peaks much earlier, near `m=1`, and declines with thickness.
+These finite-grid peak locations are the empirical objects plotted in
+`figure5_ordered_peaks`; they are not inferred from the closed-form benchmark.
 
 ## Representative optimized policies
 
@@ -59,6 +62,22 @@ cutoff-WPBE.
   the displayed grid because outer drivers are fresh to the order.
 
 These are numerical comparative statics, not global theorems.
+
+The proved benchmark result is narrower: on one common Poisson-WPBE branch
+with constant effective rates, both adjacent mechanism gains are uniquely
+peaked and the search peak is strictly to the left of the price peak.  See
+`ordered_peaks_theorem.md` for the proof, a uniform-stability corollary, and a
+counterexample showing why rider-composition or branch switching must be
+controlled before lifting the result to the optimized value envelopes.
+
+The completion-only results also treat search contacts as free.  They should
+be read as a maximal-completion frontier.  The economic extension uses
+
+\[
+Q^O=q_Rm(s-1),\qquad J_\kappa=BM-\kappa Q^O,
+\]
+
+or an equivalent notification budget.
 
 ## Verification
 

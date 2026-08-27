@@ -25,6 +25,11 @@ Every second window has a time-homogeneous core fresh cohort
 `Pois(m)`. Expanded search adds only an independent outer-annulus cohort
 `Pois((s-1)m)`.
 
+First-window rejectors remain available and eligible with probability
+`omega=alpha*chi`.  This factor multiplies both their terminal intensity and
+the focal rejector's continuation payoff.  The archived formal grid uses
+`omega=1`; the solver supports any value in `[0,1]`.
+
 ## Equilibrium-constrained mechanism design
 
 For every candidate mechanism `mu`, the code enumerates the complete symmetric
@@ -72,6 +77,8 @@ There is no fresh-entry congestion fixed point in this maintained version.
 - `group_meeting/`: preserved source pages 1--2, the new six-page extension,
   merge script, and the verified eight-page PDF.
 - `docs/`: formal setting, numerical summary, and closest-paper positioning.
+  `docs/ordered_peaks_theorem.md` contains the branchwise theorem, proof,
+  stability lift, counterexample, and search-cost extension.
 
 ## Reproduce
 
@@ -98,7 +105,28 @@ cutoff correspondence on grids 401, 801, and 1601.
   `0.0001123533`, or 0.0112 percentage points.
 - 120 random policies retain the same root set under grid refinement; none has
   multiple cutoff-WPBE in this stress sample.
-- 13 tests pass.
+- 15 tests pass, including incumbent-retention consistency.
 
 The uniqueness findings are numerical facts for the archived grid, not a
 global uniqueness theorem.
+
+## Theoretical status
+
+On a common Poisson-WPBE branch, the adjacent gains from adding contingent pay
+and then expanded search are strictly single-peaked in market thickness.  Their
+closed-form peaks satisfy
+
+\[
+m_S^*<\frac1{r+\lambda_F}<m_P^*.
+\]
+
+This branchwise theorem does not automatically apply to the re-optimized value
+envelopes: rider-composition changes and policy switching can reverse the order
+or create multiple peaks.  The theorem note states a uniform-separation
+condition that is sufficient to lift the ordering to the full mechanism
+design.
+
+The archived objective maximizes completion with free search contacts.  It is
+a maximal-completion frontier.  The economic extension uses expected extra
+contacts `Q^O=q_R*m*(s-1)` and objective `B*M-kappa*Q^O`, or an equivalent
+notification budget.
