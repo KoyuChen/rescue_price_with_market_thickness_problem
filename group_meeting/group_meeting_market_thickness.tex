@@ -587,121 +587,6 @@ global solution of the mixed-entry menu problem and not a monotonicity theorem
 in $\gamma$.
 
 \clearpage
-\section{Comparative statics: which primitives move the rescue value?}
-
-\takeaway{The cross-parameter evidence is reported as exact rows rather than
-overlaid curves.  Every row re-solves the WPBE, both prices, the optimized flat
-benchmark, and the maximizing thickness.  These are policy changes, not partial
-derivatives at a fixed menu.}
-
-\subsection{One-at-a-time re-optimized experiments}
-
-\begin{center}
-\small
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-Experiment & $\alpha$ & $\beta$ & $\delta$ & $100V(10)$ &
-$\widehat m$ & $100V(\widehat m)$\\
-\midrule
-Baseline & 1.00 & .80 & .80 & 6.155 & 9.72 & 6.157\\
-Less patient riders & 1.00 & .45 & .80 & 2.343 & 21.83 & 2.997\\
-Moderately patient riders & 1.00 & .60 & .80 & 4.119 & 14.51 & 4.305\\
-Less patient incumbents & 1.00 & .80 & .40 & 7.020 & 8.13 & 7.094\\
-Fully patient incumbents & 1.00 & .80 & 1.00 & 5.718 & 10.71 & 5.726\\
-Low survival & .25 & .80 & .80 & 2.061 & 20.30 & 2.331\\
-Intermediate survival & .60 & .80 & .80 & 4.248 & 12.98 & 4.328\\
-\bottomrule
-\end{tabular}
-\end{center}
-\vspace{-2pt}
-
-\noindent Here $\widehat m$ denotes a numerical maximizer over
-$m\in[.01,10^4]$; it is not claimed unique.  As a check on the menu itself, the
-rescue gap $p_2^*-p_1^*$ at $\widehat m$ is $.156$ in the baseline, $.082$ at
-$\beta=.45$, $.178$ at $\delta=.40$, and $.230$ at $\alpha=.25$.
-
-\subsection{Read the table through two margins}
-
-\begin{center}
-\small
-\begin{tabularx}{.98\textwidth}{@{}L{2.4cm}L{4.3cm}X@{}}
-\toprule
-Primitive & Continuation benefit & Announcement cost\\
-\midrule
-Rider patience $\beta$ & A larger set of riders retains enough delayed value to
-activate rescue. & The useful region arrives at a smaller $m$; when $\beta<1/2$,
-rescue may be inactive on an initial thin-market interval.\\
-Driver patience $\delta$ & Physical continuation capacity does not change. & A
-patient incumbent is more willing to wait for $p_2$, lowering acceptance now.\\
-Incumbent survival $\alpha$ & More of the pool screened by rejection remains
-available later. & Low survival requires a thicker initial pool and may require
-a larger price gap to create enough coverage.\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-\takeaway{Thickness alone is not a sufficient policy statistic.  High rider
-patience and high incumbent survival strengthen recovery; high driver patience
-strengthens strategic waiting.  The peak therefore moves as well as its height.}
-
-\noindent\textit{Claim boundary.} These rows are deterministic numerical
-comparisons.  The paper proves endpoint regimes and a sufficient threshold for
-strict optimized dominance, not global monotonicity of the optimal cutoff or
-either price in every primitive.
-
-\clearpage
-\section{Adversarial checks: where does the baseline logic break?}
-
-\takeaway{The baseline is not extrapolated by inspection.  Panel (a) asks
-whether a local rescue gain implies that a large rescue is also good; it does
-not.  Panel (b) asks whether fresh entry mechanically creates rescue value; it
-does not---the rider must actually use the marginal rescue option.}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.96\textwidth]{../paper/formal/figures/boundary_diagnostics.pdf}
-\vspace{-5pt}
-\caption{Two figures, two falsification exercises.  Left: with
-$F(c)=\sqrt c$ and fixed $p_1=.06$, a small active increment helps locally but
-$p_2=.17$ lowers completion by $.4872$ pp relative to same-$p_1$ flat.  Right:
-with fresh entry, the sign of the marginal rescue effect is governed by the
-rider-activity index $\mathcal A$, not continuation headcount alone.}
-\label{fig:boundaries}
-\vspace{-4pt}
-\end{figure}
-
-\begin{center}
-\small
-\begin{tabularx}{.99\textwidth}{@{}L{2.55cm}L{5.0cm}X@{}}
-\toprule
-Adversarial question & Result that survives & Result that does not survive\\
-\midrule
-Replace uniform $F$ & Smooth $F$: a sufficiently small \emph{active} rescue
-increment helps locally.  Convex $F$: rescue dominates same-$p_1$ flat globally.
-& Concavity can reverse the ranking for a larger increment; local improvement
-does not imply global dominance.\\
-Allow several cutoffs & The cutoff set remains nonempty and compact, so a
-conservative equilibrium value is well defined. & One nonuniform construction
-has three transversal cutoffs and a $6.61$ pp completion spread; selection
-cannot be ignored.\\
-Add fresh entry $\gamma>0$ & A small rescue helps when the rider-activity index
-$\mathcal A>0$. & Screened incumbents and unscreened entrants cannot be collapsed
-to $(\alpha+\gamma)m$; rankings can flip at equal capacity.\\
-Ask for global design & Uniform $F$, $\gamma=0$: unique response, closed-form
-continuation envelope, scalar global optimization, and endpoint topology. & The
-paper does not claim a global mixed-entry design theorem or a unique maximizer
-of $V(m)$.\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-\noindent\textbf{Why this is the right boundary page.}
-The main numerical curve is backed by the exact chain on p.~4.  This page then
-attacks its two tempting overinterpretations: ``a little rescue helps, therefore
-more is better'' and ``more continuation capacity, regardless of composition,
-must help.''  Both are false.
-
-\clearpage
 \section{Literature position: the exact joint object}
 
 \takeaway{\textbf{Positioning sentence.} The paper designs an ex ante committed
@@ -765,9 +650,9 @@ Section 3.1 reports one $V(m)$ curve and the associated optimal menus.\\
 Lee--Li & Keep long-lived and short-lived supply compositionally distinct &
 Sections 3.2--3.3 keep $\alpha$ and $\gamma$ separate and connect the
 mixed-entry simulation to an activity proposition.\\
-Hu--Hu--Zhu & State the main regime, then move to extension boundaries &
-Section 4 reports re-optimized comparative statics in a table; Section 5
-separates the global core from local extensions and reversals.\\
+Hu--Hu--Zhu & State the main regime before opening extensions &
+This note stops after the $\gamma>0$ diagnostic and its local proposition;
+broader boundary tests remain in the paper rather than this meeting note.\\
 Wu et al. & Separate policy evidence from the commitment mechanism &
 Section 3.2 begins at optimized flat pricing but is labeled as a theoretical
 simulation, not evidence that observed bonuses identify commitment.\\
