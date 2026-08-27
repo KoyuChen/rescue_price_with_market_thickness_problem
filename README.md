@@ -17,13 +17,31 @@ common-discount specification is the restriction \(\delta=\beta\). Discounting
 changes incumbent incentives, not physical survival, entry, terminal
 eligibility, or completion.
 
-## Current paper
+## Formal paper and empirical placeholder
 
-- [Management Science-formatted audited paper (PDF)](paper/announced_escalation_theory_overhaul.pdf)
-- [LaTeX source](paper/announced_escalation_theory_overhaul.tex)
+The formal manuscript is rebuilt independently from the group-meeting note.
+The restart adds a journal-style literature review, an explicit
+surviving-incumbent plus fresh-entry extension, and a pre-specified empirical
+calibration package. No observed dataset is currently present, so all
+empirical entries are visibly marked **DATA REQUIRED** and the synthetic mode
+tests schema and timing only.
+
+- [Formal restart PDF](paper/formal/main.pdf)
+- [Formal restart source](paper/formal/main.tex)
+- [Formal restart bibliography](paper/formal/references.bib)
+- [Empirical calibration contract](empirical/README.md)
+- [Required data dictionary](empirical/data_dictionary.md)
+- [Reusable formal-manuscript prompt](prompt/formal_manuscript_restart_prompt.md)
+
+The current paper uses the requested official Management Science
+`informs3`/`blindrev` template. Superseded rendered manuscript drafts and their
+unused `informs4` dependencies have been removed from the working tree; they
+remain recoverable from Git history and the
+`archive/pre-composition-template-20260827` protection branch. The standalone
+group-meeting note remains a separate document:
+
 - [Group-meeting note on the exact benchmark and market thickness (PDF)](output/pdf/group_meeting_market_thickness.pdf)
 - [Group-meeting note LaTeX source](group_meeting/group_meeting_market_thickness.tex)
-- [BibTeX database](paper/announced_escalation_references.bib)
 - [Adversarial nearest-literature and novelty memo](literature/adversarial_literature_novelty_memo.md)
 - [Proof-claim ledger](analysis/proof_claim_ledger.md)
 - [Approach and counterexample registry](analysis/approach_and_counterexample_registry.md)
@@ -44,17 +62,27 @@ Within anonymous symmetric pure driver-cutoff WPBE:
    =\{\phi(mp_1)-e^{-mp_1}\}+(1-\delta)e^{-mp_1},
    \]
    separating assignment competition from incumbent impatience.
-4. With \(\gamma=0\), \(\alpha>0\), and \(\beta\ge 1/2\), the globally
+4. With surviving incumbents and fresh entrants, a small announced rescue
+   strictly beats optimized flat pricing whenever at least one optimized flat
+   price is below \(\beta\) and satisfies the rider-activity inequality. Strict
+   failure of that inequality makes the same small perturbation exactly
+   ineffective.
+5. Holding either flat-failure continuation headcount or price-marginal
+   capacity fixed, a larger incumbent share strictly increases first-order
+   cutoff erosion in the active local region. Its marginal completion effect
+   is generally nonmonotone; the two pure endpoints have a closed-form
+   patience threshold.
+6. With \(\gamma=0\), \(\alpha>0\), and \(\beta\ge 1/2\), the globally
    optimized announced menu strictly dominates the optimized flat payment for
    every finite \(m>0\) and every \(0<\delta\le1\).
-5. Incumbent impatience changes the thin-market order. For \(\beta>1/2\),
+7. Incumbent impatience changes the thin-market order. For \(\beta>1/2\),
    the gain is order \(m\) when \(\delta<1\), versus order \(m^2\) at
    \(\delta=1\). At \(\beta=1/2\), it is order \(m^3\) when \(\delta<1\),
    versus \(\alpha m^4/2048\) at \(\delta=1\).
-6. For fixed positive \((\alpha,\beta)\), the thick-market rates are uniform
+8. For fixed positive \((\alpha,\beta)\), the thick-market rates are uniform
    over \(\delta\in(0,1]\): dynamic loss is \((\log\log m)/m\), and the gain
    over optimized flat is \((\log m)/m\).
-7. In the public deterministic-\(n\) benchmark, for positive survival and an
+9. In the public deterministic-\(n\) benchmark, for positive survival and an
    interior first payment, rescue is locally productive for every \(n\ge1\)
    when \(\delta<1\). At \(\delta=1\), the derivative is zero for \(n=1\) and
    positive for \(n\ge2\).
@@ -67,20 +95,22 @@ thickness remain open.
 ## Repository layout
 
 ```text
-paper/       current paper, PDF, bibliography, and official INFORMS style files
-group_meeting/ exact benchmark, formal thickness setup, and V(m) note
+paper/formal/ independent journal manuscript, PDF, tables, figures, and scripts
+paper/        formal paper and exact INFORMS3 class/bibliography style
+empirical/    data contract, identification ledger, schema checks, placeholders
+group_meeting/ standalone benchmark, thickness setup, and V(m) note
 figures/     extensive-form source and rendered formats
 analysis/    claim ledger, counterexample registry, numerical reports
 audits/      independent derivations and adversarial proof checks
 code/        baseline and incumbent-discount falsification engines
 literature/  adversarial nearest-literature and contribution memo
-prompt/      reusable long-run multi-agent research prompt
-archive/     original upload and superseded pre-discount drafts
+prompt/      proof-audit and formal-manuscript restart prompts
+archive/     original theory-source foundations retained for provenance
 ```
 
-The archive and intermediate audits are retained deliberately so that every
-correction can be traced. The current authoritative objects are the files
-linked under **Current paper**.
+The original source foundations and intermediate audits are retained so that
+every correction can be traced. Redundant rendered drafts are kept in Git
+history rather than duplicated in the working tree.
 
 ## Reproduce the numerical checks
 
@@ -94,6 +124,12 @@ Run all 20 regression tests:
 
 ```bash
 PYTHONPATH=code python -m unittest discover -s code -p 'test_*.py' -v
+```
+
+Run the mixed-supply theorem red team:
+
+```bash
+PYTHONPATH=code python code/check_mixed_supply_theorems.py
 ```
 
 Reproduce the two type-region figures in the group-meeting note:
@@ -113,9 +149,19 @@ done
 ```
 
 Run `make paper`, `make figure`, or `make test` for the common build and test
-targets. The repository bundles the official INFORMS class, bibliography
-style, equation-style helper, and logo. A full TeX installation should provide
-the remaining standard packages, including `newtx` and `tex-gyre`.
+targets. `make paper` aliases the maintained formal build. The repository
+bundles the exact `informs3` class used by the requested Management Science
+template and the bibliography style. A full TeX installation should provide
+the remaining standard packages.
+
+Regenerate and build the independent formal restart, then validate its
+empirical schema with:
+
+```bash
+make formal-figures
+make formal
+make empirical-test
+```
 
 ## Verification record
 
@@ -125,7 +171,10 @@ the remaining standard packages, including `newtx` and `tex-gyre`.
   failure.
 - 108 thickness profiles and 90 rider-patience curves produced no additional
   counterexample. These scans are falsification evidence, not proofs.
-- The 30-page double-anonymous Management Science manuscript compiles without
-  unresolved references, citation errors, overfull boxes, or duplicate PDF
-  anchors and has been visually checked page by page.
+- The mixed-supply red-team script checks global flat-root enumeration, an
+  active strict-improvement case, an inactive exact-zero case, the closed-form
+  composition threshold, and a fully mixed nonmonotonic composition profile.
+- The maintained formal paper has no unresolved references, citation errors,
+  duplicate PDF anchors, or overfull boxes and is visually checked after each
+  formal build.
 - The current manuscript source contains no boxed-formula commands.

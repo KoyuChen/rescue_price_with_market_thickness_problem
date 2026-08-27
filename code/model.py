@@ -1,7 +1,7 @@
 """Numerically stable primitives for the announced-escalation model.
 
-The formulas in this module are an independent transcription of the model in
-``announced_escalation_aviv_restructured.md``.  Both binary64 and arbitrary
+The formulas in this module are an independent numerical transcription of the
+model maintained in ``paper/formal/main.tex``.  Both binary64 and arbitrary
 precision versions are provided.  The arbitrary precision path deliberately
 uses only mpmath primitives and is used to validate, rather than merely repeat,
 the scipy optimization path.

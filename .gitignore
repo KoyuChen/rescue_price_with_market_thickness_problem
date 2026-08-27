@@ -20,6 +20,15 @@ venv/
 # The numerical engine uses the declared PyPI dependency instead
 code/_vendor/
 
+# Empirical inputs are restricted and never committed.  Only schemas,
+# aggregate disclosure-safe outputs, and reproducible code belong in Git.
+empirical/data/
+empirical/private/
+empirical/output/figures/*
+empirical/output/tables/*
+!empirical/output/figures/.gitkeep
+!empirical/output/tables/.gitkeep
+
 # Editors and operating systems
 .DS_Store
 *.swp
