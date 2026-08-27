@@ -1,4 +1,4 @@
-% Group-meeting note: figure-first eight-page version.
+% Group-meeting note: setup-first numerical presentation.
 % The formal manuscript is maintained separately in paper/formal/.
 \documentclass[11pt]{article}
 \usepackage[margin=2.2cm]{geometry}
@@ -30,7 +30,7 @@
   \tikz[baseline=-0.45ex]{\draw[fill=#1,draw=black,line width=.25pt]
   (0,0) rectangle (.24,.15);}\,#2}
 
-\newcommand{\takeaway}[1]{\noindent\fbox{\parbox{.965\textwidth}{\small\textbf{Takeaway.} #1}}}
+\newcommand{\takeaway}[1]{\par\smallskip\noindent #1\par\smallskip}
 
 \begin{document}
 
@@ -319,9 +319,9 @@ it is not the marginal value of adding drivers.
 \endgroup
 
 \clearpage
-\section{Baseline result: when is rescue pricing valuable?}
+\section{Numerical results: thickness first, then fresh entry}
 
-\subsection{What is held fixed and what is re-solved}
+\subsection{No-entry baseline: what is held fixed and re-solved}
 
 The baseline isolates strategic waiting:
 \[
@@ -412,87 +412,179 @@ The single hump and the numerical maximum at $m=9.72$ are not asserted to be
 globally unique.
 
 \clearpage
-\section{Mechanism at $m=10$: announcement cost versus rescue benefit}
+\subsection{Fresh-entry simulation: start from optimized flat pricing}
 
-\takeaway{The $6.16$ pp gain is a net equilibrium effect.  Announcing $p_2$
-reduces completion in the first window by $7.31$ pp, then recovers $13.46$ pp
-after universal rejection.  Rescue wins because the recovery exceeds the
-strategic-waiting loss.}
-
-\begin{center}
-\small
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-Policy & $p_1$ & $p_2$ & cutoff $a$ & now & after failure & total\\
-\midrule
-Optimized flat & .217733 & .217733 & .217733 & .693602 & .000000 & .693602\\
-Optimized rescue & .155922 & .310306 & .132863 & .620532 & .134622 & .755154\\
-\midrule
-Rescue minus flat & -.061811 & +.092573 & -.084870 &
--.073070 & +.134622 & +.061552\\
-\bottomrule
-\end{tabular}
-\end{center}
+This experiment introduces genuine mixed continuation supply.  Fix
+\[
+(m,\alpha,\beta,\delta)=(10,.6,.8,.8),\qquad
+\gamma\in[.25,4].
+\]
+The choice $m=10$ stays near the no-entry high-value region in Section 3.1,
+while $0<\alpha<1$ ensures that continuation supply genuinely mixes screened
+incumbents and unscreened entrants.
+For each $\gamma$, first compute the globally optimized flat price
+$p_\gamma^*$.  Then announce the small rescue menu
+$(p_\gamma^*,p_\gamma^*+.01)$, re-solve every cutoff equilibrium, and report
+the conservative completion value.  Thus entry, the flat price, and strategic
+waiting all adjust; only the $.01$ increment is held fixed.
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\begin{axis}[
-  xbar stacked,width=.84\textwidth,height=3.55cm,
-  xmin=0,xmax=90,ymin=-.5,ymax=1.5,bar width=13pt,
-  xlabel={unconditional completion probability (\%)},
-  ytick={0,1},yticklabels={Optimal rescue,Optimal flat},
+\begin{groupplot}[
+  group style={group size=2 by 1,horizontal sep=1.25cm},
+  width=.46\textwidth,height=5.0cm,
+  xmin=.2,xmax=4.05,xtick={.5,1,2,3,4},
+  xlabel={fresh-entry intensity $\gamma$},
   axis x line*=bottom,axis y line*=left,
-  y axis line style={draw=none},y tick style={draw=none},
-  xtick={0,10,20,30,40,50,60,70,80},
   tick label style={font=\scriptsize},label style={font=\small},
-  legend style={at={(0.5,1.17)},anchor=south,draw=none,
-  legend columns=2,font=\scriptsize,
-  /tikz/every even column/.append style={column sep=8pt}}
+  ymajorgrids=true,grid style={black!10}
 ]
-\addplot[fill=black!70,draw=black] coordinates {(62.0532,0) (69.3602,1)};
-\addlegendentry{complete now}
-\addplot[fill=black!18,draw=black] coordinates {(13.4622,0) (0,1)};
-\addlegendentry{complete after failure}
-\node[font=\scriptsize,anchor=west] at (axis cs:76.3,0) {$75.5154\%$};
-\node[font=\scriptsize,anchor=west] at (axis cs:70.1,1) {$69.3602\%$};
-\end{axis}
+\nextgroupplot[
+  ymin=72,ymax=91,ytick={75,80,85,90},
+  ylabel={optimized flat completion (\%)}]
+\addplot[black,line width=1.1pt,mark=*,mark size=1.15pt] coordinates {
+(.25,73.2020) (.50,76.0829) (.75,78.3327) (1,80.1447)
+(1.25,81.6398) (1.50,82.8975) (1.75,83.9725) (2,84.9036)
+(2.25,85.7190) (2.50,86.4401) (2.75,87.0829) (3,87.6603)
+(3.25,88.1821) (3.50,88.6563) (3.75,89.0895) (4,89.4870)
+};
+\node[font=\scriptsize] at (axis cs:2.25,74.2)
+{flat completion rises};
+\nextgroupplot[
+  ymin=.14,ymax=.46,ytick={.18,.24,.30,.36,.42},
+  ylabel={gain from $p_2=p_\gamma^*+.01$ (pp)}]
+\addplot[black,line width=1.1pt,mark=*,mark size=1.15pt] coordinates {
+(.25,.440902) (.50,.440852) (.75,.430336) (1,.414190)
+(1.25,.394980) (1.50,.374155) (1.75,.352566) (2,.330724)
+(2.25,.308942) (2.50,.287409) (2.75,.266241) (3,.245505)
+(3.25,.225238) (3.50,.205455) (3.75,.186161) (4,.167351)
+};
+\node[font=\scriptsize] at (axis cs:2.60,.413)
+{rescue value shrinks};
+\end{groupplot}
 \end{tikzpicture}
 \vspace{-4pt}
-\caption{One accounting identity explains the baseline result at $m=10$.}
-\label{fig:decomposition}
+\caption{Fresh entry raises the optimized flat completion rate while reducing
+the incremental value of a small committed rescue.  Each marker is a newly
+solved equilibrium problem, not a capacity substitution.}
+\label{fig:gamma-simulation}
 \vspace{-4pt}
 \end{figure}
 
-\subsection{Why do the equilibrium objects move this way?}
-
 \begin{center}
 \small
-\begin{tabularx}{.98\textwidth}{@{}L{3.0cm}X@{}}
+\begin{tabular}{@{}rrrrrr@{}}
 \toprule
-Observed movement & Economic reason\\
+$\gamma$ & $p_\gamma^*$ & $M_\gamma^{\rm flat,*}$ &
+$\mathcal A_{\alpha,\gamma}(p_\gamma^*)$ & cutoff under rescue & gain (pp)\\
 \midrule
-$p_1$ falls from $.2177$ to $.1559$ &
-The platform uses a lower entry price and reserves the higher payment for
-requests that actually fail.\\
-The cutoff falls to $a=.1329<p_1$ &
-Some drivers who would profitably accept $p_1$ still wait because the announced
-$p_2$ makes continuation valuable.  This is the strategic cost of commitment.\\
-Continuation adds $.1346$ &
-Universal rejection leaves a screened incumbent pool.  High-value riders use
-the committed rescue option when its larger terminal coverage justifies
-$p_2$.\\
-Total completion rises by $.0616$ &
-Failure is frequent enough to make recovery useful, but not so frequent that
-the announcement-induced loss dominates.\\
+.25 & .192661 & .732020 & 2.806881 & .191562 & .4409\\
+.50 & .173203 & .760829 & 2.320723 & .172264 & .4409\\
+1.00 & .144813 & .801447 & 1.698603 & .144077 & .4142\\
+2.00 & .110288 & .849036 & 1.085747 & .109791 & .3307\\
+3.00 & .089852 & .876603 &  .793305 & .089511 & .2455\\
+4.00 & .076236 & .894870 &  .625005 & .076014 & .1674\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{center}
 
-\noindent The exercise therefore does not say that a larger backup price
-mechanically raises completion.  It says that, after re-solving driver waiting,
-rider continuation, and both optimized policies, the continuation gain is
-larger than the initial loss at this thickness.
+\noindent The two margins move in opposite directions.  More entrants improve
+repeat coverage after failure, so $M_\gamma^{\rm flat,*}$ rises and the optimal
+flat price falls.  Rescue remains active in this range because the activity
+index is positive, but its incremental completion gain shrinks.  These numbers
+do not solve the global mixed-entry menu problem.
+
+\clearpage
+\subsection{Proposition and proof: the mixed-entry activity test}
+
+Let $h(z)=(1-e^{-z})/z$ with $h(0)=1$, and define
+\[
+\mathcal A_{\alpha,\gamma}(p)
+=m e^{-\gamma mp}(\alpha+\gamma)(\beta-p)
+ -(1-e^{-\gamma mp}).
+\]
+
+\noindent\textbf{Proposition 1 (local rescue with fresh entry).}
+Assume $F=G=U[0,1]$, $m>0$, $0<p<\beta<1$,
+$0<\alpha<1$, $\gamma>0$, and $0<\delta\le1$.  If
+$\mathcal A_{\alpha,\gamma}(p)>0$, then for every sufficiently small
+$\varepsilon>0$ the menu $(p,p+\varepsilon)$ has a unique anonymous symmetric
+cutoff equilibrium and
+\[
+a_\varepsilon=p-\kappa(p)\varepsilon+o(\varepsilon),\qquad
+M_m^{\alpha,\gamma}(p,p+\varepsilon;a_\varepsilon)
+=M_\gamma^{\rm flat}(m,p)+\Lambda(p)\varepsilon+o(\varepsilon),
+\]
+where $\kappa(p)>0$ and $\Lambda(p)>0$.  In particular, if an optimized flat
+price $p^*$ satisfies $p^*<\beta$ and
+$\mathcal A_{\alpha,\gamma}(p^*)>0$, a small committed rescue strictly
+dominates optimized flat pricing.  If $\mathcal A_{\alpha,\gamma}(p)<0$, then
+for every sufficiently small $\varepsilon>0$, the unique cutoff is $a=p$, no
+rider uses rescue, and completion equals $M_\gamma^{\rm flat}(m,p)$ exactly.
+
+\medskip
+\noindent\textit{Proof.}
+Write $d=p-a$, $\rho=(1-p/\beta)/(1-p)$, and let $\eta_\varepsilon$ be the
+posting-conditional rider mass choosing rescue.  Under
+$(p,p+\varepsilon)$,
+\[
+\lambda_1=m(\alpha d+\gamma p),\qquad
+\lambda_2=\lambda_1+m(\alpha+\gamma)\varepsilon. \tag{P1}
+\]
+Cutoff indifference is
+\[
+h(ma)d=\delta\alpha e^{-ma}
+\{(\rho-\eta_\varepsilon)h(\lambda_1)d
++\eta_\varepsilon h(\lambda_2)(d+\varepsilon)\}. \tag{P2}
+\]
+Since $h(\lambda_j)\le1$, $\eta_\varepsilon\le\rho$, and
+$h(ma)\ge e^{-ma}$, (P2) localizes every equilibrium:
+\[
+0\le d\le
+\frac{\delta\alpha\rho}{1-\delta\alpha\rho}\varepsilon. \tag{P3}
+\]
+Set $x=mp$, $R=e^{-x}$, $E=e^{-\gamma x}$,
+$\sigma=h(x)$, and $\ell=h(\gamma x)$.  On the compact rescaling
+$y=d/\varepsilon$, the rider switch converges uniformly to
+\[
+\bar v=\frac1\beta\left[p+
+\frac{1-E}{mE(\alpha+\gamma)}\right],\qquad
+\mathcal A_{\alpha,\gamma}(p)>0\iff\bar v<1.
+\]
+Hence $\eta_\varepsilon\to\eta^0=(1-\bar v)/(1-p)>0$, and (P2) divided by
+$\varepsilon$ converges in $C^1$ to
+\[
+[\sigma-\delta R\alpha\rho\ell]y
+-\delta R\alpha\eta^0\ell=0. \tag{P4}
+\]
+Its slope is positive because
+$\sigma-\delta R\alpha\rho\ell\ge\sigma-R>0$.  Thus the nearby cutoff is
+unique and
+\[
+\kappa(p)=\frac{\delta R\alpha\eta^0\ell}
+{\sigma-\delta R\alpha\rho\ell}>0.
+\]
+Differentiating completion along this branch gives
+\[
+\Lambda(p)=m(1-p)R\eta^0
+\frac{T_\delta}{\sigma-\delta R\alpha\rho\ell}>0,
+\quad
+T_\delta=E(\alpha+\gamma)\sigma-
+\delta R\alpha\ell\{1-\rho+\rho E(1+\gamma)\}. \tag{P5}
+\]
+The sign lemma in the current proof establishes
+$\mathcal A>0\Rightarrow T_\delta>0$: for $\delta=1$ it follows by splitting
+on $1-E(1+\gamma)$ and applying convexity of the exponential; lowering
+$\delta$ adds a nonnegative term.  If $\mathcal A<0$, then $\bar v>1$ and
+uniform convergence makes $\eta_\varepsilon=0$ throughout the localized set.
+Equation (P2) then leaves $a=p$ as the unique cutoff and the rescue option is
+unused. \hfill$\square$
+
+\medskip
+\noindent\textit{Scope.}  This is a local theorem around an active price, not a
+global solution of the mixed-entry menu problem and not a monotonicity theorem
+in $\gamma$.
 
 \clearpage
 \section{Comparative statics: which primitives move the rescue value?}
@@ -669,15 +761,16 @@ Correa et al. & Solve equilibrium and selection before policy comparison &
 Section 2 fixes primitives, information, timing, equilibrium, and the comparator
 before the main latent-thickness evidence.\\
 Li--Kuo & Trace optimized policy and objective over the Poisson mean &
-Section 3 reports one $V(m)$ curve and the associated optimal menus.\\
-Wu et al. & Decompose total accepted volume by stage and show saturation &
-Section 4 separates completion lost now from completion recovered later.\\
+Section 3.1 reports one $V(m)$ curve and the associated optimal menus.\\
+Lee--Li & Keep long-lived and short-lived supply compositionally distinct &
+Sections 3.2--3.3 keep $\alpha$ and $\gamma$ separate and connect the
+mixed-entry simulation to an activity proposition.\\
 Hu--Hu--Zhu & State the main regime, then move to extension boundaries &
-Section 5 reports re-optimized comparative statics in a table; Section 6
+Section 4 reports re-optimized comparative statics in a table; Section 5
 separates the global core from local extensions and reversals.\\
-Lee--Li & Use a small exact case as a mechanism microscope &
-The promised public-one-driver benchmark stays on pp.\ 1--2 and is not treated
-as the main contribution.\\
+Wu et al. & Separate policy evidence from the commitment mechanism &
+Section 3.2 begins at optimized flat pricing but is labeled as a theoretical
+simulation, not evidence that observed bonuses identify commitment.\\
 \bottomrule
 \end{tabularx}
 \end{center}
