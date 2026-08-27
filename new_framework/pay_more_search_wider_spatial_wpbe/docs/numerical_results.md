@@ -1,93 +1,109 @@
-# Numerical results
+# Numerical results: three supply regimes
 
-Formal configuration:
+## Design and calibration
 
-- `tau=.25`, `s_bar=4`.
-- `omega=1` (all first-window rejectors remain available and eligible).
-- `m in {.5,.75,1,1.5,2,3,4,6,8,12,16}`.
-- Main slice: `beta=delta=.8`.
-- Market-condition slices: `beta in {.6,.9}` and
-  `delta in {.4,.8,.95}`.
-- 77 environments and 231 separately optimized mechanism outcomes.
-- Conservative selection over the complete cutoff-WPBE correspondence.
+For every environment \((m,\beta,\delta)\), the program separately solves:
 
-## Main slice: optimized completion
+1. incumbent-only recall with optimized \((p_1,p_2)\);
+2. fixed-footprint fresh arrivals with optimized \((p_1,p_2)\);
+3. expanded search with optimized \((p_1,p_2,s)\).
 
-| `m` | Flat `(p,p,1)` | Fixed `(p1,p2,1)` | Expanded `(p1,p2,s)` | Fixed gain (pp) | Expanded gain (pp) |
-|---:|---:|---:|---:|---:|---:|
-| 0.5 | 0.182982 | 0.189448 | 0.295490 | 0.6466 | 10.6041 |
-| 1 | 0.309654 | 0.322106 | 0.448515 | 1.2452 | 12.6410 |
-| 2 | 0.471098 | 0.491793 | 0.603679 | 2.0695 | 11.1887 |
-| 4 | 0.634394 | 0.661463 | 0.731314 | 2.7069 | 6.9850 |
-| 6 | 0.717024 | 0.745087 | 0.791841 | 2.8063 | 4.6754 |
-| 8 | 0.767341 | 0.794950 | 0.828238 | 2.7609 | 3.3288 |
-| 16 | 0.859952 | 0.882394 | 0.896601 | 2.2442 | 1.4207 |
-
-The fixed-rescue increment peaks near `m=6` in the main slice. The expanded
-search increment peaks much earlier, near `m=1`, and declines with thickness.
-These finite-grid peak locations are the empirical objects plotted in
-`figure5_ordered_peaks`; they are not inferred from the closed-form benchmark.
-
-## Representative optimized policies
-
-| `m` | Mechanism | `p1*` | `p2*` | `s*` | WPBE cutoff `a*` | Holdout share |
-|---:|---|---:|---:|---:|---:|---:|
-| 0.5 | Flat | 0.408167 | 0.408167 | 1.000 | 0.408167 | 0.0000 |
-| 0.5 | Fixed | 0.341500 | 0.449247 | 1.000 | 0.301347 | 0.1176 |
-| 0.5 | Expanded | 0.333333 | 0.403333 | 4.000 | 0.281759 | 0.1547 |
-| 1 | Flat | 0.368500 | 0.368500 | 1.000 | 0.368500 | 0.0000 |
-| 1 | Fixed | 0.298427 | 0.416296 | 1.000 | 0.261538 | 0.1236 |
-| 1 | Expanded | 0.262093 | 0.356227 | 4.000 | 0.215665 | 0.1771 |
-| 4 | Flat | 0.238760 | 0.238760 | 1.000 | 0.238760 | 0.0000 |
-| 4 | Fixed | 0.180260 | 0.288714 | 1.000 | 0.161122 | 0.1062 |
-| 4 | Expanded | 0.150412 | 0.225115 | 3.769 | 0.133075 | 0.1153 |
-| 16 | Flat | 0.105719 | 0.105719 | 1.000 | 0.105719 | 0.0000 |
-| 16 | Fixed | 0.069596 | 0.117986 | 1.000 | 0.062909 | 0.0961 |
-| 16 | Expanded | 0.061649 | 0.110565 | 2.089 | 0.055422 | 0.1010 |
-
-These are not fixed-`p1` counterfactuals. Every row is the solution of its own
-outer mechanism problem, and every objective evaluation re-solves the induced
-cutoff-WPBE.
-
-## Market-condition patterns
-
-- Fixed rescue is modest in thin markets, rises to an intermediate-thickness
-  peak, and eventually declines as the flat benchmark approaches high
-  completion.
-- Expanded search creates its largest incremental value in thin and
-  moderately thin markets, where the core catchment is the binding scarcity.
-- Higher rider delay tolerance `beta` raises both layers' potential value.
-- Driver patience `delta` changes fixed-rescue value visibly through the
-  incumbent holdout option; expanded-search value is much less sensitive in
-  the displayed grid because outer drivers are fresh to the order.
-
-These are numerical comparative statics, not global theorems.
-
-The proved benchmark result is narrower: on one common Poisson-WPBE branch
-with constant effective rates, both adjacent mechanism gains are uniquely
-peaked and the search peak is strictly to the left of the price peak.  See
-`ordered_peaks_theorem.md` for the proof, a uniform-stability corollary, and a
-counterexample showing why rider-composition or branch switching must be
-controlled before lifting the result to the optimized value envelopes.
-
-The completion-only results also treat search contacts as free.  They should
-be read as a maximal-completion frontier.  The economic extension uses
+Every candidate policy re-enumerates and validates its pure cutoff-WPBE
+correspondence. The platform uses conservative selection on
 
 \[
-Q^O=q_Rm(s-1),\qquad J_\kappa=BM-\kappa Q^O,
+J_\kappa=M-\kappa Q^O.
 \]
 
-or an equivalent notification budget.
+The archived formal solver first computes the requested nested profile
+(fix \(p_1\), optimize \(p_2,s\), then optimize \(p_1\)) and then challenges
+it with an independent deterministic-seed differential-evolution search. Any
+better basin is included in dense cutoff-WPBE certification. Accordingly,
+"optimized" below means the best certified candidate found by both searches,
+not an analytic proof of a continuous global maximum.
 
-## Verification
+The formal grid uses:
 
-- All 231 final outcomes have one cutoff-WPBE and zero equilibrium completion
-  spread.
-- All final policies preserve the same root set on grids 401, 801, and 1601.
-- A denser independent re-optimization at `m={.5,1,4,16}` changes completion by
-  at most `0.0001123533` (0.0112 percentage points).
-- A 120-policy adversarial root test is stable on grids 151, 301, and 601 and
-  finds no multiple cutoff-WPBE.
-- In 300,000 Poisson-thinning replications, simulated coverage differs from
-  exact coverage by `-0.0007708`, about 1.22 simulated standard errors.
-- 13 unit tests pass.
+- \(m\in\{.5,.75,1,1.5,2,3,4,6,8,12,16\}\);
+- \(\beta\in\{.6,.8,.9\}\);
+- \(\delta\in\{.4,.8,.95\}\);
+- \((\tau,\omega,\bar s,\kappa)=(.25,.8,4,.0125)\).
+
+This yields 99 environments and 297 optimized regime outcomes. All 297 final
+policies have one cutoff-WPBE in the computed correspondence, and all 297 root
+sets are stable under the archived grid-refinement certification. This is a
+numerical fact for the grid, not a global uniqueness theorem.
+
+## Main slice: value of time-homogeneous arrivals
+
+For \((\beta,\delta)=(.8,.8)\), the completion comparison is:
+
+| \(m\) | Incumbents only | Fixed arrivals | Arrival gain (pp) |
+|---:|---:|---:|---:|
+| .5 | .1154 | .1873 | 7.20 |
+| 1 | .2094 | .3185 | 10.91 |
+| 2 | .3520 | .4870 | 13.50 |
+| 3 | .4539 | .5889 | 13.50 |
+| 4 | .5295 | .6567 | 12.72 |
+| 6 | .6330 | .7410 | 10.80 |
+| 8 | .6998 | .7914 | 9.16 |
+| 12 | .7801 | .8489 | 6.87 |
+| 16 | .8264 | .8809 | 5.45 |
+
+The arrival layer is hump-shaped on this grid, with an almost flat top at
+\(m=2\)--3 and the displayed maximum at \(m=3\). This is an optimized
+equilibrium-design pattern, not a fixed-price decomposition.
+
+## Main slice: costly expanded search
+
+The best cross-checked expanded-search candidate targets \(J_{.0125}\). Its
+selected multiplier and net value over fixed-footprint arrivals are:
+
+| \(m\) | \(s^*\) | \(100(V_E^\kappa-V_A)\) |
+|---:|---:|---:|
+| .5 | 4.000 | 9.99 |
+| 1 | 4.000 | 11.45 |
+| 2 | 3.938 | 8.84 |
+| 3 | 3.059 | 5.94 |
+| 4 | 2.512 | 3.98 |
+| 6 | 1.876 | 1.78 |
+| 8 | 1.504 | .75 |
+| 12 | 1.112 | .05 |
+| 16 | 1.000 | 0 |
+
+Thus the same model generates a search-cap region, an interior-search region,
+and an endogenous no-expansion choice. At \(m=16\), the best cross-checked
+candidate selects \(s=1\) once expected outer contacts are priced.
+
+## Comparative market conditions
+
+The maximum arrival gain rises with both rider patience and incumbent patience
+over the formal grid:
+
+| \(\delta\) \textbackslash \(\beta\) | .6 | .8 | .9 |
+|---:|---:|---:|---:|
+| .4 | 10.7 | 12.8 | 13.7 |
+| .8 | 11.2 | 13.5 | 14.6 |
+| .95 | 11.3 | 13.8 | 14.9 |
+
+The first grid thickness at which expanded search selects \(s^*=1\) is
+greater than 16 for \(\beta=.6\) and 16 for \(\beta\in\{.8,.9\}\), with
+little movement across \(\delta\) at the displayed resolution.
+
+The independent adversarial pass improves on the nested-profile candidate in
+292 of 297 rows, usually by a small amount (mean \(J\) improvement about
+\(5.0\times10^{-4}\), maximum about \(3.9\times10^{-3}\)). This diagnostic is
+why the archive reports the cross-checked candidate rather than silently
+treating a single local refinement as the maximum.
+
+## Interpretation
+
+- Incumbent-only versus fixed arrivals identifies the supply value of an
+  independent core cohort. Core notification infrastructure is normalized as
+  installed and free.
+- Fixed arrivals versus expanded search identifies the incremental value of
+  geographic reach under a cost per executed outer contact.
+- Driver-paid pickup cost \(d(u)\) thins outer willingness but is not counted
+  again as a platform cost.
+- If core activation is itself a design choice, add \(\kappa_CQ^C\); if the
+  target is platform profit, separate rider fares from driver wages.

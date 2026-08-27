@@ -10,13 +10,14 @@ first-window incumbents know the focal order and may reject it strategically;
 after universal rejection, the rider updates and chooses abandon, repeat, or
 rescue, while fresh drivers see the order only in the terminal window.
 
-The theoretical chain should therefore be written as:
+The group-meeting chain should therefore be written as:
 
 1. characterize the complete symmetric cutoff-WPBE correspondence;
-2. prove the spatial thinning and search-scope results within one branch;
-3. prove ordered peaks for adjacent nested controls on a common branch;
-4. lift the order to the re-optimized mechanism values only under an explicit
-   branch-stability or uniform-separation condition.
+2. compare incumbent-only recall with fixed-footprint replenishment while
+   re-optimizing the same `(p1,p2)` menu;
+3. add only the outer annulus and its post-assignment pickup friction; and
+4. price incremental outer contacts so that no expansion, interior search, and
+   the search cap are all endogenous choices.
 
 ## 2. Spatial scope and pickup timing
 
@@ -72,21 +73,23 @@ known locally but its global reversal has not been established.
 ## 4. Exact contribution boundary
 
 Neither search radius, price-induced supply, nor an intermediate-thickness
-effect is new by itself.  The defensible new theoretical object is:
+effect is new by itself.  The defensible current theoretical object is:
 
-- three strictly nested rescue mechanism classes;
+- a clean separation between closed-cohort recall, fixed-footprint
+  replenishment, and expanded geographic reach;
 - universal-rejection screening of incumbents who already know the order;
 - time-homogeneous fresh terminal supply under fixed reach and Poisson-thinned
   outer supply under expanded reach;
 - incumbent retention `omega` entering both the aggregate terminal pool and
   the focal waiting payoff;
 - Bayesian rider continuation without realized driver counts;
-- outer mechanism design over the complete cutoff-WPBE correspondence; and
-- a strict ordering of the two adjacent mechanism-gain peak locations on a
-  common branch, plus an explicit stability condition for the full optimized
-  value gaps.
+- outer mechanism design over the complete cutoff-WPBE correspondence;
+- a separation between driver-paid, post-assignment pickup cost and
+  platform-paid notification opportunity cost; and
+- an endogenous no-expansion boundary under costly outer contacts.
 
-The current full-model figure is evidence for the last item.  The theorem in
-`ordered_peaks_theorem.md` proves the branchwise result and gives an exact
-counterexample showing why policy-specific continuation or branch switching
-cannot be ignored.
+Only fixed-footprint arrivals and expanded search are genuinely nested through
+`s=1`. Incumbent-only and fixed arrivals are supply benchmarks unless the
+platform is also given a core-broadcast switch. The earlier theorem in
+`ordered_peaks_theorem.md` remains an archived branchwise search-paper result;
+it is intentionally not the main group-meeting claim.

@@ -1,12 +1,15 @@
 """Cutoff-WPBE engine with assignment-contingent spatial pickup costs.
 
-This is the maintained numerical model for the three nested mechanisms
+This is the maintained numerical model for three successive notification
+regimes:
 
-    (p, p, 1)  subset  (p1, p2, 1)  subset  (p1, p2, s),  s >= 1.
+    incumbent_only: recall first-window rejectors only;
+    core_arrivals:  also notify a fresh core Poisson cohort of mean m;
+    expanded_search: additionally notify an outer annulus of mean (s-1)m.
 
-The baseline catchment is normalized to unit area and contains a fresh
-second-window Poisson cohort of mean ``m``.  Search multiplier ``s`` expands
-the catchment area, so the outer annulus has independent mean ``(s-1)m``.
+The first two regimes optimize ``(p1,p2)`` at fixed reach.  The third optimizes
+``(p1,p2,s)``, where ``s`` is the catchment-area multiplier and ``s=1``
+exactly collapses expanded search to the core-arrival regime.
 
 Fresh drivers pay no sunk activation or relocation cost.  A driver at area
 rank u (normalized radius sqrt(u)) pays the extra pickup cost
@@ -34,6 +37,7 @@ from scipy.optimize import brentq, minimize_scalar
 
 
 Selection = Literal["conservative", "optimistic", "stable"]
+SupplyRegime = Literal["incumbent_only", "core_arrivals", "expanded_search"]
 
 
 @dataclass(frozen=True)
@@ -70,17 +74,26 @@ class Params:
 
 @dataclass(frozen=True)
 class Policy:
-    """Committed driver-payment and search mechanism."""
+    """Committed driver-payment, search, and notification regime."""
 
     p1: float
     p2: float
     s: float = 1.0
+    regime: SupplyRegime = "core_arrivals"
 
     def __post_init__(self) -> None:
         if not (0 <= self.p1 <= self.p2 <= 1):
             raise ValueError("policy must satisfy 0 <= p1 <= p2 <= 1")
         if self.s < 1:
             raise ValueError("search multiplier s must be at least one")
+        if self.regime not in {
+            "incumbent_only",
+            "core_arrivals",
+            "expanded_search",
+        }:
+            raise ValueError(f"unknown supply regime: {self.regime}")
+        if self.regime != "expanded_search" and abs(self.s - 1.0) > 1e-12:
+            raise ValueError("only expanded_search may use s greater than one")
 
 
 @dataclass(frozen=True)
@@ -89,6 +102,8 @@ class TerminalMarket:
     search_multiplier: float
     potential_fresh_intensity: float
     incumbent_intensity: float
+    core_fresh_accept_intensity: float
+    outer_fresh_accept_intensity: float
     fresh_accept_intensity: float
     total_intensity: float
     assignment_probability: float
@@ -245,28 +260,46 @@ def fresh_pickup_cost_intensity(
 
 
 def solve_terminal_market(
-    cutoff: float, payment: float, reach: float, params: Params
+    cutoff: float,
+    payment: float,
+    reach: float,
+    params: Params,
+    regime: SupplyRegime,
 ) -> TerminalMarket:
     """Terminal volunteer market conditional on universal rejection."""
 
     incumbent = params.incumbent_retention * params.m * max(
         float(uniform_cdf(payment)) - float(uniform_cdf(cutoff)), 0.0
     )
-    fresh = fresh_accept_intensity(payment, reach, params)
+    if regime == "incumbent_only":
+        potential_fresh = 0.0
+        core_fresh = 0.0
+        outer_fresh = 0.0
+        fresh = 0.0
+        pickup_intensity = 0.0
+    else:
+        effective_reach = reach if regime == "expanded_search" else 1.0
+        potential_fresh = params.m * effective_reach
+        core_fresh = fresh_accept_intensity(payment, 1.0, params)
+        fresh = fresh_accept_intensity(payment, effective_reach, params)
+        outer_fresh = max(fresh - core_fresh, 0.0)
+        pickup_intensity = fresh_pickup_cost_intensity(
+            payment, effective_reach, params
+        )
     total = incumbent + fresh
     assignment = assignment_probability(total)
     return TerminalMarket(
         payment=payment,
         search_multiplier=reach,
-        potential_fresh_intensity=params.m * reach,
+        potential_fresh_intensity=potential_fresh,
         incumbent_intensity=incumbent,
+        core_fresh_accept_intensity=core_fresh,
+        outer_fresh_accept_intensity=outer_fresh,
         fresh_accept_intensity=fresh,
         total_intensity=total,
         assignment_probability=assignment,
         coverage=float(-np.expm1(-total)),
-        fresh_pickup_cost_intensity=fresh_pickup_cost_intensity(
-            payment, reach, params
-        ),
+        fresh_pickup_cost_intensity=pickup_intensity,
     )
 
 
@@ -334,8 +367,12 @@ def continuation_at_cutoff(
 ) -> tuple[TerminalMarket, TerminalMarket, float, float, float]:
     """Solve both counterfactual terminal branches at one incumbent cutoff."""
 
-    repeat = solve_terminal_market(cutoff, policy.p1, 1.0, params)
-    rescue = solve_terminal_market(cutoff, policy.p2, policy.s, params)
+    repeat = solve_terminal_market(
+        cutoff, policy.p1, 1.0, params, policy.regime
+    )
+    rescue = solve_terminal_market(
+        cutoff, policy.p2, policy.s, params, policy.regime
+    )
     repeat_mass, rescue_mass, abandon_mass = rider_action_masses(
         policy, params, repeat.coverage, rescue.coverage
     )
@@ -564,16 +601,26 @@ def outcome_at_cutoff(
         * rescue.assignment_probability
         * rescue.fresh_pickup_cost_intensity
     )
-    notifications = posted * universal_rejection * params.m * (
-        eta_repeat + eta_rescue * policy.s
-    )
-    extra_notifications = (
-        posted
-        * universal_rejection
-        * eta_rescue
-        * params.m
-        * (policy.s - 1.0)
-    )
+    if policy.regime == "incumbent_only":
+        notifications = 0.0
+        extra_notifications = 0.0
+    else:
+        core_notifications = (
+            posted
+            * universal_rejection
+            * params.m
+            * (eta_repeat + eta_rescue)
+        )
+        extra_notifications = (
+            posted
+            * universal_rejection
+            * eta_rescue
+            * params.m
+            * (policy.s - 1.0)
+            if policy.regime == "expanded_search"
+            else 0.0
+        )
+        notifications = core_notifications + extra_notifications
 
     step = max(1e-5, min(1e-3, policy.p1 / 100 if policy.p1 > 0 else 1e-4))
     left = max(0.0, cutoff - step)
@@ -694,7 +741,7 @@ def solve_policy_certified(
         grid = min(2 * grid - 1, max_grid)
 
 
-def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool]:
+def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool | str]:
     """Flatten the selected WPBE for tables and audits."""
 
     outcome = solution.selected
@@ -704,6 +751,7 @@ def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool]:
         "delta": outcome.params.delta,
         "pickup_rate": outcome.params.pickup_rate,
         "incumbent_retention": outcome.params.incumbent_retention,
+        "regime": outcome.policy.regime,
         "p1": outcome.policy.p1,
         "p2": outcome.policy.p2,
         "s": outcome.policy.s,
@@ -722,6 +770,14 @@ def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool]:
         "rescue_coverage": outcome.rescue.coverage,
         "repeat_fresh_accept_intensity": outcome.repeat.fresh_accept_intensity,
         "rescue_fresh_accept_intensity": outcome.rescue.fresh_accept_intensity,
+        "repeat_incumbent_intensity": outcome.repeat.incumbent_intensity,
+        "rescue_incumbent_intensity": outcome.rescue.incumbent_intensity,
+        "repeat_core_fresh_intensity": outcome.repeat.core_fresh_accept_intensity,
+        "rescue_core_fresh_intensity": outcome.rescue.core_fresh_accept_intensity,
+        "repeat_outer_fresh_intensity": outcome.repeat.outer_fresh_accept_intensity,
+        "rescue_outer_fresh_intensity": outcome.rescue.outer_fresh_accept_intensity,
+        "repeat_total_intensity": outcome.repeat.total_intensity,
+        "rescue_total_intensity": outcome.rescue.total_intensity,
         "expected_transfer": outcome.expected_transfer,
         "expected_fresh_acceptors": outcome.expected_fresh_acceptors,
         "expected_pickup_cost": outcome.expected_pickup_cost,

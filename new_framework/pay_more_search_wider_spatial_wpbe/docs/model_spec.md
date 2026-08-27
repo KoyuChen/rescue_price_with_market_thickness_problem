@@ -1,191 +1,215 @@
-# Formal setting
+# Three-regime cutoff-WPBE model
 
-## Primitives
+## 1. Supply regimes
 
-- Rider value: `v ~ Uniform[0,1]`.
-- Persistent driver order cost: `c ~ Uniform[0,1]`.
-- Core first-window incumbent intensity: `m`.
-- Time-homogeneous second-window core fresh intensity: `m`.
-- Rider delay factor: `beta`.
-- Incumbent delay factor: `delta`.
-- Incremental pickup-cost slope: `tau`.
-- Search-area cap: `s_bar`.
-- Incumbent physical-retention probability: `alpha`.
-- Conditional platform-recall/eligibility probability: `chi`.
-
-Write
+The two response windows have equal length and the core footprint has unit
+area. The first-window incumbent cohort and second-window fresh core cohort are
 
 \[
-\omega=\alpha\chi\in[0,1].
+N_1\sim\operatorname{Pois}(m),\qquad
+N_2^C\sim\operatorname{Pois}(m),\qquad N_1\perp N_2^C.
 \]
 
-The archived numerical grid uses `omega=1`; the solver exposes the combined
-primitive as `incumbent_retention` so that exit and loss of eligibility affect
-both the terminal pool and the focal rejector's waiting payoff consistently.
+Thus \(m\) is a per-window cohort flow, not a stationary stock counted twice.
+The platform separately solves:
 
-The platform publicly commits to `mu=(p1,p2,s)` before drivers act. The
-baseline and fixed-reach classes impose `s=1`; the flat class additionally
-imposes `p2=p1`.
+1. **Incumbents only** \(r=I\): retained first-window rejectors, policy
+   \((p_1,p_2)\).
+2. **Fixed footprint with arrivals** \(r=A\): retained rejectors plus
+   \(N_2^C\), policy \((p_1,p_2)\).
+3. **Expanded search** \(r=E\): the same core supply plus an outer annulus in
+   rescue, policy \((p_1,p_2,s)\).
 
-## Spatial search and fresh drivers
+Regimes \(I\) and \(A\) are supply benchmarks, not nested mechanism sets.
+Regime \(A\) is nested in \(E\), because \(s=1\) exactly reproduces the
+fixed footprint.
 
-Normalize the core catchment to area one and radius `R0`. Search multiplier
-`s>=1` expands radius to
+## 2. Incumbent exit and terminal supply
+
+Rider value and persistent driver order cost are \(v,c\sim U[0,1]\). Let
+\(\omega\in[0,1]\) be the exogenous probability that a first-window rejector
+remains physically available for the terminal lottery. It is independent of
+cost and the terminal action. For first-window cutoff \(a\) and terminal
+action \(j\in\{1,2\}\), where 1 is repeat and 2 is rescue,
+
+\[
+I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+.
+\]
+
+Fresh volunteer intensities are
+
+\[
+e_j^I=0,
+\qquad
+e_j^A=mF(p_j),
+\]
+
+\[
+e_1^E=mF(p_1),
+\qquad
+e_2^E=mF(p_2)+m\int_1^sF(p_2-d(u))\,du.
+\]
+
+Hence
+
+\[
+\Lambda_j^r(a)=I_j^\omega(a)+e_j^r,
+\qquad
+C_j^r(a)=1-e^{-\Lambda_j^r(a)}.
+\]
+
+The same \(\omega\) multiplies the focal rejector's continuation payoff, so
+the model treats pool attrition and individual waiting value consistently. The
+main calibration uses \(\omega=.8\); exit is therefore active, not merely an
+unused primitive.
+
+## 3. Expanded-search multiplier and pickup cost
+
+Normalize the core radius to \(R_0\). Search multiplier \(s\ge1\) expands
+the rescue footprint to
 
 \[
 R(s)=R_0\sqrt{s}.
 \]
 
-Spatial Poisson independent increments imply
+Spatial Poisson independent increments give
 
 \[
-N_2^C\sim\operatorname{Pois}(m),\qquad
-N_2^O(s)\sim\operatorname{Pois}((s-1)m),\qquad
-N_2^C\perp N_2^O(s).
-\]
-
-Let area rank be `u=(r/R0)^2`. Core pickup is absorbed into `c`; the extra
-outer pickup cost is
-
-\[
-d(u)=\tau(\sqrt u-1)_+.
-\]
-
-This cost is paid only after assignment. A fresh driver's response payoff is
-
-\[
-h(\lambda)[p-c-d(u)],\qquad
-h(z)=\frac{1-e^{-z}}{z}.
-\]
-
-Since `h(lambda)>0`, response is equivalent to `c+d(u)<=p`. Poisson thinning
-therefore gives
-
-\[
-e(p,s)=m\int_0^s F(p-d(u))\,du.
-\]
-
-For uniform cost, `p in [0,1]`, and `tau>0`, define
-
-\[
-R(p,s)=\min\{\sqrt{s},1+p/\tau\}.
-\]
-
-Then
-
-\[
-e(p,s)=mp+m(p+\tau)(R^2-1)-\frac{2m\tau}{3}(R^3-1),
-\]
-
-\[
-\frac{\partial e}{\partial s}
-=m[p-\tau(\sqrt{s}-1)]_+,
+N_2^O(s)\sim\operatorname{Pois}((s-1)m),
 \qquad
-s^{\mathrm{sat}}(p)=(1+p/\tau)^2.
+N_2^O(s)\perp N_2^C.
 \]
 
-There is no notification-time sunk `k` and no fresh-entry fixed point.
-
-## Terminal branches
-
-For proposed incumbent cutoff `a`, terminal action `j` uses
+Let \(u=(\ell/R_0)^2\) be area rank. Core pickup is absorbed into \(c\); an
+outer winner pays
 
 \[
-(p_j,s_j)=(p_1,1)\ \text{for repeat},
+d(u)=\tau(\sqrt u-1)_+
+\]
+
+only after assignment. A fresh driver's response payoff is
+
+\[
+h(\Lambda)[p-c-d(u)],
 \qquad
-(p_j,s_j)=(p_2,s)\ \text{for rescue}.
+h(z)=\frac{1-e^{-z}}{z},\quad h(0)=1.
 \]
 
-The willing-driver intensities and coverage are
+Thus the assignment probability scales the payoff but does not affect its
+sign:
 
 \[
-I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+,
+\text{volunteer}\iff c+d(u)\le p.
 \]
+
+This produces Poisson thinning, not a fresh-entry fixed point.
+
+## 4. Rider continuation
+
+After universal rejection, the rider observes failure but not realized
+incumbent retention, future arrivals, or volunteer counts. Given the
+equilibrium cutoff, she compares
 
 \[
-\lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),
-\qquad
-C_j(a)=1-e^{-\lambda_j(a)}.
+0,\qquad C_1^r(a)(\beta v-p_1),\qquad
+C_2^r(a)(\beta v-p_2).
 \]
 
-After universal rejection, the rider observes no driver count. She compares
+Let
 
 \[
-0,\qquad C_1(a)(\beta v-p_1),\qquad C_2(a)(\beta v-p_2).
+\eta_j^r(a)
+=\Pr(A=j\mid v\ge p_1,\text{ first-window failure};a)
 \]
 
-Let the induced action masses conditional on posting be
-`eta_0(a), eta_1(a), eta_2(a)`.
+for abandon, repeat, and rescue actions \(j=0,1,2\).
 
-## Cutoff-WPBE
+## 5. Complete cutoff-WPBE
 
-Under a candidate aggregate cutoff, a type-`c` incumbent's
+Under a proposed aggregate cutoff, a type-\(c\) incumbent's
 accept-minus-wait payoff is
 
 \[
-D(c;a)=h(mF(a))(p_1-c)
+D_r(c;a)
+=h(mF(a))(p_1-c)
 -\delta\omega e^{-mF(a)}
-\sum_{j=1}^2\eta_j(a)h(\lambda_j(a))(p_j-c)_+.
+\sum_{j=1}^2\eta_j^r(a)h(\Lambda_j^r(a))[p_j-c]_+.
 \]
 
-Together with the rider and fresh-driver strategies above, cutoff `a` is a
-WPBE iff beliefs follow Bayes' rule on path and
+Together with rider and fresh-driver strategies, \(a\) is a cutoff-WPBE iff
+on-path beliefs obey Bayes' rule and
 
 \[
-D(c;a)\ge0\quad\forall c<a,
+D_r(c;a)\ge0\quad\forall c<a,
 \qquad
-D(c;a)\le0\quad\forall c>a,
+D_r(c;a)\le0\quad\forall c>a,
 \]
 
-with indifference at an interior cutoff. `D(c;a)` is continuous and
-piecewise affine in type, with kinks only at `p1` and `p2`. The solver therefore
-checks the full type domain exactly through the affine interval endpoints.
+with indifference at an interior cutoff. The payoff difference is piecewise
+affine in type, so the solver checks the full type domain at the affine
+interval endpoints and certifies the root set under grid refinement.
 
-The root enumerator includes boundary, sign-changing, and tangential roots and
-then certifies the complete root set under grid doubling.
+## 6. Completion and search-resource objective
 
-## Outer mechanism design
-
-For `theta=(m,beta,delta)`:
+Posting probability is \(1-p_1\) and first-window universal rejection
+probability is \(e^{-mF(a)}\). Completion is
 
 \[
-V_k(\theta)=
-\max_{\mu\in\mathcal M_k}
-\min_{a\in\mathcal E^{\mathrm{WPBE}}(\mu;\theta)}M(\mu,a).
-\]
-
-With posting probability `1-p1`, completion at one equilibrium is
-
-\[
-M(\mu,a)
+M_r(\mu,a)
 =(1-p_1)\left[
 1-e^{-mF(a)}
-+e^{-mF(a)}\big(\eta_1C_1+\eta_2C_2\big)
++e^{-mF(a)}\{\eta_1^rC_1^r+\eta_2^rC_2^r\}
 \right].
 \]
 
-The archived objective is completion, not platform profit or welfare. Pickup
-cost is borne by the assigned driver and affects willingness through the
-response threshold; it is not subtracted a second time from completion.
-
-## Search-resource extension
-
-Free `s` under a completion objective is a maximal-completion benchmark, not
-an economic optimum for notification scope.  Let `q_R(mu,a)` be the ex-ante
-probability that expanded rescue is executed.  The expected number of extra
-outer contacts is
+Driver-paid pickup cost affects willingness but is not a platform search cost.
+Expected incremental outer contacts are
 
 \[
-Q^O(\mu,a)=q_R(\mu,a)m(s-1).
+Q_E^O(\mu,a)
+=(1-p_1)e^{-mF(a)}\eta_2^E(a)m(s-1),
+\qquad Q_I^O=Q_A^O=0.
 \]
 
-A notification-cost version of the outer objective is
+The maintained outer objective is
 
 \[
-J_\kappa(\mu,a)=B M(\mu,a)-\kappa Q^O(\mu,a),
+J_r(\mu,a)=B M_r(\mu,a)-\kappa Q_r^O(\mu,a).
 \]
 
-or one can maximize completion subject to a budget on `Q^O`.  This objective
-should be called completion net of notification opportunity cost.  Calling it
-platform profit additionally requires separate rider fare and driver-payment
-variables.
+This is completion net of notification opportunity cost, not platform profit.
+Core notifications are treated as installed infrastructure and normalized to
+zero incremental cost. If core activation is also a platform choice, use
+
+\[
+J_{\kappa_C,\kappa_O}
+=BM-\kappa_CQ^C-\kappa_OQ^O,
+\qquad
+Q^C=(1-p_1)e^{-mF(a)}(\eta_1+\eta_2)m.
+\]
+
+## 7. Outer equilibrium-constrained mechanism design
+
+For each regime and environment \(\theta=(m,\beta,\delta;\tau,\omega)\),
+
+\[
+V_r(\theta)
+=\max_{\mu_r\in\mathcal M_r}
+\min_{a\in\mathcal E_r^{\mathrm{WPBE}}(\mu_r;\theta)}
+J_r(\mu_r,a).
+\]
+
+The computation literally fixes \(p_1\), optimizes the allowed \(p_2,s\)
+while re-solving the complete WPBE at every evaluation, and then optimizes
+\(p_1\). Conservative equilibrium selection minimizes \(J_r\), the same
+objective used in the outer problem. A deterministic-seed differential-
+evolution pass independently searches the equivalent normalized joint policy
+domain. Its candidates and the nested-profile candidates are all re-ranked
+using a denser cutoff grid and grid-doubling WPBE certification. This guards
+against a missed policy basin; it does not turn numerical search into an
+analytic proof of global optimality.
+
+For computation, the active continuation branch imposes \(p_2\le\beta\)
+without loss: because \(v\le1\), a rescue payment above \(\beta\) gives every
+rider negative delayed surplus. The inactive branch \(p_1\ge\beta\) is solved
+separately.

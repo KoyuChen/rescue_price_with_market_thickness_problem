@@ -1,468 +1,423 @@
-% New pages 3--8 for the group-meeting note.
-% The final PDF physically prepends pages 1--2 of group_meeting_numerics.pdf.
+% Replacement pages 3--8 for the group-meeting note.
+% The merge script physically prepends the unchanged source pages 1--2.
 \documentclass[11pt]{article}
-\usepackage[letterpaper,margin=2.05cm]{geometry}
+\usepackage[letterpaper,margin=1.88cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,array,tabularx,colortbl}
 \usepackage{graphicx,xcolor}
 \usepackage{float,enumitem,microtype,multicol}
 \usepackage[font=small,skip=3pt]{caption}
 \usepackage{titlesec}
-\titlespacing*{\section}{0pt}{5pt plus 2pt}{3pt}
-\titlespacing*{\subsection}{0pt}{5pt plus 2pt}{2pt}
+\titlespacing*{\section}{0pt}{4pt}{3pt}
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
 \setlength{\abovedisplayskip}{4pt}
 \setlength{\belowdisplayskip}{4pt}
 \setlength{\textfloatsep}{5pt}
 \setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=1pt,parsep=0pt}
-\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
-\definecolor{basegray}{HTML}{6B7280}
-\definecolor{fixedorange}{HTML}{D55E00}
+\definecolor{inkgray}{HTML}{4B5563}
+\definecolor{incpurple}{HTML}{8C6BB1}
+\definecolor{arrivalgreen}{HTML}{009E73}
 \definecolor{searchblue}{HTML}{0072B2}
 \definecolor{softgray}{HTML}{F3F4F6}
-\definecolor{softorange}{HTML}{FFF1E8}
+\definecolor{softpurple}{HTML}{F2EAF3}
+\definecolor{softgreen}{HTML}{E8F5EF}
 \definecolor{softblue}{HTML}{EAF4FA}
 \newcommand{\takeaway}[1]{\par\smallskip\noindent\textbf{Takeaway.} #1\par\smallskip}
 \newcommand{\E}{\mathbb E}
 \newcommand{\WPBE}{\mathrm{WPBE}}
+\newcommand{\regI}{\mathrm I}
+\newcommand{\regA}{\mathrm A}
+\newcommand{\regE}{\mathrm E}
 
 \begin{document}
 \setcounter{page}{3}
 \setcounter{section}{1}
 \setcounter{figure}{2}
 
-\section{Why the design becomes $(p_1,p_2,s)$}
+\section{Three supply regimes isolate arrivals before search}
 
-\takeaway{Pages 1--2 isolate same-order strategic waiting in the exact
-one-driver benchmark.  The market-design comparison now adds a fresh Poisson
-cohort in every second window and asks whether the platform should reprice the
-same catchment, widen the catchment, or do both.}
-
-The exogenous environment and the platform's commitment are different objects:
-\[
-\underbrace{\theta=(m,\beta,\delta;\tau,\omega,\bar s)}_{\text{environment}}
-\qquad\text{and}\qquad
-\underbrace{\mu=(p_1,p_2,s)}_{\text{platform choice}}.
-\tag{5}
-\]
-Here $m$ is the expected number of drivers in each core Poisson cohort;
-$\beta$ and $\delta$ are the rider's and incumbent driver's delay factors;
-$\tau$ is the outer pickup-cost slope; $\omega$ is incumbent retention and
-eligibility; and $\bar s$ is the feasible search cap.  The stylized prices
-$p_1,p_2$ are paid by the rider and received by the assigned driver.  Crucially,
-$s$ is \emph{chosen by the platform} in the expanded-search class; only its
-cap and cost technology are exogenous.
-
-\subsection{Three strictly nested mechanism classes}
+\takeaway{Pages 1--2 solve the closed, known-one-driver benchmark.  With latent
+Poisson supply, we first ask what a new period-2 cohort changes at the same
+fixed footprint; only then do we let the platform expand notification reach.}
 
 \begin{center}
 \small
-\renewcommand{\arraystretch}{1.17}
-\begin{tabularx}{.995\textwidth}{@{}L{2.35cm}L{2.6cm}Y Y@{}}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{.99\textwidth}{@{}L{2.25cm}L{2.55cm}Y L{2.65cm}@{}}
 \toprule
-Mechanism class & Commitment & Second-window core & What is added?\\
+Regime & Commitment & Drivers who can volunteer after first-window failure & Added object\\
 \midrule
-\rowcolor{softgray}
-Flat fixed reach $\mathcal M_0$ & $(p,p,1)$ &
-$N_2^C\sim\mathrm{Pois}(m)$ & No contingent price and no outer search.\\
-\rowcolor{softorange}
-Fixed-reach rescue $\mathcal M_F$ & $(p_1,p_2,1)$ &
-$N_2^C\sim\mathrm{Pois}(m)$ & A committed rescue price in the same catchment.\\
+\rowcolor{softpurple}
+\textbf{I. Incumbents only} & $(p_1,p_2)$ & Retained first-window rejectors & Recall value\\
+\rowcolor{softgreen}
+\textbf{A. Fixed footprint + arrivals} & $(p_1,p_2)$ & Retained rejectors plus an independent fresh core cohort & Replenishment value\\
 \rowcolor{softblue}
-Expanded-search rescue $\mathcal M_E$ & $(p_1,p_2,s)$, $s\ge1$ &
-$N_2^C\sim\mathrm{Pois}(m)$ & An independent outer annulus plus the same rescue price.\\
+\textbf{E. Expanded search} & $(p_1,p_2,s)$ & Retained rejectors plus the same fresh core cohort, and an outer-annulus cohort in rescue & Incremental reach value\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-Thus ``fixed reach'' fixes the notification geography, not driver identities.
-Both rescue mechanisms contain time-homogeneous fresh arrivals in period 2.
-Their feasible sets are
+\subsection{Common Poisson environment}
+
+The two response windows have equal length and the core footprint has area one.
+The first-window incumbents and second-window core arrivals are
 \[
-\mathcal M_0=\{(p,p,1)\}
-\subset
-\mathcal M_F=\{(p_1,p_2,1):p_2\ge p_1\}
-\subset
-\mathcal M_E=\{(p_1,p_2,s):p_2\ge p_1,\ 1\le s\le\bar s\}.
+N_1\sim\operatorname{Pois}(m),\qquad
+N_2^C\sim\operatorname{Pois}(m),\qquad N_1\perp N_2^C.
+\tag{5}
+\]
+Thus $m$ is a \emph{per-window cohort flow}, not a stock counted twice.
+Every incumbent in $N_1$ sees the focal order and the full commitment before
+choosing accept or reject-and-wait.  Fresh drivers in $N_2^C$ first see it only
+if a terminal notification is sent.  A rejector remains physically available
+for the terminal lottery with exogenous probability $\omega\in[0,1]$.
+
+Throughout this numerical framework, rider value $v$ and persistent driver
+cost $c$ satisfy $v,c\sim U[0,1]$; write $F$ for the driver-cost CDF.
+Rider and incumbent delay factors are $\beta,\delta\in(0,1]$; $\tau\ge0$ is
+the outer pickup-cost slope and $\bar s\ge1$ is the search cap.
+
+\subsection{What is, and is not, nested}
+
+Regimes $\regI$ and $\regA$ are two supply benchmarks: one has no new cohort;
+the other has time-homogeneous replenishment.  They should not be called
+nested mechanisms unless the platform can suppress the core broadcast.
+Their policy domains coincide, while expanded search reproduces the
+fixed-arrival technology exactly at $s=1$:
+\[
+\begin{aligned}
+\mathcal P_{\regI}=\mathcal P_{\regA}
+&=\{(p_1,p_2):0\le p_1\le p_2\le1\},\\
+\mathcal P_{\regE}
+&=\{(p_1,p_2,s):0\le p_1\le p_2\le1,\ 1\le s\le\bar s\}.
+\end{aligned}
 \tag{6}
 \]
-The flat benchmark has one optimized price; it is not a fixed-$p_1$ policy.
-
-\subsection{$s$ is an area multiplier, not a participation share}
-
-Let spatially homogeneous fresh drivers form a Poisson point process.  Normalize
-the core catchment to area one and let its radius be $R_0$.  Committing to
-multiplier $s$ means
-\[
-R(s)=R_0\sqrt{s},\qquad
-N_2^O(s)\sim\mathrm{Pois}((s-1)m),\qquad
-N_2^C\perp N_2^O(s).
-\tag{7}
-\]
-Hence the expanded pool is $\mathrm{Pois}(sm)$ and the core is its Poisson
-thinning with retention probability $1/s$.  At $s=4$, for example, area is
-quadrupled but radius only doubles.
-
-\subsection{The object plotted below}
-
-For each $\theta$ (varying $m,\beta,\delta$ while holding
-$\tau,\omega,\bar s$ fixed), each line reports a separate
-equilibrium-constrained optimum
-\[
-V_k(\theta)=\max_{\mu\in\mathcal M_k}
-\min_{a\in\mathcal E^{\WPBE}(\mu;\theta)}M(\mu,a),
-\qquad k\in\{0,F,E\}.
-\tag{8}
-\]
-Here $a$ is the incumbent acceptance cutoff,
-$\mathcal E^{\WPBE}(\mu;\theta)$ is the full set of cutoff-WPBE cutoffs, and
-$M(\mu,a)$ is ex-ante completion probability (including the rider's posting
-decision).  The inner minimum is the stated conservative equilibrium-selection
-rule.
-The nesting makes $V_E\ge V_F\ge V_0$; the substantive question is where each
-increment is large after all permitted controls are re-optimized.
+Within every regime, $p_2=p_1$ remains the flat-price restriction.  All
+comparisons below re-optimize the available policy; no common fixed $p_1$ is imposed.
+On an active continuation branch the computation restricts $p_2\le\beta$
+without loss, since no rider can obtain positive delayed surplus above $\beta$;
+the inactive branch $p_1\ge\beta$ is checked separately.
 
 \clearpage
-\section{Inner cutoff-WPBE, then outer mechanism design}
+\section{A complete cutoff-WPBE sits inside every design problem}
 
-\takeaway{The platform commits first.  For every candidate mechanism, driver
-strategies, rider continuation, and Bayesian beliefs are solved as a complete
-cutoff-WPBE.  Only then does the platform compare mechanisms.}
+\takeaway{The platform commits first.  Every candidate policy $\mu_r$ induces
+driver strategies, rider continuation, and Bayesian beliefs; the platform
+compares policies only after solving that full cutoff-WPBE correspondence.}
 
 \begingroup\small
-
-\subsection{Information and timing for the same focal order}
-
-\begin{center}
-\footnotesize
-\renewcommand{\arraystretch}{1.04}
-\begin{tabularx}{.995\textwidth}{@{}L{1.15cm}Y L{4.2cm}@{}}
+\begin{minipage}[t]{.415\textwidth}
+\subsection*{Timing and information}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{@{}L{.6cm}Y@{}}
 \toprule
-Stage & Action & Information\\
-\midrule
-0 & Platform commits to $\mu=(p_1,p_2,s)$; a rider with $v\sim U[0,1]$ posts iff
-$v\ge p_1$. & $m,\beta,\delta$, the cost laws, and $\mu$ are public.\\
-1 & $N_1\sim\mathrm{Pois}(m)$ incumbents see this order and choose accept
-$p_1$ or reject-and-wait. & Each sees the order, both prices, $s$, and own
-persistent cost $c$; counts and other costs are hidden.\\
-2 & After universal rejection, the rider chooses abandon, repeat at $p_1$,
-or rescue at $p_2$. & The rider sees failure but no driver count or future
-fresh responses; beliefs are induced by the equilibrium cutoff.\\
-3 & The chosen terminal notification is sent; fresh drivers see the order for
-the first time and may respond. & Rejectors and fresh volunteers enter one
-anonymous lottery.  A rejector may first exit or lose eligibility; pickup cost
-is paid only by the selected driver.\\
+0 & Holding $r\in\{\regI,\regA,\regE\}$ fixed, the platform commits to
+$\mu_{\regI}=\mu_{\regA}=(p_1,p_2)$ or $\mu_{\regE}=(p_1,p_2,s)$.\\
+1 & A rider posts iff $v\ge p_1$.  All $N_1$ incumbents see the order,
+prices, and own $c$, but not the count or other costs.\\
+2 & After universal rejection, each rejector remains available with probability
+$\omega$.  The rider observes failure, not realized driver counts, and chooses
+abandon, repeat $p_1$, or rescue $p_2$.\\
+3 & The chosen notification is sent.  Eligible rejectors and reached fresh
+volunteers enter one anonymous lottery.\\
 \bottomrule
 \end{tabularx}
-\end{center}
-
-\subsection{Winner-only pickup cost and terminal coverage}
-
-Let $c\sim F=U[0,1]$ be persistent order cost and
-$u=(\ell/R_0)^2$ be area rank, where $\ell$ is pickup distance.  Core pickup is
-absorbed into $c$;
-the extra cost from expansion is
+\end{minipage}\hfill
+\begin{minipage}[t]{.545\textwidth}
+\subsection*{Terminal supply objects}
+Let $a\in[0,p_1]$ be the first-window cutoff (accept iff $c\le a$), write
+$[x]_+=\max\{x,0\}$, and let $j=1$ denote repeat, $j=2$ rescue.
+Conditional on universal rejection, retained incumbent
+volunteer intensity is
 \[
-d(u)=\tau(\sqrt u-1)_+.
+I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+.
 \]
-A fresh driver's response payoff, when total volunteer intensity is $\Lambda$,
-is $h(\Lambda)[p-c-d(u)]$, where
-$h(z)=(1-e^{-z})/z$.  Because the same assignment probability multiplies
-payment and pickup cost,
+Fresh volunteer intensities in regime $r$ are
 \[
-\text{respond}\iff c+d(u)\le p,\qquad
-e(p,s)=m\int_0^s F\!\left(p-d(u)\right)du.
-\tag{9}
+e_j^{\regI}=0,\qquad e_j^{\regA}=mF(p_j),
 \]
-There is no sunk relocation cost and no fresh-entry fixed point.  Let a
-rejector remain available with probability $\alpha$ and remain eligible
-conditional on availability with probability $\chi$; write
-$\omega=\alpha\chi$.  Given cutoff $a$, let $s_1=1,s_2=s$ and
 \[
-I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+,\quad
-\Lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),\quad C_j(a)=1-e^{-\Lambda_j(a)}.
-\tag{10}
+e_1^{\regE}=mF(p_1),\qquad
+e_2^{\regE}=mF(p_2)+m\!\int_1^s F(p_2-d(u))\,du.
 \]
-Here $I_j^\omega,e,\Lambda_j,C_j$ denote retained-incumbent intensity, fresh
-intensity, total intensity, and coverage.  The rider compares $0$,
-$C_1(\beta v-p_1)$, and $C_2(\beta v-p_2)$; the induced conditional abandon,
-repeat, and rescue masses are $\eta_0(a),\eta_1(a),\eta_2(a)$.
-
-\subsection{Strict cutoff-WPBE test and the outer problem}
-
-For a proposed aggregate cutoff, a type-$c$ incumbent's accept-minus-wait
-payoff is
+Here $d(u)\ge0$ is the post-assignment outer pickup cost defined on page 6.
+For every regime,
 \[
-D(c;a)=h(mF(a))(p_1-c)-\delta e^{-mF(a)}
-\omega\sum_{j=1}^2\eta_j(a)h(\Lambda_j(a))(p_j-c)_+.
-\tag{11}
+\Lambda_j^r(a)=I_j^\omega(a)+e_j^r,\qquad
+C_j^r(a)=1-e^{-\Lambda_j^r(a)}.
+\tag{7}
+\]
+$\Lambda_j^r$ is the expected total willing-driver count, not a per-$m$ rate.
+The rider compares $0$, $C_1^r(\beta v-p_1)$, and
+$C_2^r(\beta v-p_2)$.  Let $\eta_j^r(a)$ be the resulting action probability
+conditional on posting and first-window failure.
+\end{minipage}
+
+\subsection{Pure cutoff-WPBE test}
+
+Let $h(z)=(1-e^{-z})/z$ for $z>0$ and $h(0)=1$.  A type-$c$ incumbent's
+accept-minus-wait payoff under a proposed aggregate cutoff is
+\[
+D_r(c;a)=h(mF(a))(p_1-c)
+-\delta\omega e^{-mF(a)}
+\sum_{j=1}^2\eta_j^r(a)h(\Lambda_j^r(a))[p_j-c]_+.
+\tag{8}
 \]
 Together with the rider and fresh-driver strategies above, $a$ is a cutoff-WPBE
-iff beliefs obey Bayes' rule and
+iff on-path beliefs obey Bayes' rule and
 \[
-D(c;a)\ge0\ \forall c<a,\qquad D(c;a)\le0\ \forall c>a,
-\tag{12}
+D_r(c;a)\ge0\quad\forall c<a,
+\qquad
+D_r(c;a)\le0\quad\forall c>a,
+\tag{9}
 \]
-with indifference at an interior cutoff.  Since $D$ is piecewise affine with
-kinks only at $p_1,p_2$, the numerics verify (12) exactly at interval endpoints,
-not on a sampled type grid.  The computation respects the nesting
+with the marginal type indifferent at an interior cutoff.  Because $D_r$ is
+piecewise affine in $c$, the solver checks the entire type domain at its affine
+interval endpoints, not on a sampled type grid.
+
+\subsection{Outer mechanism design}
+
+Ex-ante completion and expected outer contacts are
 \[
-\text{fix }p_1\ \longrightarrow\
-\max_{p_2,s}\min_{a\in\mathcal E^{\WPBE}}M
-\ \longrightarrow\ \max_{p_1},
-\tag{13}
+\begin{aligned}
+M_r(\mu_r,a)&=(1-p_1)\!\left[1-e^{-mF(a)}
++e^{-mF(a)}\{\eta_1^r(a)C_1^r(a)+\eta_2^r(a)C_2^r(a)\}\right],\\
+Q^O_{\regE}(\mu_{\regE},a)&=(1-p_1)e^{-mF(a)}\eta_2^{\regE}(a)m(s-1),
+\qquad Q^O_{\regI}=Q^O_{\regA}=0.
+\end{aligned}
+\tag{10}
 \]
+Let $B>0$ be value per completion, $\kappa\ge0$ the incremental outer-contact
+cost, $\theta=(m,\beta,\delta;\tau,\omega,\bar s,B,\kappa)$, and
+$\mathcal E_r^{\WPBE}(\mu_r;\theta)$ the set of cutoffs satisfying (9).
+For $J_r=BM_r-\kappa Q_r^O$, the target design problem is
+\[
+V_r(\theta)=
+\max_{\mu_r\in\mathcal P_r}
+\min_{a\in\mathcal E_r^{\WPBE}(\mu_r;\theta)}J_r(\mu_r,a),
+\qquad
+\text{fix }p_1\ \longrightarrow\ \max_{p_2,s}\ \longrightarrow\ \max_{p_1}.
+\tag{11}
+\]
+Conservative equilibrium selection minimizes the same $J_r$ used outside.
+Reported candidates combine this nested profile with an independent
+global-basin search and dense WPBE recertification.
 \endgroup
 
 \clearpage
-\section{Part 2: fixed-reach rescue}
+\section{Fixed footprint: what do fresh arrivals change?}
 
-\takeaway{Fixed-reach rescue reprices the second window without changing its
-geography.  It still has a new core Poisson cohort; its distinctive tool is
-the committed wedge $p_2-p_1$, not the existence of fresh arrivals.}
+\takeaway{Regimes $\regI$ and $\regA$ give the platform the same price menu
+$(p_1,p_2)$.  Their only difference is whether a new, independent core cohort
+can first see the order after first-window failure.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.99\textwidth]{../figures/figure_fixed_rescue_story.pdf}
-\caption{Fixed-reach rescue versus the flat two-window benchmark.  Every point
-first solves the complete cutoff-WPBE and then re-optimizes the permitted
-mechanism.  Right: second-window willing-driver intensity under the optimized
-fixed-rescue policy.}
-\label{fig:fixed-story}
+\includegraphics[width=.99\textwidth]{../figures/figure_arrival_value.pdf}
+\caption{Incumbents only versus fixed footprint with time-homogeneous fresh
+arrivals.  Every point is the best cross-checked candidate from the nested
+profile and an independent global-basin search, with its complete cutoff-WPBE
+re-solved.  Main slice:
+$(\beta,\delta,\omega)=(.8,.8,.8)$.}
+\label{fig:arrival-value}
 \end{figure}
 
-Under repeat, the terminal pool contains screened incumbents
-$\omega m[F(p_1)-F(a)]_+$ and core fresh volunteers $e(p_1,1)$.  Under rescue,
-it contains $\omega m[F(p_2)-F(a)]_+$ and $e(p_2,1)$.  For uniform costs,
+The supply decomposition is deliberately minimal:
 \[
-e(p,1)=mp.
+\Lambda_j^{\regI}(a)=\omega m[F(p_j)-F(a)]_+,
+\qquad
+\Lambda_j^{\regA}(a)=\Lambda_j^{\regI}(a)+mF(p_j).
+\tag{12}
+\]
+The first term is the cost-screened set of rejectors who remain in the market;
+the second is the new core cohort after price-based thinning.  Setting
+$\omega=.8$ means the plotted benchmark has genuine incumbent exit: twenty
+percent of rejectors become unavailable before the terminal action.
+
+Fresh arrivals have three equilibrium effects.  They directly increase
+terminal coverage; their lottery competition lowers an incumbent's chance of
+winning after waiting; and the resulting coverage changes which riders choose
+repeat or rescue.  Therefore the green curve is not obtained by adding
+$mF(p_j)$ to an old fixed-price outcome.  Both prices and the first-window
+cutoff are re-solved at every $m$.
+
+\noindent\colorbox{softgreen}{\parbox{.965\textwidth}{\small
+\textbf{Identification.}  $V_{\regA}-V_{\regI}$ is the completion value of
+time-homogeneous replenishment at a fixed geographic footprint.  It is not yet
+the value of searching farther away.}}
+
+\clearpage
+\section{Expanded search adds only an outer annulus}
+
+\takeaway{The core cohort remains exactly the one in regime $\regA$.
+Expanded rescue changes only who outside that core can first learn about the
+failed order; $s$ is an area multiplier, not an arrival probability.}
+
+\begin{minipage}[t]{.425\textwidth}
+\centering
+\includegraphics[width=.98\textwidth]{../figures/figure_search_geometry.pdf}
+\end{minipage}\hfill
+\begin{minipage}[t]{.535\textwidth}
+Normalize the core radius to $R_0$.  A committed multiplier $s\ge1$ means
+\[
+R(s)=R_0\sqrt{s},\qquad
+N_2^O(s)\sim\operatorname{Pois}((s-1)m),
+\tag{13}
+\]
+where $N_2^O(s)$ is independent of the core cohort $N_2^C$.  Equivalently, the
+combined fresh pool has mean $sm$, and its core component is obtained by
+ordinary Poisson thinning with share $1/s$.
+
+Repeat uses core reach $s_1=1$.  Only the announced rescue branch uses
+$s_2=s$.
+\end{minipage}
+
+\subsection{Driver-paid pickup friction occurs after assignment}
+
+Let $\ell$ be driver--order pickup distance and
+$u=(\ell/R_0)^2\in[1,s]$ the outer driver's area rank.  Core pickup is
+absorbed into persistent cost $c$; an outer winner additionally pays
+\[
+d(u)=\tau(\sqrt u-1)_+.
 \tag{14}
 \]
-Thus increasing $p_2$ works through two supply channels, but it also increases
-the continuation value of rejecting the focal order and may lower $a$.
-
-At $(\beta,\delta,\tau)=(.8,.8,.25)$, the optimized fixed-rescue increment is
-only $0.65$ percentage points at $m=.5$, peaks at $2.81$ points near $m=6$,
-and remains $2.24$ points at $m=16$.  This hump is an equilibrium-design
-pattern: each orange point has its own $(p_1^*,p_2^*)$ and its own WPBE cutoff.
-
-\noindent\textbf{Interpretation.}
-In a very thin market, repricing a small catchment has little supply to work
-with.  As $m$ grows, the second-window core cohort and screened backup pool
-make contingent pay more useful.  In a very thick market, the flat mechanism
-already completes most requests, limiting the remaining gain.
-
-\clearpage
-\section{Part 3: expanded-search rescue}
-
-\takeaway{Expanded search preserves the core cohort and adds only the outer
-annulus.  Distant drivers volunteer less often because the assigned winner,
-and only the winner, pays the incremental pickup cost.}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.99\textwidth]{../figures/figure_expanded_search_story.pdf}
-\caption{Incremental value and supply composition of expanded search.  Each
-blue point re-optimizes $(p_1,p_2,s)$ outside its complete cutoff-WPBE; the
-orange comparator separately re-optimizes $(p_1,p_2,1)$.}
-\label{fig:expanded-story}
-\end{figure}
-
-For $F=U[0,1]$, $p\in[0,1]$, and $\tau>0$, define the largest responsive
-radius ratio
+The fresh driver knows $u,p_2,c$ before volunteering but pays $d(u)$ only when
+selected.  Her rescue response payoff is
 \[
-z(p,s)=\min\{\sqrt{s},1+p/\tau\}.
+h(\Lambda_2^{\regE}(a))[p_2-c-d(u)].
 \]
-Poisson thinning gives the closed-form fresh volunteer intensity
+Because the same positive assignment probability multiplies revenue and cost,
 \[
-e(p,s)=mp+m(p+\tau)(z^2-1)
--\frac{2m\tau}{3}(z^3-1).
+\text{volunteer}\quad\Longleftrightarrow\quad c+d(u)\le p_2.
 \tag{15}
 \]
-Its marginal outer supply is
+Spatial independent increments plus mark thinning therefore give rescue
+outer-volunteer intensity
 \[
-\frac{\partial e}{\partial s}
-=m[p-\tau(\sqrt{s}-1)]_+,\qquad
-s^{\mathrm{sat}}(p)=(1+p/\tau)^2.
+e_O(p_2,s)=m\int_1^sF(p_2-d(u))\,du,
+\qquad
+\frac{\partial e_O}{\partial s}=mF(p_2-d(s)).
 \tag{16}
 \]
-Thus pickup friction creates a physical response saturation.  It does not make
-notifications economically free.  If expanded rescue is executed with
-ex-ante probability $q_R$, expected extra contacts are
-\[
-Q^O=q_Rm(s-1),\qquad J_\kappa=BM-\kappa Q^O.
-\tag{17}
-\]
-Here $q_R$ is the ex-ante probability that expanded rescue is executed, $B$
-is value per completion, and $\kappa$ is opportunity cost per extra contact.
-Completion with $\kappa=0$ is a maximal-completion frontier.  Because $s=1$
-remains feasible, optimized expanded search cannot underperform fixed reach;
-an actual no-expansion choice $s^*=1$ requires $\kappa>0$, an equivalent
-notification budget, or an inactive rescue branch.
+For $F=U[0,1]$, increasingly distant rings contribute fewer volunteers and
+eventually none.  There is no notification-time relocation cost and hence no
+fresh-entry fixed point in this maintained benchmark.
 
-At $(\beta,\delta,\tau)=(.8,.8,.25)$, the incremental value of expanded search
-over optimized fixed rescue peaks at $12.64$ percentage points near $m=1$ and
-falls to $1.42$ points at $m=16$.  The optimized multiplier declines from its
-cap $s^*=4$ in thin markets to $s^*=2.09$ at $m=16$.
-
-\noindent\textbf{Interpretation.}
-Price chooses which reached drivers are willing; $s$ chooses who can first
-learn about the failed order.  With free contacts, $s^*$ may hit $\bar s$ or
-the physical saturation set.  With $\kappa>0$, search expands only while its
-marginal completion value exceeds the opportunity cost of another expected
-contact.
+\noindent\colorbox{softblue}{\parbox{.965\textwidth}{\small
+\textbf{Separation of roles.}  $p_2$ changes willingness among all reached
+drivers.  $s$ changes who can see rescue.  Driver pickup cost $d(u)$ thins
+willing supply, but it is not a platform cost of sending notifications.}}
 
 \clearpage
-\section{The two controls peak in different thickness regions}
+\section{A platform search cost makes $s=1$ an economic choice}
 
-\takeaway{In the fully optimized cutoff-WPBE numerics, expanded search creates
-its largest incremental gain first; contingent pricing reaches its maximum
-later.  The right panel gives the common-branch theorem that explains this
-ordering.  The left panel is evidence for the re-optimized model, not its proof.}
+\takeaway{A completion-only objective with free contacts asks for a maximal
+coverage frontier and often pushes $s$ to its cap.  To ask whether expansion is
+worth doing, the objective must price the incremental outer contacts.}
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{.92\textwidth}{@{}L{2cm}L{2.65cm}Y@{}}
+\toprule
+Object & Who bears it? & Economic role\\
+\midrule
+$d(u)$ & Assigned outer driver & Enters the response threshold and thins willing supply.\\
+$\kappa$ per outer contact & Platform/system & Prices notification attention and incremental dispatch capacity.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The expanded-search rescue branch is executed ex ante with probability
+\[
+q_R^{\regE}=(1-p_1)e^{-mF(a)}\eta_2^{\regE}(a).
+\]
+Thus expected extra contacts and the maintained design objective are
+\[
+Q_{\regE}^O=q_R^{\regE}m(s-1),
+\qquad
+J_{\regE}^{\kappa}=BM_{\regE}-\kappa Q_{\regE}^O.
+\tag{17}
+\]
+This is completion net of notification opportunity cost, not platform profit;
+calling it profit would require separate rider fares and driver wages.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.995\textwidth]{../figures/figure5_ordered_peaks.pdf}
-\caption{Left: every point separately re-solves the inner cutoff-WPBE and
-re-optimizes all controls available in that mechanism class.  Right: one
-illustrative set of per-unit equilibrium rates for the adjacent price and
-search gains.  Here $\varphi$ is the first-window accepting-driver rate and
-$\lambda_k$ the terminal willing-driver rate in class $k\in\{0,F,E\}$; the
-next page states the rate ordering used by the theorem.}
-\label{fig:ordered-peaks}
+\includegraphics[width=.98\textwidth]{../figures/figure_search_decision.pdf}
+\caption{Free-search frontier versus the costly-search design.  Both lines
+cross-search $(p_1,p_2,s)$ and re-solve the inner cutoff-WPBE at each $m$.
+The main slice uses $(\beta,\delta)=(.8,.8)$, $B=1$, $\kappa=.0125$,
+$\tau=.25$, $\omega=.8$, and $\bar s=4$; $s=1$ exactly reproduces
+fixed-footprint arrivals.}
+\label{fig:search-decision}
+\end{figure}
+
+The decline in $s^*(m)$ is not imposed.  As the optimized core becomes more
+reliable, the marginal completion value of another ring falls while its
+expected contact cost remains.  The outer design can therefore select a cap,
+an interior multiplier, or no expansion $s^*=1$.
+
+\clearpage
+\section{Market conditions and the research boundary}
+
+\takeaway{Fresh arrivals matter most in an intermediate core market.  Costly
+geographic expansion is most valuable when the core is thin and can optimally
+switch off once fixed-footprint rescue is reliable.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.91\textwidth]{../figures/figure_market_conditions.pdf}
+\caption{Comparative statics across rider patience $\beta$ and incumbent
+patience $\delta$.  Each cell uses the same $m$ grid and separately re-solves
+all three outer mechanism-design problems and their complete cutoff-WPBE
+correspondences.  Other parameters match Figure~\ref{fig:search-decision}.
+Here $>16$ means search does not switch off anywhere on the tested $m$ grid.}
+\label{fig:conditions}
 \end{figure}
 
 \begin{center}
 \small
 \renewcommand{\arraystretch}{1.12}
-\begin{tabularx}{.98\textwidth}{@{}L{2.25cm}Y Y@{}}
+\begin{tabularx}{.97\textwidth}{@{}L{2.15cm}Y Y@{}}
 \toprule
-Thickness regime & Expanded-search layer $V_E-V_F$ & Price layer $V_F-V_0$\\
+Layer & What it identifies & Maintained cost normalization\\
 \midrule
-Scarce & Geographic reach is binding; the gain peaks near $m=1$ in the main
-slice. & Repricing a small core acts on little supply.\\
-Intermediate & Its marginal value falls as the core itself becomes reliable. &
-The screened and core-fresh backup pools are now large enough for contingent
-pay to peak near $m=6$.\\
-Ample & Added outer coverage has little room to improve completion. & The flat
-optimized mechanism also becomes reliable, so the price increment declines.\\
+$\regI\rightarrow\regA$ & Value of an independent, time-homogeneous core cohort at fixed footprint & Core broadcast is installed; report the best cross-checked completion.\\
+$\regA\rightarrow\regE$ & Incremental value of outer geographic reach & Charge $\kappa$ per actually executed outer contact.\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-\noindent\colorbox{softgray}{\parbox{.965\textwidth}{\small
-\textbf{Exact status.}  The numerical peak locations use
-$(\beta,\delta,\tau,\omega)=(.8,.8,.25,1)$.  Af\`eche--Liu--Maglaras-style
-``scarce--intermediate--ample'' language is appropriate for these regimes;
-one should not call the re-optimized value envelopes globally single-peaked
-until branch switching and rider composition are controlled.}}
-
-\clearpage
-\section{A benchmark theorem, a full-model target, and the boundary}
-
-\takeaway{The strict peak order is proved on a common Poisson-WPBE branch.
-For the fully re-optimized mechanism, the honest theorem target is an ordering
-of argmax sets under an explicit branch-stability condition.}
-
-\begingroup\small
-\noindent\colorbox{softblue}{\parbox{.965\textwidth}{
-\textbf{Theorem (ordered peaks of nested rescue controls).}
-Fix one active cutoff-WPBE and rider-continuation branch.  Suppose first-window
-accepting-driver intensity is $\varphi m$, so universal rejection has
-probability $e^{-\varphi m}$.  For $k\in\{0,F,E\}$, let $\lambda_k$ be the
-equilibrium terminal willing-driver rate \emph{per unit of $m$}, conditional
-on first-window failure; hence total terminal intensity is
-$\Lambda_k(m)=\lambda_km$ and terminal failure is $e^{-\lambda_km}$.
-Suppose $0\le\lambda_0<\lambda_F<\lambda_E$ and
-$\varphi+\lambda_0>0$.  Let $\Delta_P^0$ denote fixed rescue minus flat, and
-$\Delta_S^0$ expanded search minus fixed rescue.  Then
+If activation of the core cohort is itself a platform choice, let
+$\kappa_C,\kappa_O\ge0$ be the core- and outer-contact costs.  Suppressing
+regime superscripts, the symmetric extension is
 \[
-\Delta_P^0=e^{-\varphi m}(e^{-\lambda_0m}-e^{-\lambda_Fm}),\qquad
-\Delta_S^0=e^{-\varphi m}(e^{-\lambda_Fm}-e^{-\lambda_Em})
-\]
-are strictly single-peaked, with
-\[
-m_P^*=\frac{\log[(\varphi+\lambda_F)/(\varphi+\lambda_0)]}{\lambda_F-\lambda_0},\qquad
-m_S^*=\frac{\log[(\varphi+\lambda_E)/(\varphi+\lambda_F)]}{\lambda_E-\lambda_F},
-\]
-and
-\[
-\boxed{\ m_S^*<1/(\varphi+\lambda_F)<m_P^*\ }.
+J_{\kappa_C,\kappa_O}=BM-\kappa_CQ^C-\kappa_OQ^O,
+\qquad
+Q^C=(1-p_1)e^{-mF(a)}\{\eta_1(a)+\eta_2(a)\}m.
 \tag{18}
-\]}}
-
-\begin{multicols}{2}
-\subsection{Proof and full-model lift}
-
-For $g_{a,b}(m)=e^{-am}-e^{-bm}$, $0<a<b$, the derivative changes sign once
-and
-\[
-m^*(a,b)=\frac{\log(b/a)}{b-a},\qquad \frac1b<m^*(a,b)<\frac1a.
 \]
-Apply this to the adjacent pairs
-$(\varphi+\lambda_0,\varphi+\lambda_F)$ and
-$(\varphi+\lambda_F,\varphi+\lambda_E)$.
-
-For the optimized model define
-\[
-\mathcal S=\arg\max_m(V_E-V_F),\qquad
-\mathcal P=\arg\max_m(V_F-V_0).
-\]
-The desired statement is
-$\sup\mathcal S<\inf\mathcal P$.  A sufficient condition is that both optimized
-gaps remain uniformly within half of their benchmark separation margins at
-$\bar m=1/(\varphi+\lambda_F)$.  This condition permits multiple optimal policies;
-it does not assume differentiable envelopes.
-
-\subsection{Adversarial boundary}
-
-The common branch is essential.  Let
-$\Delta_P=e^{-m}-e^{-2m}$ and multiply the search gain by the
-mechanism-specific continuation factor
-$\eta(m)=(1-e^{-m})^2$.  Then
-\[
-m_P^*=\log2,\qquad m_S^*=\log(5/2)>m_P^*.
-\]
-Both gains remain smooth and uniquely peaked.  Rider-composition changes alone
-can reverse their order; policy switching can additionally create multiple
-peaks.
-
-\subsection{Closest theorem styles}
+That version can ask whether to notify fresh core drivers at all.  The current
+group-meeting comparison instead isolates two questions: first the supply
+value of replenishment, then the economic scope of additional search.
 
 \begin{itemize}
-\item Af\`eche--Liu--Maglaras: scarce/moderate/ample thresholds and
-zero--positive--zero control value, not a unique peak.
-\item Zhao--Papier--Teo: quasi-convex thickness cost and an intermediate
-optimum; weak quasi-convexity does not imply uniqueness.
-\item Wang--Zhang--Zhang: characterize search scope by a scalar index crossing.
-\item Here: order the peaks of two \emph{adjacent nested controls} after the
-inner cutoff-WPBE is made explicit.
+\item Incumbent exit is active through $\omega=.8$ in the main numerics and
+enters both terminal supply and the focal rejector's waiting value.
+\item Only the $s=1$ slice of the expanded-search technology reproduces
+$\regA$; $\regI$ versus $\regA$ is explicitly a supply benchmark comparison.
+\item The peak theorem is deliberately moved out of the main presentation.
+The next theory step is to characterize the arrival-value peak and the
+cost-dependent no-search boundary under stable WPBE branches.
 \end{itemize}
-\end{multicols}
 
-\vspace{-3pt}
-\noindent\colorbox{softgray}{\parbox{.965\textwidth}{\small
-\textbf{Economic closure for search.}
-On a common branch, let added scope create willing rate $\sigma(s)$ and contact
-rate $n(s)$, both per unit of $m$, with $\sigma(1)=0$.  Under
-$J_\kappa=BM-\kappa Q^O$, an interior scope satisfies
-\[
-\Psi(s;m)=
-\frac{B e^{-[\lambda_F+\sigma(s)]m}\sigma'(s)}
-{\kappa n'(s)}=1.
-\]
-If the branch objective is concave in $s$, no expansion is optimal exactly
-when $\Psi(1;m)\le1$; expand for $\Psi>1$ and stop at an interior crossing or
-the cap.  With $\kappa=0$, the solution
-is governed by the search cap or physical saturation, so it should be reported
-as the maximal-completion benchmark.}}
-\endgroup
-
-\paragraph{References.}\footnotesize
-Af\`eche, Liu, Maglaras (2023), \emph{M\&SOM} 25(5), 1890--1908.
-Zhao, Papier, Teo (2024), \emph{M\&SOM}.
-Hu, Hu, Zhu (2022), \emph{M\&SOM} 24(1), 91--109.
-Wang, Zhang, Zhang (2024), \emph{Operations Research} 72(3), 1278--1297.
+\paragraph{Closest modeling languages.}\footnotesize
+Hu, Hu, and Zhu (2022) for post-assignment spatial service costs;
+Af\`eche, Liu, and Maglaras (2023) for scarce/intermediate/ample supply regimes;
+Wang, Zhang, and Zhang (2024) for endogenous search-scope rules.
 
 \end{document}

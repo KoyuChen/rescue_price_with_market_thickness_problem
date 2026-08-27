@@ -40,7 +40,9 @@ class SpatialThinningTests(unittest.TestCase):
         self.assertAlmostEqual(
             fresh_accept_intensity(0.6, 1.0, self.params), 2.0 * 0.6
         )
-        terminal = solve_terminal_market(0.25, 0.6, 1.0, self.params)
+        terminal = solve_terminal_market(
+            0.25, 0.6, 1.0, self.params, "core_arrivals"
+        )
         self.assertAlmostEqual(terminal.potential_fresh_intensity, 2.0)
         self.assertAlmostEqual(terminal.fresh_accept_intensity, 1.2)
         self.assertAlmostEqual(terminal.incumbent_intensity, 0.7)
@@ -53,7 +55,9 @@ class SpatialThinningTests(unittest.TestCase):
             pickup_rate=0.25,
             incumbent_retention=0.4,
         )
-        terminal = solve_terminal_market(0.25, 0.6, 1.0, retained)
+        terminal = solve_terminal_market(
+            0.25, 0.6, 1.0, retained, "core_arrivals"
+        )
         self.assertAlmostEqual(terminal.incumbent_intensity, 0.4 * 0.7)
 
         policy = Policy(0.30, 0.50, 1.0)
@@ -134,13 +138,27 @@ class InnerWPBETests(unittest.TestCase):
     def setUp(self) -> None:
         self.params = Params(m=2.0, beta=0.8, delta=0.8, pickup_rate=0.25)
 
-    def test_fixed_and_expanded_both_have_fresh_terminal_supply(self):
+    def test_three_regimes_have_the_intended_terminal_supply(self):
+        incumbent = solve_policy(
+            Policy(0.30, 0.50, 1.0, regime="incumbent_only"),
+            self.params,
+            grid_size=201,
+            validate=True,
+        ).selected
         fixed = solve_policy(
-            Policy(0.30, 0.50, 1.0), self.params, grid_size=201, validate=True
+            Policy(0.30, 0.50, 1.0, regime="core_arrivals"),
+            self.params,
+            grid_size=201,
+            validate=True,
         ).selected
         expanded = solve_policy(
-            Policy(0.30, 0.50, 2.0), self.params, grid_size=201, validate=True
+            Policy(0.30, 0.50, 2.0, regime="expanded_search"),
+            self.params,
+            grid_size=201,
+            validate=True,
         ).selected
+        self.assertEqual(incumbent.rescue.fresh_accept_intensity, 0.0)
+        self.assertEqual(incumbent.expected_notifications, 0.0)
         self.assertGreater(fixed.rescue.fresh_accept_intensity, 0.0)
         self.assertGreater(expanded.rescue.fresh_accept_intensity, 0.0)
         self.assertGreater(
@@ -148,9 +166,50 @@ class InnerWPBETests(unittest.TestCase):
             fixed.rescue.fresh_accept_intensity,
         )
 
+    def test_expanded_at_one_is_exactly_core_arrivals(self):
+        fixed = solve_policy(
+            Policy(0.30, 0.50, 1.0, regime="core_arrivals"),
+            self.params,
+            grid_size=301,
+            validate=True,
+        )
+        expanded = solve_policy(
+            Policy(0.30, 0.50, 1.0, regime="expanded_search"),
+            self.params,
+            grid_size=301,
+            validate=True,
+        )
+        self.assertEqual(fixed.equilibrium_count, expanded.equilibrium_count)
+        self.assertAlmostEqual(
+            fixed.selected.cutoff, expanded.selected.cutoff, places=10
+        )
+        self.assertAlmostEqual(
+            fixed.selected.completion, expanded.selected.completion, places=12
+        )
+
+    def test_zero_retention_eliminates_waiting_option(self):
+        params = Params(
+            m=2.0,
+            beta=0.8,
+            delta=0.8,
+            pickup_rate=0.25,
+            incumbent_retention=0.0,
+        )
+        outcome = solve_policy(
+            Policy(0.30, 0.55, 1.0, regime="incumbent_only"),
+            params,
+            grid_size=301,
+            validate=True,
+        ).selected
+        self.assertAlmostEqual(outcome.cutoff, 0.30, places=8)
+        self.assertEqual(outcome.rescue.incumbent_intensity, 0.0)
+
     def test_every_returned_cutoff_is_a_full_best_response(self):
         solution = solve_policy(
-            Policy(0.28, 0.53, 2.2), self.params, grid_size=401, validate=True
+            Policy(0.28, 0.53, 2.2, regime="expanded_search"),
+            self.params,
+            grid_size=401,
+            validate=True,
         )
         self.assertGreaterEqual(solution.equilibrium_count, 1)
         for equilibrium in solution.equilibria:
@@ -163,7 +222,10 @@ class InnerWPBETests(unittest.TestCase):
 
     def test_rider_terminal_actions_are_counterfactual_not_added(self):
         outcome = solve_policy(
-            Policy(0.30, 0.50, 2.0), self.params, grid_size=201, validate=True
+            Policy(0.30, 0.50, 2.0, regime="expanded_search"),
+            self.params,
+            grid_size=201,
+            validate=True,
         ).selected
         self.assertAlmostEqual(
             outcome.repeat_mass + outcome.rescue_mass + outcome.abandon_mass,
@@ -179,7 +241,7 @@ class InnerWPBETests(unittest.TestCase):
 
     def test_cutoff_correspondence_is_stable_under_grid_doubling(self):
         certificate = solve_policy_certified(
-            Policy(0.28, 0.53, 2.2),
+            Policy(0.28, 0.53, 2.2, regime="expanded_search"),
             self.params,
             initial_grid=101,
             max_grid=401,
@@ -192,7 +254,14 @@ class InnerWPBETests(unittest.TestCase):
 class OuterMechanismDesignTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        environment = Environment(1.5, 0.8, 0.8, pickup_rate=0.25)
+        environment = Environment(
+            1.5,
+            0.8,
+            0.8,
+            pickup_rate=0.25,
+            incumbent_retention=0.8,
+            outer_contact_cost=0.01,
+        )
         config = SearchConfig(
             s_bar=2.0,
             cutoff_grid=51,
@@ -204,19 +273,20 @@ class OuterMechanismDesignTests(unittest.TestCase):
         )
         cls.results = SpatialMechanismSolver(environment, config).optimize_all()
 
-    def test_mechanism_domains_are_strictly_nested(self):
-        baseline, fixed, expanded = self.results
-        self.assertAlmostEqual(baseline.p1, baseline.p2)
-        self.assertAlmostEqual(baseline.s, 1.0)
+    def test_regimes_and_domains_are_distinct(self):
+        incumbent, fixed, expanded = self.results
+        self.assertEqual(incumbent.solution.policy.regime, "incumbent_only")
+        self.assertAlmostEqual(incumbent.s, 1.0)
+        self.assertEqual(fixed.solution.policy.regime, "core_arrivals")
         self.assertAlmostEqual(fixed.s, 1.0)
         self.assertGreaterEqual(fixed.p2 + 1e-12, fixed.p1)
+        self.assertEqual(expanded.solution.policy.regime, "expanded_search")
         self.assertGreaterEqual(expanded.s + 1e-12, 1.0)
         self.assertGreaterEqual(expanded.p2 + 1e-12, expanded.p1)
 
-    def test_optimized_values_respect_nesting(self):
-        baseline, fixed, expanded = self.results
-        self.assertGreaterEqual(fixed.completion + 2e-8, baseline.completion)
-        self.assertGreaterEqual(expanded.completion + 2e-8, fixed.completion)
+    def test_only_fixed_and_expanded_values_are_nested(self):
+        _, fixed, expanded = self.results
+        self.assertGreaterEqual(expanded.design_value + 2e-8, fixed.design_value)
 
     def test_each_reported_policy_is_dense_wpbe_validated(self):
         for result in self.results:
@@ -243,7 +313,101 @@ class OuterMechanismDesignTests(unittest.TestCase):
         )
         _, fixed, expanded = SpatialMechanismSolver(environment, config).optimize_all()
         self.assertAlmostEqual(fixed.completion, expanded.completion, places=8)
+        self.assertAlmostEqual(fixed.design_value, expanded.design_value, places=8)
         self.assertAlmostEqual(expanded.s, 1.0, places=10)
+
+    def test_high_outer_contact_cost_can_make_no_expansion_optimal(self):
+        environment = Environment(
+            4.0,
+            0.8,
+            0.8,
+            pickup_rate=0.25,
+            incumbent_retention=0.8,
+            outer_contact_cost=1.0,
+        )
+        config = SearchConfig(
+            s_bar=3.0,
+            cutoff_grid=41,
+            final_cutoff_grid=201,
+            p1_nodes=7,
+            p1_refine_levels=1,
+            inner_refine_levels=1,
+            certify_top_k=3,
+            certify_finalists=2,
+            certification_max_grid=801,
+        )
+        _, fixed, expanded = SpatialMechanismSolver(
+            environment, config
+        ).optimize_all()
+        self.assertAlmostEqual(expanded.s, 1.0, places=10)
+        self.assertAlmostEqual(expanded.design_value, fixed.design_value, places=7)
+
+    def test_adversarial_search_closes_known_m4_policy_gap(self):
+        environment = Environment(
+            4.0,
+            0.8,
+            0.8,
+            pickup_rate=0.25,
+            incumbent_retention=0.8,
+            outer_contact_cost=0.0125,
+        )
+        config = SearchConfig(
+            s_bar=4.0,
+            cutoff_grid=61,
+            final_cutoff_grid=401,
+            p1_nodes=7,
+            p1_refine_levels=1,
+            inner_refine_levels=1,
+            adversarial_seeds=1,
+            adversarial_maxiter=16,
+            adversarial_popsize=8,
+            certify_top_k=5,
+            certify_finalists=2,
+            certification_max_grid=1601,
+        )
+        solver = SpatialMechanismSolver(environment, config)
+        expanded = solver.optimize("expanded_search")
+        known_policy = solve_policy(
+            Policy(
+                0.167495,
+                0.242734,
+                2.51646,
+                regime="expanded_search",
+            ),
+            environment.params(),
+            grid_size=1601,
+            validate=True,
+        )
+        known_value = min(
+            environment.completion_value * equilibrium.completion
+            - environment.outer_contact_cost
+            * equilibrium.expected_extra_notifications
+            for equilibrium in known_policy.equilibria
+        )
+        self.assertGreaterEqual(expanded.design_value + 2e-6, known_value)
+        self.assertEqual(expanded.adversarial_seed_count, 1)
+
+    def test_reported_search_never_exceeds_physical_willingness_support(self):
+        environment = Environment(
+            2.0, 0.8, 0.8, pickup_rate=0.25, outer_contact_cost=0.0
+        )
+        solver = SpatialMechanismSolver(
+            environment,
+            SearchConfig(
+                s_bar=10.0,
+                cutoff_grid=41,
+                final_cutoff_grid=201,
+                p1_nodes=7,
+                p1_refine_levels=1,
+                inner_refine_levels=1,
+                certify_top_k=3,
+                certify_finalists=2,
+                certification_max_grid=801,
+            ),
+        )
+        policy = solver._policy(0.2, 0.25, 1.0, "expanded_search")
+        support = (1.0 + policy.p2 / environment.pickup_rate) ** 2
+        self.assertAlmostEqual(policy.s, support, places=10)
 
 
 if __name__ == "__main__":

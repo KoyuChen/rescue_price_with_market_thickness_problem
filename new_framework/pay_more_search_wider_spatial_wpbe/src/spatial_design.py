@@ -1,11 +1,14 @@
 """Outer mechanism design over inner cutoff-WPBE outcomes.
 
-For each environment theta=(m,beta,delta), the platform solves three nested
-problems under conservative equilibrium selection:
+For each environment theta=(m,beta,delta), the platform solves three successive
+notification regimes under conservative equilibrium selection:
 
-    baseline:        max_p              W(p,p,1)
-    fixed rescue:    max_{p1<=p2}       W(p1,p2,1)
-    expanded search: max_{p1<=p2,s>=1} W(p1,p2,s).
+    incumbent only:  max_{p1<=p2}       J(p1,p2,1)
+    core arrivals:   max_{p1<=p2}       J(p1,p2,1)
+    expanded search: max_{p1<=p2,s>=1} J(p1,p2,s).
+
+The first two have different terminal supply technologies.  The latter two
+are genuinely nested because ``s=1`` exactly reproduces core arrivals.
 
 Every objective evaluation calls ``solve_policy`` and therefore re-enumerates
 the induced cutoff-WPBE correspondence.  No cutoff, rider continuation share,
@@ -14,11 +17,11 @@ or terminal supply outcome is fixed in the outer design.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Iterable, Literal
 
 import numpy as np
-from scipy.optimize import minimize_scalar
+from scipy.optimize import differential_evolution, minimize_scalar
 
 from spatial_wpbe import (
     Params,
@@ -30,7 +33,11 @@ from spatial_wpbe import (
 )
 
 
-Mechanism = Literal["baseline", "fixed_rescue", "expanded_search"]
+Mechanism = Literal[
+    "incumbent_only",
+    "fixed_arrivals",
+    "expanded_search",
+]
 
 
 @dataclass(frozen=True)
@@ -40,6 +47,14 @@ class Environment:
     delta: float
     pickup_rate: float = 0.25
     incumbent_retention: float = 1.0
+    completion_value: float = 1.0
+    outer_contact_cost: float = 0.0
+
+    def __post_init__(self) -> None:
+        if self.completion_value <= 0:
+            raise ValueError("completion_value must be strictly positive")
+        if self.outer_contact_cost < 0:
+            raise ValueError("outer_contact_cost must be nonnegative")
 
     def params(self) -> Params:
         return Params(
@@ -59,6 +74,10 @@ class SearchConfig:
     p1_nodes: int = 13
     p1_refine_levels: int = 3
     inner_refine_levels: int = 3
+    adversarial_seeds: int = 0
+    adversarial_maxiter: int = 16
+    adversarial_popsize: int = 8
+    adversarial_tol: float = 2e-5
     certify_top_k: int = 10
     certify_finalists: int = 3
     certification_max_grid: int = 2001
@@ -70,6 +89,12 @@ class SearchConfig:
             raise ValueError("cutoff grids are too small or incorrectly ordered")
         if self.p1_nodes < 7:
             raise ValueError("p1_nodes must be at least seven")
+        if self.adversarial_seeds < 0:
+            raise ValueError("adversarial_seeds must be nonnegative")
+        if self.adversarial_maxiter < 1 or self.adversarial_popsize < 4:
+            raise ValueError("adversarial DE settings are too small")
+        if self.adversarial_tol <= 0:
+            raise ValueError("adversarial_tol must be strictly positive")
         if self.certify_top_k < 1:
             raise ValueError("certify_top_k must be positive")
         if self.certify_finalists < 1:
@@ -94,6 +119,9 @@ class MechanismResult:
     exploration_evaluations: int
     certification_stable: bool = False
     certification_grids: tuple[int, ...] = ()
+    adversarial_seed_count: int = 0
+    adversarial_evaluations: int = 0
+    adversarial_improvement: float = 0.0
 
     @property
     def p1(self) -> float:
@@ -110,6 +138,15 @@ class MechanismResult:
     @property
     def completion(self) -> float:
         return self.solution.selected.completion
+
+    @property
+    def design_value(self) -> float:
+        outcome = self.solution.selected
+        return (
+            self.environment.completion_value * outcome.completion
+            - self.environment.outer_contact_cost
+            * outcome.expected_extra_notifications
+        )
 
 
 def _chebyshev_lobatto(lower: float, upper: float, count: int) -> np.ndarray:
@@ -133,17 +170,32 @@ class SpatialMechanismSolver:
         self.environment = environment
         self.params = environment.params()
         self.config = config or SearchConfig()
-        self._cache: dict[tuple[float, float, float], PolicySolution] = {}
+        self._cache: dict[tuple[float, float, float, str], PolicySolution] = {}
         self._evaluation_count = 0
 
     @property
     def evaluation_count(self) -> int:
         return self._evaluation_count
 
-    @staticmethod
-    def _solution_key(solution: PolicySolution) -> tuple[float, float, float, float]:
+    def _outcome_value(self, outcome) -> float:
+        return float(
+            self.environment.completion_value * outcome.completion
+            - self.environment.outer_contact_cost
+            * outcome.expected_extra_notifications
+        )
+
+    def _reselect(self, solution: PolicySolution) -> PolicySolution:
+        """Apply conservative selection to the platform's actual objective."""
+
+        selected = min(solution.equilibria, key=self._outcome_value)
+        return replace(solution, selected=selected)
+
+    def _solution_key(
+        self, solution: PolicySolution
+    ) -> tuple[float, float, float, float, float]:
         policy = solution.policy
         return (
+            self._outcome_value(solution.selected),
             solution.selected.completion,
             -policy.s,
             -(policy.p2 - policy.p1),
@@ -151,30 +203,53 @@ class SpatialMechanismSolver:
         )
 
     def _solve(self, policy: Policy) -> PolicySolution:
-        key = (round(policy.p1, 10), round(policy.p2, 10), round(policy.s, 10))
+        key = (
+            round(policy.p1, 10),
+            round(policy.p2, 10),
+            round(policy.s, 10),
+            policy.regime,
+        )
         if key not in self._cache:
-            self._cache[key] = solve_policy(
-                policy,
-                self.params,
-                selection="conservative",
-                grid_size=self.config.cutoff_grid,
-                validate=True,
+            self._cache[key] = self._reselect(
+                solve_policy(
+                    policy,
+                    self.params,
+                    selection="conservative",
+                    grid_size=self.config.cutoff_grid,
+                    validate=True,
+                )
             )
             self._evaluation_count += 1
         return self._cache[key]
 
-    def _policy(self, p1: float, price_unit: float, search_unit: float) -> Policy:
+    def _policy(
+        self,
+        p1: float,
+        price_unit: float,
+        search_unit: float,
+        mechanism: Mechanism,
+    ) -> Policy:
         p2 = p1 + price_unit * max(self.params.beta - p1, 0.0)
-        search = 1.0 + search_unit * (self.config.s_bar - 1.0)
-        return Policy(float(p1), float(p2), float(search))
+        search = (
+            1.0 + search_unit * (self.config.s_bar - 1.0)
+            if mechanism == "expanded_search"
+            else 1.0
+        )
+        if mechanism == "expanded_search" and self.params.pickup_rate > 0:
+            # Rings beyond this area contain no willing driver because even a
+            # zero-base-cost winner would pay more than p2.  Truncating there
+            # is without loss under nonnegative contact cost and implements
+            # the smallest-s tie break when contacts are free.
+            saturation = (1.0 + p2 / self.params.pickup_rate) ** 2
+            search = min(search, saturation)
+        regime = "core_arrivals" if mechanism == "fixed_arrivals" else mechanism
+        return Policy(float(p1), float(p2), float(search), regime=regime)
 
     @staticmethod
     def _initial_grids(mechanism: Mechanism) -> tuple[list[float], list[float]]:
         price = [0.0, 0.05, 0.15, 0.30, 0.50, 0.75, 1.0]
         search = [0.0, 0.10, 0.30, 0.55, 0.80, 1.0]
-        if mechanism == "baseline":
-            return [0.0], [0.0]
-        if mechanism == "fixed_rescue":
+        if mechanism in {"incumbent_only", "fixed_arrivals"}:
             return price, [0.0]
         return price, search
 
@@ -188,14 +263,20 @@ class SpatialMechanismSolver:
         """Optimize continuation policy conditional on one first price."""
 
         p1 = float(np.clip(p1, 0.0, 1.0))
-        if mechanism == "baseline" or p1 >= self.params.beta - 1e-12:
-            return InnerResult(mechanism, p1, self._solve(Policy(p1, p1, 1.0)))
+        if p1 >= self.params.beta - 1e-12:
+            return InnerResult(
+                mechanism,
+                p1,
+                self._solve(self._policy(p1, 0.0, 0.0, mechanism)),
+            )
 
         price_grid, search_grid = self._initial_grids(mechanism)
         candidates: list[tuple[float, float, PolicySolution]] = []
 
         def add(price_unit: float, search_unit: float) -> None:
-            solution = self._solve(self._policy(p1, price_unit, search_unit))
+            solution = self._solve(
+                self._policy(p1, price_unit, search_unit, mechanism)
+            )
             candidates.append((float(price_unit), float(search_unit), solution))
 
         for price_unit in price_grid:
@@ -234,26 +315,90 @@ class SpatialMechanismSolver:
 
         return InnerResult(mechanism, p1, best_candidate()[2])
 
-    def _inactive_branch(self) -> PolicySolution:
+    def _inactive_branch(self, mechanism: Mechanism) -> PolicySolution:
         """Optimize p1>=beta, where delayed service has zero positive mass."""
 
         lower = min(self.params.beta, 1.0)
         if lower >= 1.0 - 1e-12:
-            return self._solve(Policy(1.0, 1.0, 1.0))
+            return self._solve(self._policy(1.0, 0.0, 0.0, mechanism))
         optimum = minimize_scalar(
-            lambda price: -self._solve(
-                Policy(float(price), float(price), 1.0)
-            ).selected.completion,
+            lambda price: -self._outcome_value(
+                self._solve(
+                    self._policy(float(price), 0.0, 0.0, mechanism)
+                ).selected
+            ),
             bounds=(lower, 1.0),
             method="bounded",
             options={"xatol": 2e-6},
         )
         candidates = [
-            self._solve(Policy(lower, lower, 1.0)),
-            self._solve(Policy(float(optimum.x), float(optimum.x), 1.0)),
-            self._solve(Policy(1.0, 1.0, 1.0)),
+            self._solve(self._policy(lower, 0.0, 0.0, mechanism)),
+            self._solve(self._policy(float(optimum.x), 0.0, 0.0, mechanism)),
+            self._solve(self._policy(1.0, 0.0, 0.0, mechanism)),
         ]
         return max(candidates, key=self._solution_key)
+
+    def _adversarial_candidates(
+        self, mechanism: Mechanism
+    ) -> tuple[tuple[PolicySolution, ...], int]:
+        """Challenge the nested profile with an independent global search.
+
+        The maintained computation first profiles p2,s at each fixed p1 and
+        then optimizes p1.  Differential evolution is a separate adversarial
+        pass over the equivalent normalized product domain.  Any better basin
+        it finds is fed into the same dense cutoff-WPBE certification.  This
+        is a numerical cross-check, not a mathematical proof of globality.
+        """
+
+        if self.config.adversarial_seeds == 0:
+            return (), 0
+
+        dimensions = 3 if mechanism == "expanded_search" else 2
+        active_upper = min(self.params.beta, 1.0)
+        starting_evaluations = self.evaluation_count
+        candidates: list[PolicySolution] = []
+        mechanism_offset = {
+            "incumbent_only": 104729,
+            "fixed_arrivals": 130363,
+            "expanded_search": 155921,
+        }[mechanism]
+        base_seed = int(
+            round(1000 * self.params.m)
+            + 1009 * round(100 * self.params.beta)
+            + 9176 * round(100 * self.params.delta)
+            + mechanism_offset
+        )
+
+        def policy_from(vector: np.ndarray) -> Policy:
+            p1 = active_upper * float(np.clip(vector[0], 0.0, 1.0))
+            price_unit = float(np.clip(vector[1], 0.0, 1.0))
+            search_unit = (
+                float(np.clip(vector[2], 0.0, 1.0))
+                if dimensions == 3
+                else 0.0
+            )
+            return self._policy(p1, price_unit, search_unit, mechanism)
+
+        def objective(vector: np.ndarray) -> float:
+            solution = self._solve(policy_from(vector))
+            return -self._outcome_value(solution.selected)
+
+        for seed_index in range(self.config.adversarial_seeds):
+            optimum = differential_evolution(
+                objective,
+                bounds=[(0.0, 1.0)] * dimensions,
+                seed=base_seed + 7919 * seed_index,
+                maxiter=self.config.adversarial_maxiter,
+                popsize=self.config.adversarial_popsize,
+                tol=self.config.adversarial_tol,
+                atol=1e-7,
+                polish=True,
+                updating="immediate",
+                workers=1,
+            )
+            candidates.append(self._solve(policy_from(optimum.x)))
+
+        return tuple(candidates), self.evaluation_count - starting_evaluations
 
     def optimize(self, mechanism: Mechanism) -> MechanismResult:
         """Solve one outer equilibrium-constrained mechanism problem."""
@@ -290,7 +435,7 @@ class SpatialMechanismSolver:
             width *= 0.35
 
         candidates = [result.solution for result in profile.values()]
-        candidates.append(self._inactive_branch())
+        candidates.append(self._inactive_branch(mechanism))
         best_explored = max(candidates, key=self._solution_key)
         result = MechanismResult(
             mechanism=mechanism,
@@ -299,21 +444,38 @@ class SpatialMechanismSolver:
             profile=tuple(sorted(profile.values(), key=lambda item: item.p1)),
             exploration_evaluations=self.evaluation_count - starting_evaluations,
         )
-        return self._certify(result)
+        nested = self._certify(result)
+        adversarial, adversarial_evaluations = self._adversarial_candidates(
+            mechanism
+        )
+        if not adversarial:
+            return nested
+        audited = self._certify(nested, adversarial)
+        return replace(
+            audited,
+            adversarial_seed_count=self.config.adversarial_seeds,
+            adversarial_evaluations=adversarial_evaluations,
+            adversarial_improvement=max(
+                audited.design_value - nested.design_value, 0.0
+            ),
+        )
 
     def _feasible(self, policy: Policy, mechanism: Mechanism) -> bool:
-        if mechanism == "baseline":
-            return abs(policy.p2 - policy.p1) <= 1e-10 and abs(policy.s - 1.0) <= 1e-10
-        if mechanism == "fixed_rescue":
+        expected_regime = (
+            "core_arrivals" if mechanism == "fixed_arrivals" else mechanism
+        )
+        if policy.regime != expected_regime:
+            return False
+        if mechanism in {"incumbent_only", "fixed_arrivals"}:
             return abs(policy.s - 1.0) <= 1e-10
-        return policy.s <= self.config.s_bar + 1e-10
+        return 1.0 <= policy.s <= self.config.s_bar + 1e-10
 
     def _certify(
         self,
         target: MechanismResult,
-        injected: tuple[MechanismResult, ...] = (),
+        injected: tuple[PolicySolution, ...] = (),
     ) -> MechanismResult:
-        """Dense-grid WPBE validation and global candidate re-ranking."""
+        """Dense-grid WPBE validation and candidate re-ranking."""
 
         explored = [
             solution
@@ -322,7 +484,7 @@ class SpatialMechanismSolver:
         ]
         explored.sort(key=self._solution_key, reverse=True)
         candidates = [target.solution]
-        candidates.extend(result.solution for result in injected)
+        candidates.extend(injected)
         candidates.extend(explored[: self.config.certify_top_k])
 
         unique: dict[tuple[float, float, float], PolicySolution] = {}
@@ -336,27 +498,31 @@ class SpatialMechanismSolver:
             unique[key] = candidate
 
         dense = [
-            solve_policy(
-                candidate.policy,
-                self.params,
-                selection="conservative",
-                grid_size=self.config.final_cutoff_grid,
-                validate=True,
+            self._reselect(
+                solve_policy(
+                    candidate.policy,
+                    self.params,
+                    selection="conservative",
+                    grid_size=self.config.final_cutoff_grid,
+                    validate=True,
+                )
             )
             for candidate in unique.values()
         ]
         dense.sort(key=self._solution_key, reverse=True)
         finalists = dense[: self.config.certify_finalists]
-        certified = [
-            solve_policy_certified(
+        certified = []
+        for finalist in finalists:
+            certificate = solve_policy_certified(
                 finalist.policy,
                 self.params,
                 selection="conservative",
                 initial_grid=self.config.final_cutoff_grid,
                 max_grid=self.config.certification_max_grid,
             )
-            for finalist in finalists
-        ]
+            certified.append(
+                replace(certificate, solution=self._reselect(certificate.solution))
+            )
         best_certificate = max(
             certified, key=lambda item: self._solution_key(item.solution)
         )
@@ -369,17 +535,22 @@ class SpatialMechanismSolver:
             exploration_evaluations=target.exploration_evaluations,
             certification_stable=best_certificate.stable,
             certification_grids=best_certificate.grids,
+            adversarial_seed_count=target.adversarial_seed_count,
+            adversarial_evaluations=target.adversarial_evaluations,
+            adversarial_improvement=target.adversarial_improvement,
         )
 
     def optimize_all(self) -> tuple[MechanismResult, MechanismResult, MechanismResult]:
         """Solve and certify the three nested mechanism classes."""
 
-        baseline = self.optimize("baseline")
-        fixed = self.optimize("fixed_rescue")
-        fixed = self._certify(fixed, (baseline,))
+        incumbent = self.optimize("incumbent_only")
+        fixed = self.optimize("fixed_arrivals")
         expanded = self.optimize("expanded_search")
-        expanded = self._certify(expanded, (baseline, fixed))
-        return baseline, fixed, expanded
+        fixed_as_expanded = self._solve(
+            Policy(fixed.p1, fixed.p2, 1.0, regime="expanded_search")
+        )
+        expanded = self._certify(expanded, (fixed_as_expanded,))
+        return incumbent, fixed, expanded
 
 
 def mechanism_record(result: MechanismResult) -> dict[str, float | int | str | bool]:
@@ -387,11 +558,17 @@ def mechanism_record(result: MechanismResult) -> dict[str, float | int | str | b
     record.update(
         {
             "mechanism": result.mechanism,
+            "design_value": result.design_value,
+            "completion_value": result.environment.completion_value,
+            "outer_contact_cost": result.environment.outer_contact_cost,
             "exploration_evaluations": result.exploration_evaluations,
             "certification_stable": result.certification_stable,
             "certification_grids": ",".join(
                 str(grid) for grid in result.certification_grids
             ),
+            "adversarial_seed_count": result.adversarial_seed_count,
+            "adversarial_evaluations": result.adversarial_evaluations,
+            "adversarial_improvement": result.adversarial_improvement,
         }
     )
     return record

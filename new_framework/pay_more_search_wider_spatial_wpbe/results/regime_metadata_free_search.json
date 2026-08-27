@@ -1,0 +1,50 @@
+{
+  "created_utc": "2026-08-27T17:40:34.167773+00:00",
+  "row_count": 33,
+  "environment_count": 11,
+  "mechanisms": [
+    "expanded_search",
+    "fixed_arrivals",
+    "incumbent_only"
+  ],
+  "m_grid": [
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    4.0,
+    6.0,
+    8.0,
+    12.0,
+    16.0
+  ],
+  "beta_grid": [
+    0.8
+  ],
+  "delta_grid": [
+    0.8
+  ],
+  "pickup_rate": 0.25,
+  "incumbent_retention": 0.8,
+  "outer_contact_cost": 0.0,
+  "completion_value": 1.0,
+  "s_bar": 4.0,
+  "quick": false,
+  "search_config": {
+    "s_bar": 4.0,
+    "cutoff_grid": 61,
+    "final_cutoff_grid": 401,
+    "p1_nodes": 9,
+    "p1_refine_levels": 2,
+    "inner_refine_levels": 2,
+    "adversarial_seeds": 1,
+    "adversarial_maxiter": 16,
+    "adversarial_popsize": 8,
+    "adversarial_tol": 2e-05,
+    "certify_top_k": 7,
+    "certify_finalists": 3,
+    "certification_max_grid": 1601
+  }
+}
