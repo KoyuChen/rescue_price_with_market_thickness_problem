@@ -40,7 +40,7 @@ remain recoverable from Git history and the
 `archive/pre-composition-template-20260827` protection branch. The standalone
 group-meeting note remains a separate document:
 
-- [Group-meeting note on the exact benchmark and market thickness (PDF)](output/pdf/group_meeting_market_thickness.pdf)
+- [Eight-page figure-first group-meeting note (PDF)](output/pdf/group_meeting_market_thickness.pdf)
 - [Group-meeting note LaTeX source](group_meeting/group_meeting_market_thickness.tex)
 - [Adversarial nearest-literature and novelty memo](literature/adversarial_literature_novelty_memo.md)
 - [Proof-claim ledger](analysis/proof_claim_ledger.md)
@@ -98,7 +98,7 @@ thickness remain open.
 paper/formal/ independent journal manuscript, PDF, tables, figures, and scripts
 paper/        formal paper and exact INFORMS3 class/bibliography style
 empirical/    data contract, identification ledger, schema checks, placeholders
-group_meeting/ standalone benchmark, thickness setup, and V(m) note
+group_meeting/ standalone eight-page benchmark, numerical thickness, and WPBE note
 figures/     extensive-form source and rendered formats
 analysis/    claim ledger, counterexample registry, numerical reports
 audits/      independent derivations and adversarial proof checks

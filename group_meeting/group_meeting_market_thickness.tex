@@ -1,6 +1,5 @@
-% Group-meeting note: plain consolidated version.
-% Scope: exact-one-driver benchmark; formal Poisson thickness model;
-% WPBE-constrained prices p_1^*(m),p_2^*(m); numerical illustrations; and V(m).
+% Group-meeting note: figure-first eight-page version.
+% The formal manuscript is maintained separately in paper/formal/.
 \documentclass[11pt]{article}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{amsmath,amssymb}
@@ -22,6 +21,7 @@
 \setlength{\abovedisplayshortskip}{2pt}
 \setlength{\belowdisplayshortskip}{2pt}
 \setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=1pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcommand{\ch}{\widehat c}
 \newcommand{\E}{\mathbb E}
@@ -34,31 +34,31 @@
 \begin{center}
 {\Large\bfseries Announced Rescue Pricing with Latent Market Thickness}\par
 \vspace{2pt}
-{\normalsize Group-meeting note --- exact benchmark, formal setup, and rescue value across thickness}\par
+{\normalsize Group-meeting note --- benchmark, numerical pattern, and formal model}\par
 \vspace{2pt}
-{\small 26 August 2026}
+{\small 27 August 2026}
 \end{center}
 \vspace{-5pt}
 
-\noindent\textbf{Main result.}
-Write $V(m)$ for the optimized completion gain of the best rescue menu over the
-best flat price at public thickness $m$.  We first solve the cutoff-WPBE and
-optimal menu for a publicly known single driver, then embed the same mechanism
-in latent Poisson supply.  In the uniform no-entry model with $\beta\ge1/2$,
-$V(m)>0$ at every finite thickness and converges to zero at both thickness
-endpoints.  When $\alpha=1$ and $\gamma=0$, the exact-one-driver gain is the
-coefficient of $m$ in the thin-market expansion of $V(m)$.
+\noindent\textbf{Preview.}
+A publicly known single driver gives an exact cutoff-WPBE and a closed-form
+optimal menu.  With latent Poisson supply, the completion value of rescue
+pricing is small in thin markets, largest at an intermediate thickness, and
+small again in thick markets.  For
+$(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$, the deterministic numerical
+solution peaks near $m=9.72$ and improves optimized completion by $6.16$
+percentage points.  The endpoint pattern is proved; strict single-peakedness
+is a conjecture.
 
-\section{Exact one-rider/one-driver benchmark and optimal menu}
+\section{Exact one-rider/one-driver benchmark}
 
 \subsection{Closed-form solution}
 
-Here the number of incumbents is publicly known to be exactly one.  The rider has
-$v\sim U[0,1]$, the driver has $c\sim U[0,1]$, and the platform maximizes the probability
-of completion.  The rider's delayed value is $\beta v$; the incumbent's delayed surplus is
-$\delta(p_j-c)$.  The platform commits to $0\le p_1\le p_2\le1$, with
-$\beta,\delta\in(0,1]$; $j\in\{1,2\}$ indexes the active payment.  There is no
-fresh entry in this benchmark.
+The rider has $v\sim U[0,1]$, the driver has $c\sim U[0,1]$, and the platform
+maximizes completion.  Delayed rider value is $\beta v$ and delayed incumbent
+surplus is $\delta(p_j-c)$.  The platform commits to
+$0\le p_1\le p_2\le1$.  The number of drivers is publicly known to be exactly
+one; there is no survival shock or fresh entry.
 
 \begin{figure}[H]
 \centering
@@ -101,166 +101,68 @@ lab/.style={font=\scriptsize,fill=white,inner sep=0.7pt}
 \vspace{-5pt}
 \end{figure}
 
-For an interior active menu $0\le p_1<p_2<\beta$, consider an anonymous
-pure-cutoff WPBE in which the driver accepts now iff $c\le\ch$ and both
-continuation actions occur for positive rider masses.  In equilibrium the rider
-posts exactly when $v\ge p_1$.  Bayes' rule gives
-$v\mid\text{post}\sim U[p_1,1]$ and, following refusal,
-$c\mid\text{refusal}\sim U[\ch,1]$.  Following refusal, the probability that
-the driver accepts $p_j$ is $(p_j-\ch)/(1-\ch)$.  Equating the rider's expected
-payoffs from repeating $p_1$ and activating $p_2$ gives the switching value
-$v^M(\ch)$ and the regions
+For an active menu $0\le p_1<p_2<\beta$, the driver accepts immediately iff
+$c\le\ch$.  After rejection, the rider cancels, repeats $p_1$, or activates
+$p_2$ according to
 \[
-\begin{array}{ccl}
-v<p_1/\beta &:& \text{cancel},\\
-p_1/\beta\le v\le v^M(\ch) &:& \text{repeat }p_1,\\
-v>v^M(\ch) &:& \text{activate rescue }p_2,
-\end{array}
+v<\frac{p_1}{\beta},\qquad
+\frac{p_1}{\beta}\le v\le v^M(\ch),\qquad
+v>v^M(\ch),
 \qquad
 v^M(\ch)=\frac{p_1+p_2-\ch}{\beta}.
 \]
-Conditional on a posted request, the rider masses who repeat and rescue are
-$(p_2-\ch)/[\beta(1-p_1)]$ and
-$(\beta-p_1-p_2+\ch)/[\beta(1-p_1)]$.  Hence the cutoff driver's discounted
-wait payoff is
-\[
-\begin{aligned}
-W_1(\ch)
-&=\frac{\delta}{\beta(1-p_1)}
-\{(p_2-\ch)(p_1-\ch)
-+(\beta-p_1-p_2+\ch)(p_2-\ch)\}\\
-&=\frac{\delta(\beta-p_2)(p_2-\ch)}{\beta(1-p_1)}.
-\end{aligned}
-\]
-Equating $W_1(\ch)$ to the immediate payoff $p_1-\ch$ and solving for the
-cutoff gives
+The marginal driver's accept-versus-wait indifference gives the WPBE cutoff
 \begin{equation}
 \ch(p_1,p_2)=\left[p_1-
 \frac{\delta(p_2-p_1)(\beta-p_2)}
-{\beta(1-p_1)-\delta(\beta-p_2)}\right]_+ .
+{\beta(1-p_1)-\delta(\beta-p_2)}\right]_+ ,
 \tag{1}
 \end{equation}
-where $[x]_+=\max\{x,0\}$ implements the reject-all boundary.
-At $p_2=p_1$, $p_2\ge\beta$, or $p_1\ge\beta$, the rescue branch is inactive and
-the cutoff is $\ch=p_1$.
-
-Immediate completion has probability $(1-p_1)\ch$.  The unconditional repeat
-and rescue completion probabilities are, respectively,
-\[
-M_{\mathrm{rep}}=\frac{(p_2-\ch)(p_1-\ch)}{\beta},\qquad
-M_{\mathrm{res}}=
-\frac{(\beta-p_1-p_2+\ch)(p_2-\ch)}{\beta}.
-\]
-Their sum collapses to the second term below, so total completion is
+and equilibrium completion is
 \begin{equation}
 M_1(p_1,p_2)=(1-p_1)\ch+
 \frac{(\beta-p_2)(p_2-\ch)}{\beta}.
 \tag{2}
 \end{equation}
-If $\ch>0$, the same marginal-driver indifference can be written as
+Thus the cutoff is calculated from the WPBE; the platform then optimizes over
+menus subject to this equilibrium response.
+
+Fixing a target cutoff reduces the two-price problem to one dimension.  The
+unique continuation envelope and its implementing first price are
 \begin{equation}
-(1-p_1)(p_1-\ch)=\frac{\delta}{\beta}(\beta-p_2)(p_2-\ch),
+\widehat p_2(\ch)=\frac{\beta+\ch}{2},\qquad
+\widehat p_1(\ch)=
+\frac{1+\ch-\sqrt{\Delta(\ch)}}2,\qquad
+\Delta(\ch)=(1-\ch)^2-\frac{\delta}{\beta}(\beta-\ch)^2.
 \tag{3}
 \end{equation}
-and therefore
-\begin{equation}
-M_1=(1-p_1)\left[\ch+\frac{p_1-\ch}{\delta}\right]
-=p_1(1-p_1)+\frac{(1-p_1)(1-\delta)}{\delta}(p_1-\ch).
-\tag{4}
-\end{equation}
-Here $p_1(1-p_1)$ is completion under a flat menu at the same first price; the
-last term is therefore the within-$p_1$ gain created by rescue.
-For $0<\ch<p_1$, a rescue menu strictly improves completion relative to the same
-$p_1$ when $\delta<1$.  Every positive-cutoff active menu is neutral relative
-to the same $p_1$ when $\delta=1$.
-
-\paragraph{One-dimensional reduction.}
-Fix a target cutoff $\ch$.  The continuation component depending on $p_2$ is
-$H(p_2;\ch)=(\beta-p_2)(p_2-\ch)/\beta$, with
-\[
-H_{p_2}=\frac{\beta+\ch-2p_2}{\beta},\qquad
-H_{p_2p_2}=-\frac{2}{\beta}<0.
-\]
-Thus its unique envelope maximizer is
-\[
-\widehat p_2(\ch)=\frac{\beta+\ch}{2}.
-\]
-At this rescue price, (3) becomes
-\[
-(1-p_1)(p_1-\ch)=\frac{\delta(\beta-\ch)^2}{4\beta}.
-\]
-The two quadratic roots are
-$[1+\ch\pm\sqrt{\Delta(\ch)}]/2$.  The plus root exceeds
-$(1+\ch)/2\ge\widehat p_2(\ch)$ and violates $p_1\le p_2$; hence the feasible
-root is
-\begin{equation}
-\Delta(\ch)=(1-\ch)^2-\frac{\delta}{\beta}(\beta-\ch)^2,
-\qquad
-\widehat p_1(\ch)=\frac{1+\ch-\sqrt{\Delta(\ch)}}{2}.
-\tag{5}
-\end{equation}
-The best flat menu solves $\max_{p_1\in[0,1]}p_1(1-p_1)=1/4$.
-Substituting the two envelope prices into (2) gives $J_\delta(\ch)$, so the
-platform compares the best active menu with this flat benchmark:
+Substitution into (2) gives
 \begin{equation}
 M_1^*=\max\left\{\frac14,\ \max_{\ch\in[0,\beta]}J_\delta(\ch)\right\},
-\qquad
-J_\delta(\ch)=
-\frac{\ch[1-\ch+\sqrt{\Delta(\ch)}]}{2}
-+\frac{(\beta-\ch)^2}{4\beta}.
-\tag{6}
-\end{equation}
-
-\paragraph{Optimal menu.}
-If $\beta\le1/2$, a flat menu $p_1=p_2=1/2$ is optimal and $M_1^*=1/4$.
-If $\delta=1$, the same value obtains for every $\beta$.  If $\beta>1/2$ and
-$\delta<1$, $J_\delta$ is strictly concave and has a unique interior maximizer
-$\ch^*\in(0,\beta)$; the optimal rescue menu is
-$p_1^*=\widehat p_1(\ch^*)<p_2^*=\widehat p_2(\ch^*)$.
-
-For $\beta>1/2$ and $\delta<1$, the unique interior cutoff solves
-\begin{equation}
-1-\delta\beta+3(\delta-1)\ch+2(1-\delta/\beta)\ch^2
-=\frac{2\beta-1}{\beta}\ch\sqrt{\Delta(\ch)}.
-\tag{7}
-\end{equation}
-Indeed,
-\[
-\Delta'(\ch)=2(\delta-1)+2(1-\delta/\beta)\ch,
 \quad
-J_\delta'(\ch)=\frac12\left[
-\sqrt{\Delta}+\ch(1/\beta-2)
-+\frac{\ch\Delta'}{2\sqrt{\Delta}}\right],
-\]
-and clearing the positive denominator in $J_\delta'(\ch)=0$ gives (7).
+J_\delta(\ch)=
+\frac{\ch[1-\ch+\sqrt{\Delta(\ch)}]}2
++\frac{(\beta-\ch)^2}{4\beta}.
+\tag{4}
+\end{equation}
+If $\beta\le1/2$ or $\delta=1$, the optimal value is the flat benchmark
+$1/4$.  If $\beta>1/2$ and $\delta<1$, $J_\delta$ is strictly concave and has
+a unique interior maximizer, which implements $p_1^*<p_2^*$.
 
 \subsection{Numerical illustration}
 
-For the calibration used below, $\beta=\delta=4/5$.  Equation~(7) becomes
+At $\beta=\delta=4/5$, the first-order condition becomes
+$12-20\ch=5\ch\sqrt{9-10\ch}$.  Squaring yields
+$(5\ch-4)(50\ch^2+75\ch-36)=0$; checking the unsquared equation and
+feasibility leaves the positive root of the quadratic.  Its discriminant is
+$75^2+4(50)(36)=225\cdot57$, which explains the appearance of $\sqrt{57}$:
 \[
-12-20\ch=5\ch\sqrt{9-10\ch}.
+\ch^*=\frac{3(\sqrt{57}-5)}{20}=.382475,\quad
+p_1^*=\frac{11+\sqrt{57}}{40}=.463746,\quad
+p_2^*=\frac{1+3\sqrt{57}}{40}=.591238.
 \]
-Squaring gives
-$(5\ch-4)(50\ch^2+75\ch-36)=0$.  The root $\ch=4/5$
-violates the unsquared equation, while the negative quadratic root is
-infeasible.  The remaining quadratic has discriminant
-$75^2+4(50)(36)=225\cdot57$.  Therefore
-\begin{equation}
-\ch^*=\frac{3(\sqrt{57}-5)}{20},\qquad
-p_1^*=\frac{11+\sqrt{57}}{40},\qquad
-p_2^*=\frac{1+3\sqrt{57}}{40},
-\tag{8}
-\end{equation}
-Substituting $\ch^*$ into (5) gives the two prices; substituting the resulting
-menu into (2) gives
-\[
-M_1^*=\frac{1261-57\sqrt{57}}{3200}=25.9581\%,
-\qquad 100\left(M_1^*-\frac14\right)=0.9581\text{ percentage points}.
-\]
-Unconditional completion decomposes into $20.5104\%$ in the first window,
-$2.1208\%$ after repeating $p_1$, and $3.3269\%$ after activating $p_2$.
-These components sum to $M_1^*=25.9581\%$.  The menu and decomposition depend
-on $(\beta,\delta)$.
+The optimal rescue menu completes $25.9581\%$ of requests, compared with
+$25.0000\%$ under the best flat price.
 
 \begin{figure}[H]
 \centering
@@ -268,7 +170,7 @@ on $(\beta,\delta)$.
 \begin{axis}[
   xbar stacked,
   width=.82\textwidth,
-  height=3.6cm,
+  height=3.35cm,
   xmin=0,xmax=30,
   ymin=-.5,ymax=1.5,
   bar width=12pt,
@@ -278,7 +180,6 @@ on $(\beta,\delta)$.
   axis x line*=bottom,
   axis y line*=left,
   y axis line style={draw=none},
-  x tick style={black},
   y tick style={draw=none},
   xtick={0,5,10,15,20,25},
   tick label style={font=\scriptsize},
@@ -304,30 +205,11 @@ on $(\beta,\delta)$.
   {$25.0000\%$};
 \end{axis}
 \end{tikzpicture}
-\caption{Exact-one-driver illustration at $\beta=\delta=.8$.  The contingent
-menu adds $0.9581$ percentage points over the best flat price; its completion
-probability is decomposed by the period and payment used.}
+\caption{Exact-one-driver completion at $\beta=\delta=.8$.  The $0.9581$ pp
+gain combines less completion now with repeat and rescue completion later.}
 \label{fig:one-driver-numerics}
 \end{figure}
 
-\paragraph{Type regions across $(\beta,\delta)$.}
-For every active calibration below, the unique cutoff is the sign-screened root
-of (7); prices then come from (5).  Because $v$ and $c$ are uniform, interval
-widths are also population shares.  In the order used in Figure~\ref{fig:type-regions},
-\[
-\begin{array}{ll}
-\text{rider widths:}&
-\left(p_1,\ \dfrac{p_1}{\beta}-p_1,\
-\dfrac{p_2-\ch}{\beta},\
-\dfrac{\beta-p_1-p_2+\ch}{\beta}\right),\\[6pt]
-\text{driver widths:}&
-\left(\ch,\ p_1-\ch,\ p_2-p_1,\ 1-p_2\right).
-\end{array}
-\]
-The four rider entries mean no post, cancel after failure, repeat $p_1$, and
-activate $p_2$.  The four driver entries mean accept now, wait and accept
-either terminal price, accept only the rescue price, and never accept.  The
-optimal menus used in the plot are
 \begin{center}
 \begin{tabular}{@{}rrrrrr@{}}
 \toprule
@@ -342,641 +224,64 @@ $\beta$ & $\delta$ & $\ch^*$ & $p_1^*$ & $p_2^*$ & $M_1^*$\\
 \bottomrule
 \end{tabular}
 \end{center}
+\noindent Each row re-solves the WPBE and optimal menu.  More patient riders
+support a larger rescue region; less patient incumbents make waiting less
+attractive and increase the completion value of escalation.
 
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\begin{groupplot}[
-  group style={group size=2 by 2,horizontal sep=1.0cm,vertical sep=1.15cm},
-  width=.45\textwidth,
-  height=4.05cm,
-  xmin=.59,xmax=.91,
-  ymin=0,ymax=1,
-  xtick={.6,.8,.9},
-  ytick={0,.2,.4,.6,.8,1},
-  stack plots=y,
-  area style,
-  axis on top,
-  ymajorgrids,
-  grid style={white,line width=.25pt},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
-  title style={font=\small,yshift=-1mm},
-  every axis plot/.append style={draw=black,line width=.35pt,mark=none}
-]
+\clearpage
+\section{From one driver to latent market thickness}
 
-\nextgroupplot[title={Rider types, $\delta=.5$},ylabel={rider value $v$}]
-\addplot[fill=black!78] coordinates {(.6,.467733) (.8,.420148) (.9,.405843)} \closedcycle;
-\addplot[fill=black!53] coordinates {(.6,.311822) (.8,.105037) (.9,.045094)} \closedcycle;
-\addplot[fill=black!30] coordinates {(.6,.116609) (.8,.268487) (.9,.316746)} \closedcycle;
-\addplot[fill=black!10] coordinates {(.6,.103836) (.8,.206329) (.9,.232317)} \closedcycle;
+\subsection{Thickness mechanism and prior}
 
-\nextgroupplot[title={Rider types, $\delta=.8$},yticklabels=\empty]
-\addplot[fill=black!78] coordinates {(.6,.488210) (.8,.463746) (.9,.453693)} \closedcycle;
-\addplot[fill=black!53] coordinates {(.6,.325473) (.8,.115936) (.9,.050410)} \closedcycle;
-\addplot[fill=black!30] coordinates {(.6,.101156) (.8,.260953) (.9,.325546)} \closedcycle;
-\addplot[fill=black!10] coordinates {(.6,.085161) (.8,.159365) (.9,.170351)} \closedcycle;
-
-\nextgroupplot[title={Driver types, $\delta=.5$},xlabel={rider discount $\beta$},ylabel={driver cost $c$}]
-\addplot[fill=black!78] coordinates {(.6,.460069) (.8,.370421) (.9,.329857)} \closedcycle;
-\addplot[fill=black!53] coordinates {(.6,.007664) (.8,.049727) (.9,.075986)} \closedcycle;
-\addplot[fill=black!30] coordinates {(.6,.062302) (.8,.165063) (.9,.209086)} \closedcycle;
-\addplot[fill=black!10] coordinates {(.6,.469966) (.8,.414790) (.9,.385072)} \closedcycle;
-
-\nextgroupplot[title={Driver types, $\delta=.8$},xlabel={rider discount $\beta$},yticklabels=\empty]
-\addplot[fill=black!78] coordinates {(.6,.478613) (.8,.382475) (.9,.314018)} \closedcycle;
-\addplot[fill=black!53] coordinates {(.6,.009597) (.8,.081271) (.9,.139675)} \closedcycle;
-\addplot[fill=black!30] coordinates {(.6,.051097) (.8,.127492) (.9,.153316)} \closedcycle;
-\addplot[fill=black!10] coordinates {(.6,.460694) (.8,.408762) (.9,.392991)} \closedcycle;
-\end{groupplot}
-\end{tikzpicture}
-\vspace{1pt}
-
-{\scriptsize Rider:\quad
-\regionkey{black!78}{no post}\quad
-\regionkey{black!53}{cancel}\quad
-\regionkey{black!30}{repeat $p_1$}\quad
-\regionkey{black!10}{rescue $p_2$}\par
-Driver:\quad
-\regionkey{black!78}{accept now}\quad
-\regionkey{black!53}{accept either later}\quad
-\regionkey{black!30}{rescue only}\quad
-\regionkey{black!10}{never accept}}
-\caption{Equilibrium type maps for six optimal active menus.  A vertical slice
-partitions the full type interval $[0,1]$; hence its shaded heights are the
-uniform-population shares reported above.  The vertices are the recomputed
-calibrations at $\beta=.6,.8,.9$ and the connecting segments are visual guides,
-not a continuous comparative-statics claim.  Continuation labels describe
-actions conditional on initial failure, not realized path probabilities.}
-\label{fig:type-regions}
-\end{figure}
-
-When $\beta\le1/2$, the optimal policy is the flat menu $p_1=p_2=1/2$ and the
-active-rescue regions collapse.  At $\delta=1$, a flat menu is a canonical
-optimizer; continuation actions after its rejection are payoff-irrelevant.
-
-\newpage
-\section{Formal market-thickness setup}
-
-Market thickness is public; the realized supply count is latent and individual
-types are private.  The platform commits to $0\le p_1\le p_2\le1$.  The
-primitives are:
+Now only the public mean $m$ is known:
+$N^I\sim\operatorname{Pois}(m)$ is latent.  Therefore $m=1$ is not the
+publicly known $N=1$ benchmark.  At the same $m$, define
+\[
+M_R^*(m)=\max_{0\le p_1\le p_2\le1}M_m(p_1,p_2),\qquad
+M_F^*(m)=\max_{p\in[0,1]}M_m(p,p),\qquad
+V(m)=M_R^*(m)-M_F^*(m).
+\]
+Here $M_m$ is equilibrium completion.  Thus $100V(m)$ is the percentage-point
+gain from allowing the best rescue menu instead of the best flat price in the
+\emph{same} market.  It is not the marginal value of adding drivers.
 
 \begin{center}
-\begin{tabularx}{\textwidth}{@{}L{1.7cm}L{2.4cm}X@{}}
+\begin{tabularx}{\textwidth}{@{}L{2.0cm}XXX@{}}
 \toprule
-Primitive & Domain & Definition \\
+Region & Initial supply & Failure and backup pool & Prior for $V(m)$\\
 \midrule
-$m$ & $(0,\infty)$ & Public mean of incumbent supply; the latent count is
-$N^I\sim\operatorname{Pois}(m)$.\\
-$\alpha$ & $[0,1]$ & Probability that a waiting incumbent remains available in
-the terminal window.\\
-$\gamma$ & $[0,\infty)$ & Fresh-entry intensity relative to $m$; after failure,
-$N^E\sim\operatorname{Pois}(\gamma m)$.\\
-$\beta$ & $(0,1]$ & Rider discount factor; delayed gross value is $\beta v$.\\
-$\delta$ & $(0,1]$ & Incumbent discount factor; delayed surplus at $p_j$ is
-$\delta(p_j-c_i)$.\\
-$F$ & continuous CDF on $[0,1]$ & Distribution of driver costs $c_i\sim F$;
-draws are i.i.d. and an incumbent's cost persists across windows.\\
-$G$ & continuous CDF on $[0,1]$ & Distribution of the rider's private value
-$v\sim G$.\\
-\bottomrule
-\end{tabularx}
-\end{center}
-All primitives and the menu are common knowledge; realizations are observed only
-as specified below.  The numerical analysis sets $F=G=U[0,1]$ and $\gamma=0$.
-In $V(m)$, only $m$ varies; $(\alpha,\gamma,\beta,\delta,F,G)$ are held fixed.
-Throughout, $j\in\{1,2\}$ indexes the payment used in the terminal window.
-
-\subsection{Timing and information}
-
-\begin{enumerate}[label=\textbf{Stage \arabic*.},leftmargin=2.0cm,
-                  itemsep=3pt,topsep=2pt]
-
-\item \textbf{Commitment.}
-The platform observes $m>0$ and commits publicly to
-$0\le p_1\le p_2\le1$.  It cannot revise either payment after subsequent
-actions, and $p_2$ can be activated only after first-round universal rejection.
-
-\item \textbf{Rider entry.}
-The rider privately observes $v\sim G$, observes $(m,p_1,p_2)$, and chooses
-whether to post.  Leaving gives zero; posting itself generates no transfer.
-
-\item \textbf{Latent incumbent supply.}
-Conditional on a posted request,
-\[
-N^I\sim\operatorname{Pois}(m).
-\]
-The realization is latent to the platform, rider, and drivers.  Each incumbent
-privately observes only her persistent cost $c_i\sim F$ and simultaneously
-chooses whether to accept $p_1$ or wait.  She does not observe the number,
-costs, or actions of rival drivers when deciding.
-
-\item \textbf{Initial assignment or public failure.}
-If at least one incumbent accepts, one acceptor is selected uniformly and the
-request completes with selected-pair payoff $(v-p_1,p_1-c_i)$; unselected
-acceptors receive zero.  If none accepts, public failure reveals only universal
-rejection, not the realized count or costs.
-
-\item \textbf{Rider continuation.}
-After failure, the rider chooses cancel, repeat $p_1$, or activate $p_2$ using
-$v$, the committed menu, and the failure posterior.
-
-\item \textbf{Survival, entry, and terminal assignment.}
-Following continuation, each waiting incumbent remains available independently
-with probability $\alpha$.  Independently, fresh supply
-$N^E\sim\operatorname{Pois}(\gamma m)$ arrives and draws i.i.d. costs from $F$.
-Counts, survival realizations, and rival costs remain latent.  At the active
-payment $p_j$, available drivers make their terminal accept decisions.  If at
-least one accepts, one is selected uniformly.  The rider receives
-$\beta v-p_j$; a selected incumbent receives $\delta(p_j-c_i)$, while a selected
-fresh entrant receives $p_j-c_i$.  If nobody accepts, the request expires and
-all players receive zero.
-\end{enumerate}
-
-\paragraph{Benchmark distinction.}
-Unlike the benchmark above, $m=1$ denotes a hidden
-$N^I\sim\operatorname{Pois}(1)$ count, not a publicly known single driver.
-
-\paragraph{Equilibrium class.}
-We study anonymous symmetric pure-cutoff WPBE.  An incumbent accepts $p_1$
-exactly when $c_i$ lies below a cutoff $\ch$.  Beliefs follow Bayes' rule after
-posting and universal rejection.  Poisson splitting determines continuation
-supply after failure, while Palm conditioning leaves a focal incumbent's
-number of rivals Poisson with mean $m$.  Thus $\ch$ is derived from
-accept-versus-wait indifference, not selected from an observed driver count.
-The formal setup allows $\gamma\ge0$; the global optimization and numerical
-evidence below specialize to $\gamma=0$.
-
-\subsection*{WPBE equations and completion}
-
-For a candidate accept-now cutoff $\ch$, define
-\[
-\phi(x)=\frac{1-e^{-x}}{x},\quad \phi(0)=1,\qquad
-\lambda_j(\ch)=m\{\alpha[F(p_j)-F(\ch)]+\gamma F(p_j)\},\qquad
-C_j(\ch)=1-e^{-\lambda_j(\ch)}.
-\]
-For $K\sim\operatorname{Pois}(x)$,
-\[
-\Pr(K=0)=e^{-x},\qquad
-\mathbb E\!\left[\frac1{1+K}\right]
-=\frac{1-e^{-x}}x=\phi(x).
-\]
-Thus $\phi(x)$ is a focal acceptor's expected assignment share when her rivals
-have Poisson mean $x$.  Poisson thinning gives $\lambda_j(\ch)$ as the mean
-terminal supply eligible at $p_j$, and $C_j(\ch)$ is the probability that this
-eligible set is nonempty.
-After universal rejection the rider compares
-\[
-0,\qquad C_1(\ch)(\beta v-p_1),\qquad C_2(\ch)(\beta v-p_2).
-\]
-If $C_2(\ch)>C_1(\ch)$, the repeat/rescue boundary is
-\begin{equation}
-v^M(\ch)=
-\frac{p_2C_2(\ch)-p_1C_1(\ch)}
-{\beta[C_2(\ch)-C_1(\ch)]}.
-\tag{9}
-\end{equation}
-Equation (9) comes from equating the last two payoffs.  If
-$C_2(\ch)=C_1(\ch)$, rescue adds no coverage and we set $v^M(\ch)=+\infty$.
-Conditional on posting, define
-\[
-\eta^{\mathrm{rep}}(\ch)
-=\Pr\{p_1/\beta\le v\le v^M(\ch)\mid v\ge p_1\},\qquad
-\eta^{\mathrm{res}}(\ch)
-=\Pr\{v>v^M(\ch)\mid v\ge p_1\},
-\]
-with empty regions assigned zero mass.  A focal incumbent of type $c$ compares
-\begin{align}
-A(c;\ch)&=\phi(mF(\ch))(p_1-c),\nonumber\\
-W(c;\ch)&=\delta\alpha e^{-mF(\ch)}
-\{\eta^{\mathrm{rep}}(\ch)\phi(\lambda_1(\ch))(p_1-c)^+
-+\eta^{\mathrm{res}}(\ch)\phi(\lambda_2(\ch))(p_2-c)^+\}.
-\tag{10}
-\end{align}
-Here $x^+=\max\{x,0\}$.  Both payoffs are conditional on a posted request.
-In $A$, $\phi(mF(\ch))$ is the focal driver's initial assignment share.  In
-$W$, $e^{-mF(\ch)}$ is the probability that all rivals reject initially,
-$\alpha$ is the focal incumbent's survival probability, and
-$\phi(\lambda_j)$ is her terminal assignment share.
-An interior cutoff satisfies $A(\ch;\ch)=W(\ch;\ch)$; one-sided inequalities
-apply at $0$ and $p_1$.  Completion is
-\begin{equation}
-M(p_1,p_2;\ch)=(1-G(p_1))\left[1-e^{-mF(\ch)}+e^{-mF(\ch)}
-\{\eta^{\mathrm{rep}}(\ch)C_1(\ch)
-+\eta^{\mathrm{res}}(\ch)C_2(\ch)\}\right].
-\tag{11}
-\end{equation}
-The factor $1-G(p_1)$ is the posting probability.  Inside the brackets, the
-first term is initial coverage and the second is failure followed by terminal
-recovery.
-
-\paragraph{Selection.}
-In the uniform no-entry model, every menu has a unique \emph{equilibrium cutoff value}
-within this WPBE class; null-type actions and payoff-irrelevant beliefs may differ.
-
-\paragraph{Literature and contribution.}
-The solve-threshold-then-optimize architecture follows \citet{AvivPazgal2008}, and
-contingent preannouncement follows \citet{CorreaEtAl2016}.  Waiting costs and successive
-offers connect to \citet{CarareRothkopf2005} and \citet{Chen2012}.  Discrete Dutch clocks,
-population uncertainty, and hidden group size connect to \citet{LiKuo2013},
-\citet{Myerson1998}, and \citet{BuchananEtAl2016}; two-sided platform timing connects to
-\citet{HuHuZhu2022}.  The contribution is not any one primitive.  It is the cutoff-WPBE
-and completion design that jointly handle latent same-request competition, discounted
-incumbent delay, and the rider's private continuation decision.
-
-\renewcommand{\bibsection}{\paragraph{References used on this page.}}
-\begin{multicols}{2}
-\scriptsize
-\raggedcolumns
-\interlinepenalty=10000
-\setlength{\bibsep}{0pt}
-\begin{thebibliography}{99}
-\bibitem[Aviv and Pazgal(2008)]{AvivPazgal2008} Aviv, Y., A. Pazgal. 2008. Optimal pricing of seasonal products in the presence of forward-looking consumers. \emph{M\&SOM} 10(3), 339--359.
-\bibitem[Buchanan et~al.(2016)]{BuchananEtAl2016} Buchanan, J., S. Gjerstad, D. Porter. 2016. Information effects in uniform price multi-unit Dutch auctions. \emph{Southern Economic Journal} 83(1), 126--145.
-\bibitem[Carare and Rothkopf(2005)]{CarareRothkopf2005} Carare, O., M. Rothkopf. 2005. Slow Dutch auctions. \emph{Management Science} 51(3), 365--373.
-\bibitem[Chen(2012)]{Chen2012} Chen, C.-H. 2012. Name your own price at Priceline.com: Strategic bidding and lockout periods. \emph{Review of Economic Studies} 79(4), 1341--1369.
-\bibitem[Correa et~al.(2016)]{CorreaEtAl2016} Correa, J., R. Montoya, C. Thraves. 2016. Contingent preannounced pricing policies with strategic consumers. \emph{Operations Research} 64(1), 251--272.
-\bibitem[Hu et~al.(2022)]{HuHuZhu2022} Hu, B., M. Hu, H. Zhu. 2022. Surge pricing and two-sided temporal responses in ride hailing. \emph{M\&SOM} 24(1), 91--109.
-\bibitem[Li and Kuo(2013)]{LiKuo2013} Li, Z., C.-C. Kuo. 2013. Design of discrete Dutch auctions with an uncertain number of bidders. \emph{Annals of Operations Research} 211, 255--272.
-\bibitem[Myerson(1998)]{Myerson1998} Myerson, R. 1998. Population uncertainty and Poisson games. \emph{International Journal of Game Theory} 27, 375--392.
-\end{thebibliography}
-\end{multicols}
-
-\section{Solving $p_1^*(m),p_2^*(m)$ from the WPBE}
-
-Set $F=G=U[0,1]$, $\gamma=0$, $\alpha\in(0,1]$, and $m>0$.  Cutoff
-indifference yields the following scalar solution.
-
-\paragraph{Step 1: solve the rescue-price envelope at a fixed cutoff.}
-Let $k=\alpha m$, the effective mean surviving-incumbent supply per unit cost
-mass.  Under uniform types and no entry,
-$C_j=1-e^{-k(p_j-\ch)}$.  Substituting the switching value (9) makes repeat and
-rescue completion telescope:
-\[
-C_1\left(v^M-\frac{p_1}{\beta}\right)+C_2(1-v^M)
-=C_2\left(1-\frac{p_2}{\beta}\right).
-\]
-Therefore the continuation term, before multiplication by the first-round
-failure probability $e^{-m\ch}$, is
-\[
-\frac{S_m(\ch,p_2)}{\beta},\qquad
-S_m(\ch,p_2)=(\beta-p_2)\{1-e^{-k(p_2-\ch)}\}.
-\]
-For fixed $\ch$, this expression is strictly concave in $p_2\in[\ch,\beta]$.
-Indeed,
-\[
-\frac{\partial S_m}{\partial p_2}
-=-(1-e^{-k(p_2-\ch)})
-+k(\beta-p_2)e^{-k(p_2-\ch)},\qquad
-\frac{\partial^2 S_m}{\partial p_2^2}
-=-e^{-k(p_2-\ch)}\{2k+k^2(\beta-p_2)\}<0.
-\]
-The first-order condition for its unique maximizer
-$\widehat p_2(\ch;m)$ is
-\begin{equation}
-e^{k(\widehat p_2-\ch)}-1=k(\beta-\widehat p_2).
-\tag{12}
-\end{equation}
-Let $z=k(\beta-\widehat p_2)$ and $y=1+z$.  Equation (12) gives
-$y e^y=e^{1+k(\beta-\ch)}$, so
-\begin{equation}
-\widehat p_2(\ch;m)=
-\beta-\frac{W_0\!\left(e^{1+k(\beta-\ch)}\right)-1}{k}.
-\tag{13}
-\end{equation}
-Here $W_0$ is the principal Lambert-$W$ function, defined by
-$W_0(x)e^{W_0(x)}=x$.  Its argument is positive, and $W_0$ is the unique real
-branch that delivers $z\ge0$ and $\ch<\widehat p_2<\beta$ for an interior
-cutoff.  Since $e^x-1>x$ for $x>0$, (12) also implies
-$\widehat p_2<(\beta+\ch)/2$.
-Write $S_m(\ch)=S_m(\ch,\widehat p_2(\ch;m))$.
-
-\paragraph{Step 2: impose the driver's WPBE indifference.}
-Define
-\begin{equation}
-h_m(\ch)=\frac{e^{m\ch}-1}{\ch},\qquad h_m(0)=m.
-\tag{14}
-\end{equation}
-The value at zero follows from continuity.  The function $h_m$ rewrites the
-cutoff indifference in terms of the odds of reaching the failure node.
-The direct cutoff equation is
-\begin{equation}
-(p_1-\ch)h_m(\ch)=
-\frac{\delta S_m(\ch)}{\beta(1-p_1)}.
-\tag{15}
-\end{equation}
-Multiplying by $1-p_1$ and writing
-$R_m(\ch)=\delta S_m(\ch)/[\beta h_m(\ch)]$ gives the quadratic
-\[
-(1-p_1)(p_1-\ch)=R_m(\ch),\qquad
-p_1^2-(1+\ch)p_1+\ch+R_m(\ch)=0.
-\]
-Its roots are
-$[1+\ch\pm\sqrt{(1-\ch)^2-4R_m(\ch)}]/2$.  The plus root exceeds
-$(1+\ch)/2>\widehat p_2$ and violates $p_1\le p_2$; the implementing root is
-\begin{equation}
-\widehat p_1^\delta(\ch;m)=
-\frac{1+\ch-
-\sqrt{(1-\ch)^2-\dfrac{4\delta S_m(\ch)}{\beta h_m(\ch)}}}{2}.
-\tag{16}
-\end{equation}
-The nonnegative discriminant is the feasibility condition for implementing
-$\ch$, and the selected branch satisfies
-$\ch\le\widehat p_1^\delta<\widehat p_2$.  Equation (15) links the rescue price
-to initial coverage through the driver's waiting incentive.
-
-\paragraph{Step 3: optimize the single remaining state variable.}
-Substitute (13) and (16) into completion:
-\begin{equation}
-J_{\delta,m}(\ch)=
-[1-\widehat p_1^\delta(\ch;m)](1-e^{-m\ch})
-+e^{-m\ch}\frac{S_m(\ch)}{\beta}.
-\tag{17}
-\end{equation}
-The first term is initial completion: posting probability times initial
-coverage.  The second is the telescoped continuation term above, multiplied by
-the probability of initial failure.
-For $\beta\ge1/2$, the optimal rescue-menu solution is characterized by
-\begin{equation}
-\ch^*(m)\in\arg\max_{\ch\in[0,\beta]}J_{\delta,m}(\ch),\qquad
-p_1^*(m)=\widehat p_1^\delta(\ch^*(m);m),\quad
-p_2^*(m)=\widehat p_2(\ch^*(m);m).
-\tag{18}
-\end{equation}
-For $\beta\ge1/2$, the no-entry global reduction places every optimizer on the
-strict envelope just derived, so (18) is equivalent to the original two-price
-problem for every public $m$.  The cutoff is
-unique within the anonymous symmetric pure-cutoff WPBE class, but the outer
-argmax need not be.  If $\beta<1/2$, (18) must also be compared with the
-flat/repeat-only branch $p_1\ge\beta$.
-
-\section{Equilibrium regimes and a reproducible numerical certificate}
-
-\paragraph{Rescue value at a fixed thickness.}
-In the uniform no-entry model, let $M_m(p_1,p_2)$ denote the unconditional
-completion probability in (11), evaluated at the menu's unique equilibrium
-cutoff value within the maintained cutoff-WPBE class.  Holding all other
-primitives fixed,
-define
-\[
-\begin{aligned}
-M_R^*(m)
-  &=\max_{0\le p_1\le p_2\le1}M_m(p_1,p_2),\\
-M_F^*(m)
-  &=\max_{p_1\in[0,1]}M_m(p_1,p_1),\\
-V(m)&=M_R^*(m)-M_F^*(m).
-\end{aligned}
-\]
-Here $R$ denotes the best committed rescue menu and $F$ the best single-price
-policy.  Thus $V(m)$ is the increase in optimized equilibrium completion made
-possible by the rescue option at the same public thickness $m$; $100V(m)$ is
-that increase in percentage points.  It is not the value of increasing $m$.
-Since single-price policies are included among rescue menus, $V(m)\ge0$ by
-construction.
-
-For a fixed first price, let
-\[
-p_z(m)=\widehat p_1^\delta(0;m)
-=\frac{1-\sqrt{1-4\delta S_m(0)/(\beta m)}}2.
-\]
-Thus $p_z(m)$ is the largest first price for which the optimized continuation
-can be implemented at the reject-all boundary $\ch=0$.
-The optimal continuation has three regimes.
-\begin{center}
-\begin{tabular}{@{}L{3.0cm}L{8.6cm}L{4.1cm}@{}}
-\toprule
-First price & WPBE cutoff & Rescue price \\
-\midrule
-$0\le p_1\le p_z(m)$ & reject-all boundary $\ch=0$ &
-$p_2=\widehat p_2(0;m)$ \\
-$p_z(m)<p_1<\beta$ & unique $\ch\in(0,p_1)$ satisfying
-$(p_1-\ch)h_m(\ch)=\delta S_m(\ch)/[\beta(1-p_1)]$ &
-$p_2=\widehat p_2(\ch;m)$ \\
-$\beta\le p_1\le1$ & rescue unused & all $p_2\ge p_1$ are outcome-equivalent \\
-\bottomrule
-\end{tabular}
-\end{center}
-\subsection*{Exact benchmark as the thin-market limit}
-
-\begin{center}
-\begin{tabularx}{\textwidth}{@{}L{3.0cm}XX@{}}
-\toprule
-Object & Exact $N=1$ benchmark & Latent-thickness model\\
-\midrule
-Supply information & one incumbent is publicly known &
-only $m$ is public; $N^I\sim\operatorname{Pois}(m)$ is hidden\\
-Continuation coverage & linear in the cost interval $p_2-\ch$ &
-$1-e^{-\alpha m(p_2-\ch)}$ incorporates a random backup pool\\
-Driver incentive & serve now versus discounted waiting &
-the same tradeoff plus latent assignment competition and a failure posterior\\
-Price solution & radical formulas and one scalar cutoff &
-Lambert-$W$ rescue price, quadratic $p_1$, and one scalar cutoff\\
+Thin $m$ & Usually no incumbent & Little supply exists to rescue &
+Small; first order in $m$\\
+Middle $m$ & Initial failure remains material & Failure screens incumbents,
+while a useful backup pool often remains & Potentially largest\\
+Thick $m$ & Many potential acceptors & Optimized flat pricing already
+completes most requests & Small; tends to zero\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-The exact benchmark is the thin-market limit of the latent-thickness model.
-With $\alpha=1$, $\gamma=0$, and $m\downarrow0$,
-uniformly over the compact feasible price and cutoff sets,
-\[
-1-e^{-m(p_2-\ch)}=m(p_2-\ch)+O(m^2),\qquad
-h_m(\ch)=m+O(m^2).
-\]
-Therefore
-\[
-\frac{S_m(\ch,p_2)}{m}\longrightarrow
-(\beta-p_2)(p_2-\ch),\qquad
-\frac{h_m(\ch)}{m}\longrightarrow1.
-\]
-Consequently,
-\[
-\widehat p_2(\ch;m)\longrightarrow\frac{\beta+\ch}{2},\qquad
-\widehat p_1^\delta(\ch;m)\longrightarrow\widehat p_1(\ch),\qquad
-\frac{J_{\delta,m}(\ch)}{m}\longrightarrow J_\delta(\ch).
-\]
-The flat objective divided by $m$ converges uniformly to $p_1(1-p_1)$.
-Uniform convergence and the maximum theorem permit the maximization to pass
-through the limit.  Equivalently, a Poisson market contains exactly one
-incumbent with probability $m+o(m)$ and at least two with probability $o(m)$.
-For $\beta=\delta=.8$, this nesting gives
-\[
-\lim_{m\downarrow0}\frac{V(m)}{m}
-=M_1^*-\frac14
-=\frac{461-57\sqrt{57}}{3200}=0.00958107.
-\]
-The numerator follows directly from
-$(1261-57\sqrt{57})-800=461-57\sqrt{57}$ when the flat value $1/4$ is
-subtracted from $M_1^*$.
-Thus the one-driver improvement is exactly the first-order coefficient of the
-rescue value near an empty market.
+The middle region contains the trade-off: a larger pool raises terminal
+coverage, but the announced $p_2$ also induces more incumbents to wait.  The
+direction is therefore an equilibrium-design question rather than a mechanical
+coverage comparison.
 
-\paragraph{Contribution from latent thickness.}
-Latent thickness adds assignment competition in an unobserved driver pool and
-Bayesian updating after universal rejection.  Their interaction with menu
-commitment and discounted waiting yields the scalar cutoff-WPBE design problem
-and the value function $V(m)$.
+\subsection{Deterministic numerical evidence}
 
-\paragraph{First-order certificate for the outer problem.}
-At an interior solution, put $R_m=\delta S_m/(\beta h_m)$ and suppress
-$(\ch;m)$ arguments.  Primes denote total derivatives with respect to $\ch$,
-holding $m$ and all other primitives fixed.  The envelope theorem for $S_m$,
-direct differentiation of $h_m$, and implicit differentiation of
-$(1-p_1)(p_1-\ch)=R_m$ give
-\begin{align}
-\frac{S_m'}{S_m}&=-\frac{1}{\beta-\widehat p_2},
-&\frac{h_m'}{h_m}&=\frac{m}{1-e^{-m\ch}}-\frac1\ch,\nonumber\\
-R_m'&=R_m\left(\frac{S_m'}{S_m}-\frac{h_m'}{h_m}\right),
-&(\widehat p_1^\delta)'&=
-\frac{1-\widehat p_1^\delta+R_m'}{1+\ch-2\widehat p_1^\delta}.
-\tag{19}
-\end{align}
-The scalar first-order condition is
-\begin{equation}
-J_{\delta,m}'(\ch)=
--(1-e^{-m\ch})(\widehat p_1^\delta)'
-+me^{-m\ch}(1-\widehat p_1^\delta)
-+\frac{e^{-m\ch}}{\beta}(S_m'-mS_m)=0.
-\tag{20}
-\end{equation}
-The numerical procedure solves (12) and (15), brackets and enumerates every root
-of the scalar condition (20) on $[0,\beta]$, checks the relevant second-order
-signs, and compares all stationary and boundary values.  Rider best responses
-are then recovered from (9), and driver deviations are checked on both sides
-of the cutoff.  This gives a global one-dimensional WPBE certificate.
-
-\paragraph{Reduced forms.}
-For a flat price $p_1=p_2$, the equilibrium cutoff is $\ch=p_1$ and the
-continuation branch is unused.  Hence
-$f_m(p_1)=(1-p_1)(1-e^{-mp_1})$, with
+The reported simulation is deterministic equilibrium optimization, not Monte
+Carlo.  For every $m$, the procedure solves the unique cutoff-WPBE for each
+candidate menu, reduces the active branch to one scalar cutoff, checks all
+stationary points and boundaries, and compares the result with the optimized
+flat price.  The baseline is
 \[
-f_m'(p_1)=-(1-e^{-mp_1})+m(1-p_1)e^{-mp_1},\qquad
-f_m''(p_1)=-e^{-mp_1}\{2m+m^2(1-p_1)\}<0.
+F=G=U[0,1],\qquad (\alpha,\beta,\delta,\gamma)=(1,.8,.8,0).
 \]
-The unique first-order condition is $e^{mp_1}-1=m(1-p_1)$.  Setting
-$y=1+m-mp_1$ gives $ye^y=e^{1+m}$ and therefore
-\begin{equation}
-M_F^*(m)=\max_{p_1\in[0,1]}(1-p_1)(1-e^{-mp_1}),
-\qquad
-p_F^*(m)=\frac{1+m-W_0(e^{1+m})}{m}<\frac12.
-\tag{21}
-\end{equation}
-Since $e^{m/2}-1>m/2$, $f_m'(1/2)<0$ and the unique flat optimum lies below
-$1/2$.
-For $\beta\ge1/2$, the rescue-menu optimum reduces to
-\begin{equation}
-M_R^*(m)=\max_{\ch\in[0,\beta]}J_{\delta,m}(\ch).
-\tag{22}
-\end{equation}
-\paragraph{Strict finite-thickness gain.}
-Take $p_1=p_F^*(m)<1/2\le\beta$ and a sufficiently small strict increment
-$p_1<p_2<\beta$.  Its equilibrium has $0<\ch<p_1$, and (15)--(17) imply
-\[
-M_m(p_1,p_2)
-=(1-p_1)m\phi(m\ch)
-\left[\ch+\frac{p_1-\ch}{\delta}\right].
-\]
-The bracket is at least $p_1$ because $\delta\le1$, while $\phi$ is strictly
-decreasing and $\ch<p_1$.  Thus
-\[
-M_m(p_1,p_2)>
-(1-p_1)m\phi(mp_1)p_1
-=(1-p_1)(1-e^{-mp_1})=M_F^*(m).
-\]
-This same-first-price comparison proves $V(m)>0$ at every finite $m$.
-
-\paragraph{Interior-thickness mechanism.}
-When $m$ is small, there is rarely a driver to rescue.  As $m$ grows, universal
-rejection still occurs but the failed request is increasingly likely to face a useful
-backup set, so a contingent $p_2$ creates option value.  When $m$ is very large, the
-optimized flat price already completes almost every request; the remaining improvement
-must again shrink.
-
-\subsection*{Analytical properties of $V(m)$}
-
-Under $F=G=U[0,1]$, $\gamma=0$, $\alpha\in(0,1]$, $\beta\ge1/2$, and
-$\delta\in(0,1]$, the following properties hold for every finite $m>0$:
-\[
-V(m)>0,\qquad V\text{ is continuous},\qquad
-\lim_{m\downarrow0}V(m)=\lim_{m\to\infty}V(m)=0.
-\]
-Hence there is some $m^*\in(0,\infty)$ such that
-\[
-V(m^*)=\max_{m>0}V(m)>0.
-\]
-This guarantees a finite interior maximizer, but not uniqueness or
-single-peakedness.
-
-\paragraph{Endpoint argument.}
-On every compact interval of positive $m$, the continuous extensions at
-$\ch=0$ make $J_{\delta,m}(\ch)$ jointly continuous in $(m,\ch)$.  The maximum
-theorem applied to (21)--(22) makes both optimized values, and hence $V$,
-continuous; optimizer uniqueness is unnecessary.
-
-As $m\downarrow0$, any completion requires at least one incumbent, so
-\[
-0\le V(m)\le M_R^*(m)\le1-e^{-m}\le m\longrightarrow0.
-\]
-As $m\to\infty$, the feasible flat price $p_1=(\log m)/m$ completes with
-probability $(1-\log(m)/m)(1-1/m)\to1$.  Therefore
-$0\le V(m)\le1-M_F^*(m)\to0$.  Positivity at any fixed $m_0$, these endpoint
-bounds, continuity, and the Weierstrass theorem then place at least one global
-maximizer in a finite interval inside $(0,\infty)$; they do not imply
-uniqueness or single-peakedness.
-
-\paragraph{Tail rates.}
-For the plotted calibration, the thin-market calculation above gives
-\[
-V(m)\sim \kappa m,\qquad
-\kappa=\frac{461-57\sqrt{57}}{3200}=0.00958107,
-\qquad (m\downarrow0).
-\]
-For the thick-market rate, put $x=m\ch$ and $T=S_m/\beta$.  Equation (17) has
-the exact loss decomposition
-\[
-1-J_{\delta,m}=p_1(1-e^{-x})+(1-T)e^{-x}.
-\]
-Using (12)--(16), the feasible choice $x=\log\log m$ yields
-$p_1=(1+o(1))x/m$ and $(1-T)e^{-x}=O(1/m)$.  Conversely, for
-$p_2\le\beta/2$ every feasible policy satisfies
-\[
-m(1-J_{\delta,m})
-\ge x(1-e^{-x})+C_m e^{-x},\qquad
-C_m=\frac{\log(1+\alpha m\beta/2)}{\alpha\beta},
-\]
-whose minimum is asymptotic to $\log C_m\sim\log\log m$; policies with
-$p_2>\beta/2$ have a larger first loss term.  Hence
-\[
-1-M_R^*(m)\sim\frac{\log\log m}{m}.
-\]
-For the flat optimizer, let $x_F=mp_F^*$.  Its first-order condition gives
-$e^{x_F}=1+m-x_F$, so
-\[
-1-M_F^*(m)=\frac{x_F+1-e^{-x_F}}m
-\sim\frac{\log m}{m}.
-\]
-Thus, for fixed $\alpha,\beta>0$, $\delta\in(0,1]$, and $\gamma=0$,
-$V(m)\sim(\log m)/m$.  The displayed single-hump shape below remains
-numerical evidence rather than an analytical shape result.
-
-\section{The value of rescue across market thickness, $V(m)$}
-
-All reported values below are deterministic optimization results, not Monte
-Carlo estimates.  For each $m$, the calculation solves (12) for $p_2(\ch)$,
-uses (16) for $p_1(\ch)$, enumerates all roots of (20) together with the
-boundaries $\ch=0,\beta$, and retains the candidate with the largest value in
-(17).  It solves (21) for the flat benchmark and then subtracts.  The outer
-search brackets a root of the envelope derivative and checks a wide log grid;
-the endpoint results above control the two tails.  Thus $\widehat m$ below is
-the largest value located by this search, not a claim of an analytically unique
-maximizer.
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
   width=.88\textwidth,
-  height=5.4cm,
+  height=5.1cm,
   xmode=log,
   log basis x=10,
   xmin=.01,xmax=10000,
@@ -993,7 +298,6 @@ maximizer.
   tick label style={font=\scriptsize},
   label style={font=\small},
   ymajorgrids=true,
-  xmajorgrids=false,
   grid style={black!10},
   clip=false
 ]
@@ -1015,81 +319,85 @@ coordinates {(9.718617,6.15658515)};
   (axis cs:9.718617,0) -- (axis cs:9.718617,6.15658515);
 \node[anchor=south east,font=\scriptsize,align=right]
   at (axis cs:9.718617,6.24)
-  {numerically located peak: $\widehat m=9.72$\\$100V(\widehat m)=6.16$ pp};
+  {$\widehat m=9.72$\\$100V(\widehat m)=6.16$ pp};
+\node[font=\scriptsize] at (axis cs:.10,.85) {thin};
+\node[font=\scriptsize] at (axis cs:9.5,4.9) {middle};
+\node[font=\scriptsize] at (axis cs:950,.95) {thick};
 \end{axis}
 \end{tikzpicture}
-\caption{Computed $V(m)$ for $(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$.
-The solid line connects deterministic optimized values, and black dots mark
-$m=1,5,10,20$.  Positivity, continuity, and the two endpoint limits are
-analytical; the displayed hump is numerical evidence.}
+\caption{Optimized rescue value across thickness.  Positivity, continuity,
+and both endpoint limits are analytical; the connected values and apparent
+single hump are numerical.}
+\label{fig:Vm}
 \end{figure}
 
-\noindent The table reports maximizers selected by the numerical procedure;
-their analytical uniqueness is not asserted.  Both $M_R^*$ and $M_F^*$ are
-probabilities on $[0,1]$; the final column reports their difference in
-percentage points.
 \begin{center}
 \begin{tabular}{@{}rrrrrrr@{}}
 \toprule
-$m$ & $\ch^*(m)$ & $p_1^*(m)$ & $p_2^*(m)$ &
-$M_R^*(m)$ & $M_F^*(m)$ & $100V(m)$ (pp)\\
+$m$ & $\ch^*$ & $p_1^*$ & $p_2^*$ &
+$M_R^*$ & $M_F^*$ & $100V(m)$\\
 \midrule
-1  & .320340 & .391928 & .546378 & .213230 & .199346 & 1.3883\\
-5  & .197789 & .236946 & .413098 & .597813 & .543810 & 5.4003\\
-10 & .132863 & .155922 & .310306 & .755154 & .693602 & 6.1552\\
-20 & .080430 & .092538 & .208054 & .862392 & .807956 & 5.4437\\
+1  & .320340 & .391928 & .546378 & .213230 & .199346 & 1.3883 pp\\
+5  & .197789 & .236946 & .413098 & .597813 & .543810 & 5.4003 pp\\
+10 & .132863 & .155922 & .310306 & .755154 & .693602 & 6.1552 pp\\
+20 & .080430 & .092538 & .208054 & .862392 & .807956 & 5.4437 pp\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\noindent The largest value located by the outer search occurs at
-$\widehat m=9.718617$, where the selected menu is
-$(\ch^*,p_1^*,p_2^*)=(.135370,.159002,.314745)$.
+The largest value located is at
+$(\widehat m,\ch^*,p_1^*,p_2^*)=(9.718617,.135370,.159002,.314745)$.
+Across the four highlighted markets, the selected cutoff and both prices fall,
+yet rescue coverage rises because the platform draws from a larger pool.
 
-\paragraph{Numerical illustration at $m=10$.}
-The selected menu is
-$(\ch^*,p_1^*,p_2^*)=(.132863,.155922,.310306)$, while the best flat price is
-$p_F^*=.217733$.  Completion decomposes as follows.
-\begin{center}
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-Policy & Complete now & Complete later & Total\\
-\midrule
-Best flat & 69.3602\% & 0 & 69.3602\%\\
-Optimal rescue & 62.0532\% & 13.4622\% & 75.5154\%\\
-Difference & $-7.3070$ pp & $+13.4622$ pp & $+6.1552$ pp\\
-\bottomrule
-\end{tabular}
-\end{center}
-The later column combines repeat and rescue.  Conditional on posting, initial
-failure occurs with probability $e^{-10\ch^*}=26.4840\%$.  Multiplying this
-failure probability by the continuation completion term in (17) gives
-$13.4622\%$ unconditional terminal completion, which more than offsets the
-loss of immediate completion.
-
-\subsection*{Type regions across market thickness}
-For each row in the table, let
-\[
-C_j^*(m)=1-e^{-m[p_j^*(m)-\ch^*(m)]},\qquad
-v^{M*}(m)=
-\frac{p_2^*(m)C_2^*(m)-p_1^*(m)C_1^*(m)}
-{\beta[C_2^*(m)-C_1^*(m)]}.
-\]
-The rider widths are
-$(p_1^*,\ p_1^*/\beta-p_1^*,\ v^{M*}-p_1^*/\beta,\ 1-v^{M*})$;
-the driver widths are
-$(\ch^*,\ p_1^*-\ch^*,\ p_2^*-p_1^*,\ 1-p_2^*)$.
-They have the same four meanings as in Figure~\ref{fig:type-regions}, but both
-the optimal menu and the rider's coverage-adjusted switching value are
-recomputed at every $m$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xbar stacked,
+  width=.82\textwidth,
+  height=3.35cm,
+  xmin=0,xmax=90,
+  ymin=-.5,ymax=1.5,
+  bar width=12pt,
+  xlabel={unconditional completion probability (\%)},
+  ytick={0,1},
+  yticklabels={Optimal rescue,Best flat},
+  axis x line*=bottom,
+  axis y line*=left,
+  y axis line style={draw=none},
+  y tick style={draw=none},
+  xtick={0,10,20,30,40,50,60,70,80},
+  tick label style={font=\scriptsize},
+  label style={font=\small},
+  legend style={
+    at={(0.5,1.18)},anchor=south,draw=none,
+    legend columns=2,font=\scriptsize,
+    /tikz/every even column/.append style={column sep=8pt}
+  }
+]
+\addplot[fill=black!70,draw=black] coordinates
+  {(62.0532,0) (69.3602,1)};
+\addlegendentry{complete now}
+\addplot[fill=black!18,draw=black] coordinates
+  {(13.4622,0) (0,1)};
+\addlegendentry{complete after failure}
+\node[font=\scriptsize,anchor=west] at (axis cs:76.3,0) {$75.5154\%$};
+\node[font=\scriptsize,anchor=west] at (axis cs:70.1,1) {$69.3602\%$};
+\end{axis}
+\end{tikzpicture}
+\caption{At $m=10$, rescue sacrifices $7.3070$ pp of immediate completion and
+recovers $13.4622$ pp after failure, for a net gain of $6.1552$ pp.}
+\label{fig:m10-decomposition}
+\end{figure}
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{groupplot}[
-  group style={group size=2 by 1,horizontal sep=1.0cm},
+  group style={group size=2 by 1,horizontal sep=.9cm},
   width=.46\textwidth,
-  height=5.15cm,
+  height=4.65cm,
   xmode=log,
   log basis x=10,
   xmin=.85,xmax=23,
@@ -1107,13 +415,11 @@ recomputed at every $m$.
   title style={font=\small,yshift=-1mm},
   every axis plot/.append style={draw=black,line width=.35pt,mark=none}
 ]
-
 \nextgroupplot[title={Rider type map},xlabel={market thickness $m$ (log scale)},ylabel={rider value $v$}]
 \addplot[fill=black!78] coordinates {(1,.391928) (5,.236946) (10,.155922) (20,.092538)} \closedcycle;
 \addplot[fill=black!53] coordinates {(1,.097982) (5,.059237) (10,.038981) (20,.023134)} \closedcycle;
 \addplot[fill=black!30] coordinates {(1,.293176) (5,.301516) (10,.256619) (20,.188316)} \closedcycle;
 \addplot[fill=black!10] coordinates {(1,.216915) (5,.402301) (10,.548478) (20,.696012)} \closedcycle;
-
 \nextgroupplot[title={Driver type map},xlabel={market thickness $m$ (log scale)},yticklabels=\empty]
 \addplot[fill=black!78] coordinates {(1,.320340) (5,.197789) (10,.132863) (20,.080430)} \closedcycle;
 \addplot[fill=black!53] coordinates {(1,.071587) (5,.039157) (10,.023059) (20,.012107)} \closedcycle;
@@ -1133,20 +439,291 @@ Driver:\quad
 \regionkey{black!53}{accept either later}\quad
 \regionkey{black!30}{rescue only}\quad
 \regionkey{black!10}{never accept}}
-\caption{Equilibrium type maps at $m=1,5,10,20$ for
-$(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$.  Each vertical slice partitions
-$[0,1]$ and the logarithmic horizontal scale separates the four recomputed
-markets; connecting segments are visual guides.  The bands are normalized
-type shares, not realized path probabilities; expected incumbent counts equal
-$m$ times the driver shares.  The rider rescue region grows from $.2169$ to
-$.6960$, while pool-level rescue coverage $C_2^*(m)$ rises from $.2023$ to
-$.9221$.}
+\caption{Type regions at $m=1,5,10,20$.  Each vertical slice partitions
+$[0,1]$.  Rider rescue mass grows from $.2169$ to $.6960$, while pool-level
+rescue coverage rises from $.2023$ to $.9221$.  Type shares are not path
+probabilities.}
 \label{fig:thickness-regions}
 \end{figure}
 
-\paragraph{Claim boundary.}
-Strict single-peakedness, uniqueness of the maximizing $m$, and monotonicity or
-uniqueness of optimal menus remain open; this calibration is consistent with
-them.  Global design with fresh entry $\gamma>0$ is also open.
+\clearpage
+\section{Formal thickness model}
+
+\subsection{Primitives and timing}
+
+The numerical pattern motivates a model that separates the size and
+composition of continuation supply.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}L{1.6cm}L{2.0cm}XL{3.0cm}@{}}
+\toprule
+Param. & Domain & Economic object & Baseline numerics\\
+\midrule
+$m$ & $(0,\infty)$ & Public mean incumbent supply,
+$N^I\sim\operatorname{Pois}(m)$ & varied\\
+$\alpha$ & $[0,1]$ & Survival probability of a waiting incumbent & $1$\\
+$\gamma$ & $[0,\infty)$ & Fresh-entry intensity,
+$N^E\sim\operatorname{Pois}(\gamma m)$ & $0$\\
+$\beta$ & $(0,1]$ & Rider discount factor & $.8$\\
+$\delta$ & $(0,1]$ & Incumbent discount factor & $.8$\\
+$F$ & continuous CDF & Persistent incumbent and entrant cost distribution &
+$U[0,1]$\\
+$G$ & continuous CDF & Rider value distribution & $U[0,1]$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+All primitives and the committed menu are common knowledge; realized counts
+and types are latent except to the driver who owns each type.
+
+\begin{enumerate}[label=\textbf{Stage \arabic*.}]
+\item \textbf{Commitment.}  The platform observes $m$ and commits to
+$0\le p_1\le p_2\le1$; $p_2$ is available only after universal rejection.
+\item \textbf{Rider entry.}  The rider observes $v\sim G$ and chooses whether
+to post.
+\item \textbf{Incumbent response.}  A latent
+$N^I\sim\operatorname{Pois}(m)$ pool draws persistent costs $c_i\sim F$.
+Drivers simultaneously accept $p_1$ or wait without observing pool size or
+rival actions.
+\item \textbf{Assignment or public failure.}  One acceptor is selected
+uniformly.  Otherwise, universal rejection becomes public but does not reveal
+the count or costs.
+\item \textbf{Rider continuation.}  The rider cancels, repeats $p_1$, or
+activates $p_2$ using $v$, the menu, and the failure posterior.
+\item \textbf{Survival, entry, and terminal assignment.}  Each waiting
+incumbent survives independently with probability $\alpha$; independently,
+$N^E\sim\operatorname{Pois}(\gamma m)$ fresh drivers arrive.  At the active
+$p_j$, one acceptor is selected uniformly.  A selected incumbent receives
+$\delta(p_j-c_i)$ and a selected entrant receives $p_j-c_i$.
+\end{enumerate}
+
+The baseline figures set $\gamma=0$ to isolate strategic waiting.  The formal
+extension retains both screened surviving incumbents and unscreened fresh
+entrants; they cannot generally be collapsed into a single thickness scalar.
+
+\subsection{Cutoff-WPBE and menu solution}
+
+In an anonymous symmetric pure-cutoff WPBE, incumbents accept $p_1$ iff
+$c_i\le\ch$.  A candidate cutoff therefore determines both the failure
+posterior and the supply available after failure.  Poisson thinning gives
+\[
+\phi(x)=\frac{1-e^{-x}}x,\quad \phi(0)=1,\qquad
+\lambda_j(\ch)=m\{\alpha[F(p_j)-F(\ch)]+\gamma F(p_j)\},\qquad
+C_j(\ch)=1-e^{-\lambda_j(\ch)}.
+\]
+Here $\phi$ is a focal driver's expected assignment share.  In $\lambda_j$,
+$m\alpha[F(p_j)-F(\ch)]$ is the screened mass of surviving incumbents and
+$m\gamma F(p_j)$ is the unscreened entrant mass.  Their sum determines
+terminal coverage $C_j$.
+
+\paragraph{Rider continuation.}
+The rider posts iff $v\ge p_1$.  After universal rejection, she compares
+\[
+0,\qquad C_1(\ch)(\beta v-p_1),\qquad
+C_2(\ch)(\beta v-p_2).
+\]
+When $C_2(\ch)>C_1(\ch)$, repeat and rescue are equally valuable at
+\begin{equation}
+v^M(\ch)=
+\frac{p_2C_2(\ch)-p_1C_1(\ch)}
+{\beta[C_2(\ch)-C_1(\ch)]}.
+\tag{5}
+\end{equation}
+Thus the conditional rider masses are
+\[
+\eta^{\rm rep}(\ch)=
+\Pr\!\left\{\frac{p_1}{\beta}\le v\le v^M(\ch)\,\middle|\,v\ge p_1\right\},
+\qquad
+\eta^{\rm res}(\ch)=
+\Pr\!\left\{v>v^M(\ch)\,\middle|\,v\ge p_1\right\},
+\]
+with empty regions assigned zero mass.  If $C_2=C_1$, rescue adds no
+coverage and is unused.
+
+\paragraph{Driver cutoff.}
+Put $\eta^1=\eta^{\rm rep}$ and $\eta^2=\eta^{\rm res}$.  A focal incumbent
+of type $c$ compares immediate acceptance with discounted waiting:
+\begin{align}
+A(c;\ch)&=\phi(mF(\ch))(p_1-c),\nonumber\\
+W(c;\ch)&=\delta\alpha e^{-mF(\ch)}
+\sum_{j=1}^2\eta^j(\ch)\phi(\lambda_j(\ch))(p_j-c)^+.
+\tag{6}
+\end{align}
+The factors in $W$ are, in order, incumbent discounting, own survival,
+universal rejection by rivals, the probability of each rider continuation
+action, terminal assignment share, and terminal surplus.  An interior cutoff
+solves $A(\ch;\ch)=W(\ch;\ch)$; one-sided inequalities apply at $0$ and
+$p_1$.  In the uniform no-entry model this equation has a unique cutoff value
+for every menu.
+
+\paragraph{Completion and platform objective.}
+Once the cutoff and rider regions have been recovered, completion is
+\begin{equation}
+M_m(p_1,p_2;\ch)=(1-G(p_1))
+\left[1-e^{-mF(\ch)}+e^{-mF(\ch)}
+\{\eta^{\rm rep}C_1+\eta^{\rm res}C_2\}\right].
+\tag{7}
+\end{equation}
+The terms are posting, first-window completion, and failure followed by
+terminal completion.  The platform maximizes (7) only after imposing
+(5)--(6); this is the WPBE-constrained menu-design problem.
+
+For $F=G=U[0,1]$ and $\gamma=0$, put $k=\alpha m$ and
+\[
+S_m(\ch,p_2)=(\beta-p_2)\{1-e^{-k(p_2-\ch)}\},\qquad
+h_m(\ch)=\frac{e^{m\ch}-1}{\ch},\quad h_m(0)=m.
+\]
+The active branch admits an exact three-step reduction:
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.0cm]
+\item \textbf{Given $\ch$, solve $p_2$.}
+Rider switching makes continuation completion telescope to
+$S_m(\ch,p_2)/\beta$.  Its unique maximizer solves
+\[
+e^{k(\widehat p_2-\ch)}-1=k(\beta-\widehat p_2),\qquad
+\widehat p_2=
+\beta-\frac{W_0(e^{1+k(\beta-\ch)})-1}{k}.
+\]
+\item \textbf{Use driver indifference to solve $p_1$.}
+With $p_2=\widehat p_2$, equation (6) becomes
+\[
+(1-p_1)(p_1-\ch)
+=\frac{\delta S_m(\ch,\widehat p_2)}{\beta h_m(\ch)}.
+\]
+The root satisfying $\ch\le p_1\le\widehat p_2$ is
+\[
+\widehat p_1^\delta=
+\frac{1+\ch-
+\sqrt{(1-\ch)^2-\dfrac{4\delta S_m(\ch,\widehat p_2)}
+{\beta h_m(\ch)}}}{2}.
+\]
+\item \textbf{Optimize the remaining cutoff.}
+Substitution into (7) leaves
+\[
+J_{\delta,m}(\ch)=
+[1-\widehat p_1^\delta](1-e^{-m\ch})
++e^{-m\ch}\frac{S_m(\ch,\widehat p_2)}{\beta},
+\qquad \ch\in[0,\beta].
+\]
+\end{enumerate}
+Consequently,
+\[
+\ch^*(m)\in\arg\max_{\ch\in[0,\beta]}J_{\delta,m}(\ch),\qquad
+p_1^*(m)=\widehat p_1^\delta(\ch^*(m);m),\qquad
+p_2^*(m)=\widehat p_2(\ch^*(m);m).
+\]
+Thus both prices are obtained from the WPBE, not from an unconstrained price
+grid.  The optimized flat benchmark has
+\[
+p_F^*(m)=\frac{1+m-W_0(e^{1+m})}{m}.
+\]
+
+\section{Evidence boundary, extensions, and literature}
+
+\subsection{Established results and conjectures}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}L{2.3cm}X@{}}
+\toprule
+Status & Statement\\
+\midrule
+Established & In the uniform no-entry model, every menu has a unique cutoff
+value in the maintained WPBE class and the optimal menu reduces to the scalar
+problem above.  For $\beta\ge1/2$,
+$V(m)>0$ at every finite $m$, $V$ is continuous, and
+$V(m)\to0$ as $m\downarrow0$ and $m\to\infty$.  Hence at least one positive
+finite maximizer exists.\\
+Established limits & With $\alpha=1$, $\gamma=0$, and
+$\beta=\delta=.8$,
+\[
+\lim_{m\downarrow0}\frac{V(m)}m
+=M_1^*-\frac14
+=\frac{461-57\sqrt{57}}{3200}=.00958107.
+\]
+Thus the exact-one-driver gain is the thin-market coefficient.  For fixed
+positive $\alpha,\beta$ and $\gamma=0$, $V(m)\sim(\log m)/m$ in thick
+markets.\\
+Numerical evidence & The baseline curve has one located peak
+$\widehat m=9.718617$ with a $6.1566$ pp gain.  At
+$m=1,5,10,20$, the selected $\ch^*,p_1^*,p_2^*$ fall, while rider rescue mass
+and pool-level rescue coverage rise.\\
+Conjectures & For $\beta\ge1/2$ in the uniform no-entry model, $V(m)$ may be
+strictly single-peaked with a unique maximizer.  A monotone selection of
+$\ch^*(m),p_1^*(m),p_2^*(m)$ may also exist, but neither optimizer uniqueness
+nor global monotonicity is proved.  For $\beta<1/2$, an initial zero plateau
+already rules out strict single-peakedness in this form.\\
+Mixed supply & With $\alpha<1$ and $\gamma>0$, a small rescue increment
+strictly improves an optimized flat policy under an explicit rider-activity
+condition; when the condition fails strictly, the increment is unused.
+Holding continuation headcount or price-marginal capacity fixed, a larger
+incumbent share locally intensifies cutoff erosion.  Global menu design and
+the full shape of $V_{\alpha,\gamma}(m)$ remain open; composition effects on
+completion can be nonmonotone.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\clearpage
+\subsection{Position relative to the closest literature}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}L{4.3cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Literature & Existing mechanism & Additional object here\\
+\midrule
+\citet{LiKuo2013} & Dutch clock with uncertain bidder count &
+Private rider continuation and completion design\\
+\citet{Chen2012}; \citet{CorreaEtAl2016} &
+Strategic waiting and contingent preannouncement &
+Drivers wait for higher pay under assignment competition\\
+\citet{HuHuZhu2022} & Two-sided temporal response to surge pricing &
+Same-request failure-contingent commitment and posterior updating\\
+\citet{LeeLi2023} & Screened incumbents and later entrants in search &
+Posted payments with abandon, repeat, and rescue\\
+\citet{LoertscherMuirTaylor2022} & Optimal accumulation of market thickness &
+Value of rescue pricing while holding the same $m$ fixed\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The contribution is not two prices, Poisson supply, or strategic
+waiting separately.  It is their joint cutoff-WPBE design with latent realized
+competition, universal-rejection learning, private rider continuation,
+screened incumbents, unscreened entrants, and a completion objective.
+
+\paragraph{Empirical calibration placeholder.}
+A request-level calibration needs the announced $(p_1,p_2)$, a public
+pre-window thickness proxy, initial exposures and universal rejection, rider
+continuation, driver identities linking survivors to the first window, fresh
+entrant exposure, and final completion.  These fields identify or discipline
+$(m,\alpha,\gamma,F,G)$ and the dynamic responses governed by
+$(\beta,\delta)$.  The paper specifies this mapping but does not insert
+synthetic estimates as empirical findings.
+
+\renewcommand{\bibsection}{\paragraph{References.}}
+\begin{multicols}{2}
+\scriptsize
+\raggedcolumns
+\interlinepenalty=10000
+\setlength{\bibsep}{0pt}
+\begin{thebibliography}{99}
+\bibitem[Chen(2012)]{Chen2012} Chen, C.-H. 2012. Name your own price at
+Priceline.com: Strategic bidding and lockout periods. \emph{Review of Economic
+Studies} 79(4), 1341--1369.
+\bibitem[Correa et~al.(2016)]{CorreaEtAl2016} Correa, J., R. Montoya,
+C. Thraves. 2016. Contingent preannounced pricing policies with strategic
+consumers. \emph{Operations Research} 64(1), 251--272.
+\bibitem[Hu et~al.(2022)]{HuHuZhu2022} Hu, B., M. Hu, H. Zhu. 2022. Surge
+pricing and two-sided temporal responses in ride hailing. \emph{M\&SOM}
+24(1), 91--109.
+\bibitem[Lee and Li(2023)]{LeeLi2023} Lee, J., D. Li. 2023. Seller compound
+search for bidders. \emph{Journal of Industrial Economics} 71(4), 1004--1037.
+\bibitem[Li and Kuo(2013)]{LiKuo2013} Li, Z., C.-C. Kuo. 2013. Design of
+discrete Dutch auctions with an uncertain number of bidders. \emph{Annals of
+Operations Research} 211, 255--272.
+\bibitem[Loertscher et~al.(2022)]{LoertscherMuirTaylor2022} Loertscher, S.,
+E. Muir, P. G. Taylor. 2022. Optimal market thickness. \emph{Journal of
+Economic Theory} 200, 105383.
+\end{thebibliography}
+\end{multicols}
 
 \end{document}
