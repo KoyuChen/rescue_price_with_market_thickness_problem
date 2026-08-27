@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{pgfplots}
+\usepackage{graphicx,xcolor}
 \usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=1.18}
 \usepackage{float,enumitem,multicol,microtype}
@@ -28,6 +29,8 @@
 \newcommand{\regionkey}[2]{%
   \tikz[baseline=-0.45ex]{\draw[fill=#1,draw=black,line width=.25pt]
   (0,0) rectangle (.24,.15);}\,#2}
+
+\newcommand{\takeaway}[1]{\noindent\fbox{\parbox{.965\textwidth}{\small\textbf{Takeaway.} #1}}}
 
 \begin{document}
 
@@ -229,166 +232,108 @@ support a larger rescue region; less patient incumbents make waiting less
 attractive and increase the completion value of escalation.
 
 \clearpage
-\section{From one driver to latent market thickness}
+\section{Main numerical result: too thin, just right, too thick}
 
-\subsection{Thickness mechanism and prior}
+\subsection{The object we compare}
 
-Now only the public mean $m$ is known:
-$N^I\sim\operatorname{Pois}(m)$ is latent.  Therefore $m=1$ is not the
-publicly known $N=1$ benchmark.  At the same $m$, define
+From this page onward the realized incumbent count is latent:
+$N^I\sim\operatorname{Pois}(m)$.  Hence $m=1$ below is \emph{not} the
+publicly known $N=1$ benchmark on the first two pages.  At the same thickness,
 \[
-M_R^*(m)=\max_{0\le p_1\le p_2\le1}M_m(p_1,p_2),\qquad
-M_F^*(m)=\max_{p\in[0,1]}M_m(p,p),\qquad
+M_R^*(m)=\max_{p_1\le p_2}M_m(p_1,p_2),\qquad
+M_F^*(m)=\max_pM_m(p,p),\qquad
 V(m)=M_R^*(m)-M_F^*(m).
 \]
-Here $M_m$ is equilibrium completion.  Thus $100V(m)$ is the percentage-point
-gain from allowing the best rescue menu instead of the best flat price in the
-\emph{same} market.  It is not the marginal value of adding drivers.
+Thus $100V(m)$ is the percentage-point value of allowing an announced rescue
+price, holding the market fixed.  Every point is a deterministic equilibrium
+optimization, not Monte Carlo output.  The baseline is
+$F=G=U[0,1]$ and $(\alpha,\beta,\delta,\gamma)=(1,.8,.8,0)$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.94\textwidth]{../paper/formal/figures/theory_profiles.pdf}
+\vspace{-4pt}
+\caption{The full numerical profile.  Panels (a)--(c) globally re-optimize the
+menu at every $m$.  Panel (d) asks only whether a tiny rescue increment helps
+at the optimized flat price when survival and entry are added.}
+\label{fig:profiles}
+\vspace{-4pt}
+\end{figure}
+
+\takeaway{Rescue is a just-right instrument.  If the market is too thin,
+there is almost nobody left to rescue.  If it is too thick, flat pricing
+already completes almost every request.  The opportunity is in the middle:
+failure still happens, but failure leaves a useful screened backup pool.  In
+the baseline, the numerical maximum is $6.16$ pp at $m=9.72$.}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{@{}L{2.0cm}XXX@{}}
+\small
+\begin{tabularx}{.98\textwidth}{@{}L{1.8cm}XXX@{}}
 \toprule
-Region & Initial supply & Failure and backup pool & Prior for $V(m)$\\
+Market & What goes wrong at $p_1$ & What remains after failure & Rescue value\\
 \midrule
-Thin $m$ & Usually no incumbent & Little supply exists to rescue &
-Small; first order in $m$\\
-Middle $m$ & Initial failure remains material & Failure screens incumbents,
-while a useful backup pool often remains & Potentially largest\\
-Thick $m$ & Many potential acceptors & Optimized flat pricing already
-completes most requests & Small; tends to zero\\
+Too thin & Failure is common & Almost no backup supply & $V(m)\to0$\\
+Just right & Failure is still material & A useful screened pool & Largest\\
+Too thick & Failure is already rare & Backup is mostly redundant & $V(m)\to0$\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-The middle region contains the trade-off: a larger pool raises terminal
-coverage, but the announced $p_2$ also induces more incumbents to wait.  The
-direction is therefore an equilibrium-design question rather than a mechanical
-coverage comparison.
+\noindent\textit{Claim boundary.} The endpoint limits and existence of a
+positive finite maximizer are proved.  The visually clean single hump and the
+unique numerical peak are not asserted as global theorems.
 
-\subsection{Deterministic numerical evidence}
+\clearpage
+\section{Numerical anatomy: the 6.16 pp is a net gain, not free coverage}
 
-The reported simulation is deterministic equilibrium optimization, not Monte
-Carlo.  For every $m$, the procedure solves the unique cutoff-WPBE for each
-candidate menu, reduces the active branch to one scalar cutoff, checks all
-stationary points and boundaries, and compares the result with the optimized
-flat price.  The baseline is
-\[
-F=G=U[0,1],\qquad (\alpha,\beta,\delta,\gamma)=(1,.8,.8,0).
-\]
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-  width=.88\textwidth,
-  height=5.1cm,
-  xmode=log,
-  log basis x=10,
-  xmin=.01,xmax=10000,
-  ymin=0,ymax=6.7,
-  xlabel={market thickness $m$ (log scale)},
-  ylabel={$100V(m)$ (percentage points)},
-  xtick={.01,.1,1,10,100,1000,10000},
-  xticklabels={$10^{-2}$,$10^{-1}$,$1$,$10$,$10^2$,$10^3$,$10^4$},
-  ytick={0,1,2,3,4,5,6},
-  axis x line*=bottom,
-  axis y line*=left,
-  axis line style={black,semithick},
-  tick style={black},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
-  ymajorgrids=true,
-  grid style={black!10},
-  clip=false
-]
-\addplot[black,line width=1pt,mark=none] coordinates {
-(.01,.00965650) (.03,.02941466) (.1,.10298843) (.3,.34520582)
-(.5,.62236762) (1,1.38833324) (2,2.87273023) (3,4.03321898)
-(5,5.40029926) (7.5,6.04105637) (9,6.14663343) (9.5,6.15571941)
-(9.718617,6.15658515) (10,6.15523463) (12.5,6.05650260)
-(15,5.87342794) (20,5.44368995) (30,4.66713974)
-(50,3.62538949) (100,2.39359797) (300,1.11386706)
-(1000,.44038496) (10000,.06481155)
-};
-\addplot[only marks,black,mark=*,mark size=1.6pt] coordinates {
-(1,1.38833324) (5,5.40029926) (10,6.15523463) (20,5.44368995)
-};
-\addplot[only marks,mark=o,mark size=2.8pt,black,fill=white]
-coordinates {(9.718617,6.15658515)};
-\draw[black!55,dashed,thin]
-  (axis cs:9.718617,0) -- (axis cs:9.718617,6.15658515);
-\node[anchor=south east,font=\scriptsize,align=right]
-  at (axis cs:9.718617,6.24)
-  {$\widehat m=9.72$\\$100V(\widehat m)=6.16$ pp};
-\node[font=\scriptsize] at (axis cs:.10,.85) {thin};
-\node[font=\scriptsize] at (axis cs:9.5,4.9) {middle};
-\node[font=\scriptsize] at (axis cs:950,.95) {thick};
-\end{axis}
-\end{tikzpicture}
-\caption{Optimized rescue value across thickness.  Positivity, continuity,
-and both endpoint limits are analytical; the connected values and apparent
-single hump are numerical.}
-\label{fig:Vm}
-\end{figure}
+\takeaway{At $m=10$, announcing rescue loses $7.31$ pp now but recovers
+$13.46$ pp after universal rejection.  The net gain is $6.16$ pp.  This
+current-loss/continuation-recovery decomposition is the mechanism.}
 
 \begin{center}
+\small
 \begin{tabular}{@{}rrrrrrr@{}}
 \toprule
-$m$ & $\ch^*$ & $p_1^*$ & $p_2^*$ &
-$M_R^*$ & $M_F^*$ & $100V(m)$\\
+$m$ & cutoff $\ch^*$ & $p_1^*$ & $p_2^*$ &
+$M_R^*$ & $M_F^*$ & gain (pp)\\
 \midrule
-1  & .320340 & .391928 & .546378 & .213230 & .199346 & 1.3883 pp\\
-5  & .197789 & .236946 & .413098 & .597813 & .543810 & 5.4003 pp\\
-10 & .132863 & .155922 & .310306 & .755154 & .693602 & 6.1552 pp\\
-20 & .080430 & .092538 & .208054 & .862392 & .807956 & 5.4437 pp\\
+1  & .320340 & .391928 & .546378 & .213230 & .199346 & 1.3883\\
+5  & .197789 & .236946 & .413098 & .597813 & .543810 & 5.4003\\
+10 & .132863 & .155922 & .310306 & .755154 & .693602 & 6.1552\\
+20 & .080430 & .092538 & .208054 & .862392 & .807956 & 5.4437\\
 \bottomrule
 \end{tabular}
 \end{center}
-
-The largest value located is at
-$(\widehat m,\ch^*,p_1^*,p_2^*)=(9.718617,.135370,.159002,.314745)$.
-Across the four highlighted markets, the selected cutoff and both prices fall,
-yet rescue coverage rises because the platform draws from a larger pool.
+\vspace{-5pt}
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
-  xbar stacked,
-  width=.82\textwidth,
-  height=3.35cm,
-  xmin=0,xmax=90,
-  ymin=-.5,ymax=1.5,
-  bar width=12pt,
+  xbar stacked,width=.82\textwidth,height=3.2cm,
+  xmin=0,xmax=90,ymin=-.5,ymax=1.5,bar width=12pt,
   xlabel={unconditional completion probability (\%)},
-  ytick={0,1},
-  yticklabels={Optimal rescue,Best flat},
-  axis x line*=bottom,
-  axis y line*=left,
-  y axis line style={draw=none},
-  y tick style={draw=none},
+  ytick={0,1},yticklabels={Optimal rescue,Best flat},
+  axis x line*=bottom,axis y line*=left,
+  y axis line style={draw=none},y tick style={draw=none},
   xtick={0,10,20,30,40,50,60,70,80},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
-  legend style={
-    at={(0.5,1.18)},anchor=south,draw=none,
-    legend columns=2,font=\scriptsize,
-    /tikz/every even column/.append style={column sep=8pt}
-  }
+  tick label style={font=\scriptsize},label style={font=\small},
+  legend style={at={(0.5,1.18)},anchor=south,draw=none,
+  legend columns=2,font=\scriptsize,
+  /tikz/every even column/.append style={column sep=8pt}}
 ]
-\addplot[fill=black!70,draw=black] coordinates
-  {(62.0532,0) (69.3602,1)};
+\addplot[fill=black!70,draw=black] coordinates {(62.0532,0) (69.3602,1)};
 \addlegendentry{complete now}
-\addplot[fill=black!18,draw=black] coordinates
-  {(13.4622,0) (0,1)};
+\addplot[fill=black!18,draw=black] coordinates {(13.4622,0) (0,1)};
 \addlegendentry{complete after failure}
 \node[font=\scriptsize,anchor=west] at (axis cs:76.3,0) {$75.5154\%$};
 \node[font=\scriptsize,anchor=west] at (axis cs:70.1,1) {$69.3602\%$};
 \end{axis}
 \end{tikzpicture}
-\caption{At $m=10$, rescue sacrifices $7.3070$ pp of immediate completion and
-recovers $13.4622$ pp after failure, for a net gain of $6.1552$ pp.}
-\label{fig:m10-decomposition}
+\vspace{-5pt}
+\caption{Completion accounting at $m=10$.}
+\label{fig:decomposition}
+\vspace{-5pt}
 \end{figure}
 
 \begin{figure}[H]
@@ -396,333 +341,355 @@ recovers $13.4622$ pp after failure, for a net gain of $6.1552$ pp.}
 \begin{tikzpicture}
 \begin{groupplot}[
   group style={group size=2 by 1,horizontal sep=.9cm},
-  width=.46\textwidth,
-  height=4.65cm,
-  xmode=log,
-  log basis x=10,
-  xmin=.85,xmax=23,
-  ymin=0,ymax=1,
-  xtick={1,5,10,20},
-  xticklabels={$1$,$5$,$10$,$20$},
-  ytick={0,.2,.4,.6,.8,1},
-  stack plots=y,
-  area style,
-  axis on top,
-  ymajorgrids,
-  grid style={white,line width=.25pt},
-  tick label style={font=\scriptsize},
-  label style={font=\small},
+  width=.46\textwidth,height=4.3cm,
+  xmode=log,log basis x=10,xmin=.85,xmax=23,ymin=0,ymax=1,
+  xtick={1,5,10,20},xticklabels={$1$,$5$,$10$,$20$},
+  ytick={0,.2,.4,.6,.8,1},stack plots=y,area style,axis on top,
+  ymajorgrids,grid style={white,line width=.25pt},
+  tick label style={font=\scriptsize},label style={font=\small},
   title style={font=\small,yshift=-1mm},
   every axis plot/.append style={draw=black,line width=.35pt,mark=none}
 ]
-\nextgroupplot[title={Rider type map},xlabel={market thickness $m$ (log scale)},ylabel={rider value $v$}]
+\nextgroupplot[title={Rider: what happens after failure?},xlabel={thickness $m$},ylabel={rider value $v$}]
 \addplot[fill=black!78] coordinates {(1,.391928) (5,.236946) (10,.155922) (20,.092538)} \closedcycle;
 \addplot[fill=black!53] coordinates {(1,.097982) (5,.059237) (10,.038981) (20,.023134)} \closedcycle;
 \addplot[fill=black!30] coordinates {(1,.293176) (5,.301516) (10,.256619) (20,.188316)} \closedcycle;
 \addplot[fill=black!10] coordinates {(1,.216915) (5,.402301) (10,.548478) (20,.696012)} \closedcycle;
-\nextgroupplot[title={Driver type map},xlabel={market thickness $m$ (log scale)},yticklabels=\empty]
+\nextgroupplot[title={Driver: accept now or wait?},xlabel={thickness $m$},yticklabels=\empty]
 \addplot[fill=black!78] coordinates {(1,.320340) (5,.197789) (10,.132863) (20,.080430)} \closedcycle;
 \addplot[fill=black!53] coordinates {(1,.071587) (5,.039157) (10,.023059) (20,.012107)} \closedcycle;
 \addplot[fill=black!30] coordinates {(1,.154450) (5,.176151) (10,.154384) (20,.115517)} \closedcycle;
 \addplot[fill=black!10] coordinates {(1,.453622) (5,.586902) (10,.689694) (20,.791946)} \closedcycle;
 \end{groupplot}
 \end{tikzpicture}
-\vspace{1pt}
+\vspace{-1pt}
 
 {\scriptsize Rider:\quad
 \regionkey{black!78}{no post}\quad
 \regionkey{black!53}{cancel}\quad
-\regionkey{black!30}{repeat $p_1$}\quad
-\regionkey{black!10}{rescue $p_2$}\par
+\regionkey{black!30}{repeat}\quad
+\regionkey{black!10}{rescue}\par
 Driver:\quad
 \regionkey{black!78}{accept now}\quad
 \regionkey{black!53}{accept either later}\quad
 \regionkey{black!30}{rescue only}\quad
 \regionkey{black!10}{never accept}}
-\caption{Type regions at $m=1,5,10,20$.  Each vertical slice partitions
-$[0,1]$.  Rider rescue mass grows from $.2169$ to $.6960$, while pool-level
-rescue coverage rises from $.2023$ to $.9221$.  Type shares are not path
-probabilities.}
-\label{fig:thickness-regions}
+\vspace{-4pt}
+\caption{As $m$ grows, the rider's rescue region expands, but the driver's
+accept-now region shrinks.  These are type shares; the upper chart converts the
+resulting paths into completion.}
+\label{fig:type-maps}
 \end{figure}
 
-\clearpage
-\section{Formal thickness model}
-
-\subsection{Primitives and timing}
-
-The numerical pattern motivates a model that separates the size and
-composition of continuation supply.
-
-\begin{center}
-\begin{tabularx}{\textwidth}{@{}L{1.6cm}L{2.0cm}XL{3.0cm}@{}}
-\toprule
-Param. & Domain & Economic object & Baseline numerics\\
-\midrule
-$m$ & $(0,\infty)$ & Public mean incumbent supply,
-$N^I\sim\operatorname{Pois}(m)$ & varied\\
-$\alpha$ & $[0,1]$ & Survival probability of a waiting incumbent & $1$\\
-$\gamma$ & $[0,\infty)$ & Fresh-entry intensity,
-$N^E\sim\operatorname{Pois}(\gamma m)$ & $0$\\
-$\beta$ & $(0,1]$ & Rider discount factor & $.8$\\
-$\delta$ & $(0,1]$ & Incumbent discount factor & $.8$\\
-$F$ & continuous CDF & Persistent incumbent and entrant cost distribution &
-$U[0,1]$\\
-$G$ & continuous CDF & Rider value distribution & $U[0,1]$\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-All primitives and the committed menu are common knowledge; realized counts
-and types are latent except to the driver who owns each type.
-
-\begin{enumerate}[label=\textbf{Stage \arabic*.}]
-\item \textbf{Commitment.}  The platform observes $m$ and commits to
-$0\le p_1\le p_2\le1$; $p_2$ is available only after universal rejection.
-\item \textbf{Rider entry.}  The rider observes $v\sim G$ and chooses whether
-to post.
-\item \textbf{Incumbent response.}  A latent
-$N^I\sim\operatorname{Pois}(m)$ pool draws persistent costs $c_i\sim F$.
-Drivers simultaneously accept $p_1$ or wait without observing pool size or
-rival actions.
-\item \textbf{Assignment or public failure.}  One acceptor is selected
-uniformly.  Otherwise, universal rejection becomes public but does not reveal
-the count or costs.
-\item \textbf{Rider continuation.}  The rider cancels, repeats $p_1$, or
-activates $p_2$ using $v$, the menu, and the failure posterior.
-\item \textbf{Survival, entry, and terminal assignment.}  Each waiting
-incumbent survives independently with probability $\alpha$; independently,
-$N^E\sim\operatorname{Pois}(\gamma m)$ fresh drivers arrive.  At the active
-$p_j$, one acceptor is selected uniformly.  A selected incumbent receives
-$\delta(p_j-c_i)$ and a selected entrant receives $p_j-c_i$.
-\end{enumerate}
-
-The baseline figures set $\gamma=0$ to isolate strategic waiting.  The formal
-extension retains both screened surviving incumbents and unscreened fresh
-entrants; they cannot generally be collapsed into a single thickness scalar.
-
-\subsection{Cutoff-WPBE and menu solution}
-
-In an anonymous symmetric pure-cutoff WPBE, incumbents accept $p_1$ iff
-$c_i\le\ch$.  A candidate cutoff therefore determines both the failure
-posterior and the supply available after failure.  Poisson thinning gives
-\[
-\phi(x)=\frac{1-e^{-x}}x,\quad \phi(0)=1,\qquad
-\lambda_j(\ch)=m\{\alpha[F(p_j)-F(\ch)]+\gamma F(p_j)\},\qquad
-C_j(\ch)=1-e^{-\lambda_j(\ch)}.
-\]
-Here $\phi$ is a focal driver's expected assignment share.  In $\lambda_j$,
-$m\alpha[F(p_j)-F(\ch)]$ is the screened mass of surviving incumbents and
-$m\gamma F(p_j)$ is the unscreened entrant mass.  Their sum determines
-terminal coverage $C_j$.
-
-\paragraph{Rider continuation.}
-The rider posts iff $v\ge p_1$.  After universal rejection, she compares
-\[
-0,\qquad C_1(\ch)(\beta v-p_1),\qquad
-C_2(\ch)(\beta v-p_2).
-\]
-When $C_2(\ch)>C_1(\ch)$, repeat and rescue are equally valuable at
-\begin{equation}
-v^M(\ch)=
-\frac{p_2C_2(\ch)-p_1C_1(\ch)}
-{\beta[C_2(\ch)-C_1(\ch)]}.
-\tag{5}
-\end{equation}
-Thus the conditional rider masses are
-\[
-\eta^{\rm rep}(\ch)=
-\Pr\!\left\{\frac{p_1}{\beta}\le v\le v^M(\ch)\,\middle|\,v\ge p_1\right\},
-\qquad
-\eta^{\rm res}(\ch)=
-\Pr\!\left\{v>v^M(\ch)\,\middle|\,v\ge p_1\right\},
-\]
-with empty regions assigned zero mass.  If $C_2=C_1$, rescue adds no
-coverage and is unused.
-
-\paragraph{Driver cutoff.}
-Put $\eta^1=\eta^{\rm rep}$ and $\eta^2=\eta^{\rm res}$.  A focal incumbent
-of type $c$ compares immediate acceptance with discounted waiting:
-\begin{align}
-A(c;\ch)&=\phi(mF(\ch))(p_1-c),\nonumber\\
-W(c;\ch)&=\delta\alpha e^{-mF(\ch)}
-\sum_{j=1}^2\eta^j(\ch)\phi(\lambda_j(\ch))(p_j-c)^+.
-\tag{6}
-\end{align}
-The factors in $W$ are, in order, incumbent discounting, own survival,
-universal rejection by rivals, the probability of each rider continuation
-action, terminal assignment share, and terminal surplus.  An interior cutoff
-solves $A(\ch;\ch)=W(\ch;\ch)$; one-sided inequalities apply at $0$ and
-$p_1$.  In the uniform no-entry model this equation has a unique cutoff value
-for every menu.
-
-\paragraph{Completion and platform objective.}
-Once the cutoff and rider regions have been recovered, completion is
-\begin{equation}
-M_m(p_1,p_2;\ch)=(1-G(p_1))
-\left[1-e^{-mF(\ch)}+e^{-mF(\ch)}
-\{\eta^{\rm rep}C_1+\eta^{\rm res}C_2\}\right].
-\tag{7}
-\end{equation}
-The terms are posting, first-window completion, and failure followed by
-terminal completion.  The platform maximizes (7) only after imposing
-(5)--(6); this is the WPBE-constrained menu-design problem.
-
-For $F=G=U[0,1]$ and $\gamma=0$, put $k=\alpha m$ and
-\[
-S_m(\ch,p_2)=(\beta-p_2)\{1-e^{-k(p_2-\ch)}\},\qquad
-h_m(\ch)=\frac{e^{m\ch}-1}{\ch},\quad h_m(0)=m.
-\]
-The active branch admits an exact three-step reduction:
-\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.0cm]
-\item \textbf{Given $\ch$, solve $p_2$.}
-Rider switching makes continuation completion telescope to
-$S_m(\ch,p_2)/\beta$.  Its unique maximizer solves
-\[
-e^{k(\widehat p_2-\ch)}-1=k(\beta-\widehat p_2),\qquad
-\widehat p_2=
-\beta-\frac{W_0(e^{1+k(\beta-\ch)})-1}{k}.
-\]
-\item \textbf{Use driver indifference to solve $p_1$.}
-With $p_2=\widehat p_2$, equation (6) becomes
-\[
-(1-p_1)(p_1-\ch)
-=\frac{\delta S_m(\ch,\widehat p_2)}{\beta h_m(\ch)}.
-\]
-The root satisfying $\ch\le p_1\le\widehat p_2$ is
-\[
-\widehat p_1^\delta=
-\frac{1+\ch-
-\sqrt{(1-\ch)^2-\dfrac{4\delta S_m(\ch,\widehat p_2)}
-{\beta h_m(\ch)}}}{2}.
-\]
-\item \textbf{Optimize the remaining cutoff.}
-Substitution into (7) leaves
-\[
-J_{\delta,m}(\ch)=
-[1-\widehat p_1^\delta](1-e^{-m\ch})
-+e^{-m\ch}\frac{S_m(\ch,\widehat p_2)}{\beta},
-\qquad \ch\in[0,\beta].
-\]
-\end{enumerate}
-Consequently,
-\[
-\ch^*(m)\in\arg\max_{\ch\in[0,\beta]}J_{\delta,m}(\ch),\qquad
-p_1^*(m)=\widehat p_1^\delta(\ch^*(m);m),\qquad
-p_2^*(m)=\widehat p_2(\ch^*(m);m).
-\]
-Thus both prices are obtained from the WPBE, not from an unconstrained price
-grid.  The optimized flat benchmark has
-\[
-p_F^*(m)=\frac{1+m-W_0(e^{1+m})}{m}.
-\]
-
-\section{Evidence boundary, extensions, and literature}
-
-\subsection{Established results and conjectures}
-
-\begin{center}
-\begin{tabularx}{\textwidth}{@{}L{2.3cm}X@{}}
-\toprule
-Status & Statement\\
-\midrule
-Established & In the uniform no-entry model, every menu has a unique cutoff
-value in the maintained WPBE class and the optimal menu reduces to the scalar
-problem above.  For $\beta\ge1/2$,
-$V(m)>0$ at every finite $m$, $V$ is continuous, and
-$V(m)\to0$ as $m\downarrow0$ and $m\to\infty$.  Hence at least one positive
-finite maximizer exists.\\
-Established limits & With $\alpha=1$, $\gamma=0$, and
-$\beta=\delta=.8$,
-\[
-\lim_{m\downarrow0}\frac{V(m)}m
-=M_1^*-\frac14
-=\frac{461-57\sqrt{57}}{3200}=.00958107.
-\]
-Thus the exact-one-driver gain is the thin-market coefficient.  For fixed
-positive $\alpha,\beta$ and $\gamma=0$, $V(m)\sim(\log m)/m$ in thick
-markets.\\
-Numerical evidence & The baseline curve has one located peak
-$\widehat m=9.718617$ with a $6.1566$ pp gain.  At
-$m=1,5,10,20$, the selected $\ch^*,p_1^*,p_2^*$ fall, while rider rescue mass
-and pool-level rescue coverage rise.\\
-Conjectures & For $\beta\ge1/2$ in the uniform no-entry model, $V(m)$ may be
-strictly single-peaked with a unique maximizer.  A monotone selection of
-$\ch^*(m),p_1^*(m),p_2^*(m)$ may also exist, but neither optimizer uniqueness
-nor global monotonicity is proved.  For $\beta<1/2$, an initial zero plateau
-already rules out strict single-peakedness in this form.\\
-Mixed supply & With $\alpha<1$ and $\gamma>0$, a small rescue increment
-strictly improves an optimized flat policy under an explicit rider-activity
-condition; when the condition fails strictly, the increment is unused.
-Holding continuation headcount or price-marginal capacity fixed, a larger
-incumbent share locally intensifies cutoff erosion.  Global menu design and
-the full shape of $V_{\alpha,\gamma}(m)$ remain open; composition effects on
-completion can be nonmonotone.\\
-\bottomrule
-\end{tabularx}
-\end{center}
+\noindent The table adds a second intuition: both optimal prices fall with
+$m$.  More drivers let the platform lower payments, while the probability that
+at least one eligible driver remains after failure still rises.
 
 \clearpage
-\subsection{Position relative to the closest literature}
+\section{Comparative statics: three levers, three simple stories}
+
+\takeaway{Rescue works best when riders are willing to stay, rejected drivers
+are likely to remain available, and drivers do not value waiting too much:
+high $\beta$, high $\alpha$, and lower $\delta$.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.97\textwidth]{../paper/formal/figures/theory_sensitivity.pdf}
+\vspace{-5pt}
+\caption{Every curve re-solves the cutoff, both prices, and the optimized flat
+benchmark.  These are design comparisons, not fixed-menu perturbations.}
+\label{fig:sensitivity}
+\vspace{-4pt}
+\end{figure}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{@{}L{3.6cm}L{4.3cm}>{\raggedright\arraybackslash}X@{}}
+\small
+\begin{tabularx}{.98\textwidth}{@{}L{2.5cm}L{3.8cm}X@{}}
 \toprule
-Literature & Existing mechanism & Additional object here\\
+Lever & What moves in the figure & Plain-language mechanism\\
 \midrule
-\citet{LiKuo2013} & Dutch clock with uncertain bidder count &
-Private rider continuation and completion design\\
-\citet{Chen2012}; \citet{CorreaEtAl2016} &
-Strategic waiting and contingent preannouncement &
-Drivers wait for higher pay under assignment competition\\
-\citet{HuHuZhu2022} & Two-sided temporal response to surge pricing &
-Same-request failure-contingent commitment and posterior updating\\
-\citet{LeeLi2023} & Screened incumbents and later entrants in search &
-Posted payments with abandon, repeat, and rescue\\
-\citet{LoertscherMuirTaylor2022} & Optimal accumulation of market thickness &
-Value of rescue pricing while holding the same $m$ fixed\\
+Rider patience $\beta$ & Gain rises and the peak moves right &
+More riders still value service when the rescue window arrives.  For
+$\beta<1/2$, rescue can be unused in sufficiently thin markets.\\
+Driver patience $\delta$ & Gain falls as $\delta$ rises &
+The promised higher price becomes a more attractive reason to reject now.\\
+Incumbent survival $\alpha$ & Gain rises as $\alpha$ rises &
+More of the drivers screened by rejection remain available for rescue.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.95\textwidth]{../paper/formal/figures/design_maps.pdf}
+\vspace{-5pt}
+\caption{At $m=10$, the high-gain region also supports a larger optimized
+price increment.  Each pixel is a newly solved equilibrium design problem.}
+\label{fig:maps}
+\vspace{-5pt}
+\end{figure}
+
+\noindent\textit{How to read the maps.} Move right: riders wait more willingly,
+so rescue can be larger.  Move up: drivers wait more willingly too, which
+partly offsets the rider benefit.  This is why one patience parameter cannot
+stand in for the other.
+
+\clearpage
+\section{Adversarial diagnostics: a small rescue is robust; a large one is not}
+
+\takeaway{The uniform no-entry result is globally sharp, but the portable
+insight is local.  With a concave cost distribution, a tiny escalation helps
+and a large escalation hurts.  With entry, more backup drivers need not make
+the rescue option active.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.97\textwidth]{../paper/formal/figures/boundary_diagnostics.pdf}
+\vspace{-5pt}
+\caption{Left: for $F(c)=\sqrt c$, fixed $p_1=.06$, a small rescue helps but
+$p_2=.17$ loses $0.4872$ pp relative to flat at the same $p_1$.  Right: fresh
+entry can move the system across the rider-activity boundary.}
+\label{fig:boundaries}
+\vspace{-3pt}
+\end{figure}
+
+\begin{center}
+\small
+\begin{tabularx}{.98\textwidth}{@{}L{3.0cm}L{4.8cm}X@{}}
+\toprule
+Hostile question & Numerical answer & Safe conclusion\\
+\midrule
+What if supply is concave? &
+Large $p_2$ creates so much waiting that completion reverses &
+Local improvement survives; global same-$p_1$ dominance requires structure
+such as convex $F$.\\
+What if fresh drivers enter? &
+Entrants improve raw backup coverage, yet can make the rider's marginal rescue
+option redundant &
+Do not replace the state by $(\alpha+\gamma)m$.\\
+What if the cutoff is not unique? &
+One nonuniform example has three transversal cutoffs with a $6.61$ pp
+completion spread &
+Report conservative value as the minimum across equilibria.\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-\noindent The contribution is not two prices, Poisson supply, or strategic
-waiting separately.  It is their joint cutoff-WPBE design with latent realized
-competition, universal-rejection learning, private rider continuation,
-screened incumbents, unscreened entrants, and a completion objective.
+\subsection{Why ten drivers later is not a sufficient statistic}
 
-\paragraph{Empirical calibration placeholder.}
-A request-level calibration needs the announced $(p_1,p_2)$, a public
-pre-window thickness proxy, initial exposures and universal rejection, rider
-continuation, driver identities linking survivors to the first window, fresh
-entrant exposure, and final completion.  These fields identify or discipline
-$(m,\alpha,\gamma,F,G)$ and the dynamic responses governed by
-$(\beta,\delta)$.  The paper specifies this mapping but does not insert
-synthetic estimates as empirical findings.
+Universal rejection screens incumbents: the survivors have $c>\ch$.  Fresh
+entrants are unscreened draws from $F$.  Even if two continuation pools have
+the same expected headcount, they induce different waiting today.
+
+\begin{center}
+\small
+\begin{tabularx}{.96\textwidth}{@{}L{3.1cm}XX@{}}
+\toprule
+Who is in the backup pool? & Effect on today's cutoff & Effect after failure\\
+\midrule
+More screened incumbents & Stronger strategic erosion: today's drivers own
+the future option & Can help or hurt as $\delta$ changes\\
+More unscreened entrants & No first-window response from the new drivers &
+Adds competition, but can make rescue unnecessary\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The completion ranking can therefore flip with driver patience even
+when continuation headcount or price-marginal capacity is held fixed.  This is
+the economically relevant composition result.
+
+\clearpage
+\section{What makes the plots credible: the short theorem chain}
+
+\takeaway{The optimizer is not drawing a nice curve from a price grid.  It
+first solves how the announcement changes acceptance, then chooses the menu.
+In the uniform no-entry core this entire equilibrium-constrained problem is
+exactly one-dimensional.}
+
+\begin{center}
+\begin{tabularx}{.98\textwidth}{@{}L{2.7cm}L{5.5cm}X@{}}
+\toprule
+Step & Intuitive question & Formal protection\\
+\midrule
+1. Cutoff foundation & Who accepts now? &
+Every anonymous symmetric independent WPBE is almost everywhere a cutoff;
+the cutoff set is nonempty and compact.\\
+2. Fixed-menu response & Does one announced menu generate one prediction? &
+In the uniform no-entry core, the equilibrium cutoff value is unique.\\
+3. Best rescue at cutoff $a$ & If the marginal driver is known, how high
+should $p_2$ be? &
+A unique continuation envelope is obtained in Lambert-$W$ form.\\
+4. Recover $p_1$ & What first price makes that driver exactly indifferent? &
+Driver indifference pins down the feasible $p_1$.\\
+5. Choose $a$ & Which amount of current acceptance is worth preserving? &
+Maximize one scalar objective $J_{\delta,m}(a)$ over $a\in[0,\beta]$.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\[
+\boxed{\quad a
+\ \longrightarrow\ 
+\widehat p_2(a)
+\ \longrightarrow\
+\widehat p_1^\delta(a)
+\ \longrightarrow\
+J_{\delta,m}(a)
+\ \longrightarrow\
+\max_{a\in[0,\beta]}J_{\delta,m}(a)\quad}
+\]
+\noindent This chain is the reason every point in Figures
+\ref{fig:profiles}--\ref{fig:maps} is a global equilibrium design within the
+core, rather than a heuristic search.
+
+\subsection{Exactly which visual statements are proved?}
+
+\begin{center}
+\small
+\begin{tabularx}{.98\textwidth}{@{}L{2.9cm}L{5.5cm}X@{}}
+\toprule
+Picture & Established statement & What remains numerical\\
+\midrule
+Rescue above flat & If $\beta\ge1/2$ and $\alpha>0$, optimized rescue strictly
+dominates optimized flat for every finite $m$ &
+No export to arbitrary $F$ or global mixed entry.\\
+Left endpoint & Thin gain is linear for $\beta>1/2,\delta<1$; quadratic at
+$\delta=1$; cubic or quartic at $\beta=1/2$; zero on an initial interval when
+$\beta<1/2$ &
+The public-$N=1$ result on pp.\ 1--2 is a promised diagnostic, not the core
+global theorem.\\
+Right endpoint & $V(m)\sim(\log m)/m$, because rescue closes the residual gap
+faster than flat pricing &
+No finite-$m$ accuracy claim from the asymptotic formula.\\
+Interior high point & Continuity, positivity, and the two zero limits imply at
+least one positive finite maximizer &
+No uniqueness and no strict single-peakedness claim.\\
+Parameter curves & Every displayed point re-solves the equilibrium and menu &
+No global monotonicity theorem for $a^*,p_1^*,p_2^*$.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\textbf{Paper order.}
+Cutoff foundation $\rightarrow$ unique uniform response $\rightarrow$
+one-dimensional global design $\rightarrow$ thickness endpoints.  Concave
+supply, multiplicity, and mixed entry then appear as boundary tests.  This
+keeps the central claim readable and prevents local extensions from being
+mistaken for global theorems.
+
+\clearpage
+\section{Literature position: one joint mechanism, six neighboring pieces}
+
+\takeaway{\textbf{Positioning sentence.} The paper is not another two-period
+price model.  It designs an \emph{ex ante committed payment for the same
+request after universal rejection}, when realized competition is latent,
+rejection screens the continuation pool, and the announcement itself changes
+current acceptance.}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}L{2.5cm}L{3.7cm}L{4.0cm}X@{}}
+\toprule
+Nearest paper & Their central state and policy & What is absent from that
+paper but central here & Precise non-claim\\
+\midrule
+\citet{CorreaEtAl2016} &
+Contingent preannounced prices with strategic consumer waiting; policy
+optimization must respect equilibrium and possible multiplicity &
+Supplier-side assignment competition, universal-rejection learning, and a
+same-request completion objective &
+Contingent preannouncement is not new.\\
+\citet{LiKuo2013} &
+Revenue-optimal Dutch bid levels with a Poisson number of bidders &
+An endogenous driver cutoff that responds to the announced rescue payment &
+Poisson competition and dynamic prices are not new.\\
+\citet{LeeLi2023} &
+Seller search across long- and short-lived bidders, with search intensity and
+reserve design &
+Screened incumbents and unscreened entrants jointly feeding back into today's
+posted-payment acceptance &
+Mixing incumbent and entrant supply is not new.\\
+\citet{HuHuZhu2022} &
+Surge paths with two-sided temporal responses at the system level &
+A higher payment triggered by failure of the \emph{same} request and the
+posterior created by all drivers rejecting &
+This is not a general theory of surge pricing.\\
+\citet{WuEtAl2022} &
+Budgeted dynamic driver bonuses evaluated offline and in the field &
+An announced, credible future bonus that drivers can strategically wait for &
+Observed bonus programs do not identify our commitment channel.\\
+\citet{LoertscherMuirTaylor2022} &
+The designer chooses how much market thickness to accumulate &
+The platform holds $m$ fixed and chooses rescue versus flat pricing &
+$V(m)$ is not the marginal value of adding drivers.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{What we borrow from their numerical architecture}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{.98\textwidth}{@{}L{3.1cm}L{5.0cm}X@{}}
+\toprule
+Reference practice & Their useful discipline & How it appears on pp.\ 3--7\\
+\midrule
+Correa et al. &
+Solve equilibrium and selection before comparing policy classes &
+Rescue and flat are both re-optimized; multiplicity gets a $6.61$ pp stress
+test and an explicit conservative selection rule.\\
+Li--Kuo &
+Plot optimal policy paths and parameter maps, not only objective values &
+We show $p_1^*(m),p_2^*(m)$, $V(m)$, and the $(\beta,\delta)$ design maps.\\
+Hu--Hu--Zhu &
+Move from theorem to regime map to boundary movement and extension tests &
+The active/inactive entry map and concave-$F$ reversal show exactly where the
+core result stops.\\
+Wu et al. &
+Compare policies, decompose accepted volume by stage, and show saturation &
+The $m=10$ now/later accounting explains the net $6.16$ pp; thin and thick
+limits show saturation.\\
+Lee--Li &
+Use small exact examples as mechanism microscopes tied to later propositions &
+The promised public-one-driver calculation stays on pp.\ 1--2, then yields to
+latent thickness and composition.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\textbf{Bottom line.}
+The closest synthesis is Correa's commitment and waiting, Li--Kuo's latent
+Poisson competition, Lee--Li's continuation composition, and Hu--Hu--Zhu's
+two-sided temporal response.  The incremental object is their \emph{joint}
+equilibrium-design structure under public failure, together with the optimized
+completion comparison against flat pricing.
+
+\paragraph{Next numerical layer.}
+Profit/rider-payment, global $(\alpha,\gamma)$ design, and commitment
+credibility would broaden the managerial claim without changing this theorem
+chain.
 
 \renewcommand{\bibsection}{\paragraph{References.}}
-\begin{multicols}{2}
-\scriptsize
+\begin{multicols}{3}
+\fontsize{6.8}{7.4}\selectfont
 \raggedcolumns
 \interlinepenalty=10000
 \setlength{\bibsep}{0pt}
 \begin{thebibliography}{99}
-\bibitem[Chen(2012)]{Chen2012} Chen, C.-H. 2012. Name your own price at
-Priceline.com: Strategic bidding and lockout periods. \emph{Review of Economic
-Studies} 79(4), 1341--1369.
-\bibitem[Correa et~al.(2016)]{CorreaEtAl2016} Correa, J., R. Montoya,
-C. Thraves. 2016. Contingent preannounced pricing policies with strategic
-consumers. \emph{Operations Research} 64(1), 251--272.
-\bibitem[Hu et~al.(2022)]{HuHuZhu2022} Hu, B., M. Hu, H. Zhu. 2022. Surge
-pricing and two-sided temporal responses in ride hailing. \emph{M\&SOM}
-24(1), 91--109.
-\bibitem[Lee and Li(2023)]{LeeLi2023} Lee, J., D. Li. 2023. Seller compound
-search for bidders. \emph{Journal of Industrial Economics} 71(4), 1004--1037.
-\bibitem[Li and Kuo(2013)]{LiKuo2013} Li, Z., C.-C. Kuo. 2013. Design of
-discrete Dutch auctions with an uncertain number of bidders. \emph{Annals of
-Operations Research} 211, 255--272.
-\bibitem[Loertscher et~al.(2022)]{LoertscherMuirTaylor2022} Loertscher, S.,
-E. Muir, P. G. Taylor. 2022. Optimal market thickness. \emph{Journal of
-Economic Theory} 200, 105383.
+\bibitem[Correa et~al.(2016)]{CorreaEtAl2016} Correa, Montoya, Thraves.
+2016. Contingent preannounced pricing. \emph{OR} 64(1), 251--272.
+\bibitem[Hu et~al.(2022)]{HuHuZhu2022} Hu, Hu, Zhu. 2022. Surge pricing and
+two-sided temporal responses. \emph{M\&SOM} 24(1), 91--109.
+\bibitem[Lee and Li(2023)]{LeeLi2023} Lee, Li. 2023. Seller compound search
+for bidders. \emph{JIE} 71(4), 1004--1037.
+\bibitem[Li and Kuo(2013)]{LiKuo2013} Li, Kuo. 2013. Discrete Dutch auctions
+with uncertain bidder count. \emph{AOR} 211, 255--272.
+\bibitem[Loertscher et~al.(2022)]{LoertscherMuirTaylor2022} Loertscher, Muir,
+Taylor. 2022. Optimal market thickness. \emph{JET} 200, 105383.
+\bibitem[Wu et~al.(2022)]{WuEtAl2022} Wu et al. 2022. Dynamic pricing with
+participant recruitment. arXiv:2202.10695.
 \end{thebibliography}
 \end{multicols}
 
