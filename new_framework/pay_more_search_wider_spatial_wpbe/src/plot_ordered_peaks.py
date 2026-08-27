@@ -41,13 +41,13 @@ def main() -> None:
 
     # Illustrative common-branch rates. The theorem holds for every ordered
     # tuple; these values are chosen only to make the separation visible.
-    r, lam0, lamf, lame = 0.15, 0.10, 0.35, 1.20
+    phi, lam0, lamf, lame = 0.15, 0.10, 0.35, 1.20
     m = np.geomspace(0.25, 16.0, 600)
-    delta_p = np.exp(-r * m) * (np.exp(-lam0 * m) - np.exp(-lamf * m))
-    delta_s = np.exp(-r * m) * (np.exp(-lamf * m) - np.exp(-lame * m))
-    m_p = closed_form_peak(r + lam0, r + lamf)
-    m_s = closed_form_peak(r + lamf, r + lame)
-    separator = 1.0 / (r + lamf)
+    delta_p = np.exp(-phi * m) * (np.exp(-lam0 * m) - np.exp(-lamf * m))
+    delta_s = np.exp(-phi * m) * (np.exp(-lamf * m) - np.exp(-lame * m))
+    m_p = closed_form_peak(phi + lam0, phi + lamf)
+    m_s = closed_form_peak(phi + lamf, phi + lame)
+    separator = 1.0 / (phi + lamf)
 
     plt.rcParams.update(
         {
@@ -91,7 +91,7 @@ def main() -> None:
     ax.text(m_s, ax.get_ylim()[1] * 0.95, r"$m_S^*$", color=BLUE, ha="center", va="top")
     ax.text(m_p, ax.get_ylim()[1] * 0.95, r"$m_P^*$", color=ORANGE, ha="center", va="top")
     ax.text(separator, ax.get_ylim()[1] * 0.70,
-            r"separator $1/(r+\lambda_F)$", color=GRAY, ha="center", va="top",
+            r"separator $1/(\varphi+\lambda_F)$", color=GRAY, ha="center", va="top",
             rotation=90, fontsize=8)
     ax.set_title("B. Common Poisson-WPBE branch: closed form")
     ax.set_ylabel("Benchmark incremental completion (points)")

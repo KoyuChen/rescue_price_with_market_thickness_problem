@@ -39,6 +39,21 @@ one-driver benchmark.  The market-design comparison now adds a fresh Poisson
 cohort in every second window and asks whether the platform should reprice the
 same catchment, widen the catchment, or do both.}
 
+The exogenous environment and the platform's commitment are different objects:
+\[
+\underbrace{\theta=(m,\beta,\delta;\tau,\omega,\bar s)}_{\text{environment}}
+\qquad\text{and}\qquad
+\underbrace{\mu=(p_1,p_2,s)}_{\text{platform choice}}.
+\tag{5}
+\]
+Here $m$ is the expected number of drivers in each core Poisson cohort;
+$\beta$ and $\delta$ are the rider's and incumbent driver's delay factors;
+$\tau$ is the outer pickup-cost slope; $\omega$ is incumbent retention and
+eligibility; and $\bar s$ is the feasible search cap.  The stylized prices
+$p_1,p_2$ are paid by the rider and received by the assigned driver.  Crucially,
+$s$ is \emph{chosen by the platform} in the expanded-search class; only its
+cap and cost technology are exogenous.
+
 \subsection{Three strictly nested mechanism classes}
 
 \begin{center}
@@ -70,7 +85,7 @@ Their feasible sets are
 \mathcal M_F=\{(p_1,p_2,1):p_2\ge p_1\}
 \subset
 \mathcal M_E=\{(p_1,p_2,s):p_2\ge p_1,\ 1\le s\le\bar s\}.
-\tag{5}
+\tag{6}
 \]
 The flat benchmark has one optimized price; it is not a fixed-$p_1$ policy.
 
@@ -83,7 +98,7 @@ multiplier $s$ means
 R(s)=R_0\sqrt{s},\qquad
 N_2^O(s)\sim\mathrm{Pois}((s-1)m),\qquad
 N_2^C\perp N_2^O(s).
-\tag{6}
+\tag{7}
 \]
 Hence the expanded pool is $\mathrm{Pois}(sm)$ and the core is its Poisson
 thinning with retention probability $1/s$.  At $s=4$, for example, area is
@@ -91,14 +106,20 @@ quadrupled but radius only doubles.
 
 \subsection{The object plotted below}
 
-For market environment $\theta=(m,\beta,\delta)$, each line reports a separate
+For each $\theta$ (varying $m,\beta,\delta$ while holding
+$\tau,\omega,\bar s$ fixed), each line reports a separate
 equilibrium-constrained optimum
 \[
 V_k(\theta)=\max_{\mu\in\mathcal M_k}
 \min_{a\in\mathcal E^{\WPBE}(\mu;\theta)}M(\mu,a),
 \qquad k\in\{0,F,E\}.
-\tag{7}
+\tag{8}
 \]
+Here $a$ is the incumbent acceptance cutoff,
+$\mathcal E^{\WPBE}(\mu;\theta)$ is the full set of cutoff-WPBE cutoffs, and
+$M(\mu,a)$ is ex-ante completion probability (including the rider's posting
+decision).  The inner minimum is the stated conservative equilibrium-selection
+rule.
 The nesting makes $V_E\ge V_F\ge V_0$; the substantive question is where each
 increment is large after all permitted controls are re-optimized.
 
@@ -120,7 +141,7 @@ cutoff-WPBE.  Only then does the platform compare mechanisms.}
 \toprule
 Stage & Action & Information\\
 \midrule
-0 & Platform commits to $\mu=(p_1,p_2,s)$; a rider of value $v$ posts iff
+0 & Platform commits to $\mu=(p_1,p_2,s)$; a rider with $v\sim U[0,1]$ posts iff
 $v\ge p_1$. & $m,\beta,\delta$, the cost laws, and $\mu$ are public.\\
 1 & $N_1\sim\mathrm{Pois}(m)$ incumbents see this order and choose accept
 $p_1$ or reject-and-wait. & Each sees the order, both prices, $s$, and own
@@ -138,19 +159,21 @@ is paid only by the selected driver.\\
 
 \subsection{Winner-only pickup cost and terminal coverage}
 
-Write area rank as $u=(r/R_0)^2$.  Core pickup is absorbed into $c\sim U[0,1]$;
+Let $c\sim F=U[0,1]$ be persistent order cost and
+$u=(\ell/R_0)^2$ be area rank, where $\ell$ is pickup distance.  Core pickup is
+absorbed into $c$;
 the extra cost from expansion is
 \[
 d(u)=\tau(\sqrt u-1)_+.
 \]
-A fresh driver's response payoff is
-$h(\lambda)[p-c-d(u)]$, where
+A fresh driver's response payoff, when total volunteer intensity is $\Lambda$,
+is $h(\Lambda)[p-c-d(u)]$, where
 $h(z)=(1-e^{-z})/z$.  Because the same assignment probability multiplies
 payment and pickup cost,
 \[
 \text{respond}\iff c+d(u)\le p,\qquad
 e(p,s)=m\int_0^s F\!\left(p-d(u)\right)du.
-\tag{8}
+\tag{9}
 \]
 There is no sunk relocation cost and no fresh-entry fixed point.  Let a
 rejector remain available with probability $\alpha$ and remain eligible
@@ -158,11 +181,13 @@ conditional on availability with probability $\chi$; write
 $\omega=\alpha\chi$.  Given cutoff $a$, let $s_1=1,s_2=s$ and
 \[
 I_j^\omega(a)=\omega m[F(p_j)-F(a)]_+,\quad
-\lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),\quad C_j(a)=1-e^{-\lambda_j(a)}.
-\tag{9}
+\Lambda_j(a)=I_j^\omega(a)+e(p_j,s_j),\quad C_j(a)=1-e^{-\Lambda_j(a)}.
+\tag{10}
 \]
-The rider compares $0$, $C_1(\beta v-p_1)$, and $C_2(\beta v-p_2)$; let the
-resulting conditional action masses be $\eta_0(a),\eta_1(a),\eta_2(a)$.
+Here $I_j^\omega,e,\Lambda_j,C_j$ denote retained-incumbent intensity, fresh
+intensity, total intensity, and coverage.  The rider compares $0$,
+$C_1(\beta v-p_1)$, and $C_2(\beta v-p_2)$; the induced conditional abandon,
+repeat, and rescue masses are $\eta_0(a),\eta_1(a),\eta_2(a)$.
 
 \subsection{Strict cutoff-WPBE test and the outer problem}
 
@@ -170,26 +195,24 @@ For a proposed aggregate cutoff, a type-$c$ incumbent's accept-minus-wait
 payoff is
 \[
 D(c;a)=h(mF(a))(p_1-c)-\delta e^{-mF(a)}
-\omega\sum_{j=1}^2\eta_j(a)h(\lambda_j(a))(p_j-c)_+.
-\tag{10}
+\omega\sum_{j=1}^2\eta_j(a)h(\Lambda_j(a))(p_j-c)_+.
+\tag{11}
 \]
 Together with the rider and fresh-driver strategies above, $a$ is a cutoff-WPBE
 iff beliefs obey Bayes' rule and
 \[
 D(c;a)\ge0\ \forall c<a,\qquad D(c;a)\le0\ \forall c>a,
-\tag{11}
+\tag{12}
 \]
 with indifference at an interior cutoff.  Since $D$ is piecewise affine with
-kinks only at $p_1,p_2$, the numerics verify (11) exactly at interval endpoints,
+kinks only at $p_1,p_2$, the numerics verify (12) exactly at interval endpoints,
 not on a sampled type grid.  The computation respects the nesting
 \[
 \text{fix }p_1\ \longrightarrow\
 \max_{p_2,s}\min_{a\in\mathcal E^{\WPBE}}M
 \ \longrightarrow\ \max_{p_1},
-\tag{12}
+\tag{13}
 \]
-and enumerates the entire cutoff correspondence before conservative selection.
-The archived curves set $\omega=1$; lower retention is an explicit primitive.
 \endgroup
 
 \clearpage
@@ -214,7 +237,7 @@ $\omega m[F(p_1)-F(a)]_+$ and core fresh volunteers $e(p_1,1)$.  Under rescue,
 it contains $\omega m[F(p_2)-F(a)]_+$ and $e(p_2,1)$.  For uniform costs,
 \[
 e(p,1)=mp.
-\tag{13}
+\tag{14}
 \]
 Thus increasing $p_2$ works through two supply channels, but it also increases
 the continuation value of rejecting the focal order and may lower $a$.
@@ -246,32 +269,37 @@ orange comparator separately re-optimizes $(p_1,p_2,1)$.}
 \label{fig:expanded-story}
 \end{figure}
 
-For $F=U[0,1]$, $p\in[0,1]$, and $\tau>0$, define
+For $F=U[0,1]$, $p\in[0,1]$, and $\tau>0$, define the largest responsive
+radius ratio
 \[
-R(p,s)=\min\{\sqrt{s},1+p/\tau\}.
+z(p,s)=\min\{\sqrt{s},1+p/\tau\}.
 \]
 Poisson thinning gives the closed-form fresh volunteer intensity
 \[
-e(p,s)=mp+m(p+\tau)(R^2-1)
--\frac{2m\tau}{3}(R^3-1).
-\tag{14}
+e(p,s)=mp+m(p+\tau)(z^2-1)
+-\frac{2m\tau}{3}(z^3-1).
+\tag{15}
 \]
 Its marginal outer supply is
 \[
 \frac{\partial e}{\partial s}
 =m[p-\tau(\sqrt{s}-1)]_+,\qquad
 s^{\mathrm{sat}}(p)=(1+p/\tau)^2.
-\tag{15}
+\tag{16}
 \]
 Thus pickup friction creates a physical response saturation.  It does not make
 notifications economically free.  If expanded rescue is executed with
 ex-ante probability $q_R$, expected extra contacts are
 \[
 Q^O=q_Rm(s-1),\qquad J_\kappa=BM-\kappa Q^O.
-\tag{16}
+\tag{17}
 \]
-Completion with $\kappa=0$ is a maximal-completion frontier; an economic scope
-optimum requires $\kappa>0$ or an equivalent notification budget.
+Here $q_R$ is the ex-ante probability that expanded rescue is executed, $B$
+is value per completion, and $\kappa$ is opportunity cost per extra contact.
+Completion with $\kappa=0$ is a maximal-completion frontier.  Because $s=1$
+remains feasible, optimized expanded search cannot underperform fixed reach;
+an actual no-expansion choice $s^*=1$ requires $\kappa>0$, an equivalent
+notification budget, or an inactive rescue branch.
 
 At $(\beta,\delta,\tau)=(.8,.8,.25)$, the incremental value of expanded search
 over optimized fixed rescue peaks at $12.64$ percentage points near $m=1$ and
@@ -298,9 +326,10 @@ ordering.  The left panel is evidence for the re-optimized model, not its proof.
 \includegraphics[width=.995\textwidth]{../figures/figure5_ordered_peaks.pdf}
 \caption{Left: every point separately re-solves the inner cutoff-WPBE and
 re-optimizes all controls available in that mechanism class.  Right: one
-illustrative set of effective rates for the closed-form theorem; the ordering
-holds for every $0\le\lambda_0<\lambda_F<\lambda_E$ with
-$r+\lambda_0>0$.}
+illustrative set of per-unit equilibrium rates for the adjacent price and
+search gains.  Here $\varphi$ is the first-window accepting-driver rate and
+$\lambda_k$ the terminal willing-driver rate in class $k\in\{0,F,E\}$; the
+next page states the rate ordering used by the theorem.}
 \label{fig:ordered-peaks}
 \end{figure}
 
@@ -340,21 +369,27 @@ of argmax sets under an explicit branch-stability condition.}
 \noindent\colorbox{softblue}{\parbox{.965\textwidth}{
 \textbf{Theorem (ordered peaks of nested rescue controls).}
 Fix one active cutoff-WPBE and rider-continuation branch.  Suppose first-window
-failure contributes $e^{-rm}$ and the nested terminal mechanisms induce
-$0\le\lambda_0<\lambda_F<\lambda_E$, with $r+\lambda_0>0$.  Then
+accepting-driver intensity is $\varphi m$, so universal rejection has
+probability $e^{-\varphi m}$.  For $k\in\{0,F,E\}$, let $\lambda_k$ be the
+equilibrium terminal willing-driver rate \emph{per unit of $m$}, conditional
+on first-window failure; hence total terminal intensity is
+$\Lambda_k(m)=\lambda_km$ and terminal failure is $e^{-\lambda_km}$.
+Suppose $0\le\lambda_0<\lambda_F<\lambda_E$ and
+$\varphi+\lambda_0>0$.  Let $\Delta_P^0$ denote fixed rescue minus flat, and
+$\Delta_S^0$ expanded search minus fixed rescue.  Then
 \[
-\Delta_P^0=e^{-rm}(e^{-\lambda_0m}-e^{-\lambda_Fm}),\qquad
-\Delta_S^0=e^{-rm}(e^{-\lambda_Fm}-e^{-\lambda_Em})
+\Delta_P^0=e^{-\varphi m}(e^{-\lambda_0m}-e^{-\lambda_Fm}),\qquad
+\Delta_S^0=e^{-\varphi m}(e^{-\lambda_Fm}-e^{-\lambda_Em})
 \]
 are strictly single-peaked, with
 \[
-m_P^*=\frac{\log[(r+\lambda_F)/(r+\lambda_0)]}{\lambda_F-\lambda_0},\qquad
-m_S^*=\frac{\log[(r+\lambda_E)/(r+\lambda_F)]}{\lambda_E-\lambda_F},
+m_P^*=\frac{\log[(\varphi+\lambda_F)/(\varphi+\lambda_0)]}{\lambda_F-\lambda_0},\qquad
+m_S^*=\frac{\log[(\varphi+\lambda_E)/(\varphi+\lambda_F)]}{\lambda_E-\lambda_F},
 \]
 and
 \[
-\boxed{\ m_S^*<1/(r+\lambda_F)<m_P^*\ }.
-\tag{17}
+\boxed{\ m_S^*<1/(\varphi+\lambda_F)<m_P^*\ }.
+\tag{18}
 \]}}
 
 \begin{multicols}{2}
@@ -366,8 +401,8 @@ and
 m^*(a,b)=\frac{\log(b/a)}{b-a},\qquad \frac1b<m^*(a,b)<\frac1a.
 \]
 Apply this to the adjacent pairs
-$(r+\lambda_0,r+\lambda_F)$ and
-$(r+\lambda_F,r+\lambda_E)$.
+$(\varphi+\lambda_0,\varphi+\lambda_F)$ and
+$(\varphi+\lambda_F,\varphi+\lambda_E)$.
 
 For the optimized model define
 \[
@@ -377,7 +412,7 @@ For the optimized model define
 The desired statement is
 $\sup\mathcal S<\inf\mathcal P$.  A sufficient condition is that both optimized
 gaps remain uniformly within half of their benchmark separation margins at
-$\bar m=1/(r+\lambda_F)$.  This condition permits multiple optimal policies;
+$\bar m=1/(\varphi+\lambda_F)$.  This condition permits multiple optimal policies;
 it does not assume differentiable envelopes.
 
 \subsection{Adversarial boundary}
@@ -410,13 +445,16 @@ inner cutoff-WPBE is made explicit.
 \noindent\colorbox{softgray}{\parbox{.965\textwidth}{\small
 \textbf{Economic closure for search.}
 On a common branch, let added scope create willing rate $\sigma(s)$ and contact
-rate $n(s)$.  Under $J_\kappa=BM-\kappa Q^O$, an interior scope satisfies
+rate $n(s)$, both per unit of $m$, with $\sigma(1)=0$.  Under
+$J_\kappa=BM-\kappa Q^O$, an interior scope satisfies
 \[
 \Psi(s;m)=
 \frac{B e^{-[\lambda_F+\sigma(s)]m}\sigma'(s)}
 {\kappa n'(s)}=1.
 \]
-Expand for $\Psi>1$ and contract for $\Psi<1$.  With $\kappa=0$, the solution
+If the branch objective is concave in $s$, no expansion is optimal exactly
+when $\Psi(1;m)\le1$; expand for $\Psi>1$ and stop at an interior crossing or
+the cap.  With $\kappa=0$, the solution
 is governed by the search cap or physical saturation, so it should be reported
 as the maximal-completion benchmark.}}
 \endgroup

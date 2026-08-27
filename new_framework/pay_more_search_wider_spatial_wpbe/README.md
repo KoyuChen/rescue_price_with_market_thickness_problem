@@ -114,10 +114,12 @@ global uniqueness theorem.
 
 On a common Poisson-WPBE branch, the adjacent gains from adding contingent pay
 and then expanded search are strictly single-peaked in market thickness.  Their
-closed-form peaks satisfy
+closed-form peaks satisfy, where $\varphi$ is the equilibrium first-window
+accepting-driver rate per unit of thickness and $\lambda_k$ is the terminal
+willing-driver rate per unit under mechanism class $k$,
 
 \[
-m_S^*<\frac1{r+\lambda_F}<m_P^*.
+m_S^*<\frac1{\varphi+\lambda_F}<m_P^*.
 \]
 
 This branchwise theorem does not automatically apply to the re-optimized value

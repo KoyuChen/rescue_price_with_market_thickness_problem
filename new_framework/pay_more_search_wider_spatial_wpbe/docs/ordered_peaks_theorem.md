@@ -40,14 +40,18 @@ archived numerical slice normalizes `omega=1`; the solver now supports any
 
 Fix a symmetric cutoff-WPBE branch on which the rider's terminal action does
 not change across the three mechanisms and all effective intensities scale
-linearly with thickness.  Let `r` be the common first-window failure hazard and
-let
+linearly with thickness.  Let `phi` be the equilibrium first-window
+accepting-driver rate per unit of `m`, so universal rejection has probability
+`exp(-phi*m)`.  Let
 
 \[
 0\le\lambda_0<\lambda_F<\lambda_E
 \]
 
-be the terminal effective rates under the three nested mechanism classes.
+be the terminal willing-driver rates per unit of `m` under the three nested
+mechanism classes.  Thus total terminal intensity in class `k` is
+`Lambda_k(m)=lambda_k*m`, and conditional terminal failure is
+`exp(-lambda_k*m)`.
 The rate increments are reduced-form equilibrium objects on this branch; they
 already include incumbent retention, core fresh supply, and outer fresh supply.
 
@@ -59,32 +63,32 @@ Suppose
 
 \[
 0\le\lambda_0<\lambda_F<\lambda_E,
-\qquad r+\lambda_0>0.
+\qquad \varphi+\lambda_0>0.
 \]
 
 Define the adjacent incremental completion gains
 
 \[
 \Delta_P^0(m)
-=e^{-rm}\left(e^{-\lambda_0m}-e^{-\lambda_Fm}\right),
+=e^{-\varphi m}\left(e^{-\lambda_0m}-e^{-\lambda_Fm}\right),
 \]
 
 \[
 \Delta_S^0(m)
-=e^{-rm}\left(e^{-\lambda_Fm}-e^{-\lambda_Em}\right).
+=e^{-\varphi m}\left(e^{-\lambda_Fm}-e^{-\lambda_Em}\right).
 \]
 
 Both gains are strictly single-peaked on `m>0`.  Their unique maximizers are
 
 \[
 m_P^*
-=\frac{\log[(r+\lambda_F)/(r+\lambda_0)]}
+=\frac{\log[(\varphi+\lambda_F)/(\varphi+\lambda_0)]}
 {\lambda_F-\lambda_0},
 \]
 
 \[
 m_S^*
-=\frac{\log[(r+\lambda_E)/(r+\lambda_F)]}
+=\frac{\log[(\varphi+\lambda_E)/(\varphi+\lambda_F)]}
 {\lambda_E-\lambda_F},
 \]
 
@@ -92,7 +96,7 @@ and they obey the strict order
 
 \[
 \boxed{
-m_S^*<\frac{1}{r+\lambda_F}<m_P^*}.
+m_S^*<\frac{1}{\varphi+\lambda_F}<m_P^*}.
 \]
 
 Thus the incremental value of expanded search peaks in a strictly thinner
@@ -135,19 +139,19 @@ One way to see these inequalities is to write
 whose integrand lies strictly between `1/b` and `1/a`.  Applying the result to
 
 \[
-(a,b)=(r+\lambda_0,r+\lambda_F)
+(a,b)=(\varphi+\lambda_0,\varphi+\lambda_F)
 \]
 
 and then to
 
 \[
-(a,b)=(r+\lambda_F,r+\lambda_E)
+(a,b)=(\varphi+\lambda_F,\varphi+\lambda_E)
 \]
 
 gives
 
 \[
-m_P^*>\frac1{r+\lambda_F}>m_S^*.
+m_P^*>\frac1{\varphi+\lambda_F}>m_S^*.
 \qquad\square
 \]
 
@@ -201,7 +205,7 @@ Define the full outer value gaps
 Let
 
 \[
-\bar m=\frac1{r+\lambda_F},
+\bar m=\frac1{\varphi+\lambda_F},
 \]
 
 and define the benchmark separation margins
@@ -327,6 +331,24 @@ An interior scope obeys the scalar index condition
 Search should expand when `Psi>1` and contract when `Psi<1`.  If
 `kappa*n(s)>=B*sigma(s)` for every feasible `s`, then
 `1-e^{-x}<=x` implies `G_kappa(s;m)<=0`: extra search is never worthwhile.
+More sharply, suppose `sigma` is nondecreasing and concave, `sigma(1)=0`, and
+`n(s)=s-1`.  Then `G_kappa` is concave in `s`, so its lower-bound corner is
+characterized exactly by
+
+\[
+s^*=1
+\quad\Longleftrightarrow\quad
+\kappa\ge B e^{-\lambda_Fm}\sigma'(1).
+\]
+
+In the spatial-thinning model, `sigma'(1)=F(p_2)` (`=p_2` for uniform driver
+costs).  Hence any positive notification cost eventually selects no expansion
+as the fixed-reach terminal pool becomes sufficiently thick:
+
+\[
+\boxed{\kappa\ge B e^{-\lambda_Fm}F(p_2)\quad\Longrightarrow\quad s^*=1.}
+\]
+
 For zero `kappa`, the first-order condition disappears and the optimum is
 governed by the search cap or physical response saturation, exactly as a
 sophisticated reader would expect.
