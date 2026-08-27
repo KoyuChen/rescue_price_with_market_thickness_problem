@@ -862,63 +862,6 @@ why (10) uses a conservative minimum and why the unrestricted design problem
 retains a supremum.  Neither multiplicity nor concavity affects the exact
 uniform no-entry results below.
 
-\section{A One-Rider/One-Driver Benchmark}
-\label{sec:onedriver}
-
-Before making the driver count latent, consider exactly one publicly known
-driver, uniform $v$ and $c$, no entry, and certain continuation availability.
-For an active menu $0\le p_1<p_2<\beta$, the driver's WPBE cutoff is
-\[
- a(p_1,p_2)=\left[p_1-
- \frac{\delta(p_2-p_1)(\beta-p_2)}
- {\beta(1-p_1)-\delta(\beta-p_2)}\right]^+,              \tag{O1}
-\]
-and equilibrium completion is
-\[
- M_1(p_1,p_2)=(1-p_1)a+
- \frac{(\beta-p_2)(p_2-a)}\beta.                         \tag{O2}
-\]
-Equation (O1) comes from the marginal driver's accept-versus-wait
-indifference; the cutoff is not chosen by the platform.
-
-Fixing a cutoff does not by itself make the midpoint terminal price optimal,
-because the induced first payment also moves.  The useful scalar object is the
-binding terminal-coverage envelope.  The proof shows that every global
-optimum above the flat benchmark lies on that envelope.  Define
-\[
- \Delta(a)=(1-a)^2-\frac\delta\beta(\beta-a)^2,
-\]
-\[
- \widehat p_2(a)=\frac{\beta+a}{2},\qquad
- \widehat p_1(a)=\frac{1+a-\sqrt{\Delta(a)}}2,            \tag{O3}
-\]
-and
-\[
- J_1(a)=
- \frac{a[1-a+\sqrt{\Delta(a)}]}2
- +\frac{(\beta-a)^2}{4\beta}.                            \tag{O4}
-\]
-
-\begin{proposition}[Exact one-driver design]
-\label{prop:onedriver}
-The optimal completion probability is
-\[
- M_1^*=\max\left\{\frac14,\ \max_{a\in[0,\beta]}J_1(a)\right\}. \tag{O5}
-\]
-If $\beta\le1/2$ or $\delta=1$, the value is the flat benchmark $1/4$.
-If $\beta>1/2$ and $\delta<1$, $J_1$ has a unique interior maximizer and
-implements $\widehat p_1(a)<\widehat p_2(a)$.
-\end{proposition}
-
-At $\beta=\delta=0.8$, the equilibrium-design solution is
-\[
- (a^*,p_1^*,p_2^*)=(0.382475,0.463746,0.591238),
-\]
-and completion rises from $25.0000\%$ under the best flat price to
-$25.9581\%$.  The known one-driver benchmark isolates intertemporal screening;
-the latent Poisson model adds uncertain assignment competition and makes
-market thickness a design state.
-
 \section{Global menu design without fresh entry}
 \label{sec:global}
 
@@ -1499,6 +1442,9 @@ Figure~\ref{fig:theoryprofiles} and Table~\ref{tab:selectedm} illustrate the
 uniform model at $\alpha=1$ and $\beta=\delta=0.8$.  These values are chosen
 to display the mechanism.  Each thickness point re-solves the equilibrium
 cutoff and then optimizes $p_2$ conditional on $p_1$ before optimizing $p_1$.
+Figure~\ref{fig:sensitivity} repeats that full optimization while varying
+rider patience, incumbent patience, and survival.  It is therefore a
+policy-class comparison, rather than the response to holding one menu fixed.
 
 \begin{figure}
 \FIGURE
@@ -1523,6 +1469,41 @@ local gain can reflect an inactive rescue mass.\label{fig:theoryprofiles}}
 $a^*$ is the equilibrium first-period cutoff and $100V(m)$ is the completion
 gain in percentage points.}
 \end{table}
+
+\begin{figure}
+\FIGURE
+{\includegraphics[width=\textwidth]{figures/theory_sensitivity.pdf}}
+{Optimized rescue gains across demand and supply primitives.
+Each curve re-solves the equilibrium cutoff and both payments at every
+thickness.  Unless varied in a panel, parameters are
+$\alpha=1$ and $\beta=\delta=0.8$, with $\gamma=0$.
+Higher rider patience and incumbent survival enlarge the attainable gain;
+greater incumbent patience reduces it because waiting becomes more
+attractive.\label{fig:sensitivity}}
+{}
+\end{figure}
+
+Figure~\ref{fig:boundaries} visualizes two boundaries that the baseline
+profile alone cannot show.  Panel (a) uses the exact concave-CDF example from
+Section~\ref{sec:generalrescue}.  A small rescue is beneficial, as the local
+theorem predicts, but the comparison reverses once the rescue increase is
+large.  Panel (b) plots the mixed-supply activity condition from
+Section~\ref{sec:localentry}; fresh entry can make repeating the old payment
+so effective that no positive rider mass activates a marginal rescue.
+
+\begin{figure}
+\FIGURE
+{\includegraphics[width=\textwidth]{figures/boundary_diagnostics.pdf}}
+{Where the rescue comparison changes sign or becomes inactive.
+Panel (a) fixes $F(c)=\sqrt c$, $G(v)=v$,
+$(m,\alpha,\beta,\delta,\gamma)=(.5,.75,.3,1,0)$, and $p_1=.06$;
+the dotted line marks $p_2=.17$.  The plotted value is the conservative
+minimum across numerical cutoff roots.  Panel (b) plots
+$\mathcal A_{\alpha,\gamma}(p)$ at $m=5$, $p=.2$, and $\alpha=.6$;
+the blue region satisfies the strict activity condition.
+\label{fig:boundaries}}
+{}
+\end{figure}
 
 \section{Extension: Surviving Incumbents and Fresh Driver Entry}
 \label{sec:localentry}
@@ -1919,6 +1900,42 @@ local-rescue analysis, whereas the global menu and thickness theorems impose
 $\gamma=0$.  General distributions need not deliver a unique cutoff, and no
 unique maximizing thickness is asserted even in the uniform core.
 
+\paragraph{Completion, contribution margin, and rider cost.}
+Completion is the appropriate primitive objective when the platform faces a
+service-level target, an unfilled-request penalty, or a downstream value that
+is approximately constant across completed requests.  It is not a claim that
+every completion-improving menu raises profit.  Let $C_t$ be the event of
+completion in window $t$, let $r_t$ be the platform's contribution from such
+a completion before any platform-funded driver bonus, and let $s_t$ be that
+bonus.  The corresponding accounting objective is
+\[
+ \Pi(p_1,p_2)=(r_1-s_1)\Pr(C_1)+(r_2-s_2)\Pr(C_2).
+\]
+Our objective sets the two net weights equal and positive.  A rescue gain
+therefore translates directly to profit when payments are rider-funded and
+per-completion margins are stable, but can reverse when the platform funds a
+large second-window bonus or delayed service has a much lower margin.  Rider
+cost is not absent from the model: higher payments change posting and
+continuation through private value $v$.  What remains outside the paper is a
+normative surplus calculation that assigns social weights to transfers,
+waiting, and failed service.  Figures~\ref{fig:sensitivity}--\ref{fig:boundaries}
+accordingly report completion, not an implicit profit or welfare claim.
+
+\paragraph{When commitment is credible.}
+The strategic-waiting channel requires the complete failure-contingent menu
+to be visible before the first response window and mechanically honored
+after failure.  Credible implementations include an order card that displays
+both payments and the trigger, a platform rule that automatically changes the
+payment after a fixed broadcast window, or a contractual campaign schedule
+whose second-window payment cannot be revised by a dispatcher.  Reputation
+can also support commitment when drivers repeatedly observe whether announced
+rescues are honored, but that repeated-game foundation is not modeled here.
+If the platform chooses $p_2$ only after observing rejection, or keeps it
+undisclosed, drivers solve a different game and the announced-menu waiting
+effect need not arise.  This distinction is why the evidence in
+\citet{WuEtAl2022} is a contrast rather than a direct implementation of the
+mechanism.
+
 \section{Conclusion}
 \label{sec:conclusion}
 
@@ -2126,99 +2143,6 @@ In either case \(K>1-e^{-mx_1}\).  Consequently
 \end{aligned}
 \]
 which proves (G3).
-\Halmos\end{proof}
-
-\begin{proof}{Proof of Proposition~\ref{prop:onedriver}.}
-For an active menu, comparing the cutoff driver's current payoff with her
-discounted continuation payoff gives (O1); integrating the immediate and
-terminal completion regions gives (O2).  For a genuine rescue menu with an
-interior cutoff $a>0$, (O1) is equivalent to
-\[
- (p_1-a)(1-p_1)=\delta z,\qquad
- z:=\frac{(\beta-p_2)(p_2-a)}\beta.
-\]
-Here $0\le z\le\bar z(a):=(\beta-a)^2/(4\beta)$, with equality exactly at
-$p_2=(\beta+a)/2$.  The active ordering selects the lower quadratic root
-\[
- p_1(a,z)=\frac{1+a-R(a,z)}2,\qquad
- R(a,z)=\sqrt{(1-a)^2-4\delta z},
-\]
-and completion becomes
-\[
- \mathcal M(a,z)=\frac a2\{1-a+R(a,z)\}+z.                \tag{EC.O1}
-\]
-The upper root is at least $p_2$: if $2p_2>1+a$, squaring gives
-\[
- R^2-(2p_2-1-a)^2
- =4(p_2-a)\left[1-p_2-\frac\delta\beta(\beta-p_2)\right]\ge0,
-\]
-and otherwise the ordering is immediate.  A boundary cutoff $a=0$ yields at
-most $\beta/4<1/4$.
-
-Maximizing (EC.O1) over $a\in[0,\beta]$ and
-$z\in[0,\bar z(a)]$ relaxes the menu problem, while its upper boundary is
-implementable.  At an interior optimum in $z$ with $a>0$,
-\[
- \mathcal M_z=1-\frac{a\delta}{R}=0.
-\]
-There $R=a\delta$ and
-\[
- 2\delta\mathcal M_a=(1-\delta)\{a(1-\delta)-1\}<0
-\]
-when $\delta<1$.  Reducing $a$ therefore raises completion and remains
-feasible because $\bar z(a)$ rises.  Hence every relaxed maximizer above
-$1/4$ has $z=\bar z(a)$; $z=0$ gives $a(1-a)\le1/4$.  On the upper boundary,
-$p_2=(\beta+a)/2$, $R=\sqrt{\Delta(a)}$, the lower root is (O3), and
-(EC.O1) is exactly $J_1(a)$.  This proves (O5) for $\delta<1$; the cases below
-also establish it at $\delta=1$.
-
-If $\beta\le1/2$, then $R(a,z)\le1-a$ and
-\[
- \mathcal M(a,z)\le h_\beta(a):=a(1-a)+\frac{(\beta-a)^2}{4\beta}.
-\]
-Since
-$h_\beta'(a)=1/2+a\{1/(2\beta)-2\}\ge0$ on $[0,\beta]$,
-$h_\beta(a)\le\beta(1-\beta)\le1/4$.  If $\delta=1$, (EC.O1) instead has
-the exact factorization
-\[
- 1-4\mathcal M(a,z)=\{R(a,z)-a\}^2,
-\]
-so again no rescue menu beats $1/4$.
-
-It remains to characterize $\beta>1/2$ and $\delta<1$.  Put
-$r(a)=\sqrt{\Delta(a)}$ and
-$E(a)=(1-\delta/\beta)a-(1-\delta)$.  Then
-\[
- r'=\frac Er,\qquad
- r''=-\frac{\delta(1-\beta)^2}{\beta r^3},
-\]
-and direct differentiation of (O4) gives
-\[
- J_1'=\frac12\left[r+\frac{aE}{r}
-       +a\left(\frac1\beta-2\right)\right],
-\]
-\[
- J_1''=-\frac{2\beta-1}{2\beta}+\frac Er
- -\frac{a\delta(1-\beta)^2}{2\beta r^3}<0.              \tag{EC.O2}
-\]
-Indeed, $E$ is linear with $E(0)=-(1-\delta)<0$ and
-$E(\beta)=\beta-1<0$.  Moreover,
-\[
- J_1'(0)=\frac{\sqrt{1-\delta\beta}}2>0,\qquad
- J_1'(\beta)=1-2\beta<0.
-\]
-Thus $J_1$ has a unique maximizer $a^*\in(0,\beta)$.  It strictly beats flat:
-for $a_0=\sqrt{\beta(1-\beta)}\in(0,\beta)$,
-$J_1(a_0)=1/4$ at $\delta=1$, while lowering $\delta$ strictly raises
-$\Delta(a_0)$ and hence $J_1(a_0)$.  Finally,
-\[
- \Delta(a)-(1-\beta)^2
- =(\beta-a)\left[2-a-\beta-\frac\delta\beta(\beta-a)\right]>0
-\]
-for $a<\beta$.  Hence
-$p_2-p_1=[r(a)-(1-\beta)]/2>0$.  Also $r(a)\le1-a$ gives $p_1\ge a$, and
-$p_2=(\beta+a)/2<\beta$, proving feasibility and strict activity.  Nonactive
-menus reduce to flat pricing and are bounded by $1/4$.
 \Halmos\end{proof}
 
 \section{Distributional Counterexamples and Equilibrium Selection}

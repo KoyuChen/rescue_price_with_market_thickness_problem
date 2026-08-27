@@ -14,7 +14,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
-from scipy.optimize import minimize_scalar  # noqa: E402
+from scipy.optimize import brentq, minimize_scalar  # noqa: E402
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -27,6 +27,7 @@ from discount_model import (  # noqa: E402
     corrected_local_coefficient,
     optimize_flat_noentry,
     optimize_geometry,
+    share,
 )
 
 
@@ -35,8 +36,8 @@ BETA = 0.8
 DELTA = 0.8
 
 
-def solve_noentry(m: float):
-    par = DiscountParams(m=m, alpha=ALPHA, beta=BETA, gamma=0.0, delta=DELTA)
+def solve_noentry(m: float, alpha: float = ALPHA, beta: float = BETA, delta: float = DELTA):
+    par = DiscountParams(m=m, alpha=alpha, beta=beta, gamma=0.0, delta=delta)
     return optimize_geometry(par, grid_size=181, xatol=8e-13)
 
 
@@ -56,6 +57,52 @@ def write_table(rows: list[tuple[float, object]], path: Path) -> None:
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", ""])
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def concave_completion(p2: float) -> float:
+    """Worst-cutoff completion for the paper's F(c)=sqrt(c) example."""
+    m, alpha, beta, delta, p1 = 0.5, 0.75, 0.3, 1.0, 0.06
+    f = np.sqrt
+
+    def residual(a: float) -> float:
+        lam1 = m * alpha * (f(p1) - f(a))
+        lam2 = m * alpha * (f(p2) - f(a))
+        c1, c2 = -np.expm1(-lam1), -np.expm1(-lam2)
+        if abs(c2 - c1) < 1e-12:
+            return share(m * f(a)) * (p1 - a)
+        switch = (c2 * p2 - c1 * p1) / (beta * (c2 - c1))
+        repeat = np.clip((switch - p1 / beta) / (1 - p1), 0, 1)
+        rescue = np.clip((1 - switch) / (1 - p1), 0, 1)
+        return share(m * f(a)) * (p1 - a) - delta * alpha * np.exp(-m * f(a)) * (
+            repeat * share(lam1) * (p1 - a)
+            + rescue * share(lam2) * (p2 - a)
+        )
+
+    grid = np.linspace(0, p1, 500)
+    roots = []
+    vals = [residual(float(a)) for a in grid]
+    for left, right, fl, fr in zip(grid[:-1], grid[1:], vals[:-1], vals[1:]):
+        if fl == 0:
+            roots.append(float(left))
+        elif fl * fr < 0:
+            roots.append(float(brentq(residual, left, right)))
+    if not roots:
+        roots = [p1]
+
+    completions = []
+    for a in roots:
+        lam1 = m * alpha * (f(p1) - f(a))
+        lam2 = m * alpha * (f(p2) - f(a))
+        c1, c2 = -np.expm1(-lam1), -np.expm1(-lam2)
+        if abs(c2 - c1) < 1e-12:
+            repeat, rescue = 1.0, 0.0
+        else:
+            switch = (c2 * p2 - c1 * p1) / (beta * (c2 - c1))
+            repeat = np.clip((switch - p1 / beta) / (1 - p1), 0, 1)
+            rescue = np.clip((1 - switch) / (1 - p1), 0, 1)
+        failure = np.exp(-m * f(a))
+        completions.append((1 - p1) * (1 - failure + failure * (repeat * c1 + rescue * c2)))
+    return float(min(completions))
 
 
 def main() -> None:
@@ -166,6 +213,60 @@ def main() -> None:
 
     fig.savefig(figure_dir / "theory_profiles.pdf", bbox_inches="tight")
     fig.savefig(figure_dir / "theory_profiles.png", dpi=220, bbox_inches="tight")
+    plt.close(fig)
+
+    # Comparative statics requested for the revision.  Each curve re-solves
+    # the equilibrium and both payment choices; these are not fixed-policy
+    # counterfactuals.
+    sensitivity_m = np.geomspace(0.1, 60.0, 61)
+    fig, axes = plt.subplots(1, 3, figsize=(7.15, 2.55), constrained_layout=True)
+    for beta, style in ((0.45, ":"), (0.6, "--"), (0.8, "-")):
+        gains = [100 * solve_noentry(float(m), beta=beta).gain for m in sensitivity_m]
+        axes[0].plot(sensitivity_m, gains, style, linewidth=1.6, label=rf"$\beta={beta:g}$")
+    for delta, style in ((0.4, ":"), (0.7, "--"), (1.0, "-")):
+        gains = [100 * solve_noentry(float(m), delta=delta).gain for m in sensitivity_m]
+        axes[1].plot(sensitivity_m, gains, style, linewidth=1.6, label=rf"$\delta={delta:g}$")
+    for alpha, style in ((0.25, ":"), (0.6, "--"), (1.0, "-")):
+        gains = [100 * solve_noentry(float(m), alpha=alpha).gain for m in sensitivity_m]
+        axes[2].plot(sensitivity_m, gains, style, linewidth=1.6, label=rf"$\alpha={alpha:g}$")
+    for ax, title in zip(axes, ("(a) Rider patience", "(b) Driver patience", "(c) Incumbent survival")):
+        ax.set_xscale("log")
+        ax.axhline(0, color="black", linewidth=0.5)
+        ax.set_xlabel(r"Thickness $m$")
+        ax.set_title(title)
+        ax.legend(frameon=False)
+        ax.grid(alpha=0.2, linewidth=0.5)
+    axes[0].set_ylabel(r"Optimized rescue gain $100V(m)$ (pp)")
+    fig.savefig(figure_dir / "theory_sensitivity.pdf", bbox_inches="tight")
+    fig.savefig(figure_dir / "theory_sensitivity.png", dpi=220, bbox_inches="tight")
+    plt.close(fig)
+
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.7), constrained_layout=True)
+    p2_grid = np.linspace(0.0601, 0.22, 120)
+    flat_concave = (1 - 0.06) * (1 - np.exp(-0.5 * np.sqrt(0.06)))
+    concave_gain = 100 * (np.array([concave_completion(float(q)) for q in p2_grid]) - flat_concave)
+    axes[0].plot(p2_grid, concave_gain, color=orange, linewidth=1.8)
+    axes[0].axhline(0, color="black", linewidth=0.6)
+    axes[0].axvline(0.17, color=gray, linestyle=":", linewidth=1)
+    axes[0].set_xlabel(r"Rescue payment $p_2$ (fixed $p_1=.06$)")
+    axes[0].set_ylabel("Completion change (pp)")
+    axes[0].set_title(r"(a) Concave supply: local gain, large-rescue reversal")
+    axes[0].grid(alpha=0.2, linewidth=0.5)
+
+    gamma_grid = np.linspace(0, 4, 161)
+    beta_grid = np.linspace(0.25, 0.95, 141)
+    gg, bb = np.meshgrid(gamma_grid, beta_grid)
+    m0, p0, alpha0 = 5.0, 0.2, 0.6
+    activity = m0 * np.exp(-gg * m0 * p0) * (alpha0 + gg) * (bb - p0) - (1 - np.exp(-gg * m0 * p0))
+    im = axes[1].contourf(gg, bb, activity, levels=[-10, 0, 10], colors=["#e8d9d2", "#d8e6f3"], alpha=0.95)
+    axes[1].contour(gg, bb, activity, levels=[0], colors=["black"], linewidths=1.2)
+    axes[1].set_xlabel(r"Fresh-entry intensity $\gamma$")
+    axes[1].set_ylabel(r"Rider patience $\beta$")
+    axes[1].set_title(r"(b) Active marginal rescue region ($\mathcal{A}>0$)")
+    axes[1].text(3.0, 0.34, "inactive", color="#6d3a2c", fontsize=8)
+    axes[1].text(0.25, 0.83, "active", color=blue, fontsize=8)
+    fig.savefig(figure_dir / "boundary_diagnostics.pdf", bbox_inches="tight")
+    fig.savefig(figure_dir / "boundary_diagnostics.png", dpi=220, bbox_inches="tight")
     plt.close(fig)
 
     selected = [(m, solve_noentry(m)) for m in (1.0, 5.0, 10.0, 20.0)]
