@@ -243,27 +243,29 @@ incumbents reject the same request.}
 
 \begin{center}
 \scriptsize
-\begin{tabularx}{.99\textwidth}{@{}L{1.0cm}L{2.05cm}X@{}}
+\begin{tabularx}{.99\textwidth}{@{}L{1.0cm}L{2.8cm}X@{}}
 \toprule
 Object & Domain / law & Economic role\\
 \midrule
 $m$ & $N^I\sim\operatorname{Pois}(m)$ & Public mean of latent supply;
 $m=1$ is \emph{not} one publicly known driver.\\
 $\alpha$ & $[0,1]$ & Survival probability of a waiting incumbent.\\
-$\gamma$ & $N^E\sim\operatorname{Pois}(\gamma m)$ & Fresh, unscreened entry after
+$\gamma$ & $\gamma\ge0$; $N^E\sim\operatorname{Pois}(\gamma m)$ & Fresh,
+unscreened entry after
 failure; $\gamma=0$ in the global core.\\
-$\beta,\delta$ & $(0,1]\times(0,1]$ & Delayed rider value is $\beta v$; delayed
+$\beta,\delta$ & $(0,1)\times(0,1]$ & Delayed rider value is $\beta v$; delayed
 incumbent surplus is $\delta(p_j-c)$.\\
-$F,G$ & continuous CDFs & Persistent driver cost $c\sim F$ and rider value
-$v\sim G$; types are private.\\
+$F,G$ & continuous, strictly increasing CDFs & Full support on $[0,1]$;
+persistent $c\sim F$ and rider value $v\sim G$.\\
 \bottomrule
 \end{tabularx}
 \end{center}
 \vspace{-4pt}
 
-\noindent Primitives and the menu are public; counts and types are private, and
-incumbents see neither pool size nor rival actions.  The objective is
-\emph{unconditional completion}; profit and welfare are outside the exercise.
+\noindent Primitives and the menu are common knowledge.  The rider observes
+$v$, each driver observes own $c$, and no one observes realized counts or rival
+types and actions.  The objective is \emph{unconditional completion}, not
+profit or welfare.
 
 \subsection{Timing and the public signal}
 
@@ -275,8 +277,8 @@ Stage & Action for the same request & What becomes known\\
 \midrule
 0. Commit and draw & Announce $0\le p_1\le p_2\le1$; draw $N^I$, $v$, and
 persistent costs. & Menu is public; counts and types remain private.\\
-1. Post and accept & The rider posts; incumbents simultaneously accept $p_1$
-or wait. & Any acceptance ends the game after uniform assignment.\\
+1. Post and accept & The rider posts iff $v\ge p_1$; incumbents simultaneously
+accept $p_1$ or wait. & Any acceptance ends the game after uniform assignment.\\
 2. Public failure & After zero accepts, the rider cancels, repeats $p_1$, or
 activates committed $p_2$. & Failure screens high-cost incumbents but reveals
 neither $N^I$ nor individual costs.\\
@@ -315,7 +317,7 @@ $m$, not the marginal value of another driver.
 \clearpage
 \section{Numerical results: thickness first, then fresh entry}
 
-\subsection{No-entry baseline: fully re-optimized}
+\subsection{No-entry baseline}
 
 The baseline isolates strategic waiting:
 \[
@@ -373,7 +375,7 @@ at (axis cs:9.718617,6.22)
 \end{axis}
 \end{tikzpicture}
 \vspace{-4pt}
-\caption{Optimized completion value of rescue pricing across thickness.}
+\caption{Optimized rescue-minus-flat completion across expected thickness.}
 \label{fig:Vm}
 \vspace{-5pt}
 \end{figure}
@@ -398,11 +400,11 @@ supply; thick markets are already served by optimized flat pricing.  The gain
 peaks where failure and a screened backup pool are both material.}
 
 \noindent\textit{Claim boundary.} Positivity for $\beta\ge1/2$, continuity,
-zero limits, and a positive finite maximizer are proved; a unique hump or
-unique maximizer at $m=9.72$ is not.
+both endpoint limits, and a positive finite maximizer are proved; the apparent
+single peak is numerical.
 
 \clearpage
-\subsection{Fresh-entry simulation: start from optimized flat pricing}
+\subsection{Fresh entry around optimized flat pricing}
 
 To mix screened incumbents with unscreened entrants, fix
 \[
@@ -507,7 +509,7 @@ for all small $\varepsilon>0$, $a=p$, rescue is unused, and completion equals
 $M_\gamma^{\rm flat}(m,p)$.
 
 \medskip
-\noindent\textit{Proof.}
+\noindent\textit{Proof sketch.}
 Write $d=p-a$, $\rho=(1-p/\beta)/(1-p)$, and let $\eta_\varepsilon$ be the
 posting-conditional rescue mass.  Under $(p,p+\varepsilon)$,
 \[
@@ -555,8 +557,13 @@ Differentiating completion along this branch gives
 T_\delta=E(\alpha+\gamma)\sigma-
 \delta R\alpha\ell\{1-\rho+\rho E(1+\gamma)\}. \tag{P5}
 \]
-The sign lemma gives $\mathcal A>0\Rightarrow T_\delta>0$: exponential
-convexity handles $\delta=1$, and lowering $\delta$ adds a nonnegative term.
+The manuscript's (A4)--(A6) sign argument gives
+$\mathcal A>0\Rightarrow T_1>0$ by splitting on
+$1-E(1+\gamma)$ and applying exponential convexity.  Moreover,
+\[
+T_\delta=T_1+(1-\delta)R\alpha\ell
+\{1-\rho+\rho E(1+\gamma)\}>0.
+\]
 If $\mathcal A<0$, then $\bar v>1$ and
 uniform convergence makes $\eta_\varepsilon=0$ throughout the localized set.
 Equation (P2) then leaves $a=p$ as the unique cutoff and the rescue option is
@@ -570,60 +577,56 @@ in $\gamma$.
 \clearpage
 \section{Literature position: the exact joint object}
 
-\takeaway{The paper designs a committed same-request payment after universal
-rejection.  Latent competition, failure screening, and announcement-induced
-waiting operate jointly; no neighboring paper combines all three.}
+\takeaway{Among the closest papers, none combines ex ante same-request rescue
+commitment, latent competition, failure screening, and announcement-induced
+current waiting.}
 
 \begin{center}
 \scriptsize
-\begin{tabularx}{\textwidth}{@{}L{2.5cm}L{3.7cm}L{4.0cm}X@{}}
+\begin{tabularx}{\textwidth}{@{}L{2.5cm}L{5.2cm}X@{}}
 \toprule
-Nearest paper & Their central state and policy & Missing piece supplied here &
-Precise non-claim\\
+Nearest paper & Closest overlap & Residual distinction here\\
 \midrule
 \citet{CorreaEtAl2016} &
 Committed contingent prices, consumer waiting, and equilibrium selection &
-Supplier competition, failure screening, and same-request completion &
-Contingent preannouncement is not new.\\
+Supplier competition, universal-rejection screening, and same-request
+completion.\\
 \citet{LiKuo2013} &
 Dutch bid levels with a Poisson bidder count &
-Supplier cutoff responding to a committed rescue payment &
-Poisson competition and dynamic prices are not new.\\
+Supplier cutoff responding to a committed rescue after failure.\\
 \citet{LeeLi2023} &
 Search across long- and short-lived bidders &
-Screened incumbents and unscreened entrants altering current acceptance &
-Mixed incumbent and entrant supply is not new.\\
+Screened incumbents and unscreened entrants altering current acceptance.\\
 \citet{HuHuZhu2022} &
 Surge paths with two-sided temporal responses &
-Same-request failure trigger and rejection posterior &
-This is not a general theory of surge pricing.\\
+Same-request failure trigger and the posterior from universal rejection.\\
 \citet{WuEtAl2022} &
 Budgeted dynamic bonuses, offline and in the field &
-A credible future bonus that drivers can wait for &
-Observed bonus programs do not identify our commitment channel.\\
+A credible future bonus that drivers can wait for; observed programs do not
+identify commitment.\\
 \citet{LoertscherMuirTaylor2022} &
 The designer chooses market thickness &
-Hold $m$ fixed and choose rescue versus flat pricing &
-$V(m)$ is not the marginal value of adding drivers.\\
+Hold $m$ fixed and choose rescue versus optimized flat pricing; $V(m)$ is not
+the value of adding drivers.\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
+\noindent Each ingredient exists separately; the claim concerns their joint
+equilibrium-design structure.
+
 \subsection{How the literature disciplines this note}
 
-Correa et al. put equilibrium and selection before policy comparison; Section
-2 does the same.  Li--Kuo motivate tracing an optimized outcome over the
-Poisson mean (Section 3.1).  Lee--Li motivate keeping screened $\alpha$ supply
-separate from fresh $\gamma$ entry (Sections 3.2--3.3).  Wu et al. motivate
-labeling commitment as theory rather than reading it from observed bonuses.
+Following these papers, the note solves equilibrium before design, traces the
+reoptimized objective over the Poisson mean, then adds one composition
+extension while keeping screened $\alpha$ supply separate from fresh $\gamma$
+entry.  Commitment remains a theoretical channel, not an inference from
+observed bonuses.
 
 \noindent\textbf{Bottom line.}
-The paper joins Correa's commitment and waiting, Li--Kuo's latent Poisson
-competition, Lee--Li's supply composition, and Hu--Hu--Zhu's two-sided timing
-in a cutoff-WPBE design under public failure.  Numerically, rescue matters at
-intermediate thickness; its gain is recovery net of strategic waiting; and
-continuation composition cannot be reduced to headcount.  Profit and rider
-cost remain extensions.
+The contribution is the joint cutoff-WPBE design under public failure.
+Numerically, rescue matters at intermediate thickness; its gain is recovery
+net of induced waiting; and continuation composition is not headcount.
 
 \renewcommand{\bibsection}{\paragraph{References.}}
 \begin{multicols}{3}
@@ -642,8 +645,8 @@ for bidders. \emph{JIE} 71(4), 1004--1037.
 with uncertain bidder count. \emph{AOR} 211, 255--272.
 \bibitem[Loertscher et~al.(2022)]{LoertscherMuirTaylor2022} Loertscher, Muir,
 Taylor. 2022. Optimal market thickness. \emph{JET} 200, 105383.
-\bibitem[Wu et~al.(2022)]{WuEtAl2022} Wu et al. 2022. Dynamic pricing with
-participant recruitment. arXiv:2202.10695.
+\bibitem[Wu et~al.(2022)]{WuEtAl2022} Wu et al. 2022. A framework for
+multi-stage bonus allocation in meal delivery platform. arXiv:2202.10695.
 \end{thebibliography}
 \end{multicols}
 
