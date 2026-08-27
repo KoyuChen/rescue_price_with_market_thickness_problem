@@ -30,6 +30,17 @@ eligibility, or completion.
 - [Final integration red-team](audits/incumbent_discount_final_redteam.md)
 - [Numerical falsification report](analysis/incumbent_discount_numerical_report.md)
 
+## Archived spatial pay-or-search framework
+
+The alternative framework with a time-homogeneous second-window fresh cohort,
+an area search multiplier, winner-only pickup cost, and strict
+WPBE-constrained mechanism design is preserved independently at
+[`new_framework/pay_more_search_wider_spatial_wpbe/`](new_framework/pay_more_search_wider_spatial_wpbe/README.md).
+It contains the full solver, tests, 77-environment numerical grid, audit files,
+figures, literature positioning, and the eight-page group-meeting note. It is
+an isolated research branch of the model and does not alter the maintained
+paper above.
+
 ## Main results
 
 Within anonymous symmetric pure driver-cutoff WPBE:
@@ -76,6 +87,7 @@ code/        baseline and incumbent-discount falsification engines
 literature/  adversarial nearest-literature and contribution memo
 prompt/      reusable long-run multi-agent research prompt
 archive/     original upload and superseded pre-discount drafts
+new_framework/pay_more_search_wider_spatial_wpbe/  isolated spatial WPBE archive
 ```
 
 The archive and intermediate audits are retained deliberately so that every

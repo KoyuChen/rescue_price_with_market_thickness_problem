@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+outputs/
+group_meeting/build/
+group_meeting/*.aux
+group_meeting/*.fdb_latexmk
+group_meeting/*.fls
+group_meeting/*.log
+group_meeting/*.out

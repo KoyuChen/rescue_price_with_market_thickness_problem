@@ -1,0 +1,21 @@
+{
+  "dense_max_abs_completion_difference": 0.00011235333930503799,
+  "dense_max_completion_improvement": 0.00011235333930503799,
+  "dense_min_completion_improvement": -6.956079434461415e-06,
+  "random_policies": 120,
+  "random_root_sets_stable": 120,
+  "random_multiple_wpbe": 0,
+  "random_max_completion_spread": 0.0,
+  "monte_carlo": {
+    "replications": 300000,
+    "potential_candidates": 2403238,
+    "exact_intensity": 1.9666666666666666,
+    "simulated_intensity": 1.9622666666666666,
+    "intensity_error": -0.0043999999999999595,
+    "intensity_standard_error": 0.002560381915956203,
+    "exact_coverage": 0.8600775119756906,
+    "simulated_coverage": 0.8593066666666667,
+    "coverage_error": -0.0007708453090239376,
+    "coverage_standard_error": 0.0006333618906791399
+  }
+}
