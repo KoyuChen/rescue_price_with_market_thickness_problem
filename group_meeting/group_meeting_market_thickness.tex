@@ -249,7 +249,8 @@ Object & Domain / law & Economic role\\
 \midrule
 $m$ & $N^I\sim\operatorname{Pois}(m)$ & Public mean of latent supply;
 $m=1$ is \emph{not} one publicly known driver.\\
-$\alpha$ & $[0,1]$ & Survival probability of a waiting incumbent.\\
+$\alpha$ & $[0,1]$ & Conditional availability after an incumbent chooses to
+defer; it is not the probability of choosing to wait.\\
 $\gamma$ & $\gamma\ge0$; $N^E\sim\operatorname{Pois}(\gamma m)$ & Fresh,
 unscreened entry after
 failure; $\gamma=0$ in the global core.\\
@@ -278,13 +279,15 @@ Stage & Action for the same request & What becomes known\\
 0. Commit and draw & Announce $0\le p_1\le p_2\le1$; draw $N^I$, $v$, and
 persistent costs. & Menu is public; counts and types remain private.\\
 1. Post and accept & The rider posts iff $v\ge p_1$; incumbents simultaneously
-accept $p_1$ or wait. & Any acceptance ends the game after uniform assignment.\\
+accept $p_1$ or defer and retain the continuation option. & Any acceptance
+ends the game after uniform assignment.\\
 2. Public failure & After zero accepts, the rider cancels, repeats $p_1$, or
 activates committed $p_2$. & Failure screens high-cost incumbents but reveals
 neither $N^I$ nor individual costs.\\
-3. Refill and assign & Waiters survive with probability $\alpha$; fresh entrants
-arrive with mean $\gamma m$; one acceptor is selected uniformly. & No acceptor
-means no completion.\\
+3. Refill and assign & Deferred incumbents remain available with probability
+$\alpha$ and fresh entrants arrive with mean $\gamma m$.  Available drivers
+observe the active $p_j$, accept iff $c\le p_j$, and one acceptor is selected
+uniformly. & No acceptor means no completion.\\
 \bottomrule
 \end{tabularx}
 \end{center}
@@ -295,8 +298,9 @@ means no completion.\\
 For continuous full-support $F$, every anonymous symmetric independent WPBE is
 a.e. a pure cutoff: accept now iff $c\le a$.  The cutoff set
 $\mathcal E_m(p_1,p_2)$ is nonempty and compact, so cutoff behavior is a result,
-not an assumption.  After failure, incumbents are screened ($c>a$), entrants
-are unscreened, and
+not an assumption.  Thus $a$, not $\alpha$, determines who waits.  Conditional
+on choosing to defer, $\alpha$ only thins the screened incumbent pool.  After
+failure, incumbents have $c>a$, entrants are unscreened, and
 \[
 \lambda_j(a)=m\!\left\{\alpha[F(p_j)-F(a)]+\gamma F(p_j)\right\},\quad
 C_j(a)=1-e^{-\lambda_j(a)}.
@@ -404,17 +408,19 @@ both endpoint limits, and a positive finite maximizer are proved; the apparent
 single peak is numerical.
 
 \clearpage
-\subsection{Fresh entry around optimized flat pricing}
+\subsection{Fresh entry with incumbent retention held fixed}
 
-To mix screened incumbents with unscreened entrants, fix
+To isolate composition rather than change two primitives at once, fix
 \[
-(m,\alpha,\beta,\delta)=(10,.6,.8,.8),\qquad
-\gamma\in[.25,4].
+(m,\alpha,\beta,\delta)=(10,1,.8,.8),\qquad
+\gamma\in[0,4].
 \]
-Here $m=10$ is near the no-entry peak and $0<\alpha<1$.  For each $\gamma$,
-optimize flat price $p_\gamma^*$, test
+Here $m=10$ is near the no-entry peak and every incumbent who chooses to defer
+remains available.  Waiting is still endogenous through the cutoff.  For each
+$\gamma$, optimize flat price $p_\gamma^*$, test
 $(p_\gamma^*,p_\gamma^*+.01)$, re-solve all cutoffs, and report conservative
-completion.  Only the $.01$ increment is fixed.
+completion.  Thus $\gamma=0$ is the no-entry benchmark and $\gamma>0$ adds only
+fresh, unscreened drivers; the $.01$ increment is the sole fixed design choice.
 
 \begin{figure}[H]
 \centering
@@ -422,39 +428,39 @@ completion.  Only the $.01$ increment is fixed.
 \begin{groupplot}[
   group style={group size=2 by 1,horizontal sep=1.25cm},
   width=.46\textwidth,height=5.0cm,
-  xmin=.2,xmax=4.05,xtick={.5,1,2,3,4},
+  xmin=0,xmax=4.05,xtick={0,1,2,3,4},
   xlabel={fresh-entry intensity $\gamma$},
   axis x line*=bottom,axis y line*=left,
   tick label style={font=\scriptsize},label style={font=\small},
   ymajorgrids=true,grid style={black!10}
 ]
 \nextgroupplot[
-  ymin=72,ymax=91,ytick={75,80,85,90},
+  ymin=68,ymax=91,ytick={70,75,80,85,90},
   ylabel={optimized flat completion (\%)}]
 \addplot[black,line width=1.1pt,mark=*,mark size=1.15pt] coordinates {
-(.25,73.2020) (.50,76.0829) (.75,78.3327) (1,80.1447)
+(0,69.3602) (.25,73.2020) (.50,76.0829) (.75,78.3327) (1,80.1447)
 (1.25,81.6398) (1.50,82.8975) (1.75,83.9725) (2,84.9036)
 (2.25,85.7190) (2.50,86.4401) (2.75,87.0829) (3,87.6603)
 (3.25,88.1821) (3.50,88.6563) (3.75,89.0895) (4,89.4870)
 };
-\node[font=\scriptsize] at (axis cs:2.25,74.2)
+\node[font=\scriptsize] at (axis cs:2.35,70.2)
 {flat completion rises};
 \nextgroupplot[
-  ymin=.14,ymax=.46,ytick={.18,.24,.30,.36,.42},
+  ymin=.18,ymax=.78,ytick={.2,.3,.4,.5,.6,.7},
   ylabel={gain from $p_2=p_\gamma^*+.01$ (pp)}]
 \addplot[black,line width=1.1pt,mark=*,mark size=1.15pt] coordinates {
-(.25,.440902) (.50,.440852) (.75,.430336) (1,.414190)
-(1.25,.394980) (1.50,.374155) (1.75,.352566) (2,.330724)
-(2.25,.308942) (2.50,.287409) (2.75,.266241) (3,.245505)
-(3.25,.225238) (3.50,.205455) (3.75,.186161) (4,.167351)
+(0,.753016) (.25,.701567) (.50,.653321) (.75,.608271) (1,.566222)
+(1.25,.526917) (1.50,.490086) (1.75,.455476) (2,.422857)
+(2.25,.392024) (2.50,.362797) (2.75,.335020) (3,.308554)
+(3.25,.283279) (3.50,.259091) (3.75,.235897) (4,.213617)
 };
-\node[font=\scriptsize] at (axis cs:2.60,.413)
+\node[font=\scriptsize] at (axis cs:2.45,.675)
 {rescue value shrinks};
 \end{groupplot}
 \end{tikzpicture}
 \vspace{-4pt}
-\caption{Entry raises optimized flat completion but lowers the value of a
-small rescue; every marker re-solves equilibrium.}
+\caption{Holding $\alpha=1$ fixed, entry raises optimized flat completion but
+erodes the value of a small rescue; every marker re-solves equilibrium.}
 \label{fig:gamma-simulation}
 \vspace{-4pt}
 \end{figure}
@@ -464,115 +470,167 @@ small rescue; every marker re-solves equilibrium.}
 \begin{tabular}{@{}rrrrrr@{}}
 \toprule
 $\gamma$ & $p_\gamma^*$ & $M_\gamma^{\rm flat,*}$ &
-$\mathcal A_{\alpha,\gamma}(p_\gamma^*)$ & rescue cutoff & gain (pp)\\
+$\mathcal A_{1,\gamma}(p_\gamma^*)$ & rescue cutoff & gain (pp)\\
 \midrule
-.25 & .192661 & .732020 & 2.806881 & .191562 & .4409\\
-.50 & .173203 & .760829 & 2.320723 & .172264 & .4409\\
-1.00 & .144813 & .801447 & 1.698603 & .144077 & .4142\\
-2.00 & .110288 & .849036 & 1.085747 & .109791 & .3307\\
-3.00 & .089852 & .876603 &  .793305 & .089511 & .2455\\
-4.00 & .076236 & .894870 &  .625005 & .076014 & .1674\\
+0    & .217733 & .693602 & 5.822675 & .215316 & .7530\\
+.50  & .173203 & .760829 & 3.375304 & .171421 & .6533\\
+1.00 & .144813 & .801447 & 2.314502 & .143386 & .5662\\
+2.00 & .110288 & .849036 & 1.389682 & .109301 & .4229\\
+3.00 & .089852 & .876603 &  .985061 & .089158 & .3086\\
+4.00 & .076236 & .894870 &  .762189 & .075765 & .2136\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \noindent Entry improves repeat coverage, raising flat completion and lowering
-its optimal price.  The activity index stays positive, but rescue gain shrinks.
-This is a local diagnostic, not global mixed-entry design.
+its optimal price.  The activity index stays positive on this path, but the
+incremental rescue gain falls because fresh supply already repairs more flat
+failures.  The row $\gamma=0$ is Proposition 1 below; the positive-$\gamma$
+rows are Proposition 2.  This is a local diagnostic, not global mixed-entry
+design.
 
 \clearpage
-\subsection{Proposition and proof: the mixed-entry activity test}
+\subsection{Two local propositions with $\alpha=1$}
 
-Let $h(z)=(1-e^{-z})/z$ with $h(0)=1$, and define
+Throughout this subsection, $\alpha=1$: an incumbent who chooses to defer is
+certain to remain available after failure.  This does not make waiting
+exogenous: costless deferral weakly dominates exit, but need not beat accepting
+now.  The equilibrium cutoff separates drivers who accept now
+($c\le a_\varepsilon$) from those who defer ($c>a_\varepsilon$).  Types with
+$c>p+\varepsilon$ are indifferent between deferring and exiting at zero, a
+tie that does not affect completion.
+
+Let $h(z)=(1-e^{-z})/z$ with $h(0)=1$, and write
 \[
-\mathcal A_{\alpha,\gamma}(p)
-=m e^{-\gamma mp}(\alpha+\gamma)(\beta-p)
- -(1-e^{-\gamma mp}).
+x=mp,\quad R=e^{-x},\quad \sigma=h(x),\quad
+\rho=\frac{1-p/\beta}{1-p}.
 \]
 
-\noindent\textbf{Proposition 1 (local rescue with fresh entry).}
+\noindent\textbf{Proposition 1 (without fresh entry).}
 Assume $F=G=U[0,1]$, $m>0$, $0<p<\beta<1$,
-$0<\alpha<1$, $\gamma>0$, and $0<\delta\le1$.  If
-$\mathcal A_{\alpha,\gamma}(p)>0$, then for all small $\varepsilon>0$ the menu
+$\alpha=1$, $\gamma=0$, and $0<\delta\le1$.  For all small
+$\varepsilon>0$, the menu
 $(p,p+\varepsilon)$ has a unique anonymous symmetric
 cutoff equilibrium and
 \[
-a_\varepsilon=p-\kappa(p)\varepsilon+o(\varepsilon),\qquad
-M_m^{\alpha,\gamma}(p,p+\varepsilon;a_\varepsilon)
-=M_\gamma^{\rm flat}(m,p)+\Lambda(p)\varepsilon+o(\varepsilon),
+a_\varepsilon=p-\kappa_0(p)\varepsilon+o(\varepsilon),\qquad
+\kappa_0(p)=\frac{\delta R\rho}{\sigma-\delta R\rho}>0,
 \]
-where $\kappa(p)>0$ and $\Lambda(p)>0$.  In particular, if an optimized flat
-price $p^*$ satisfies $p^*<\beta$ and
-$\mathcal A_{\alpha,\gamma}(p^*)>0$, a small committed rescue strictly
-dominates optimized flat pricing.  If $\mathcal A_{\alpha,\gamma}(p)<0$, then
-for all small $\varepsilon>0$, $a=p$, rescue is unused, and completion equals
-$M_\gamma^{\rm flat}(m,p)$.
+and
+\[
+M_m^{1,0}(p,p+\varepsilon;a_\varepsilon)
+=M_0^{\rm flat}(m,p)+\Lambda_0(p)\varepsilon+o(\varepsilon),
+\quad
+\Lambda_0(p)=m(1-p)R\rho
+\frac{\sigma-\delta R}{\sigma-\delta R\rho}>0. \tag{P1}
+\]
+Consequently, a small rescue strictly improves on any active flat price
+$p<\beta$, including an optimized one.
 
 \medskip
-\noindent\textit{Proof sketch.}
-Write $d=p-a$, $\rho=(1-p/\beta)/(1-p)$, and let $\eta_\varepsilon$ be the
-posting-conditional rescue mass.  Under $(p,p+\varepsilon)$,
+\noindent\textit{Proof.}
+Let $d=p-a$ and let $\eta_\varepsilon$ be the posting-conditional mass of
+riders who activate rescue.  Without entry, terminal intensities are $md$ and
+$m(d+\varepsilon)$, so cutoff indifference is
 \[
-\lambda_1=m(\alpha d+\gamma p),\qquad
-\lambda_2=\lambda_1+m(\alpha+\gamma)\varepsilon. \tag{P1}
+h(ma)d=\delta e^{-ma}
+\{(\rho-\eta_\varepsilon)h(md)d
++\eta_\varepsilon h(m(d+\varepsilon))(d+\varepsilon)\}. \tag{P2}
 \]
-Cutoff indifference is
-\[
-h(ma)d=\delta\alpha e^{-ma}
-\{(\rho-\eta_\varepsilon)h(\lambda_1)d
-+\eta_\varepsilon h(\lambda_2)(d+\varepsilon)\}. \tag{P2}
-\]
-Since $h(\lambda_j)\le1$, $\eta_\varepsilon\le\rho$, and
-$h(ma)\ge e^{-ma}$, (P2) localizes every equilibrium:
+Since $h(z)\le1$, $h(ma)\ge e^{-ma}$, and
+$0\le\eta_\varepsilon\le\rho<1$, every equilibrium satisfies
 \[
 0\le d\le
-\frac{\delta\alpha\rho}{1-\delta\alpha\rho}\varepsilon. \tag{P3}
+\frac{\delta\rho}{1-\delta\rho}\varepsilon. \tag{P3}
 \]
-Set $x=mp$, $R=e^{-x}$, $E=e^{-\gamma x}$,
-$\sigma=h(x)$, and $\ell=h(\gamma x)$.  On the compact rescaling
-$y=d/\varepsilon$, the rider switch converges uniformly to
+Hence $y=d/\varepsilon$ lies in a compact interval.  On that interval the
+rider switch converges uniformly to $p/\beta$, so
+$\eta_\varepsilon\to\rho$.  Dividing (P2) by $\varepsilon$ gives the limiting
+equation
 \[
-\bar v=\frac1\beta\left[p+
-\frac{1-E}{mE(\alpha+\gamma)}\right],\qquad
-\mathcal A_{\alpha,\gamma}(p)>0\iff\bar v<1.
+(\sigma-\delta R\rho)y-\delta R\rho=0. \tag{P4}
 \]
-Hence $\eta_\varepsilon\to\eta^0=(1-\bar v)/(1-p)>0$, and (P2) divided by
-$\varepsilon$ converges in $C^1$ to
+Its slope exceeds $\sigma-R>0$, yielding the unique local root and
+$\kappa_0$ in (P1).  Direct differentiation of completion along this branch
+gives $\Lambda_0$; it is positive because $\sigma>R\ge\delta R$ and the
+denominator is positive. \hfill$\square$
+
+\clearpage
+\noindent\textbf{Proposition 2 (with fresh entry).}
+Maintain the assumptions of Proposition 1 except let $\gamma>0$.  Define
 \[
-[\sigma-\delta R\alpha\rho\ell]y
--\delta R\alpha\eta^0\ell=0. \tag{P4}
+E=e^{-\gamma x},\qquad \ell=h(\gamma x),\qquad
+\bar v=\frac1\beta\left[p+\frac{1-E}{mE(1+\gamma)}\right],\qquad
+\eta^0=\frac{1-\bar v}{1-p},
 \]
-Its slope is positive because
-$\sigma-\delta R\alpha\rho\ell\ge\sigma-R>0$.  Thus the nearby cutoff is
-unique and
+and the activity index
 \[
-\kappa(p)=\frac{\delta R\alpha\eta^0\ell}
-{\sigma-\delta R\alpha\rho\ell}>0.
+\mathcal A_{1,\gamma}(p)
+=mE(1+\gamma)(\beta-p)-(1-E).
 \]
-Differentiating completion along this branch gives
+If $\mathcal A_{1,\gamma}(p)>0$, then for all small $\varepsilon>0$ the menu
+$(p,p+\varepsilon)$ has a unique cutoff equilibrium and
 \[
-\Lambda(p)=m(1-p)R\eta^0
-\frac{T_\delta}{\sigma-\delta R\alpha\rho\ell}>0,
+a_\varepsilon=p-\kappa_\gamma(p)\varepsilon+o(\varepsilon),\qquad
+\kappa_\gamma(p)=
+\frac{\delta R\ell\eta^0}{\sigma-\delta R\rho\ell}>0,
+\]
+and
+\[
+M_m^{1,\gamma}(p,p+\varepsilon;a_\varepsilon)
+=M_\gamma^{\rm flat}(m,p)+\Lambda_\gamma(p)\varepsilon+o(\varepsilon),
+\]
+where
+\[
+\Lambda_\gamma(p)=m(1-p)R\eta^0
+\frac{T_{\delta,\gamma}}{\sigma-\delta R\rho\ell}>0,
 \quad
-T_\delta=E(\alpha+\gamma)\sigma-
-\delta R\alpha\ell\{1-\rho+\rho E(1+\gamma)\}. \tag{P5}
+T_{\delta,\gamma}=E(1+\gamma)\sigma-
+\delta R\ell\{1-\rho+\rho E(1+\gamma)\}. \tag{P5}
 \]
-The manuscript's (A4)--(A6) sign argument gives
-$\mathcal A>0\Rightarrow T_1>0$ by splitting on
-$1-E(1+\gamma)$ and applying exponential convexity.  Moreover,
-\[
-T_\delta=T_1+(1-\delta)R\alpha\ell
-\{1-\rho+\rho E(1+\gamma)\}>0.
-\]
-If $\mathcal A<0$, then $\bar v>1$ and
-uniform convergence makes $\eta_\varepsilon=0$ throughout the localized set.
-Equation (P2) then leaves $a=p$ as the unique cutoff and the rescue option is
-unused. \hfill$\square$
+If $\mathcal A_{1,\gamma}(p)<0$, then for all small $\varepsilon>0$ the
+unique cutoff is $a=p$, no rider uses rescue, and completion is exactly
+$M_\gamma^{\rm flat}(m,p)$.  No claim is made at the boundary
+$\mathcal A_{1,\gamma}(p)=0$.
 
 \medskip
-\noindent\textit{Scope.}  This is a local theorem around an active price, not a
-global solution of the mixed-entry menu problem and not a monotonicity theorem
-in $\gamma$.
+\noindent\textit{Proof.}
+Again set $d=p-a$.  Fresh entry changes terminal intensities to
+\[
+\lambda_1=m(d+\gamma p),\qquad
+\lambda_2=\lambda_1+m(1+\gamma)\varepsilon. \tag{P6}
+\]
+The cutoff equation is (P2) with $md$ and $m(d+\varepsilon)$ replaced by
+$\lambda_1$ and $\lambda_2$; the same argument gives the localization (P3).
+On $y=d/\varepsilon$, the rider switch now converges uniformly to $\bar v$,
+and
+\[
+\mathcal A_{1,\gamma}(p)>0\iff\bar v<1.
+\]
+In the active case, $\eta_\varepsilon\to\eta^0>0$ and the limiting cutoff
+equation is
+\[
+(\sigma-\delta R\rho\ell)y-\delta R\ell\eta^0=0. \tag{P7}
+\]
+Its slope exceeds $\sigma-R>0$, proving the cutoff expansion.  Differentiating
+completion gives (P5); the activity inequality and exponential convexity imply
+$T_{1,\gamma}>0$, while
+\[
+T_{\delta,\gamma}=T_{1,\gamma}+(1-\delta)R\ell
+\{1-\rho+\rho E(1+\gamma)\}>0.
+\]
+In the inactive case, uniform convergence sets $\eta_\varepsilon=0$ on the
+localized set, so only $d=0$ remains and rescue is unused. \hfill$\square$
+
+\medskip
+\noindent\textit{Connection and scope.}  At $\gamma=0$, $E=\ell=1$,
+$\bar v=p/\beta$, $\eta^0=\rho$, and Proposition 2 reduces exactly to
+Proposition 1.  Economically, without entry the screened pool leaves no
+terminal supply at $p$, so a marginal rescue is automatically active.  With
+entry, the flat payment already has coverage $1-E$, and rescue works only if
+the activity test leaves riders willing to switch.  The propositions are
+local around an active flat price; they do not solve the global mixed-entry
+menu problem or assert monotonicity in $\gamma$.
 
 \clearpage
 \section{Literature position: the exact joint object}
