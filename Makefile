@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: formal formal-figures formal-clean group group-clean empirical-test mixed-test paper figure test quick clean
+.PHONY: formal formal-figures formal-clean group group-clean mixed-test paper figure test quick clean
 
 formal-figures:
 	PYTHONPATH=code $(PYTHON) paper/formal/scripts/generate_theory_outputs.py
@@ -18,10 +18,6 @@ group:
 group-clean:
 	cd group_meeting && latexmk -c group_meeting_market_thickness.tex
 
-empirical-test:
-	$(PYTHON) -m unittest discover -s empirical/tests -p 'test_*.py' -v
-	$(PYTHON) empirical/src/calibration_contract.py --synthetic
-
 mixed-test:
 	PYTHONPATH=code $(PYTHON) code/check_mixed_supply_theorems.py
 
@@ -33,6 +29,7 @@ figure:
 test:
 	PYTHONPATH=code $(PYTHON) -m unittest discover -s code -p 'test_*.py' -v
 	PYTHONPATH=code $(PYTHON) code/check_mixed_supply_theorems.py
+	PYTHONPATH=code $(PYTHON) code/check_general_distribution_examples.py
 
 quick:
 	PYTHONPATH=code $(PYTHON) code/run_discount_falsification.py --quick

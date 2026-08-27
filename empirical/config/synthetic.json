@@ -1,6 +1,0 @@
-{
-  "mode": "synthetic_schema_only",
-  "seed": 20260827,
-  "requests": 24,
-  "warning": "Synthetic records validate schema and timing only; they are not empirical calibration."
-}

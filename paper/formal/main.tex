@@ -28,44 +28,39 @@
 \newcommand{\R}{\mathbb R}
 \newcommand{\ind}{\mathbf 1}
 \newcommand{\ph}{\phi}
-\newcommand{\DataRequired}{\textsc{Data Required}}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \MANUSCRIPTNO{}
 \RUNAUTHOR{Anonymous Authors}
-\RUNTITLE{Announced Rescue Pricing and the Screening History of Supply}
+\RUNTITLE{Announced Rescue Pricing and Market Thickness}
 \TITLE{Announced Rescue Pricing: Strategic Waiting, Screening History,
 and Market Thickness}
 \ARTICLEAUTHORS{}
 
 \begin{document}
 
-\ABSTRACT{A platform that announces a higher payment for an unfilled request
-improves its chance of rescue but also gives current suppliers a reason to
-wait.  We study this trade-off when the expected thickness of the incumbent
-driver pool is public, its realization is latent, and universal rejection
-both triggers continuation and screens the remaining supply.  A private-value
-rider decides whether to post and, after failure, whether to abandon, repeat,
-or activate rescue; private-cost incumbents decide whether to accept the
-initial payment or preserve a discounted option to wait.  Within an anonymous
-symmetric cutoff-WPBE class, we characterize equilibrium with incumbent
-survival and fresh driver entry.  In the uniform no-entry core, every menu has
-a unique cutoff and the two-payment design reduces to a one-dimensional
-optimization.  The optimal rescue menu strictly improves completion above an
-endogenous patience threshold.  Its completion gain relative to the optimal
-flat payment is continuous in market thickness, vanishes in both very thin
-and very thick markets, and therefore attains a positive maximum at a finite
-thickness; uniqueness of that maximizer is not asserted.  With both surviving
-incumbents and fresh entrants, a small rescue strictly beats optimized flat
-pricing whenever at least one optimal flat price leaves the highest rider type
-strictly willing to use rescue.  Holding either continuation headcount or
-price-marginal capacity fixed, a larger incumbent share strictly intensifies
-first-order strategic waiting within the active local-rescue region, while
-its completion effect can reverse with incumbent
-patience.  We also provide a pre-specified model-to-data mapping for a
-request-level structural calibration; quantitative estimates are deliberately
-withheld until the announcement, exposure, and entry measurements required by
-the model are available.}
+\ABSTRACT{A platform that commits to a higher payment after an unfilled
+request expands continuation supply but also gives incumbent drivers a reason
+to wait.  We study this trade-off when expected market thickness is public,
+realized local supply is latent, and universal rejection both triggers rescue
+and screens the continuation pool.  We do not impose cutoff behavior.  With
+continuous full-support rider-value and driver-cost distributions, every
+anonymous symmetric independent WPBE is almost everywhere equivalent to a
+pure driver cutoff, and the cutoff-equilibrium correspondence is nonempty and
+compact.  Under smooth distributions and no fresh entry, any active flat
+price admits a sufficiently small rescue increase that strictly raises
+completion on every nearby equilibrium branch.  Convexity of the driver-cost
+CDF strengthens this result: every active strict menu beats the flat policy
+with the same first payment for every equilibrium cutoff, whereas a concave
+CDF can reverse the comparison.  In the uniform no-entry core, every menu has
+a unique cutoff, the optimal second payment has a Lambert-$W$ representation,
+and global menu design reduces to one dimension.  The optimized rescue gain
+is continuous in market thickness, vanishes in very thin and very thick
+markets, and attains a positive maximum at a finite thickness; neither strict
+single-peakedness nor uniqueness of that thickness is asserted.  An extension
+with surviving incumbents and fresh entrants identifies an activity condition
+for local rescue and shows that supply composition affects strategic waiting
+even at fixed continuation capacity.}
 
 \KEYWORDS{dynamic pricing, rescue payments, strategic waiting, market
 thickness, screening, Poisson games}
@@ -119,24 +114,37 @@ supply and rival costs remain latent.  Drivers who wait discount their
 terminal payoff, and accepting drivers compete for assignment.
 
 The analysis follows a policy--response--optimization sequence.  We first fix
-the announced menu and characterize weak perfect Bayesian equilibrium within
-the anonymous symmetric pure-cutoff class.  We then optimize the menu subject
-to that equilibrium response.  Universal rejection generates a tractable
-failure posterior: incumbents remaining above the first-period cutoff are a
-screened population, while fresh entrants retain the original cost
-distribution.  The equilibrium characterization allows arbitrary incumbent
-survival and fresh entry and makes the rider's abandon--repeat--rescue choice
-part of the drivers' continuation payoff.
+the announced menu and characterize weak perfect Bayesian equilibrium among
+anonymous symmetric independent driver strategies.  Cutoff behavior is a
+result rather than a restriction: the accept-versus-wait payoff difference is
+strictly decreasing in driver cost, so every equilibrium strategy is almost
+everywhere a pure cutoff.  Universal rejection generates a tractable failure
+posterior.  Incumbents remaining above the cutoff are screened, whereas fresh
+entrants retain the original cost distribution.  This fixed-menu analysis
+allows general continuous full-support cost and value distributions and makes
+the rider's abandon--repeat--rescue decision part of drivers' continuation
+payoffs.
 
-The globally solvable core sets fresh entry to zero while retaining incumbent
-survival.  In the uniform model, every announced menu has a unique equilibrium
-cutoff.  For a fixed $p_1$, the optimal rescue problem separates into
-reject-all, tangent-rescue, and repeat-only regimes.  This reduces joint design
-of $p_1$ and $p_2$ to a continuous one-dimensional problem and proves policy
-attainment.  Above an endogenous rider-patience threshold, the optimized
-rescue menu strictly improves completion relative to the optimized flat
-payment.  Positive incumbent survival makes $\beta\ge1/2$ a simple sufficient
-condition at every finite thickness.
+The global design problem is exactly solvable when driver costs and rider
+values are uniform and fresh entry is absent.  Every announced menu then has a
+unique equilibrium cutoff.  For a fixed $p_1$, the optimal rescue problem
+separates into reject-all, tangent-rescue, and repeat-only regimes.  The
+optimal continuation price has a Lambert-$W$ representation, and joint design
+of $(p_1,p_2)$ reduces to a continuous one-dimensional problem.  Above an
+endogenous rider-patience threshold, the optimized rescue menu strictly
+improves completion relative to the optimized flat payment.  Positive
+incumbent survival makes $\beta\ge1/2$ a simple sufficient condition at every
+finite thickness.
+
+The uniform distribution is used for this exact global solution, not for the
+cutoff logic.  Under general smooth distributions and no entry, a sufficiently
+small rescue increase at any active flat price raises completion on every
+nearby equilibrium branch.  Under a convex driver-cost CDF, every active
+strict menu improves on the flat policy with the same $p_1$ for every
+equilibrium cutoff.  A concave-CDF example reverses the comparison, and a
+continuous full-support example has three equilibrium cutoffs.  These results
+identify which conclusions survive beyond the exact core and why equilibrium
+selection cannot be ignored in unrestricted distributions.
 
 We next return to the general continuation pool.  When $\alpha<1$ and
 $\gamma>0$, the second window contains both screened surviving incumbents and
@@ -158,33 +166,27 @@ finite thickness.  Hence a finite intermediate market maximizes the rescue
 gain.  This existence result does not imply that $V(m)$ is strictly
 single-peaked or that the maximizing thickness is unique.
 
-The paper also specifies a request-level empirical implementation.  The data
-must record the announced menu, the initial exposure set, universal rejection,
-rider continuation, incumbent survival, fresh entry, and terminal completion.
-Those inputs are not present in the current repository.  We therefore provide
-a pre-specified measurement map, calibration criterion, validation design, and
-counterfactual pipeline, with every empirical result explicitly marked
-\DataRequired.  Assumed-parameter computations remain theoretical numerical
-illustrations rather than empirical estimates.
-
 This paper makes three contributions.  First, it characterizes the
-cutoff-WPBE created by an announced same-request rescue menu, latent local
-competition, and a private rider continuation decision.  Second, it solves
-the global no-entry design problem and establishes how patience and market
-thickness govern the completion gain from rescue pricing.  Third, it
-separates screened surviving incumbents from unscreened fresh entrants,
-establishes conditional optimized-flat dominance in the mixed-supply model,
-and proves that composition matters even when continuation headcount or
-price-marginal capacity is held fixed.  The contribution is the equilibrium and
-completion-design analysis generated by this joint structure, not the
-procurement-clock architecture, strategic waiting, entry, or market thickness
-in isolation.
+endogenous cutoff-WPBE generated jointly by ex ante menu commitment, latent
+local competition, universal-rejection updating, and private rider
+continuation.  General-distribution existence and purification separate this
+equilibrium foundation from the uniform formulas used later.  Second, it
+solves the uniform no-entry menu-design problem globally and establishes how
+rider patience and market thickness govern the incremental completion value
+of rescue pricing.  Third, it maps the boundary of those global results:
+smooth and convex distributional extensions identify robust rescue gains,
+while concavity and multiplicity examples delimit them; the mixed-supply
+extension separates screened surviving incumbents from unscreened fresh
+entrants and shows why continuation composition matters.  The contribution
+is this joint equilibrium-design structure, not two-period pricing, Poisson
+supply, strategic waiting, or entry in isolation.
 
-The remainder of the paper reviews the closest literatures, states the
-empirical measurement requirements, develops the model and equilibrium,
-solves the design problem, studies thickness and supply composition, and lays
-out the calibration and policy-counterfactual procedure.  Proofs and numerical
-verification details appear in the appendices.
+The remainder of the paper reviews the closest literatures, develops the
+institution and general fixed-menu equilibrium, establishes distributional
+robustness and its limits, solves the exact uniform design problem, studies
+market thickness and continuation-supply composition, and closes with
+institutional scope.  Proofs and numerical verification details appear in the
+appendices.
 
 \section{Literature Review}
 \label{sec:literature}
@@ -241,8 +243,9 @@ rejection.
 using an acceptance model driven by the current bonus.  Their fixed-later-bonus
 ablation finds no detectable anticipation before that bonus, although the
 future path is not described as disclosed and committed.  This evidence is an
-external-validity challenge for the strategic channel studied here and makes
-announcement timing an empirical requirement.  \citet{SiggEtAl2025} model
+important institutional contrast: our strategic channel requires the complete
+failure-contingent menu to be credible before first-window decisions.
+\citet{SiggEtAl2025} model
 workers who reject a delivery request so that it is reoffered at a higher
 payment.  Broadcast, supplier-menu, and notification models also study
 contention and a second attempt after no response, but vary outreach,
@@ -272,131 +275,56 @@ holds $m$ fixed and compares two payment-policy classes:
 $V(m)$ is the completion advantage of optimal rescue pricing over optimal flat
 pricing in that same environment.
 
-Empirical work has also structurally quantified matching and participant
-responses in ride-hailing.  For example, \citet{ZhangEtAl2026} estimate driver
-acceptance and relocation together with rider choice in a centralized matching
-system.  The empirical implementation here consequently requires variation
-that disciplines announced same-request rescue, screening history, and rider
-continuation in addition to driver acceptance and market density.
+\paragraph{Population uncertainty and monotone behavior.}
+\citet{Myerson1998} develops Poisson games as a tractable representation of
+population uncertainty, while \citet{Athey2001} gives general conditions for
+monotone pure strategies in games with one-dimensional private information.
+Our cutoff result is model-specific and does not follow mechanically from
+either foundation: after failure, a driver's continuation payoff depends on
+the rider's endogenous choice among abandon, repeat, and rescue.  The affine
+accept-versus-wait margin lets us prove directly that anonymous symmetric
+independent equilibrium behavior is almost everywhere a pure cutoff.
 
 Against these literatures, we characterize the
-cutoff-WPBE and completion-design problem created jointly by an ex ante
+endogenous cutoff-WPBE and completion-design problem created jointly by an ex ante
 same-request posted-payment menu, latent realized competition, a private
 rider's post-failure continuation, and a continuation pool containing screened
 incumbents and potentially unscreened entrants.  The global design and
-thickness theorems are proved for the stated uniform no-entry core; the entry
-extension is local and its global policy comparisons remain numerical.
-
-\section{Institutional Setting and Empirical Requirements (Protocol Only)}
-\label{sec:data}
-
-This section records the empirical contract that must be satisfied before the
-model can be called calibrated.  The current repository contains no request-
-level data, data dictionary, announcement protocol, or exposure table.
-Accordingly, every empirical entry below is marked \DataRequired, and no
-parameter value in the paper is described as an estimate.
-
-\subsection{Operational setting and policy timing}
-
-An empirical implementation requires a platform on which one request is shown
-to a well-defined incumbent response set, both $p_1$ and the failure-contingent
-$p_2$ are credibly disclosed before the first response, and a second response
-window follows universal rejection.  The logs must distinguish three events:
-an incumbent who remains eligible, a newly eligible entrant, and a driver who
-was never exposed.  They must also show whether the rider abandons, repeats
-$p_1$, or activates $p_2$.  A no-acceptance record without the corresponding
-exposure set cannot distinguish universal rejection from zero supply.
-
-The theoretical transfer is paid by the rider to the selected driver and the
-objective is completion.  If the empirical payment is a platform-funded bonus,
-a fare component, or a bundled transfer, the incidence must be documented and
-the mapping treated as a reduced-form calibration rather than an exact
-institutional identity.  Profit, subsidy expenditure, and welfare require
-additional primitives and are not implied by a completion-maximizing model.
-
-\subsection{Data construction and measurement map}
-
-The empirical unit is a request--response-window record linked to driver-level
-exposures and rider continuation events.  Table~\ref{tab:measurement} is the
-minimum measurement map.  Raw or restricted observations must remain outside
-Git; only schemas, aggregate outputs, and reproducible code belong in the
-repository.
-
-\begin{table}
-\TABLE
-{Model-to-data measurement map (design only; no estimates).\label{tab:measurement}}
-{\begin{tabularx}{\textwidth}{L{16mm}L{42mm}XL{25mm}}
-\toprule
-Object & Economic meaning & Required empirical counterpart & Status\\
-\midrule
-$p_1$ & Initial payment & Amount displayed to each side before the first response & \DataRequired\\
-$p_2$ & Committed rescue payment & Amount and disclosure timestamp preceding first-round decisions & \DataRequired\\
-$m$ & Public expected incumbent thickness & Logged supply forecast or pre-decision market-state proxy & \DataRequired\\
-$N^I$ & Latent realized incumbent count & Initial eligible/exposed roster, used through a measurement model & \DataRequired\\
-$\alpha$ & Incumbent survival & Same driver remains eligible after universal rejection & \DataRequired\\
-$\gamma m$ & Fresh supply intensity & Newly eligible second-window drivers not in the incumbent roster & \DataRequired\\
-$\beta$ & Rider continuation factor & Posting and abandon/repeat/rescue choices across delay and payment variation & \DataRequired\\
-$\delta$ & Incumbent waiting factor & Same-driver decisions across windows and waiting-time variation & \DataRequired\\
-$F,G$ & Cost and value distributions & Choice variation with exposure denominators and exogenous payments & \DataRequired\\
-\bottomrule
-\end{tabularx}}
-{Expected thickness $m$ is not an observed realization of $N^I$.  Each
-parameter will be classified as measured, estimated, calibrated, or fixed for
-sensitivity before empirical results are reported.}
-\end{table}
-
-The sample-construction table will report the data source, markets, dates,
-randomization or policy arms, original request count, exclusions, missingness,
-censoring, and final linked sample.  Descriptive evidence will separately show
-first-window acceptance, universal rejection, rider continuation, rescue
-activation, terminal acceptance, and completion across thickness cells.
-
-\subsection{Identification gates}
-
-The announced-rescue channel is empirically identified only if $p_2$ was
-known and credible before incumbents chose whether to accept $p_1$.  Static
-price variation can discipline current-payment acceptance and the flat
-benchmark, but cannot by itself identify anticipatory waiting.  Endogenous
-menu assignment requires an instrument or a transparent selection model.
-Likewise, $\alpha$ and $\gamma$ cannot be separated without persistent driver
-identifiers and response-window eligibility records.
-
-Until these gates are met, the empirical contribution is a pre-specified
-design rather than a result.  Section~\ref{sec:calibration} states the
-calibration criterion, validation moments, uncertainty procedure, and
-counterfactuals that will be populated when the required inputs become
-available.
+thickness theorems are proved for the stated uniform no-entry core; the
+general-distribution and entry results state precisely which conclusions
+survive outside that core.
 
 \section{Model}
 \label{sec:model}
 
 \subsection{Primitives and policy}
 
-Table~\ref{tab:primitives} defines the primitives once.  The analytical
-results below impose $F(c)=c$ and $G(v)=v$ on $[0,1]$; the empirical design
-allows parametric or semiparametric alternatives and must label that change
-explicitly.
+Table~\ref{tab:primitives} defines the primitives once.  The fixed-menu
+equilibrium analysis allows general continuous, strictly increasing,
+full-support CDFs $F$ and $G$ on $[0,1]$.  Uniform distributions are imposed
+only where stated for the exact global design and thickness analysis.
 
 \begin{table}
 \TABLE
-{Model primitives and empirical counterparts.\label{tab:primitives}}
-{\begin{tabularx}{\textwidth}{L{15mm}L{22mm}XL{39mm}}
+{Model primitives.\label{tab:primitives}}
+{\begin{tabularx}{\textwidth}{L{18mm}L{28mm}X}
 \toprule
-Symbol & Domain & Economic meaning & Empirical counterpart\\
+Symbol & Domain & Economic meaning\\
 \midrule
-$p_1,p_2$ & $0\le p_1\le p_2\le1$ & Initial and committed rescue payments & Displayed menu and timestamps\\
-$m$ & $(0,\infty)$ & Public expected incumbent thickness & Pre-decision supply state\\
-$N^I$ & $\operatorname{Pois}(m)$ & Latent realized incumbent count & Initial eligible exposure roster\\
-$\alpha$ & $[0,1]$ & Incumbent survival after failure & Linked incumbent eligibility\\
-$\gamma$ & $[0,\infty)$ & Fresh-entry intensity multiplier & New second-window exposure rate\\
-$\beta$ & $(0,1)$ & Rider continuation factor & Posting and continuation choices\\
-$\delta$ & $(0,1]$ & Incumbent waiting factor & Cross-window incumbent decisions\\
-$F$ & cdf on $[0,1]$ & Driver cost distribution & Acceptance by payment and exposure\\
-$G$ & cdf on $[0,1]$ & Rider value distribution & Posting and continuation by payment\\
+$p_1,p_2$ & $0\le p_1\le p_2\le1$ & Initial payment and committed payment after universal rejection\\
+$m$ & $(0,\infty)$ & Public expected thickness of the incumbent pool\\
+$N^I$ & $\operatorname{Pois}(m)$ & Latent realized incumbent count\\
+$\alpha$ & $[0,1]$ & Probability that a rejected incumbent remains available\\
+$\gamma$ & $[0,\infty)$ & Fresh-entry intensity relative to $m$\\
+$\beta$ & $(0,1)$ & Rider continuation factor after delay\\
+$\delta$ & $(0,1]$ & Incumbent payoff discount from waiting\\
+$F$ & CDF on $[0,1]$ & Incumbent and entrant cost distribution\\
+$G$ & CDF on $[0,1]$ & Rider value distribution\\
 \bottomrule
 \end{tabularx}}
-{The main global analysis uses uniform $F$ and $G$.  Expected thickness $m$
-is distinct from the latent realization $N^I$.}
+{The parameters $\alpha$ and $\delta$ govern different margins: physical
+availability and intertemporal incentives.  Expected thickness $m$ is distinct
+from the latent realization $N^I$.}
 \end{table}
 
 There is one potential request and two periods.  Market thickness $m>0$ is
@@ -411,7 +339,7 @@ from the rider to the selected driver.  The platform maximizes the
 unconditional probability that the potential request is completed; it does
 not maximize profit or welfare.
 
-The rider has $v\sim U[0,1]$.  A period-1 completion yields $v-p_1$ and a
+The rider has value $v\sim G$.  A period-1 completion yields $v-p_1$ and a
 period-2 completion at payment $p_j$ yields $\beta v-p_j$, where
 $\beta\in(0,1)$.  Incumbents have a separate discount factor
 $\delta\in(0,1]$: if an incumbent waits and is selected in period 2, her
@@ -424,16 +352,18 @@ $\delta=\beta$.  From the request perspective the incumbent count is
  N^I\sim\operatorname{Pois}(m).
 \]
 The realization is latent to every player.  Incumbent costs are i.i.d.
-$U[0,1]$ and remain fixed across periods.  An accepting driver incurs her cost
+$F$ and remain fixed across periods.  Throughout the general analysis, $F$
+and $G$ are continuous, strictly increasing, and have full support on
+$[0,1]$.  An accepting driver incurs her cost
 only if selected; an unselected acceptor earns and incurs zero.
 
 Conditional on the rider continuing after universal rejection, each
 incumbent survives independently with probability $\alpha\in[0,1]$ and a
 fresh pool
 \[
- N^E\sim\operatorname{Pois}(\gamma m),\qquad \gamma\ge0,
+N^E\sim\operatorname{Pois}(\gamma m),\qquad \gamma\ge0,
 \]
-arrives independently with i.i.d. uniform costs.  These realizations occur
+arrives independently with i.i.d. costs distributed according to $F$.  These realizations occur
 after the rider's abandon--repeat--rescue decision, and the rider observes
 neither count nor survival.  Moving the independent latent draws immediately
 before that decision would be outcome-equivalent.  At the terminal node, an
@@ -517,15 +447,40 @@ their cost.  If at least one accepts, uniform selection produces period-2
 completion; otherwise the request expires.
 \end{enumerate}
 
+The pair $(p_1,p_2)$ is not an arbitrary truncation of a richer deterministic
+policy within this institution.  It is the complete anonymous transfer menu
+generated by the two response windows and the rider's publicly observed
+repeat--rescue choice.
+
+\begin{proposition}[Institutional representation]
+\label{prop:representation}
+Suppose the platform commits before types and supply are realized, drivers and
+riders send no private reports, acceptance ends the request, universal
+rejection is the only nonterminal public history, and every eligible driver in
+a window faces the same common rider-to-driver transfer.  After rejection the
+rider publicly chooses abandon, repeat, or rescue; repeat preserves the
+initial quote and rescue activates one committed alternative quote.  Every
+deterministic anonymous transfer schedule in this interface is represented by
+a pair $(p_1,p_2)$.  If rescue payments cannot fall below the initial quote,
+the feasible set is $p_1\le p_2$.
+\end{proposition}
+
+The initial response and a repeat use $p_1$; the rider's publicly observed
+rescue action activates $p_2$.  Proposition~\ref{prop:representation} is
+completeness within this action-contingent interface, not optimality among
+arbitrary direct mechanisms.  Reports, more windows, driver-specific offers,
+or separate rider charges and driver wages create additional instruments.
+
 \subsection{Equilibrium class, beliefs, and tie-breaking}
 
-We use weak perfect Bayesian equilibrium (WPBE), restricted to anonymous,
-symmetric, pure first-period driver cutoffs.  Under cutoff $a$, incumbents
-below $a$ accept and those above $a$ wait.  The cutoff type accepts at an
-interior or upper cutoff and rejects at the lower cutoff; this affects only a
-null cost type.
+We use weak perfect Bayesian equilibrium (WPBE) and initially restrict only
+first-window driver behavior to anonymous symmetric independent strategies.
+A driver may use any measurable acceptance probability
+$\sigma:[0,1]\to[0,1]$.  Cutoff behavior will be derived from incentives in
+Section~\ref{sec:equilibrium}, rather than imposed here.  We do not claim to
+rule out asymmetric or correlated equilibria.
 
-The rider posts at a zero payoff when $v=p_1$, and does not post below it.
+Whenever posting yields zero, the rider posts if and only if $v\ge p_1$.
 After failure, the following priority rule makes continuation single-valued.
 If the maximal continuation payoff is zero, the rider repeats iff
 $\beta v-p_1\ge0$ and otherwise abandons.  If repeat and rescue tie at a
@@ -534,491 +489,466 @@ at a zero surplus.  These rules matter when repeat has zero coverage: a
 positive interval of rider types can then be indifferent between repeat and
 abandon.
 
-For $p_1<1$, posting implies the belief
-$v\mid\{\text{post}\}\sim U[p_1,1]$.  Since supply is independent of value,
-failure leaves this value posterior unchanged.  Poisson splitting determines
-the rider's supply posterior after failure.  For a focal incumbent, Palm
-conditioning leaves the number of rivals distributed as $\operatorname{Pois}(m)$.
+For $p_1<1$, posting truncates $G$ to $[p_1,1]$.  Since supply is independent
+of value, failure leaves this value posterior unchanged.  Poisson splitting
+determines the rider's supply posterior after failure.  For a focal incumbent,
+Palm conditioning leaves the number of rivals distributed as
+$\operatorname{Pois}(m)$.
 At $(p_1,p_2)=(1,1)$, posting is a null event; we complete the off-path driver
 subgame with cutoff one and define completion as zero.
 
-\section{Equilibrium under an arbitrary announced menu}
+\section{Equilibrium under an Arbitrary Announced Menu}
 \label{sec:equilibrium}
 
-Fix a candidate cutoff $a\in[0,p_1]$ and define
+Fix a candidate cutoff \(a\in[0,p_1]\).  Extend the rider CDF outside its
+support by
 \[
- \ph(x)=
- \begin{cases}(1-e^{-x})/x,&x>0,\\1,&x=0,\end{cases}
+ \widetilde G(x)=
+ \begin{cases}
+ 0,&x\le0,\\
+ G(x),&0<x<1,\\
+ 1,&x\ge1,
+ \end{cases}
  \qquad
- \lambda_j(a)=m\{\alpha(p_j-a)+\gamma p_j\},
- \qquad C_j(a)=1-e^{-\lambda_j(a)}.
+ \ph(x)=
+ \begin{cases}(1-e^{-x})/x,&x>0,\\1,&x=0.\end{cases}
  \tag{1}
+\]
+The terminal eligible intensity and coverage at payment \(p_j\) are
+\[
+ \lambda_j(a)=m\{\alpha[F(p_j)-F(a)]+\gamma F(p_j)\},
+ \qquad C_j(a)=1-e^{-\lambda_j(a)}.                       \tag{2}
 \]
 
 \begin{lemma}[Poisson competition and failure posterior]
 \label{lem:poisson}
-Under cutoff $a$, first-period completion conditional on posting is
-$1-e^{-ma}$.  A focal acceptor's expected assignment share is $\ph(ma)$,
-while a focal waiting driver reaches failure against all rivals with
-probability $e^{-ma}$.  Conditional on universal rejection, incumbents above
-$a$ remain a Poisson marked population.  After survival and fresh entry,
-terminal coverage at $p_j$ is $C_j(a)$, and an eligible focal driver's
-terminal assignment share is $\ph(\lambda_j(a))$.
+Under cutoff \(a\), first-window completion conditional on posting is
+\(1-e^{-mF(a)}\).  A focal acceptor's expected assignment share is
+\(\ph(mF(a))\), while a focal waiting driver reaches failure against all rivals
+with probability \(e^{-mF(a)}\).  Conditional on universal rejection,
+incumbents above \(a\) remain a Poisson marked population.  After survival and
+fresh entry, terminal coverage at \(p_j\) is \(C_j(a)\), and an eligible focal
+driver's terminal assignment share is \(\ph(\lambda_j(a))\).
 \end{lemma}
 
-The assignment identity follows from
+The assignment identity is
 \[
- \E\left[\frac1{1+Z}\right]=\int_0^1\E[t^Z]dt
+ \E\left[\frac1{1+Z}\right]=\int_0^1\E[t^Z]\,dt
  =\frac{1-e^{-x}}x,\qquad Z\sim\operatorname{Pois}(x).
 \]
-Poisson marking gives independent counts below and above $a$.  Conditional on
-no point below $a$, the above-$a$ process is unchanged.  This is not the law
-of $N^I-1$ conditional on $N^I\ge1$.
+Poisson marking makes counts in disjoint cost regions independent
+\citep{Myerson1998}.  Conditional on no cost below \(a\), the process above
+\(a\) is unchanged; it is not the law of \(N^I-1\) conditional on
+\(N^I\ge1\).
 
 After failure, rider payoffs from abandon, repeat, and rescue are
 \[
- 0,\qquad C_1(a)(\beta v-p_1),\qquad
- C_2(a)(\beta v-p_2).
+ 0,\qquad C_1(a)(\beta v-p_1),\qquad C_2(a)(\beta v-p_2).
 \]
-If $C_2>C_1$, define
+If \(C_2(a)>C_1(a)\), define
 \[
  v^M(a)=\frac{C_2(a)p_2-C_1(a)p_1}
  {\beta[C_2(a)-C_1(a)]};
 \]
-if $C_2=C_1$, put $v^M=+\infty$.  Conditional on posting, the repeat and
+otherwise put \(v^M(a)=+\infty\).  Conditional on posting, the repeat and
 rescue masses are
 \[
  \eta^R(a)=
- \frac{[\min\{v^M(a),1\}-p_1/\beta]^+}{1-p_1},
- \qquad
- \eta(a)=\frac{[1-v^M(a)]^+}{1-p_1},             \tag{2}
+ \frac{\widetilde G(v^M(a))-\widetilde G(p_1/\beta)}
+ {1-G(p_1)},\qquad
+ \eta^2(a)=\frac{1-\widetilde G(v^M(a))}{1-G(p_1)},       \tag{3}
 \]
 and
 \[
- \eta^R(a)+\eta(a)=
- \rho(p_1):=\frac{[1-p_1/\beta]^+}{1-p_1}.       \tag{3}
+ \eta^R(a)+\eta^2(a)=
+ \rho_G(p_1):=
+ \frac{1-\widetilde G(p_1/\beta)}{1-G(p_1)}.              \tag{4}
 \]
-The initial posting payoff is
+The switch satisfies \(v^M(a)\ge p_1/\beta\), so the masses in (3) are
+nonnegative.  The initial posting payoff is
 \[
- (1-e^{-ma})(v-p_1)+e^{-ma}
- \max\{0,C_1(\beta v-p_1),C_2(\beta v-p_2)\},
+ (1-e^{-mF(a)})(v-p_1)+e^{-mF(a)}
+ \max\{0,C_1(\beta v-p_1),C_2(\beta v-p_2)\}.
 \]
-so the rider posts exactly when $v\ge p_1$.
+Together with the tie-breaking rule, this implies posting exactly when
+\(v\ge p_1\).
 
-A focal incumbent of cost $c$ obtains
+We next show that the cutoff is generated by equilibrium incentives.  Let
+\(\sigma(c)\) be an arbitrary anonymous symmetric independent first-window
+acceptance probability and put \(q=\int\sigma(c)\,dF(c)\).  The rival terminal
+intensity is
 \[
- A(c;a)=\ph(ma)(p_1-c)                           \tag{4}
+ \lambda_j(\sigma)=m\left\{\alpha\int_0^{p_j}
+ [1-\sigma(t)]\,dF(t)+\gamma F(p_j)\right\}.              \tag{5}
 \]
-from accepting immediately and
-\[
- W(c;a)=\delta\alpha e^{-ma}\left\{
- \eta^R(a)\ph(\lambda_1(a))[p_1-c]^+
- +\eta(a)\ph(\lambda_2(a))[p_2-c]^+
- \right\}                                       \tag{5}
-\]
-from waiting.  These are conditional on observing a posted request; the
-posting mass must not multiply a driver's sequential payoff.
+The rider masses are defined as in (3), using the coverages induced by
+\(\sigma\).
 
-For $c\le p_1$, the margin $A-W$ is affine and strictly decreasing in $c$:
+\begin{theorem}[Endogenous cutoff]
+\label{thm:endogenouscutoff}
+Fix \(0<p_1<1\) and \(p_1\le p_2\le1\).  In every anonymous symmetric WPBE with independent
+driver mixing, first-window behavior is \(F\)-almost everywhere equivalent to
+a pure cutoff: for some \(a\in[0,p_1]\), costs below \(a\) accept and costs
+above \(a\) wait.  Mixing can occur only at the null type \(c=a\).
+Conditional on any public sunspot realization the same conclusion holds; a
+sunspot can mix across numerical cutoffs only when the underlying cutoff
+equilibrium is multiple.
+\end{theorem}
+
+For \(c\le p_1\), accepting and waiting yield
 \[
- A(c;a)-W(c;a)=B(a)(p_1-c)-D(a),                 \tag{6}
+ A(c;\sigma)=\ph(mq)(p_1-c),
+\]
+\[
+ W(c;\sigma)=\delta\alpha e^{-mq}\{
+ \eta^R\ph(\lambda_1)(p_1-c)
+ +\eta^2\ph(\lambda_2)(p_2-c)\}.
+\]
+Their difference is
+\[
+ A(c;\sigma)-W(c;\sigma)
+ =B(\sigma)(p_1-c)-D(\sigma),                              \tag{6}
 \]
 where
 \[
 \begin{aligned}
- B(a)&=\ph(ma)-\delta\alpha e^{-ma}
- \{\eta^R(a)\ph(\lambda_1)+\eta(a)\ph(\lambda_2)\},\\
- D(a)&=\delta\alpha e^{-ma}\eta(a)\ph(\lambda_2)(p_2-p_1).
+ B(\sigma)&=\ph(mq)-\delta\alpha e^{-mq}
+  \{\eta^R\ph(\lambda_1)+\eta^2\ph(\lambda_2)\},\\
+ D(\sigma)&=\delta\alpha e^{-mq}\eta^2\ph(\lambda_2)
+  (p_2-p_1).
 \end{aligned}
 \]
-Indeed, $B(a)>0$ for $p_1>0$ because
-\[
- B(a)\ge\ph(ma)-\delta e^{-ma}\ge0,
-\]
-with strictness from $a>0$ or, at $a=0$, from $\rho(p_1)<1$.  Hence a best
-response is genuinely a cutoff.
+If \(q>0\), then \(B(\sigma)\ge\ph(mq)-e^{-mq}>0\).  If \(q=0\),
+then \(B(\sigma)\ge1-\delta\alpha\rho_G(p_1)>0\).  Thus (6) is strictly
+decreasing in cost and crosses zero at most once.  Theorem
+\ref{thm:endogenouscutoff} is therefore a direct implication of this model's
+payoff geometry, not an assumed monotonicity restriction.
 
-Define the cutoff-type margin
-\[
- f_m(a;p_1,p_2)=\ph(ma)(p_1-a)
- -\delta\alpha e^{-ma}\left\{
- \eta^R(a)\ph(\lambda_1)(p_1-a)
- +\eta(a)\ph(\lambda_2)(p_2-a)
- \right\}.                                      \tag{7}
-\]
-
-\begin{proposition}[Symmetric cutoff WPBE]
-\label{prop:wpbe}
-For $0<p_1<1$, the equilibrium cutoff set is
+For a cutoff \(a\), define the cutoff-type margin
 \[
 \begin{aligned}
- \calE_m^{\alpha,\delta,\gamma}(p_1,p_2)
- =&\ \{0:f_m(0;p_1,p_2)\le0\}\\
- &\cup\{a\in(0,p_1):f_m(a;p_1,p_2)=0\}\\
- &\cup\{p_1:f_m(p_1;p_1,p_2)\ge0\}.
-\end{aligned}                                    \tag{8}
+ f_{F,G}(a;p_1,p_2)
+={}&\ph(mF(a))(p_1-a)\\
+&-\delta\alpha e^{-mF(a)}
+ \{\eta^R(a)\ph(\lambda_1(a))(p_1-a)
+ +\eta^2(a)\ph(\lambda_2(a))(p_2-a)\}.
+\end{aligned}                                             \tag{7}
 \]
-It is nonempty and compact.  At $p_1=0$, the only aggregate cutoff is zero
-with the lower-boundary reject action; at $(1,1)$, set
-$\calE_m^{\alpha,\delta,\gamma}(1,1)=\{1\}$.  Thus every feasible menu admits an
-anonymous symmetric pure-cutoff WPBE.
-\end{proposition}
+
+\begin{theorem}[Cutoff-WPBE existence and characterization]
+\label{prop:wpbe}
+For \(0<p_1<1\), the cutoff equilibrium set is
+\[
+\begin{aligned}
+ \calE_{F,G}(p_1,p_2)
+ =&\ \{0:f_{F,G}(0;p_1,p_2)\le0\}\\
+ &\cup\{a\in(0,p_1):f_{F,G}(a;p_1,p_2)=0\}\\
+ &\cup\{p_1:f_{F,G}(p_1;p_1,p_2)\ge0\}.
+\end{aligned}                                             \tag{8}
+\]
+It is nonempty and compact.  At \(p_1=0\), the only aggregate cutoff is zero
+with the lower-boundary reject action; at \((1,1)\), set
+\(\calE_{F,G}(1,1)=\{1\}\).  Hence every feasible menu admits an anonymous
+symmetric WPBE, and Theorem~\ref{thm:endogenouscutoff} represents every
+anonymous symmetric independently mixed WPBE by an element of this set.
+\end{theorem}
 
 At the upper boundary,
 \[
- f_m(p_1;p_1,p_2)=
- -\delta\alpha e^{-mp_1}\eta(p_1)\ph(\lambda_2(p_1))(p_2-p_1)\le0,
+ f_{F,G}(p_1;p_1,p_2)=
+ -\delta\alpha e^{-mF(p_1)}\eta^2(p_1)
+ \ph(\lambda_2(p_1))(p_2-p_1)\le0.
 \]
-so $a=p_1$ is eligible precisely when the right side is zero.  Continuity of
-$f_m$, the lower-boundary test, and the intermediate value theorem give
-existence; endpoint limits remain eligible, proving compactness.
+Continuity, the lower-boundary test, and the intermediate value theorem give
+existence; closedness gives compactness.  General distributions do not imply
+that the set is single valued.
 
-For $p_1<1$, completion on cutoff branch $a$ is
+Completion on cutoff branch \(a\) is
 \[
- M_m^{\alpha,\gamma}(p_1,p_2;a)
- =(1-p_1)\left[1-e^{-ma}+e^{-ma}
- \{\eta^R(a)C_1(a)+\eta(a)C_2(a)\}\right].       \tag{9}
+ M_{F,G}^{\alpha,\gamma}(p_1,p_2;a)
+ =[1-G(p_1)]\left[1-e^{-mF(a)}+e^{-mF(a)}
+ \{\eta^R(a)C_1(a)+\eta^2(a)C_2(a)\}\right].              \tag{9}
 \]
-We define the conservative value within the stated class by
+The conservative fixed-menu value is
 \[
- \underline M_m^{\alpha,\delta,\gamma}(p_1,p_2)
- =\min_{a\in\calE_m^{\alpha,\delta,\gamma}(p_1,p_2)}
- M_m^{\alpha,\gamma}(p_1,p_2;a),                \tag{10}
+ \underline M_{F,G}^{\alpha,\delta,\gamma}(p_1,p_2)
+ =\min_{a\in\calE_{F,G}(p_1,p_2)}
+ M_{F,G}^{\alpha,\gamma}(p_1,p_2;a),                      \tag{10}
 \]
-which is well-defined by Proposition~\ref{prop:wpbe}.  The announced value is
+and the rescue-policy value is
 \[
- D_{\alpha,\delta,\gamma}^*(m)
+ M_R^*(m;F,G,\alpha,\beta,\delta,\gamma)
  =\sup_{(p_1,p_2)\in\mathcal P^D}
- \underline M_m^{\alpha,\delta,\gamma}(p_1,p_2). \tag{11}
+ \underline M_{F,G}^{\alpha,\delta,\gamma}(p_1,p_2).      \tag{11}
 \]
-We retain a supremum here; attainment will be proved for the main no-entry
-baseline rather than assumed in the general model.
-
-\section{Flat-payment benchmark}
+The minimum is well defined.  We retain a supremum for unrestricted
+distributions; later sections prove attainment for the exact uniform
+no-entry core.
+\section{Flat-Payment Benchmark}
 \label{sec:flat}
 
-\begin{proposition}[Flat policy]
+\begin{proposition}[Flat policy under general distributions]
 \label{prop:flat}
-For every $m>0$ and $p>0$, $(p,p)$ has the unique numeric cutoff $a=p$.
-Its completion is
+For every \(m>0\) and \(p>0\), the flat menu \((p,p)\) has the unique
+numerical cutoff \(a=p\).  Its completion probability is
 \[
- Q^F_\gamma(m,p)
- =(1-p)(1-e^{-mp})
- +e^{-mp}[1-p/\beta]^+(1-e^{-\gamma mp}).        \tag{12}
+ M^{\mathrm{flat}}_{F,G,\gamma}(m,p)
+ =[1-G(p)](1-e^{-mF(p)})
+ +e^{-mF(p)}[1-\widetilde G(p/\beta)]
+  (1-e^{-\gamma mF(p)}).                                  \tag{12}
 \]
 Consequently
 \[
- F_\gamma^*(m)=\max_{p\in[0,1]}Q^F_\gamma(m,p)  \tag{13}
+ M^{\mathrm{flat},*}_{F,G,\gamma}(m)
+ =\max_{p\in[0,1]}M^{\mathrm{flat}}_{F,G,\gamma}(m,p)     \tag{13}
 \]
 is attained.
 \end{proposition}
 
-For $a<p$, the flat cutoff margin factors as
+For \(a<p\), the flat cutoff margin factors as
 \[
- (p-a)\left[\ph(ma)-\delta\alpha e^{-ma}\rho(p)
- \ph\bigl(m\{\alpha(p-a)+\gamma p\}\bigr)\right]>0,
+ (p-a)\left[\ph(mF(a))-\delta\alpha e^{-mF(a)}
+ \rho_G(p)\ph\!\left(m\{\alpha[F(p)-F(a)]+\gamma F(p)\}\right)\right]>0.
 \]
-so no lower cutoff is sustainable.  At $a=p$, surviving rejectors have cost
-above $p$ and do not accept the same payment later; only fresh drivers can
-complete after failure, which gives (12).  Continuity on $[0,1]$ gives the
-maximum in (13).
+Thus no lower cutoff is sustainable.  At \(a=p\), surviving rejectors have
+cost above \(p\) and cannot accept the same payment later; only fresh entrants
+can complete after failure.  This gives (12), and continuity on the compact
+price interval gives attainment.
 
+With no fresh entry, the objective simplifies to
+\[
+ M^{\mathrm{flat}}_{F,G,0}(m,p)
+ =[1-G(p)](1-e^{-mF(p)}).                                 \tag{F3}
+\]
+If \(F\) and \(G\) have positive densities and an optimizer is interior, its
+first-order condition is
+\[
+ \frac{g(p)}{1-G(p)}
+ =\frac{mf(p)}{e^{mF(p)}-1}.                              \tag{F4}
+\]
+This hazard-versus-capacity equation is useful even when the optimal price has
+no closed form.
+
+For later use under the uniform specialization \(F(c)=c\), \(G(v)=v\), write
+\[
+ M_\gamma^{\mathrm{flat}}(m,p)
+ =(1-p)(1-e^{-mp})
+ +e^{-mp}[1-p/\beta]^+(1-e^{-\gamma mp}),
+\]
+\[
+ M_\gamma^{\mathrm{flat},*}(m)
+ =\max_{p\in[0,1]}M_\gamma^{\mathrm{flat}}(m,p),\qquad
+ \mathcal P_\gamma^{\mathrm{flat}}(m)
+ =\arg\max_{p\in[0,1]}M_\gamma^{\mathrm{flat}}(m,p).
+\]
 Let
 \[
- \mathcal P_\gamma^F(m)=\arg\max_{p\in[0,1]}Q_\gamma^F(m,p)
- \quad\hbox{and}\quad
- p^0(m)=\frac{1+m-W_0(e^{1+m})}{m}.                       \tag{F1}
+ p^0(m)=\frac{1+m-W_0(e^{1+m})}{m},                       \tag{F1}
 \]
-Here $W_0$ is the principal real branch of the Lambert $W$ function, and
-$p^0(m)$ is the unique maximizer of the first-window objective
-$q_0(m,p)=(1-p)(1-e^{-mp})$.
+the unique maximizer of the first-window objective
+\((1-p)(1-e^{-mp})\).
 
-\begin{lemma}[Geometry of optimized flat pricing]
+\begin{lemma}[Geometry of uniform optimized flat pricing]
 \label{lem:flatgeometry}
-For $m>0$, $\beta\in(0,1)$, and $\gamma>0$,
+For \(m>0\), \(\beta\in(0,1)\), and \(\gamma>0\),
 \[
- \mathcal P_\gamma^F(m)\subset(0,\beta)\cup\{p^0(m)\},
- \qquad 0<p^0(m)<\tfrac12.                               \tag{F2}
+ \mathcal P_\gamma^{\mathrm{flat}}(m)
+ \subset(0,\beta)\cup\{p^0(m)\},\qquad
+ 0<p^0(m)<\tfrac12.                                      \tag{F2}
 \]
-The point $p^0(m)$ can be optimal only when $\beta<p^0(m)$.  Hence, if
-$\beta\ge p^0(m)$---in particular, if $\beta\ge1/2$---every optimized flat
-price is strictly below $\beta$.  The correspondence
-$\mathcal P_\gamma^F(m)$ need not be single valued.
+The point \(p^0(m)\) can be optimal only when \(\beta<p^0(m)\).  Hence, if
+\(\beta\ge p^0(m)\)---in particular, if \(\beta\ge1/2\)---every optimized
+flat price is strictly below \(\beta\).  The optimizer correspondence need
+not be single valued.
 \end{lemma}
 
-The lemma prevents a hidden uniqueness assumption in the mixed-entry result
-below.  When $\beta<p^0(m)$, a low-price maximizer and $p^0(m)$ can tie for
-some $\gamma>0$; the theorem therefore requires one active optimizer, not a
-unique optimizer.
+The lemma prevents a hidden uniqueness assumption in the mixed-entry result.
+When \(\beta<p^0(m)\), a low-price optimizer and \(p^0(m)\) can tie for some
+\(\gamma>0\); the theorem below therefore requires one active optimizer, not
+a unique optimizer.
 
-\section{Extension: Surviving Incumbents and Fresh Driver Entry}
-\label{sec:localentry}
+\section{Rescue Pricing Beyond Uniform Distributions}
+\label{sec:generalrescue}
 
-After universal rejection, two economically distinct sources of terminal
-supply coexist.  A surviving incumbent appears with probability $\alpha$,
-has already revealed a cost above the first-period cutoff, and discounts the
-payoff from waiting by $\delta$.  A fresh entrant arrives at intensity
-$\gamma m$, has not been screened by the first response, and evaluates the
-terminal payment contemporaneously.  The resulting eligible intensity at
-$p_j$ is
-\[
- m\{\alpha(p_j-a)+\gamma p_j\},
-\]
-which records screening history rather than collapsing continuation supply
-to the single total $(\alpha+\gamma)m$.  This composition effect is the focus
-of the extension.  The central mixed-continuation case has
-$0<\alpha<1$ and $\gamma>0$: some rejected incumbents disappear, some remain,
-and new drivers enter before the terminal response window.  The cases
-$\gamma=0$ or $\alpha\in\{0,1\}$ are nested boundaries, not substitutes for
-the mixed case.
+The general equilibrium foundation permits a selection-robust local result.
+It preserves the central economic comparison without assuming a uniform cost
+or value distribution and without requiring nearby cutoff uniqueness.
 
-The general equilibrium characterization permits a sharp local comparison
-with both sources present.  Fix $0<p<\beta$ and abbreviate
+\begin{theorem}[Local rescue improvement]
+\label{thm:generallocal}
+Suppose $\gamma=0$, $0<p<\beta$, and $\alpha>0$.  Let $F$ be differentiable
+at $p$ with $f(p)>0$, and let $G$ be continuous with full support.  Define
 \[
- x=mp,\quad R=e^{-x},\quad E=e^{-\gamma x},\quad
- \sigma=\ph(x),\quad \ell=\ph(\gamma x),\quad
- \rho=\frac{1-p/\beta}{1-p}.                               \tag{L1}
+ R=e^{-mF(p)},\qquad \sigma=\ph(mF(p)),\qquad
+ \rho_G(p)=\frac{1-G(p/\beta)}{1-G(p)}.
 \]
-For $\alpha+\gamma>0$, define the limiting repeat--rescue switch and rescue
-mass by
+For the menu $(p,p+\varepsilon)$, every equilibrium cutoff satisfies,
+uniformly across equilibrium branches,
 \[
- \bar v=\frac1\beta\left[p+
-  \frac{1-E}{mE(\alpha+\gamma)}\right],\qquad
- \eta^0=\frac{1-\bar v}{1-p}.                              \tag{L2}
+ a_\varepsilon=p-\kappa(p)\varepsilon+o(\varepsilon),
+ \qquad
+ \kappa(p)=
+ \frac{\delta\alpha R\rho_G(p)}
+ {\sigma-\delta\alpha R\rho_G(p)}.                       \tag{G1}
 \]
-At $\gamma=0$, the fraction in (L2) is zero.
-
-\begin{theorem}[Fresh-entry local rescue]
-\label{thm:localentry}
-Suppose $m>0$, $0<p<\beta<1$, $0<\delta\le1$,
-$0\le\alpha\le1$, $\gamma\ge0$,
-$\alpha+\gamma>0$, and $\bar v<1$.  For all sufficiently small
-$\varepsilon>0$, the menu $(p,p+\varepsilon)$ has a unique anonymous
-symmetric cutoff WPBE, with
+Moreover,
 \[
- a_\varepsilon=p-\kappa\varepsilon+o(\varepsilon),\qquad
- \kappa=\frac{\delta R\alpha\ell\eta^0}
- {\sigma-\delta R\alpha\rho\ell}.                       \tag{L3}
+\begin{aligned}
+ &\min_{a_\varepsilon\in\calE_{F,G}(p,p+\varepsilon)}
+ M_{F,G}^{\alpha,0}(p,p+\varepsilon;a_\varepsilon)\\
+ &\quad=M^{\mathrm{flat}}_{F,G,0}(m,p)
+ +L_{F,G}(p)\varepsilon+o(\varepsilon),\\
+ &L_{F,G}(p)=[1-G(p)]mf(p)R
+ \frac{\alpha\rho_G(p)[\sigma-\delta R]}
+ {\sigma-\delta\alpha R\rho_G(p)}>0.
+\end{aligned}                                             \tag{G2}
 \]
-Every candidate cutoff is uniformly localized by
-\[
- 0\le p-a_\varepsilon
- \le\frac{\delta\alpha\rho}{1-\delta\alpha\rho}
- \varepsilon.                                                \tag{L4}
-\]
-The right derivative of completion is
-\[
- \left.\frac{dM_m^{\alpha,\gamma}(p,p+\varepsilon;
- a_\varepsilon)}{d\varepsilon}\right|_{0+}
- =m(1-p)R\eta^0
- \frac{T_\delta}{\sigma-\delta R\alpha\rho\ell}>0,       \tag{L5}
-\]
-where
-\[
- T_\delta=E(\alpha+\gamma)\sigma
- -\delta R\alpha\ell\{1-\rho+\rho E(1+\gamma)\}>0.       \tag{L6}
-\]
+Consequently, if an optimal flat price $p_F^*$ is strictly below $\beta$,
+then $(p_F^*,p_F^*+\varepsilon)$ strictly improves on the optimized flat
+policy for every sufficiently small $\varepsilon>0$, even under worst-cutoff
+selection.
 \end{theorem}
 
-The activity condition $\bar v<1$ says that a positive mass of riders uses
-marginal rescue after failure.  It is automatic at $\gamma=0$ but substantive
-with entry.  The knife edge $\bar v=1$ needs a second-order rider-mass
-expansion and is not included.  For $\gamma>1$, activity cannot simply be
-deleted from the sign claim: for example
-\[
- x=1,\quad p=\tfrac12,\quad m=2,\quad \beta=\tfrac{51}{100},
- \quad\alpha=1,\quad\gamma=10,\quad\delta=\tfrac12
-\]
-has $\bar v>1$ and makes $T_\delta$ in (L6) negative.  Thus the
-theorem's restriction is economically and mathematically real.
+The denominator in (G1) is positive because $\rho_G(p)<1$ and
+$\ph(mF(p))>e^{-mF(p)}$.  The same inequality gives the strict numerator
+wedge $\sigma-\delta R$.  Thus the local gain combines assignment competition,
+which is present at $\delta=1$, with incumbent impatience, which strengthens
+the gain when $\delta<1$.  Fresh entry is excluded here because an entrant
+pool already creates terminal completion under the flat policy; Section
+\ref{sec:localentry} rederives the appropriate local condition for that case.
 
-For $p<\beta$, define the activity index
-\[
- \mathcal A_{\alpha,\gamma}(p)
- =m e^{-\gamma mp}(\alpha+\gamma)(\beta-p)
-  -(1-e^{-\gamma mp}).                                   \tag{L7}
-\]
-Then $\mathcal A_{\alpha,\gamma}(p)>0$ is equivalent to $\bar v<1$, or
-equivalently
-\[
- \alpha>
- \frac{e^{\gamma mp}-1}{m(\beta-p)}-\gamma.              \tag{L8}
-\]
+Convexity of the cost CDF turns the local statement into a global comparison
+for any active menu.  Convex $F$ means that successively higher cost intervals
+contain weakly more probability mass per unit of payment.
 
-\begin{theorem}[Optimized-flat dominance with mixed continuation supply]
-\label{thm:optimizedflatentry}
-Fix $m>0$, $\beta\in(0,1)$, $\delta\in(0,1]$,
-$0<\alpha<1$, and $\gamma>0$.  Suppose that some
-$p^*\in\mathcal P_\gamma^F(m)$ satisfies
+\begin{theorem}[Global same-payment dominance under convex supply]
+\label{thm:convexF}
+Suppose $\gamma=0$ and $F$ is atomless, strictly increasing, and convex.
+Fix a strict menu $p_1<p_2$ and an equilibrium cutoff $a<p_1$ for which a
+positive mass of riders activates rescue.  Then
 \[
- p^*<\beta,\qquad \mathcal A_{\alpha,\gamma}(p^*)>0.      \tag{L9}
+ M_{F,G}^{\alpha,0}(p_1,p_2;a)
+ >[1-G(p_1)]\{1-e^{-mF(p_1)}\}.                          \tag{G3}
 \]
-For every sufficiently small $\varepsilon>0$, the menu
-$(p^*,p^*+\varepsilon)$ has a unique anonymous symmetric pure-cutoff WPBE and
-\[
- \underline M_m^{\alpha,\delta,\gamma}
- (p^*,p^*+\varepsilon)
- =F_\gamma^*(m)+\Lambda(p^*)\varepsilon+o(\varepsilon),
- \qquad \Lambda(p^*)>0.                                  \tag{L10}
-\]
-Consequently,
-\[
- D_{\alpha,\delta,\gamma}^*(m)>F_\gamma^*(m).             \tag{L11}
-\]
-Neither uniqueness of the flat optimizer nor attainment of the general
-dynamic-policy supremum is required.
-
-If instead $p<\beta$ and $\mathcal A_{\alpha,\gamma}(p)<0$, then for every
-sufficiently small $\varepsilon>0$ the same-price perturbation
-$(p,p+\varepsilon)$ has the unique cutoff $a=p$, no rider activates rescue,
-and its completion equals $Q_\gamma^F(m,p)$ exactly.  No first-order claim is
-made at the knife edge $\mathcal A_{\alpha,\gamma}(p)=0$.
+Hence every active strict menu beats the flat policy with the same first
+payment, branch by branch; cutoff uniqueness is unnecessary.
 \end{theorem}
 
-The coefficient $\Lambda(p^*)$ is the expression in (L5), evaluated at
-$p=p^*$.  Condition (L9) has a direct behavioral interpretation: after flat
-failure, even the highest rider type must strictly prefer access to the
-marginally broader rescue pool over repeating $p^*$.  More fresh entrants do
-not make this condition automatic, because entry also raises repeat coverage.
+To see the role of convexity, let
+\[
+ s_j(a)=\frac{F(p_j)-F(a)}{p_j-a},\qquad j\in\{1,2\}.
+\]
+Convexity gives $s_2(a)\ge s_1(a)$.  Cutoff indifference then converts the
+terminal-coverage term into at least the supply mass lost below $p_1$, while
+$a<p_1$ makes the comparison strict.  Appendix~\ref{app:general} gives the
+complete inequality.
 
-Two different quantities can reasonably be called ``the amount'' of
-continuation supply.  Conditional on universal rejection at the flat cutoff
-$a=p$, the expected number of second-window potential drivers is
+The condition is substantive.  With
 \[
- m\tau_p,\qquad \tau_p=\alpha(1-p)+\gamma.                \tag{L12}
+ F(c)=\sqrt c,\quad G(v)=v,\quad
+ (m,\alpha,\beta,\delta,\gamma)=(0.5,0.75,0.3,1,0),
 \]
-By contrast, holding the cutoff fixed, the number made newly eligible by a
-small payment increase has slope
-\[
- \left.\frac1m\frac{\partial\lambda_2}{\partial p_2}
- \right|_{a=p}=\alpha+\gamma.                             \tag{L13}
-\]
-The next result fixes each measure in turn at the flat benchmark.  These are
-local comparisons, not equal-baseline optimized-policy rankings.  Along the
-equilibrium response $a_\varepsilon=p-\kappa\varepsilon+o(\varepsilon)$, raw
-headcount changes at rate $m\alpha\kappa$, and terminal eligible intensity
-changes at rate $m\{\alpha(1+\kappa)+\gamma\}$.  The composition response is
-precisely why neither baseline normalization removes strategic waiting.
+the menu $(p_1,p_2)=(0.06,0.17)$ has an equilibrium cutoff
+$a=0.02031336$.  Dynamic completion is $0.10348314$, whereas the flat payment
+$p_1=0.06$ completes $0.10835523$; a large rescue loses $0.4872$ percentage
+points.  This does not contradict Theorem~\ref{thm:generallocal}, which concerns
+sufficiently small rescue increments.
 
-\begin{theorem}[Supply composition and strategic waiting]
-\label{thm:composition}
-Fix $m>0$, $0<p<\beta<1$, and $\delta\in(0,1]$, and consider
-$(p,p+\varepsilon)$.
+General distributions also permit equilibrium multiplicity.  Appendix
+\ref{app:general} constructs continuous full-support $F$ and $G$ for which one
+menu has three transversal cutoffs, with completion probabilities $0.6926$,
+$0.7398$, and $0.7587$.  The $6.61$ percentage-point selection spread explains
+why (10) uses a conservative minimum and why the unrestricted design problem
+retains a supremum.  Neither multiplicity nor concavity affects the exact
+uniform no-entry results below.
 
-\textit{(i) Fixed continuation headcount.}  Fix $h>0$ and set
-\[
- \gamma_h(\alpha)=h-(1-p)\alpha,\qquad
- A_h(\alpha)=\alpha+\gamma_h(\alpha)=h+p\alpha           \tag{L14}
-\]
-for $0\le\alpha\le\min\{1,h/(1-p)\}$.  This holds the conditional
-headcount in (L12) fixed at $mh$.  Define
-\[
- \ell_h(\alpha)=\ph(\gamma_h(\alpha)mp),\qquad
- \eta_h(\alpha)=\frac{1}{1-p}\left[
- 1-\frac1\beta\left\{p+
- \frac{e^{\gamma_h(\alpha)mp}-1}{mA_h(\alpha)}\right\}
- \right].                                                 \tag{L15}
-\]
-On every interval on which $\eta_h(\alpha)>0$, the unique local cutoff is
-\[
- a_\varepsilon(\alpha)
- =p-\kappa_h(\alpha)\varepsilon+o(\varepsilon),
- \quad
- \kappa_h(\alpha)=
- \frac{\delta e^{-mp}\alpha\ell_h(\alpha)\eta_h(\alpha)}
- {\ph(mp)-\delta e^{-mp}\alpha\rho(p)\ell_h(\alpha)},   \tag{L16}
-\]
-and $\kappa_h(\alpha)$ is strictly increasing in $\alpha$.
+\section{A One-Rider/One-Driver Benchmark}
+\label{sec:onedriver}
 
-\textit{(ii) Fixed price-marginal capacity.}  Fix $s>0$ and set
+Before making the driver count latent, consider exactly one publicly known
+driver, uniform $v$ and $c$, no entry, and certain continuation availability.
+For an active menu $0\le p_1<p_2<\beta$, the driver's WPBE cutoff is
 \[
- \gamma_s(\alpha)=s-\alpha,\qquad
- 0\le\alpha\le\min\{1,s\}.                              \tag{L17}
+ a(p_1,p_2)=\left[p_1-
+ \frac{\delta(p_2-p_1)(\beta-p_2)}
+ {\beta(1-p_1)-\delta(\beta-p_2)}\right]^+,              \tag{O1}
 \]
-This holds (L13) fixed at $s$.  With
+and equilibrium completion is
 \[
- \ell_s(\alpha)=\ph((s-\alpha)mp),\qquad
- \eta_s(\alpha)=\frac{1}{1-p}\left[
- 1-\frac1\beta\left\{p+
- \frac{e^{(s-\alpha)mp}-1}{ms}\right\}
- \right],                                                 \tag{L18}
+ M_1(p_1,p_2)=(1-p_1)a+
+ \frac{(\beta-p_2)(p_2-a)}\beta.                         \tag{O2}
 \]
-the analogous coefficient
-\[
- \kappa_s(\alpha)=
- \frac{\delta e^{-mp}\alpha\ell_s(\alpha)\eta_s(\alpha)}
- {\ph(mp)-\delta e^{-mp}\alpha\rho(p)\ell_s(\alpha)}   \tag{L19}
-\]
-is strictly increasing on the active set $\eta_s(\alpha)>0$.
+Equation (O1) comes from the marginal driver's accept-versus-wait
+indifference; the cutoff is not chosen by the platform.
 
-Thus, within the active local-rescue region, replacing unscreened entrants
-with screened surviving incumbents strictly increases the first-order
-acceptance-erosion coefficient under either fixed-supply comparison.
-\end{theorem}
+Fixing a cutoff does not by itself make the midpoint terminal price optimal,
+because the induced first payment also moves.  The useful scalar object is the
+binding terminal-coverage envelope.  The proof shows that every global
+optimum above the flat benchmark lies on that envelope.  Define
+\[
+ \Delta(a)=(1-a)^2-\frac\delta\beta(\beta-a)^2,
+\]
+\[
+ \widehat p_2(a)=\frac{\beta+a}{2},\qquad
+ \widehat p_1(a)=\frac{1+a-\sqrt{\Delta(a)}}2,            \tag{O3}
+\]
+and
+\[
+ J_1(a)=
+ \frac{a[1-a+\sqrt{\Delta(a)}]}2
+ +\frac{(\beta-a)^2}{4\beta}.                            \tag{O4}
+\]
 
-The composition effect on completion is subtler than the cutoff effect.
+\begin{proposition}[Exact one-driver design]
+\label{prop:onedriver}
+The optimal completion probability is
+\[
+ M_1^*=\max\left\{\frac14,\ \max_{a\in[0,\beta]}J_1(a)\right\}. \tag{O5}
+\]
+If $\beta\le1/2$ or $\delta=1$, the value is the flat benchmark $1/4$.
+If $\beta>1/2$ and $\delta<1$, $J_1$ has a unique interior maximizer and
+implements $\widehat p_1(a)<\widehat p_2(a)$.
+\end{proposition}
 
-\begin{theorem}[Closed-form endpoint boundary for local rescue value]
-\label{thm:compositionvalue}
-Fix $0<s\le1$, impose $\alpha+\gamma=s$, and suppose the all-entrant
-composition is active:
+At $\beta=\delta=0.8$, the equilibrium-design solution is
 \[
- p+\frac{e^{smp}-1}{ms}<\beta.                            \tag{L20}
+ (a^*,p_1^*,p_2^*)=(0.382475,0.463746,0.591238),
 \]
-Let $L_s(\alpha)$ denote the right derivative in (L5) at composition
-$(\alpha,s-\alpha)$.  Write
-\[
- x=mp,\quad R=e^{-x},\quad E_s=e^{-sx},\quad
- \sigma=\ph(x),\quad \rho=\frac{1-p/\beta}{1-p},
-\]
-\[
- \eta_E=\frac{1}{1-p}\left[
- 1-\frac1\beta\left\{p+\frac{e^{sx}-1}{ms}\right\}
- \right],\qquad H=\frac{E_s\eta_E}{\rho}.                \tag{L21}
-\]
-Then $0<H<1$ and the all-entrant and all-incumbent values are
-\[
- L_s(0)=m(1-p)RsE_s\eta_E,\qquad
- L_s(s)=m(1-p)Rs\rho
- \frac{\sigma-\delta R}{\sigma-\delta Rs\rho}.           \tag{L22}
-\]
-Define
-\[
- \delta_c(m,p,\beta,s)=
- \frac{\sigma(1-H)}{R(1-Hs\rho)}.                        \tag{L23}
-\]
-For $\delta\in(0,1]$,
-\[
-\begin{cases}
- L_s(s)>L_s(0),&\delta<\delta_c(m,p,\beta,s),\\
- L_s(s)=L_s(0),&\delta=\delta_c(m,p,\beta,s),\\
- L_s(s)<L_s(0),&\delta>\delta_c(m,p,\beta,s).
-\end{cases}                                               \tag{L24}
-\]
-Hence the two pure compositions have generically different marginal
-completion values, but their ranking depends on incumbent patience;
-$L_s(\alpha)$ need not be monotone between the endpoints.
-\end{theorem}
-
-The nonmonotonicity is not a logical possibility only.  At
-$(m,p,\beta,\delta,s)=(1,0.1,0.5,1,1)$, direct evaluation of the exact local
-formula at three strictly mixed compositions gives approximately
-\[
- L_s(0.75)=0.24267,\qquad L_s(0.92)=0.20589,\qquad
- L_s(0.99)=0.22333.                                      \tag{L25}
-\]
-Thus local completion value first falls and then rises with the incumbent
-share even though cutoff erosion rises throughout.  This counterexample and
-the activity boundary are included in the numerical falsification tests.
+and completion rises from $25.0000\%$ under the best flat price to
+$25.9581\%$.  The known one-driver benchmark isolates intertemporal screening;
+the latent Poisson model adds uncertain assignment competition and makes
+market thickness a design state.
 
 \section{Global menu design without fresh entry}
 \label{sec:global}
 
-We now solve the primary baseline
+We now impose the exact-core specialization
 \[
- \gamma=0,\qquad m>0,\qquad \alpha\in(0,1],\qquad
+ F(c)=c,\qquad G(v)=v,\qquad
+ \gamma\ge0,\qquad m>0,\qquad \alpha\in(0,1],\qquad
  \beta\in(0,1),\qquad \delta\in(0,1].
+ \tag{U}
 \]
+For compactness, write $\eta(a)=\eta^2(a)$,
+$\rho(p)=[1-p/\beta]^+/(1-p)$, and use
+\[
+\begin{aligned}
+ \calE_m^{\alpha,\delta,\gamma}(p_1,p_2)
+ &:=\calE_{F,G}(p_1,p_2),\\
+ M_m^{\alpha,\gamma}(p_1,p_2;a)
+ &:=M_{F,G}^{\alpha,\gamma}(p_1,p_2;a),\\
+ \underline M_m^{\alpha,\delta,\gamma}(p_1,p_2)
+ &:=\underline M_{F,G}^{\alpha,\delta,\gamma}(p_1,p_2),\\
+ D_{\alpha,\delta,\gamma}^*(m)
+ &:=M_R^*(m;F,G,\alpha,\beta,\delta,\gamma)
+ \quad\text{under (U)}.
+\end{aligned}                                             \tag{U1}
+\]
+The notation in (U1) applies to the uniform model for arbitrary $\gamma$.
+For the global analysis in this section and Section~\ref{sec:thickness}, we
+now impose $\gamma=0$.  Uniformity together with no fresh entry produces the
+exact envelope and global one-dimensional reduction; it is not the source of
+cutoff existence.
 Let $k=\alpha m$.  Menus with $p_1\ge\beta$ or
 $p_2\ge\beta$ cannot induce positive-mass rescue and are outcome-equivalent to
 the flat first payment.  The nontrivial region is therefore
@@ -1061,12 +991,12 @@ rescue branch, not at the rider kink.
 
 \begin{theorem}[Global cutoff uniqueness]
 \label{thm:unique}
-Fix $0\le p_1<p_2<\beta$.  If $\mathcal D_{12}^{\delta}(0)\le0$, the unique numeric
+Fix $0\le p_1<p_2<\beta$.  If $\mathcal D_{12}^{\delta}(0)\le0$, the unique equilibrium
 cutoff is the lower-boundary cutoff $a=0$.  If
 $\mathcal D_{12}^{\delta}(0)>0$, there is a unique cutoff $a\in(0,p_1)$.  Equality at
 zero never coexists with a positive root.  Together with the flat,
 repeat-only, $p_1=0$, and $\alpha=0$ boundary cases, every no-entry menu has a
-unique numeric symmetric cutoff under the stated cutoff-type convention.
+unique symmetric equilibrium cutoff under the stated cutoff-type convention.
 \end{theorem}
 
 The one-crossing argument is global.  At an active-rescue zero write
@@ -1262,9 +1192,9 @@ problem is
 
 \begin{theorem}[Policy attainment and optimized-flat dominance]
 \label{thm:global}
-For every no-entry parameter tuple with $m>0$ and $\alpha>0$, the announced
-policy value in (11) is attained.  If $\beta\ge1/2$, every optimal menu is a
-strict menu
+For every no-entry environment with positive $m$ and positive $\alpha$, the
+announced policy value in (11) is attained.  If $\beta\ge1/2$, every optimal
+menu is strict:
 \[
  (p_1^*,p_2^*)=(P_\delta(a^*),Q(a^*)),
  \qquad a^*\in\argmax_{a\in[0,\beta]}J_\delta(a)
@@ -1400,11 +1330,11 @@ For the thin limit, define on $a\in[0,\beta]$
  H_0^\delta(a)=a[1-P_0^\delta(a)]
  +\frac{\alpha(\beta-a)^2}{4\beta},                       \tag{44}
 \]
-and $G_{\alpha,\beta,\delta}=\max_{a\in[0,\beta]}H_0^\delta(a)$.
+and $\mathcal H_{\alpha,\beta,\delta}=\max_{a\in[0,\beta]}H_0^\delta(a)$.
 
 \begin{theorem}[Thickness topology and exact endpoint regimes]
 \label{thm:thickness}
-For fixed $(\alpha,\beta,\delta)\in(0,1]\times(0,1)\times(0,1]$:
+Fix $0<\alpha\le1$, $0<\beta<1$, and $0<\delta\le1$.
 \begin{enumerate}[label=(\roman*)]
  \item $M_R^*(m)$, $M_F^*(m)$, and $V(m)$ are continuous on
  $(0,\infty)$.  The scalar
@@ -1414,8 +1344,8 @@ For fixed $(\alpha,\beta,\delta)\in(0,1]\times(0,1)\times(0,1]$:
  \item If $\beta>1/2$ and $\delta<1$, then
  \[
   V(m)
-  \sim\left(G_{\alpha,\beta,\delta}-\frac14\right)m,
-  \qquad G_{\alpha,\beta,\delta}>\frac14.                 \tag{45}
+  \sim\left(\mathcal H_{\alpha,\beta,\delta}-\frac14\right)m,
+  \qquad \mathcal H_{\alpha,\beta,\delta}>\frac14.        \tag{45}
  \]
  At the no-discount boundary $\delta=1$, let $a_0\in(0,1/2)$ be the
  unique solution of
@@ -1567,9 +1497,8 @@ global maximizer to a compact subinterval.  No uniqueness of $m^*$ is claimed.
 
 Figure~\ref{fig:theoryprofiles} and Table~\ref{tab:selectedm} illustrate the
 uniform model at $\alpha=1$ and $\beta=\delta=0.8$.  These values are chosen
-to display the mechanism and are not empirical estimates.  Each thickness
-point re-solves the equilibrium cutoff and then optimizes $p_2$ conditional on
-$p_1$ before optimizing $p_1$.
+to display the mechanism.  Each thickness point re-solves the equilibrium
+cutoff and then optimizes $p_2$ conditional on $p_1$ before optimizing $p_1$.
 
 \begin{figure}
 \FIGURE
@@ -1582,8 +1511,7 @@ at the no-entry flat benchmark, and varies fresh-entry intensity $\gamma$.
 The dashed and dotted profiles have $0<\alpha<1$ and $\gamma>0$, so the
 terminal pool contains both screened surviving incumbents and unscreened new
 drivers; the solid $\gamma=0$ profile is the nested no-entry boundary.  Zero
-local gain can reflect an inactive rescue mass.  All calculations are
-model-generated and nonempirical.\label{fig:theoryprofiles}}
+local gain can reflect an inactive rescue mass.\label{fig:theoryprofiles}}
 {}
 \end{figure}
 
@@ -1593,9 +1521,275 @@ model-generated and nonempirical.\label{fig:theoryprofiles}}
 {\centering\input{tables/theory_selected_m.tex}}
 {Parameters are $\alpha=1$, $\beta=\delta=0.8$, and $\gamma=0$.
 $a^*$ is the equilibrium first-period cutoff and $100V(m)$ is the completion
-gain in percentage points.  The table is a theoretical numerical
-illustration, not an empirical calibration.}
+gain in percentage points.}
 \end{table}
+
+\section{Extension: Surviving Incumbents and Fresh Driver Entry}
+\label{sec:localentry}
+
+We retain the uniform type distributions from the exact core and reintroduce
+fresh entry.  The purpose is to isolate how screening history changes the
+composition of continuation supply; the results are local rather than a
+global solution of the mixed-supply menu problem.
+
+After universal rejection, two economically distinct sources of terminal
+supply coexist.  A surviving incumbent appears with probability $\alpha$,
+has already revealed a cost above the first-period cutoff, and discounts the
+payoff from waiting by $\delta$.  A fresh entrant arrives at intensity
+$\gamma m$, has not been screened by the first response, and evaluates the
+terminal payment contemporaneously.  The resulting eligible intensity at
+$p_j$ is
+\[
+ m\{\alpha(p_j-a)+\gamma p_j\},
+\]
+which records screening history rather than collapsing continuation supply
+to the single total $(\alpha+\gamma)m$.  This composition effect is the focus
+of the extension.  The central mixed-continuation case has
+$0<\alpha<1$ and $\gamma>0$: some rejected incumbents disappear, some remain,
+and new drivers enter before the terminal response window.  The cases
+$\gamma=0$ or $\alpha\in\{0,1\}$ are nested boundaries, not substitutes for
+the mixed case.
+
+The general equilibrium characterization permits a sharp local comparison
+with both sources present.  Fix $0<p<\beta$ and abbreviate
+\[
+ x=mp,\quad R=e^{-x},\quad E=e^{-\gamma x},\quad
+ \sigma=\ph(x),\quad \ell=\ph(\gamma x),\quad
+ \rho=\frac{1-p/\beta}{1-p}.                               \tag{L1}
+\]
+For $\alpha+\gamma>0$, define the limiting repeat--rescue switch and rescue
+mass by
+\[
+ \bar v=\frac1\beta\left[p+
+  \frac{1-E}{mE(\alpha+\gamma)}\right],\qquad
+ \eta^0=\frac{1-\bar v}{1-p}.                              \tag{L2}
+\]
+At $\gamma=0$, the fraction in (L2) is zero.
+
+\begin{theorem}[Fresh-entry local rescue]
+\label{thm:localentry}
+Suppose $m>0$, $0<p<\beta<1$, $0<\delta\le1$,
+$0\le\alpha\le1$, $\gamma\ge0$,
+$\alpha+\gamma>0$, and $\bar v<1$.  For all sufficiently small
+$\varepsilon>0$, the menu $(p,p+\varepsilon)$ has a unique anonymous
+symmetric equilibrium cutoff, up to behavior of the null cutoff type, with
+\[
+ a_\varepsilon=p-\kappa\varepsilon+o(\varepsilon),\qquad
+ \kappa=\frac{\delta R\alpha\ell\eta^0}
+ {\sigma-\delta R\alpha\rho\ell}.                       \tag{L3}
+\]
+Every candidate cutoff is uniformly localized by
+\[
+ 0\le p-a_\varepsilon
+ \le\frac{\delta\alpha\rho}{1-\delta\alpha\rho}
+ \varepsilon.                                                \tag{L4}
+\]
+The right derivative of completion is
+\[
+ \left.\frac{dM_m^{\alpha,\gamma}(p,p+\varepsilon;
+ a_\varepsilon)}{d\varepsilon}\right|_{0+}
+ =m(1-p)R\eta^0
+ \frac{T_\delta}{\sigma-\delta R\alpha\rho\ell}>0,       \tag{L5}
+\]
+where
+\[
+ T_\delta=E(\alpha+\gamma)\sigma
+ -\delta R\alpha\ell\{1-\rho+\rho E(1+\gamma)\}>0.       \tag{L6}
+\]
+\end{theorem}
+
+The activity condition $\bar v<1$ says that a positive mass of riders uses
+marginal rescue after failure.  It is automatic at $\gamma=0$ but substantive
+with entry.  The knife edge $\bar v=1$ needs a second-order rider-mass
+expansion and is not included.  For $\gamma>1$, activity cannot simply be
+deleted from the sign claim: for example
+\[
+ x=1,\quad p=\tfrac12,\quad m=2,\quad \beta=\tfrac{51}{100},
+ \quad\alpha=1,\quad\gamma=10,\quad\delta=\tfrac12
+\]
+has $\bar v>1$ and makes $T_\delta$ in (L6) negative.  Thus the
+theorem's restriction is economically and mathematically real.
+
+For $p<\beta$, define the activity index
+\[
+ \mathcal A_{\alpha,\gamma}(p)
+ =m e^{-\gamma mp}(\alpha+\gamma)(\beta-p)
+  -(1-e^{-\gamma mp}).                                   \tag{L7}
+\]
+Then $\mathcal A_{\alpha,\gamma}(p)>0$ is equivalent to $\bar v<1$, or
+equivalently
+\[
+ \alpha>
+ \frac{e^{\gamma mp}-1}{m(\beta-p)}-\gamma.              \tag{L8}
+\]
+
+\begin{theorem}[Optimized-flat dominance with mixed continuation supply]
+\label{thm:optimizedflatentry}
+Fix positive $m$ and $\gamma$, let $0<\alpha<1$, $0<\beta<1$, and
+$0<\delta\le1$.  Suppose that some
+$p^*\in\mathcal P_\gamma^{\mathrm{flat}}(m)$ satisfies
+\[
+ p^*<\beta,\qquad \mathcal A_{\alpha,\gamma}(p^*)>0.      \tag{L9}
+\]
+For every sufficiently small $\varepsilon>0$, the menu
+$(p^*,p^*+\varepsilon)$ has a unique anonymous symmetric equilibrium cutoff,
+up to behavior of the null cutoff type, and
+\[
+ \underline M_m^{\alpha,\delta,\gamma}
+ (p^*,p^*+\varepsilon)
+ =M_\gamma^{\mathrm{flat},*}(m)+\Lambda(p^*)\varepsilon+o(\varepsilon),
+ \qquad \Lambda(p^*)>0.                                  \tag{L10}
+\]
+Consequently,
+\[
+ D_{\alpha,\delta,\gamma}^*(m)>M_\gamma^{\mathrm{flat},*}(m). \tag{L11}
+\]
+Neither uniqueness of the flat optimizer nor attainment of the general
+dynamic-policy supremum is required.
+
+If instead $p<\beta$ and $\mathcal A_{\alpha,\gamma}(p)<0$, then for every
+sufficiently small $\varepsilon>0$ the same-price perturbation
+$(p,p+\varepsilon)$ has the unique cutoff $a=p$, no rider activates rescue,
+and its completion equals $M_\gamma^{\mathrm{flat}}(m,p)$ exactly.  No first-order claim is
+made at the knife edge $\mathcal A_{\alpha,\gamma}(p)=0$.
+\end{theorem}
+
+The coefficient $\Lambda(p^*)$ is the expression in (L5), evaluated at
+$p=p^*$.  Condition (L9) has a direct behavioral interpretation: after flat
+failure, even the highest rider type must strictly prefer access to the
+marginally broader rescue pool over repeating $p^*$.  More fresh entrants do
+not make this condition automatic, because entry also raises repeat coverage.
+
+Two different quantities can reasonably be called ``the amount'' of
+continuation supply.  Conditional on universal rejection at the flat cutoff
+$a=p$, the expected number of second-window potential drivers is
+\[
+ m\tau_p,\qquad \tau_p=\alpha(1-p)+\gamma.                \tag{L12}
+\]
+By contrast, holding the cutoff fixed, the number made newly eligible by a
+small payment increase has slope
+\[
+ \left.\frac1m\frac{\partial\lambda_2}{\partial p_2}
+ \right|_{a=p}=\alpha+\gamma.                             \tag{L13}
+\]
+The next result fixes each measure in turn at the flat benchmark.  These are
+local comparisons, not equal-baseline optimized-policy rankings.  Along the
+equilibrium response $a_\varepsilon=p-\kappa\varepsilon+o(\varepsilon)$, raw
+headcount changes at rate $m\alpha\kappa$, and terminal eligible intensity
+changes at rate $m\{\alpha(1+\kappa)+\gamma\}$.  The composition response is
+precisely why neither baseline normalization removes strategic waiting.
+
+\begin{theorem}[Supply composition and strategic waiting]
+\label{thm:composition}
+Fix $m>0$, $0<p<\beta<1$, and $\delta\in(0,1]$, and consider
+$(p,p+\varepsilon)$.
+
+\textit{(i) Fixed continuation headcount.}  Fix $h>0$ and set
+\[
+ \gamma_h(\alpha)=h-(1-p)\alpha,\qquad
+ A_h(\alpha)=\alpha+\gamma_h(\alpha)=h+p\alpha           \tag{L14}
+\]
+for $0\le\alpha\le\min\{1,h/(1-p)\}$.  This holds the conditional
+headcount in (L12) fixed at $mh$.  Define
+\[
+ \ell_h(\alpha)=\ph(\gamma_h(\alpha)mp),\qquad
+ \eta_h(\alpha)=\frac{1}{1-p}\left[
+ 1-\frac1\beta\left\{p+
+ \frac{e^{\gamma_h(\alpha)mp}-1}{mA_h(\alpha)}\right\}
+ \right].                                                 \tag{L15}
+\]
+On every interval on which $\eta_h(\alpha)>0$, the unique local cutoff is
+\[
+ a_\varepsilon(\alpha)
+ =p-\kappa_h(\alpha)\varepsilon+o(\varepsilon),
+ \quad
+ \kappa_h(\alpha)=
+ \frac{\delta e^{-mp}\alpha\ell_h(\alpha)\eta_h(\alpha)}
+ {\ph(mp)-\delta e^{-mp}\alpha\rho(p)\ell_h(\alpha)},   \tag{L16}
+\]
+and $\kappa_h(\alpha)$ is strictly increasing in $\alpha$.
+
+\textit{(ii) Fixed price-marginal capacity.}  Fix $s>0$ and set
+\[
+ \gamma_s(\alpha)=s-\alpha,\qquad
+ 0\le\alpha\le\min\{1,s\}.                              \tag{L17}
+\]
+This holds (L13) fixed at $s$.  With
+\[
+ \ell_s(\alpha)=\ph((s-\alpha)mp),\qquad
+ \eta_s(\alpha)=\frac{1}{1-p}\left[
+ 1-\frac1\beta\left\{p+
+ \frac{e^{(s-\alpha)mp}-1}{ms}\right\}
+ \right],                                                 \tag{L18}
+\]
+the analogous coefficient
+\[
+ \kappa_s(\alpha)=
+ \frac{\delta e^{-mp}\alpha\ell_s(\alpha)\eta_s(\alpha)}
+ {\ph(mp)-\delta e^{-mp}\alpha\rho(p)\ell_s(\alpha)}   \tag{L19}
+\]
+is strictly increasing on the active set $\eta_s(\alpha)>0$.
+
+Thus, within the active local-rescue region, replacing unscreened entrants
+with screened surviving incumbents strictly increases the first-order
+acceptance-erosion coefficient under either fixed-supply comparison.
+\end{theorem}
+
+The composition effect on completion is subtler than the cutoff effect.
+
+\begin{theorem}[Closed-form endpoint boundary for local rescue value]
+\label{thm:compositionvalue}
+Fix $0<s\le1$, impose $\alpha+\gamma=s$, and suppose the all-entrant
+composition is active:
+\[
+ p+\frac{e^{smp}-1}{ms}<\beta.                            \tag{L20}
+\]
+Let $L_s(\alpha)$ denote the right derivative in (L5) at composition
+$(\alpha,s-\alpha)$.  Write
+\[
+ x=mp,\quad R=e^{-x},\quad E_s=e^{-sx},\quad
+ \sigma=\ph(x),\quad \rho=\frac{1-p/\beta}{1-p},
+\]
+\[
+ \eta_E=\frac{1}{1-p}\left[
+ 1-\frac1\beta\left\{p+\frac{e^{sx}-1}{ms}\right\}
+ \right],\qquad H=\frac{E_s\eta_E}{\rho}.                \tag{L21}
+\]
+Then $0<H<1$ and the all-entrant and all-incumbent values are
+\[
+ L_s(0)=m(1-p)RsE_s\eta_E,\qquad
+ L_s(s)=m(1-p)Rs\rho
+ \frac{\sigma-\delta R}{\sigma-\delta Rs\rho}.           \tag{L22}
+\]
+Define
+\[
+ \delta_c(m,p,\beta,s)=
+ \frac{\sigma(1-H)}{R(1-Hs\rho)}.                        \tag{L23}
+\]
+For $\delta\in(0,1]$,
+\[
+\begin{cases}
+ L_s(s)>L_s(0),&\delta<\delta_c(m,p,\beta,s),\\
+ L_s(s)=L_s(0),&\delta=\delta_c(m,p,\beta,s),\\
+ L_s(s)<L_s(0),&\delta>\delta_c(m,p,\beta,s).
+\end{cases}                                               \tag{L24}
+\]
+Hence the two pure compositions have generically different marginal
+completion values, but their ranking depends on incumbent patience;
+$L_s(\alpha)$ need not be monotone between the endpoints.
+\end{theorem}
+
+The nonmonotonicity is not a logical possibility only.  At
+$(m,p,\beta,\delta,s)=(1,0.1,0.5,1,1)$, direct evaluation of the exact local
+formula at three strictly mixed compositions gives approximately
+\[
+ L_s(0.75)=0.24267,\qquad L_s(0.92)=0.20589,\qquad
+ L_s(0.99)=0.22333.                                      \tag{L25}
+\]
+Thus local completion value first falls and then rises with the incumbent
+share even though cutoff erosion rises throughout.  This counterexample and
+the activity boundary are included in the numerical falsification tests.
+
 
 \section{A public-supply benchmark}
 \label{sec:publicN}
@@ -1647,7 +1841,7 @@ finite-population counterpart of (20):
 Fix $n\ge1$, $0<\alpha\le1$, $0<\delta\le1$, and
 $p\in(0,\beta)$.  For every sufficiently
 small $\varepsilon>0$, the menu $(p,p+\varepsilon)$ has a unique symmetric
-cutoff, and it satisfies
+equilibrium cutoff, up to behavior of the null cutoff type, and it satisfies
 \[
  a_\varepsilon=p-\kappa_n\varepsilon+o(\varepsilon),
  \qquad
@@ -1680,140 +1874,7 @@ posterior inference and the global policy problem, but neither local wedge.
 If $\alpha=0$, then $\kappa_n=0$ and the derivative in (62) is zero for
 every $n$.
 
-\section{Planned Empirical Calibration and Counterfactual Design}
-\label{sec:calibration}
-
-\paragraph{Current status.}
-This section is a pre-specified empirical placeholder.  The repository does
-not contain request-level observations or a protocol verifying that $p_2$ was
-announced before first-period decisions.  No estimate, standard error, model
-fit, or empirical counterfactual is claimed in the present version.  The
-theoretical numerical illustration in Section~\ref{sec:thickness} is not an
-empirical calibration.
-
-\subsection{Parameter status and identifying variation}
-
-Before estimation, every model object will receive exactly one status:
-measured, estimated, calibrated, or fixed for sensitivity.  Table
-\ref{tab:parameter-ledger} records the identifying variation required for the
-main primitives.
-
-\begin{table}
-\TABLE
-{Pre-specified parameter and identification ledger (design only; no estimates).\label{tab:parameter-ledger}}
-{\begin{tabularx}{\textwidth}{L{16mm}L{28mm}XL{24mm}}
-\toprule
-Object & Planned status & Required variation or moment & Current entry\\
-\midrule
-$m$ & measured or estimated state & Initial eligible exposure and pre-decision supply signal & \DataRequired\\
-$\alpha$ & measured or estimated & Fraction of rejected incumbents still eligible in period 2 & \DataRequired\\
-$\gamma$ & measured or estimated & New period-2 eligible drivers relative to initial expected supply & \DataRequired\\
-$F$ & calibrated & Acceptance by exogenous payment among exposed drivers & \DataRequired\\
-$G,\beta$ & estimated or bounded & Posting and continuation across price, delay, and predicted coverage & \DataRequired\\
-$\delta$ & estimated or bounded & First-period acceptance response to announced $p_2$ holding $p_1$ fixed & \DataRequired\\
-\bottomrule
-\end{tabularx}}
-{A static price experiment can discipline contemporaneous acceptance but does
-not identify $\delta$ or the announcement channel without ex ante variation in
-$p_2$.  Persistent driver identifiers are required to separate $\alpha$ from
-$\gamma$.}
-\end{table}
-
-The initial implementation maintains the model restriction that incumbent
-and entrant costs share the same primitive distribution $F$.  A later
-robustness extension may allow $F_I\ne F_E$, but doing so requires
-rederiving and recomputing the equilibrium rather than relabeling the current
-moments.  Even under a common primitive distribution, incumbents are selected
-into the continuation pool by first-period rejection whereas entrants are
-unscreened.
-
-\subsection{Calibration criterion and equilibrium computation}
-
-Let $\theta$ collect the empirical parameters and let $\widehat g$ contain
-request-level moments.  The planned minimum-distance estimator is
-\[
- \widehat\theta\in\arg\min_{\theta\in\Theta}
- [\widehat g-g(\theta)]^{\mathsf T}W
- [\widehat g-g(\theta)].                                  \tag{63}
-\]
-Target moments include posting, first-period acceptance, universal rejection,
-abandonment, repetition, rescue activation, incumbent survival, fresh entry,
-terminal acceptance, and unconditional completion.  Each evaluation of
-$g(\theta)$ must resolve the cutoff-WPBE for every relevant menu and market
-state.  All roots and boundary equilibria are enumerated, and the maintained
-selection rule is applied before moments are aggregated.  The platform policy
-is optimized only after this equilibrium step.
-
-The estimation report will list parameter bounds, normalizations, starting
-points, global and local search methods, numerical tolerances, convergence
-criteria, cutoff residuals, and the weighting matrix.  Parameters not point
-identified by the available variation will be reported as profiles, bounds,
-or sensitivity regions rather than arbitrary point estimates.
-
-\subsection{Fit and validation}
-
-Targeted moments and validation moments will be separated before estimation.
-When the data permit, a market, date, geography, or randomized arm will be
-held out.  The principal benchmark models are flat pricing, myopic acceptance,
-no anticipation of $p_2$, a model that pools incumbents and entrants, and
-alternative $F_I,F_E,G$ specifications.
-
-\begin{table}
-\TABLE
-{Model fit and validation placeholders (no estimates).\label{tab:fit}}
-{\begin{tabularx}{\textwidth}{XL{28mm}L{28mm}L{28mm}}
-\toprule
-Moment & Data & Model & Use\\
-\midrule
-First-period acceptance & \DataRequired & \DataRequired & Target/holdout\\
-Universal rejection & \DataRequired & \DataRequired & Target/holdout\\
-Abandon/repeat/rescue shares & \DataRequired & \DataRequired & Target/holdout\\
-Incumbent survival and fresh entry & \DataRequired & \DataRequired & Target/holdout\\
-Terminal acceptance & \DataRequired & \DataRequired & Target/holdout\\
-Unconditional completion & \DataRequired & \DataRequired & Target/holdout\\
-\bottomrule
-\end{tabularx}}
-{The final table will report sample sizes, empirical uncertainty, absolute
-error, and whether each moment was targeted or reserved for validation.}
-\end{table}
-
-\subsection{Policy counterfactuals}
-
-If the data gates are satisfied, a future empirical implementation will
-compare the observed policy, optimized flat pricing, optimized announced
-rescue, and a no-anticipation benchmark.  The
-main outcomes are $p_1^*(m)$, $p_2^*(m)$, $M_F^*(m)$, $M_R^*(m)$, $V(m)$,
-first-period completion, rescue use, and delay.  The extension varies
-$\alpha$, $\gamma$, $\beta$, and $\delta$ separately so that the effects of
-screened surviving incumbents and unscreened entrants are not summarized by a
-single continuation-supply number.
-
-\begin{table}
-\TABLE
-{Counterfactual-policy placeholders (no estimates).\label{tab:counterfactual}}
-{\begin{tabularx}{\textwidth}{XL{22mm}L{22mm}L{23mm}L{23mm}}
-\toprule
-Policy & $p_1$ & $p_2$ & Completion & Rescue use\\
-\midrule
-Observed/current & \DataRequired & \DataRequired & \DataRequired & \DataRequired\\
-Optimized flat & \DataRequired & same as $p_1$ & \DataRequired & 0\\
-Optimized announced rescue & \DataRequired & \DataRequired & \DataRequired & \DataRequired\\
-No-anticipation benchmark & \DataRequired & \DataRequired & \DataRequired & \DataRequired\\
-\bottomrule
-\end{tabularx}}
-{Completion changes will be reported in percentage points and relative to the
-appropriate baseline.  Global optimization with $\gamma>0$ is numerical
-evidence, not an extension of the no-entry global theorem.}
-\end{table}
-
-Sampling and parameter uncertainty will be propagated through the entire
-equilibrium and policy-optimization procedure.  The resampling unit will match
-the assignment and dependence structure, and parameters will be re-estimated
-inside every bootstrap draw.  Confidence bands for $p_1^*(m)$, $p_2^*(m)$,
-and $V(m)$ will distinguish the support of observed thickness from model
-extrapolation.
-
-\section{Managerial interpretation and institutional scope}
+\section{Discussion and Institutional Scope}
 \label{sec:discussion}
 
 The fixed-$p_1$ solution gives a concrete menu-design rule rather than a
@@ -1834,6 +1895,9 @@ Surviving incumbents have been screened by first-period rejection and discount
 waiting, whereas fresh entrants are unscreened and respond contemporaneously.
 Pooling the two groups into a single continuation-supply number therefore
 removes the very history that drives their different acceptance behavior.
+The survival parameter $\alpha$ and the discount factor $\delta$ consequently
+do not conflict: the former changes physical availability and competition,
+whereas the latter changes only the incumbent's intertemporal payoff.
 
 The public-supply benchmark clarifies two channels.  Incumbent impatience can
 make rescue locally productive even with one known driver; with multiple
@@ -1848,10 +1912,12 @@ transfer is paid by the rider to the selected driver and the objective is
 completion.  Platform-funded bonuses, profit, budgets, and welfare require
 additional resource-cost primitives.  Simultaneous acceptance with uniform
 selection represents a broadcast response window, not a first-response race.
-The equilibrium analysis is restricted to anonymous symmetric pure-cutoff
-WPBE.  Fresh entry is included in the equilibrium and local-rescue analysis,
-whereas the global menu and thickness theorems impose $\gamma=0$; no unique
-maximizing thickness is asserted.
+The equilibrium analysis covers anonymous symmetric independently mixed WPBE,
+for which cutoff behavior is endogenous; asymmetric and correlated equilibria
+remain outside the model.  Fresh entry is included in the fixed-menu and
+local-rescue analysis, whereas the global menu and thickness theorems impose
+$\gamma=0$.  General distributions need not deliver a unique cutoff, and no
+unique maximizing thickness is asserted even in the uniform core.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1863,8 +1929,17 @@ therefore both the operational trigger for rescue and a signal about the
 realized incumbent pool and its costs.  Private rider continuation makes the
 platform solve these supply and demand responses jointly.
 
-In the uniform no-entry baseline and the maintained cutoff-WPBE class, every
-menu has a unique numeric cutoff.  The conditional second-payment problem is
+With general continuous full-support type distributions, anonymous symmetric
+independent equilibrium behavior is almost everywhere a pure cutoff, and the
+cutoff set is nonempty and compact.  The economic gain from rescue is not an
+artifact of uniformity: with no entry, a small rescue increase strictly raises
+completion around every active flat price under smooth distributions.  Convex
+cost supply yields global same-$p_1$ dominance branch by branch.  The concave
+and multiple-cutoff examples delimit these conclusions and explain why the
+unrestricted policy value is evaluated conservatively.
+
+In the uniform no-entry baseline, every
+menu has a unique equilibrium cutoff.  The conditional second-payment problem is
 a concave envelope, and the global menu problem reduces to a continuous
 one-dimensional maximum.  The optimized rescue menu beats the optimized flat
 payment above an endogenous rider-patience threshold; with positive incumbent
@@ -1888,16 +1963,6 @@ effect is not monotone in composition; a closed-form endpoint threshold shows
 how the ranking can reverse with $\delta$.  The fully global menu theorem
 intentionally remains a no-entry result.
 
-The empirical section specifies the data and identification needed to move
-from theory to calibration.  In particular, credible ex ante disclosure of
-$p_2$, request--driver exposure histories, persistent driver identifiers, and
-rider continuation events are required to distinguish anticipation,
-incumbent survival, and fresh entry.  The present repository contains the
-measurement contract and synthetic validation tests but no observed
-request-level data.  Consequently it reports no parameter estimate, model
-fit, or empirical counterfactual.  Calibrated policy conclusions are left for
-the version in which these data gates are satisfied.
-
 \bibliographystyle{informs2014}
 \bibliography{references}
 
@@ -1905,95 +1970,354 @@ the version in which these data gates are satisfied.
 \ECHead{Proofs and Additional Material}
 \renewcommand{\theHsection}{EC.\arabic{section}}
 
-\section{Proofs for the equilibrium characterization}
+\section{Proofs for the General Equilibrium and Distributional Results}
 \label{app:equilibrium}
 
-\begin{proof}{Proof of Lemma~\ref{lem:poisson}.}
-Poisson marking splits the incumbent process into costs below and above $a$,
-with independent counts of means $ma$ and $m(1-a)$.  Thus first-period
-coverage is $1-e^{-ma}$.  Under Palm conditioning a focal driver's accepting
-rivals form a Poisson random variable $Z$ of mean $ma$, and
-\[
- \E\!\left[(1+Z)^{-1}\right]
- =\int_0^1\E[t^Z]dt
- =\int_0^1e^{-ma(1-t)}dt=\ph(ma).
-\]
-If the focal driver waits, continuation is reached only if every rival has
-cost above $a$, an event of probability $e^{-ma}$.  Conditional on no point
-below $a$, the above-$a$ Poisson process is unchanged.  Independent survival
-thins its eligible interval $(a,p_j]$ to intensity
-$m\alpha(p_j-a)$, while fresh eligible drivers contribute $m\gamma p_j$.
-Superposition gives $\lambda_j$ in (1), terminal coverage $C_j$, and the
-same integral identity gives terminal assignment share $\ph(\lambda_j)$.
+\begin{proof}{Proof of Proposition~\ref{prop:representation}.}
+Before any action there is a single response window, so determinism and
+anonymity assign one initial payment \(p_1\).  Success is terminal.  After
+universal rejection, abandon ends the request, repeat preserves the quoted
+payment \(p_1\), and rescue is the only action that activates a distinct
+payment, denoted \(p_2\).  There is no other public action or message on which
+the maintained transfer schedule can condition.  The restriction that rescue
+cannot reduce payment is exactly \(p_1\le p_2\).
 \Halmos\end{proof}
 
-\begin{proof}{Proof of Proposition~\ref{prop:wpbe}.}
-Given a posted request, failure is independent of $v$, so the rider retains
-the posterior $U[p_1,1]$.  Comparing the two affine continuation payoffs
-gives $v^M$ and the masses in (2); the stated priority rule assigns the
-zero-payoff and positive repeat--rescue ties.  Before posting, a type
-$v<p_1$ has strictly negative payoff from immediate completion and cannot
-obtain positive delayed surplus because $\beta v-p_j<v-p_1<0$.  A type
-$v\ge p_1$ obtains a nonnegative immediate payoff whenever a driver accepts
-and otherwise can abandon.  The posting rule therefore is exactly
-$v\ge p_1$.
-
-For $c\le p_1$, equations (4)--(5) give the affine margin (6).  Since
-$\eta^R+\eta=\rho(p_1)<1$ whenever it is positive,
+\begin{proof}{Proof of Lemma~\ref{lem:poisson}.}
+Poisson marking splits the incumbent process into costs below and above \(a\),
+with independent counts of means \(mF(a)\) and \(m[1-F(a)]\).  Thus
+first-window coverage is \(1-e^{-mF(a)}\).  Under Palm conditioning, a focal
+driver's accepting rivals form a Poisson random variable \(Z\) of mean
+\(mF(a)\), and
 \[
- B(a)\ge\ph(ma)-\delta e^{-ma}
- \ge\ph(ma)-e^{-ma}>0\quad(a>0),
+ \E[(1+Z)^{-1}]
+ =\int_0^1\E[t^Z]\,dt
+ =\int_0^1e^{-mF(a)(1-t)}\,dt=\ph(mF(a)).
 \]
-and at $a=0$,
-$B(0)\ge1-\delta\alpha\rho(p_1)>0$.  Thus $A-W$ is strictly decreasing in cost;
-types above $p_1$ never prefer the negative current surplus to waiting.  A
-symmetric best response is consequently a genuine cutoff, and evaluation at
-its cutoff type gives (7).
+If the focal driver waits, continuation is reached only if every rival has
+cost above \(a\), an event of probability \(e^{-mF(a)}\).  Conditional on no
+point below \(a\), the above-\(a\) process is unchanged.  Independent survival
+thins the eligible interval \((a,p_j]\) to intensity
+\(m\alpha[F(p_j)-F(a)]\); fresh eligible drivers contribute
+\(m\gamma F(p_j)\).  Superposition gives (2), and the same integral identity
+gives terminal assignment share \(\ph(\lambda_j)\).
+\Halmos\end{proof}
 
-At $a=p_1$, $f_m(p_1)\le0$.  If $f_m(0)\le0$, the lower boundary is an
-equilibrium.  If $f_m(0)>0$ and $f_m(p_1)<0$, continuity and the intermediate
-value theorem give an interior zero; if $f_m(p_1)=0$, the upper boundary is
-an equilibrium.  The aggregate continuation payoff is continuous across a
-rider switch because tied actions have equal coverage-weighted utility;
-when all continuation coverage is zero the driver's wait payoff is zero.
-Hence $f_m$ is continuous.  The same argument shows that any convergent
-sequence of eligible boundary points or zeros has an eligible limit, so the
-nonempty equilibrium set is closed in $[0,p_1]$ and therefore compact.
-The separately stated $p_1=0$ and $(1,1)$ conventions close the remaining
-endpoints.  Formula (9) is continuous on the compact equilibrium set, making
-the minimum in (10) well defined.
+\begin{proof}{Proof of Theorem~\ref{thm:endogenouscutoff}.}
+For an arbitrary symmetric mixed strategy, equations (5)--(6) give the
+accept-versus-wait margin for every \(c\le p_1\).  If \(q>0\),
+\[
+ B(\sigma)\ge\ph(mq)-e^{-mq}>0.
+\]
+If \(q=0\), then
+\[
+ B(\sigma)\ge1-\delta\alpha\rho_G(p_1)>0,
+\]
+because \(p_1>0\), \(\beta<1\), and full support imply
+\(\rho_G(p_1)<1\).  The margin is therefore strictly decreasing in cost.
+Drivers with \(c>p_1\) cannot profitably accept immediately.  Hence the
+accepting set is an interval and mixing can occur only at its boundary.
+Atomlessness makes that type irrelevant for outcomes.  Conditioning on a
+public sunspot realization leaves the same argument unchanged.
+\Halmos\end{proof}
+
+\begin{proof}{Proof of Theorem~\ref{prop:wpbe}.}
+Given a posted request, failure is independent of \(v\), so the rider retains
+the distribution \(G\) truncated to \([p_1,1]\).  Comparing the affine
+continuation payoffs gives \(v^M\) and (3).  Before posting, a type \(v<p_1\)
+cannot obtain positive current or delayed surplus.  A type \(v\ge p_1\) can
+abandon after failure and, under the stated zero-payoff rule, posts.  Thus the
+posting set is exactly \([p_1,1]\).
+
+Theorem~\ref{thm:endogenouscutoff} reduces equilibrium to a numerical cutoff.
+Evaluation of (6) at that type gives (7).  At \(a=p_1\),
+\(f_{F,G}(p_1)\le0\).  If \(f_{F,G}(0)\le0\), the lower boundary is an
+equilibrium.  If \(f_{F,G}(0)>0\), either the upper margin is zero or the
+intermediate value theorem supplies an interior zero.  The rider's aggregate
+continuation payoff is continuous at an action switch because the two actions
+tie there; when continuation coverage vanishes, waiting payoff vanishes.
+Hence the residual is continuous.  The boundary inequalities and zero set are
+closed, so the nonempty equilibrium set is compact.  Formula (9) is continuous
+on that set, which makes (10) well defined.
 \Halmos\end{proof}
 
 \begin{proof}{Proof of Proposition~\ref{prop:flat}.}
-For $a<p$, the cutoff margin is $(p-a)$ times the bracket displayed below
-(13).  If $a>0$, then $\ph(ma)>e^{-ma}$ and
-$\delta\alpha\rho(p)\ph(m\{\alpha(p-a)+\gamma p\})\le1$, so the bracket is
-strictly positive.  At $a=0$, strictness follows from $\rho(p)<1$.  Hence no
-cutoff below $p$ is sustainable, while $a=p$ makes the cutoff type indifferent
-and is the unique numeric cutoff.  At that cutoff no incumbent with cost
-below $p$ remains.  Terminal completion can only come from fresh drivers of
-intensity $\gamma mp$, and the mass of posting riders with nonnegative
-delayed surplus is $[1-p/\beta]^+/(1-p)$.  Adding initial and terminal
-completion yields (12).  The continuous objective on $[0,1]$ attains the
-flat maximum.
+For \(a<p\), the cutoff margin is \(p-a\) times the bracket displayed below
+(13).  If \(F(a)>0\), then
+\(\ph(mF(a))>e^{-mF(a)}\) and the remaining multiplier is at most one.
+At \(a=0\), strictness follows from \(\rho_G(p)<1\).  No cutoff below \(p\)
+is sustainable, while \(a=p\) is the unique equilibrium cutoff.  At that cutoff,
+no surviving incumbent can accept \(p\) after rejection.  Initial completion
+has mass \([1-G(p)](1-e^{-mF(p)})\); after failure, rider mass
+\(1-\widetilde G(p/\beta)\) can be served by fresh entrants with coverage
+\(1-e^{-\gamma mF(p)}\).  This gives (12).  Continuity on \([0,1]\) gives
+attainment, and differentiating (F3) gives (F4).
+\Halmos\end{proof}
+
+\begin{proof}{Proof of Theorem~\ref{thm:generallocal}.}
+Let \(d_\varepsilon=p-a_\varepsilon\).  Cutoff incentives imply
+\[
+ [\ph(mF(a_\varepsilon))
+ -\delta\alpha e^{-mF(a_\varepsilon)}\rho_G(p)]
+ d_\varepsilon
+ \le\delta\alpha e^{-mF(a_\varepsilon)}
+ \rho_G(p)\varepsilon.                                   \tag{EC.G1}
+\]
+The bracket is uniformly bounded away from zero, so every equilibrium has
+\(d_\varepsilon=O(\varepsilon)\).  This excludes the lower boundary, and the
+upper boundary is not an equilibrium because a positive rider mass strictly
+prefers rescue.  Every equilibrium is therefore interior and localizes at
+\(p\).
+
+Differentiability of \(F\) gives
+\[
+ F(p)-F(a_\varepsilon)=f(p)d_\varepsilon+o(\varepsilon),
+ \qquad
+ F(p+\varepsilon)-F(p)=f(p)\varepsilon+o(\varepsilon).
+\]
+Uniformly on the compact rescaling \(d_\varepsilon/\varepsilon\), the
+repeat mass converges to zero, the rescue mass converges to \(\rho_G(p)\),
+and both terminal assignment shares converge to one.  Dividing cutoff
+indifference by \(\varepsilon\) yields
+\[
+ \sigma\kappa
+ =\delta\alpha R\rho_G(p)(1+\kappa),
+\]
+whose positive slope gives the common expansion (G1) for every branch.
+
+Relative to flat pricing, the first-window coverage derivative is
+\(-mf(p)R\kappa\), while terminal rescue contributes
+\(mf(p)R\alpha\rho_G(p)(1+\kappa)\).  Multiplication by posting mass
+\(1-G(p)\) and substitution of (G1) give (G2).  Positivity follows from
+\(\sigma>\delta R\).  The expansion is uniform across the compact equilibrium
+set, so taking the minimum preserves its strictly positive first-order term.
+Applying the result at an optimal flat price below \(\beta\) proves the final
+claim.
+\Halmos\end{proof}
+
+\begin{proof}{Proof of Theorem~\ref{thm:convexF}.}
+Let
+\[
+ x_j=F(p_j)-F(a),\qquad
+ s_j=\frac{x_j}{p_j-a},\qquad
+ K=\eta^R C_1+\eta^2 C_2.
+\]
+Convexity gives \(s_2\ge s_1>0\).  At an interior cutoff, immediate acceptance
+and waiting are equal; at the lower-boundary cutoff, waiting is weakly
+preferred.  Using \(C_j=m\alpha x_j\ph(m\alpha x_j)\) therefore gives
+\[
+ \ph(mF(a))(p_1-a)
+ \le\frac{\delta e^{-mF(a)}}m
+ \left(\frac{\eta^RC_1}{s_1}+\frac{\eta^2C_2}{s_2}\right)
+ \le\frac{\delta e^{-mF(a)}}{ms_1}K.                     \tag{EC.G2}
+\]
+For \(a>0\), (EC.G2) implies
+\[
+ K\ge\frac{x_1}{\delta F(a)}\{e^{mF(a)}-1\}>mx_1.
+\]
+At \(a=0\), the limiting inequality gives \(K\ge mx_1/\delta\).
+In either case \(K>1-e^{-mx_1}\).  Consequently
+\[
+\begin{aligned}
+&M_{F,G}^{\alpha,0}(p_1,p_2;a)
+ -[1-G(p_1)]\{1-e^{-mF(p_1)}\}\\
+&\quad=[1-G(p_1)]e^{-mF(a)}
+ \{K-(1-e^{-mx_1})\}>0,
+\end{aligned}
+\]
+which proves (G3).
+\Halmos\end{proof}
+
+\begin{proof}{Proof of Proposition~\ref{prop:onedriver}.}
+For an active menu, comparing the cutoff driver's current payoff with her
+discounted continuation payoff gives (O1); integrating the immediate and
+terminal completion regions gives (O2).  For a genuine rescue menu with an
+interior cutoff $a>0$, (O1) is equivalent to
+\[
+ (p_1-a)(1-p_1)=\delta z,\qquad
+ z:=\frac{(\beta-p_2)(p_2-a)}\beta.
+\]
+Here $0\le z\le\bar z(a):=(\beta-a)^2/(4\beta)$, with equality exactly at
+$p_2=(\beta+a)/2$.  The active ordering selects the lower quadratic root
+\[
+ p_1(a,z)=\frac{1+a-R(a,z)}2,\qquad
+ R(a,z)=\sqrt{(1-a)^2-4\delta z},
+\]
+and completion becomes
+\[
+ \mathcal M(a,z)=\frac a2\{1-a+R(a,z)\}+z.                \tag{EC.O1}
+\]
+The upper root is at least $p_2$: if $2p_2>1+a$, squaring gives
+\[
+ R^2-(2p_2-1-a)^2
+ =4(p_2-a)\left[1-p_2-\frac\delta\beta(\beta-p_2)\right]\ge0,
+\]
+and otherwise the ordering is immediate.  A boundary cutoff $a=0$ yields at
+most $\beta/4<1/4$.
+
+Maximizing (EC.O1) over $a\in[0,\beta]$ and
+$z\in[0,\bar z(a)]$ relaxes the menu problem, while its upper boundary is
+implementable.  At an interior optimum in $z$ with $a>0$,
+\[
+ \mathcal M_z=1-\frac{a\delta}{R}=0.
+\]
+There $R=a\delta$ and
+\[
+ 2\delta\mathcal M_a=(1-\delta)\{a(1-\delta)-1\}<0
+\]
+when $\delta<1$.  Reducing $a$ therefore raises completion and remains
+feasible because $\bar z(a)$ rises.  Hence every relaxed maximizer above
+$1/4$ has $z=\bar z(a)$; $z=0$ gives $a(1-a)\le1/4$.  On the upper boundary,
+$p_2=(\beta+a)/2$, $R=\sqrt{\Delta(a)}$, the lower root is (O3), and
+(EC.O1) is exactly $J_1(a)$.  This proves (O5) for $\delta<1$; the cases below
+also establish it at $\delta=1$.
+
+If $\beta\le1/2$, then $R(a,z)\le1-a$ and
+\[
+ \mathcal M(a,z)\le h_\beta(a):=a(1-a)+\frac{(\beta-a)^2}{4\beta}.
+\]
+Since
+$h_\beta'(a)=1/2+a\{1/(2\beta)-2\}\ge0$ on $[0,\beta]$,
+$h_\beta(a)\le\beta(1-\beta)\le1/4$.  If $\delta=1$, (EC.O1) instead has
+the exact factorization
+\[
+ 1-4\mathcal M(a,z)=\{R(a,z)-a\}^2,
+\]
+so again no rescue menu beats $1/4$.
+
+It remains to characterize $\beta>1/2$ and $\delta<1$.  Put
+$r(a)=\sqrt{\Delta(a)}$ and
+$E(a)=(1-\delta/\beta)a-(1-\delta)$.  Then
+\[
+ r'=\frac Er,\qquad
+ r''=-\frac{\delta(1-\beta)^2}{\beta r^3},
+\]
+and direct differentiation of (O4) gives
+\[
+ J_1'=\frac12\left[r+\frac{aE}{r}
+       +a\left(\frac1\beta-2\right)\right],
+\]
+\[
+ J_1''=-\frac{2\beta-1}{2\beta}+\frac Er
+ -\frac{a\delta(1-\beta)^2}{2\beta r^3}<0.              \tag{EC.O2}
+\]
+Indeed, $E$ is linear with $E(0)=-(1-\delta)<0$ and
+$E(\beta)=\beta-1<0$.  Moreover,
+\[
+ J_1'(0)=\frac{\sqrt{1-\delta\beta}}2>0,\qquad
+ J_1'(\beta)=1-2\beta<0.
+\]
+Thus $J_1$ has a unique maximizer $a^*\in(0,\beta)$.  It strictly beats flat:
+for $a_0=\sqrt{\beta(1-\beta)}\in(0,\beta)$,
+$J_1(a_0)=1/4$ at $\delta=1$, while lowering $\delta$ strictly raises
+$\Delta(a_0)$ and hence $J_1(a_0)$.  Finally,
+\[
+ \Delta(a)-(1-\beta)^2
+ =(\beta-a)\left[2-a-\beta-\frac\delta\beta(\beta-a)\right]>0
+\]
+for $a<\beta$.  Hence
+$p_2-p_1=[r(a)-(1-\beta)]/2>0$.  Also $r(a)\le1-a$ gives $p_1\ge a$, and
+$p_2=(\beta+a)/2<\beta$, proving feasibility and strict activity.  Nonactive
+menus reduce to flat pricing and are bounded by $1/4$.
+\Halmos\end{proof}
+
+\section{Distributional Counterexamples and Equilibrium Selection}
+\label{app:general}
+
+The concave-CDF example in Section~\ref{sec:generalrescue} is obtained by
+substituting \(F(c)=\sqrt c\) into (7).  High-precision evaluation gives
+\[
+ f(0.0203133)=6.2095\times10^{-8}>0,\qquad
+ f(0.0203134)=-3.8965\times10^{-8}<0.
+\]
+The intermediate value theorem therefore places an equilibrium cutoff in
+that interval.  Direct interval evaluation bounds its completion between
+\(0.1034830\) and \(0.1034833\), while (F3) gives \(0.1083552320\).  Solving
+within the bracket gives \(a=0.0203133614\) and completion
+\(0.1034831363\).  Thus the flat policy's advantage exceeds \(0.0048\).
+
+For the multiplicity example, define
+\[
+ H_{[\ell,u]}(c)=
+ \begin{cases}
+ 0,&c\le\ell,\\
+ (c-\ell)/(u-\ell),&\ell<c<u,\\
+ 1,&c\ge u.
+ \end{cases}
+\]
+Set
+\[
+ F(c)=0.2c+0.4H_{[0.04,0.045]}(c)
+      +0.4H_{[0.15,0.155]}(c),\qquad G(v)=v^{20},
+\]
+and
+\[
+ (m,\alpha,\beta,\delta,\gamma;p_1,p_2)
+ =(2,0.7,0.9,1,0;0.1,0.2).
+\]
+The residual (7) has at least three interior zeros in the disjoint brackets
+\[
+\begin{array}{c@{\qquad}r@{\quad}r}
+\text{bracket}&f(\text{left})&f(\text{right})\\
+\hline
+{[0.03035,0.03037]}& 5.8570\times10^{-6}&-5.7408\times10^{-6}\\
+{[0.04343,0.04345]}&-1.3174\times10^{-5}& 1.0589\times10^{-5}\\
+{[0.04859,0.04862]}& 6.3290\times10^{-6}&-7.0902\times10^{-6}.
+\end{array}
+\]
+Their numerical locations are
+\[
+ a_1=0.0303601002,\qquad
+ a_2=0.0434410792,\qquad
+ a_3=0.0486041490,
+\]
+with slopes approximately \(-0.580\), \(1.188\), and \(-0.447\).
+Their completion probabilities are \(0.6926116\), \(0.7398208\), and
+\(0.7587285\); the first and third differ by more than \(0.066\).
+
+Let $q=(p_1,p_2)$ range over a compact menu set bounded away from the null
+posting boundary, and let $\calE(q)$ be the cutoff set.  Define optimistic and
+pessimistic branch values
+\[
+ O(q)=\max_{a\in\calE(q)}M(q,a),\qquad
+ P(q)=\min_{a\in\calE(q)}M(q,a).
+\]
+
+\paragraph{Selection topology.}
+If $\calE$ is nonempty, compact valued, and has a closed graph, then it is
+upper hemicontinuous, $O$ is upper semicontinuous, and $P$ is lower
+semicontinuous.  The optimistic design problem attains a maximum on a compact
+menu set; the pessimistic supremum need not be attained.  If $\calE$ is also
+lower hemicontinuous, both values are continuous and both maxima are attained.
+
+\begin{proof}{Proof of the selection-topology statement.}
+For any $q_n\to q$, compactness gives convergent subsequences of equilibrium
+selections, and the closed graph puts every limit in $\calE(q)$.  Applying
+this observation to maximizing selections gives
+$\limsup O(q_n)\le O(q)$; applying it to minimizing selections gives
+$P(q)\le\liminf P(q_n)$.  Upper semicontinuity on a compact set yields
+optimistic attainment.  Lower semicontinuity alone does not ensure a maximum:
+for $\calE(q)=\{q\}$ when $q<1$, $\calE(1)=\{0,1\}$, and $M(q,a)=a$, one has
+$P(q)=q$ for $q<1$ but $P(1)=0$.  Lower hemicontinuity and the maximum theorem
+give continuity and attainment for both selections.
 \Halmos\end{proof}
 
 \begin{proof}{Proof of Lemma~\ref{lem:flatgeometry}.}
 For $p<\beta$,
 \[
- Q_\gamma^F(m,p)=q_0(m,p)
+ M_\gamma^{\mathrm{flat}}(m,p)=q_0(m,p)
  +e^{-mp}(1-p/\beta)(1-e^{-\gamma mp}),                  \tag{EC.1}
 \]
-whereas $Q_\gamma^F(m,p)=q_0(m,p)$ for $p\ge\beta$.  The
+whereas $M_\gamma^{\mathrm{flat}}(m,p)=q_0(m,p)$ for $p\ge\beta$.  The
 one-sided derivatives at the rider-continuation kink satisfy
 \[
- Q_{\gamma,+}^{F\prime}(m,\beta)
- -Q_{\gamma,-}^{F\prime}(m,\beta)
+ M_{\gamma,+}^{\mathrm{flat}\prime}(m,\beta)
+ -M_{\gamma,-}^{\mathrm{flat}\prime}(m,\beta)
  =\frac{e^{-m\beta}(1-e^{-\gamma m\beta})}{\beta}>0.     \tag{EC.2}
 \]
 A local maximum requires a nonnegative left derivative and a nonpositive
 right derivative, so this upward jump excludes $p=\beta$.  Moreover,
-$Q_{\gamma,+}^{F\prime}(m,0)=m(1+\gamma)>0$, and the endpoint $p=1$
+$M_{\gamma,+}^{\mathrm{flat}\prime}(m,0)=m(1+\gamma)>0$, and the endpoint $p=1$
 has zero completion, so neither endpoint is optimal.
 
 Direct differentiation gives
@@ -2010,13 +2334,13 @@ $\beta<p^0(m)$.  This proves (F2).
 It remains to verify the stated nonuniqueness possibility.  Fix
 $\beta<p^0(m)$ and extend the objective continuously to $\gamma=0$.  Let
 \[
- B(\gamma)=\max_{p\in[0,\beta]}Q_\gamma^F(m,p).
+ B(\gamma)=\max_{p\in[0,\beta]}M_\gamma^{\mathrm{flat}}(m,p).
 \]
 The maximum theorem makes $B$ continuous.  At zero,
 $B(0)=q_0(m,\beta)<q_0(m,p^0)$.  For
 $p_\gamma=(\log\gamma)/(\gamma m)$, which lies below $\beta$ for large
 $\gamma$, equation (EC.1) gives
-$Q_\gamma^F(m,p_\gamma)\to1>q_0(m,p^0)$.  The intermediate value theorem
+$M_\gamma^{\mathrm{flat}}(m,p_\gamma)\to1>q_0(m,p^0)$.  The intermediate value theorem
 therefore gives some $\gamma^\dagger>0$ with
 $B(\gamma^\dagger)=q_0(m,p^0)$.  At this value $p^0$ and a point strictly
 below $\beta$ are both global flat maximizers; the latter cannot equal
@@ -2132,10 +2456,10 @@ unique cutoff and the expansion
   +\Lambda(p^*)\varepsilon+o(\varepsilon),                \tag{EC.4}
 \]
 where $\Lambda(p^*)$ is the strictly positive expression in (L5).  Since
-$p^*\in\mathcal P_\gamma^F(m)$, the first term on the right is
-$F_\gamma^*(m)$.  Uniqueness makes the conservative minimum in (10) equal to
+$p^*\in\mathcal P_\gamma^{\mathrm{flat}}(m)$, the first term on the right is
+$M_\gamma^{\mathrm{flat},*}(m)$.  Uniqueness makes the conservative minimum in (10) equal to
 this branch value.  A sufficiently small positive $\varepsilon$ therefore
-strictly improves on $F_\gamma^*(m)$, and the supremum in (11) is at least
+strictly improves on $M_\gamma^{\mathrm{flat},*}(m)$, and the supremum in (11) is at least
 that strictly higher value.  This proves (L10)--(L11) without requiring the
 supremum to be attained.
 
@@ -2151,7 +2475,7 @@ strict flat-sign factor
  \ph\bigl(m\{\alpha(p-a)+\gamma p\}\bigr)\right]>0.       \tag{EC.5}
 \]
 Consequently no cutoff below $p$ is sustainable, while $a=p$ is eligible and
-unique.  Rescue is unused and the exact completion is $Q_\gamma^F(m,p)$.
+unique.  Rescue is unused and the exact completion is $M_\gamma^{\mathrm{flat}}(m,p)$.
 At equality the limiting rescue mass is zero and this first-order argument
 does not determine the sign.
 \Halmos\end{proof}
@@ -2356,77 +2680,140 @@ the strict envelope bound keeps that discriminant positive.  Thus
 $J_m^\delta$ is jointly continuous on every compact $m$-interval times
 $[0,\beta]$.  Berge's maximum theorem applied to (35) proves part (i).
 
-For $m\downarrow0$, series inversion, uniformly in $a\in[0,\beta]$, gives
+\paragraph{Uniform thin expansion and localization.}
+Put $\bar J_m^\delta(a)=J_m^\delta(a)/m$ and
+$\bar J_0^\delta(a)=H_0^\delta(a)$.  The maps
+$y_m,T_m/m,B_m^\delta,P_m^\delta$, and $\bar J_m^\delta$ have jointly
+analytic removable extensions to a neighborhood of
+$[0,\bar m]\times[0,\beta]$ for some $\bar m>0$.  Indeed,
+$z\mapsto z+\log(1+z)$ has derivative two at zero, while
+\[
+ B_m^\delta(a)=\delta\frac{ma}{e^{ma}-1}
+ \frac{\alpha y_m(a)^2}{\beta[1+\alpha m y_m(a)]}.
+\]
+The limiting square-root discriminant is uniformly separated from zero:
+\[
+ (1-a)^2-\frac{\delta\alpha}{\beta}(\beta-a)^2
+ \ge(1-\beta)(1-a)^2\ge(1-\beta)^3>0.
+\]
+Thus every finite-order Taylor expansion used below has a remainder uniform
+in $a\in[0,\beta]$.  In particular,
 \[
  y_m(a)=\frac{\beta-a}{2}+O(m),\qquad
- \frac{S_m(a)}m=\frac{\alpha(\beta-a)^2}{4}+O(m).
+ \frac{S_m(a)}m=\frac{\alpha(\beta-a)^2}{4}+O(m),
 \]
-Consequently $P_m^\delta\to P_0^\delta$ and
-$J_m^\delta/m\to H_0^\delta$ uniformly.  If $\beta>1/2$ and $\delta<1$,
-continuity and the endpoint signs give an $a\in(0,1/2)$ with
-$P_0^\delta(a)=1/2$.  The value displayed after (53) is then strictly above
-$1/4$.  Hence $G_{\alpha,\beta,\delta}>1/4$, and uniform convergence together
-with $F_0^*(m)/m\to1/4$ proves (45).
+and $\bar J_m^\delta\to H_0^\delta$ uniformly.
 
-If $\delta=1$, the limiting objective is
-$P_0^1(a)[1-P_0^1(a)]$.  Its unique maximum for $\beta>1/2$ occurs at
-$P_0^1(a_0)=1/2$, equivalently
-$\alpha(\beta-a_0)^2=\beta(1-2a_0)$.  Uniform second-order expansion gives
-\[
- D_{\alpha,1,0}^*(m)=\frac m4-\frac{a_0}{8}m^2+o(m^2),
- \qquad F_0^*(m)=\frac m4-\frac1{16}m^2+o(m^2),
-\]
-which proves (46).
+If $\beta>1/2$ and $\delta<1$, put
+$r(a)=\delta\alpha(\beta-a)^2-\beta(1-2a)$.  Then
+$r(0)<0$, $r(1/2)>0$, and
+$r'(a)=2\{\beta-\delta\alpha(\beta-a)\}>0$.  Hence a unique
+$a\in(0,1/2)$ satisfies $P_0^\delta(a)=1/2$.  The value displayed after (53)
+is strictly above $1/4$, so uniform convergence and
+$F_0^*(m)/m\to1/4$ prove (45).
 
-Now let $\beta=1/2$.  The limiting objective reaches $1/4$ only at
-$a=1/2$, with a quadratic loss away from that endpoint.  A uniform comparison
-with the endpoint therefore localizes every optimizer as
-$a=1/2-cm$ with bounded $c$.  Expanding (51)--(53) on this compact rescaling
-gives (54), uniformly in $c$.  Its strictly concave quadratic is maximized at
-$c^*=1/(16A_\delta)$.  Since
+If $\delta=1$ and $\beta>1/2$, then
 \[
- F_0^*(m)=\frac m4-\frac{m^2}{16}+\frac{11}{768}m^3+O(m^4),
+ \bar J_m^1(a)=H_0^1(a)+m h_1(a)+o(m)
 \]
-the difference of the cubic coefficients is
+uniformly.  The unique maximizer of
+$H_0^1=P_0^1(1-P_0^1)$ is $a_0$, and direct expansion at
+$P_0^1(a_0)=1/2$ gives $h_1(a_0)=-a_0/8$.  The uniform argmax lemma therefore
+yields
 \[
- \frac1{256A_\delta}-\frac1{256}
- =\frac{\alpha(1-\delta)}{512A_\delta},
+ \max_a\bar J_m^1(a)=\frac14-\frac{a_0}{8}m+o(m).
 \]
-proving (47).  At $\delta=1$ this difference is zero.  The next uniform
-order is given by (54a)--(54b).  The strict quadratic loss in $f_2$ and
-local Lipschitz control of $f_3$ imply
+For completeness, that lemma follows because every maximizing sequence
+converges to the unique maximizer of the uniform limit; evaluation at $a_0$
+gives the lower bound, while $H_0^1(a_m)\le H_0^1(a_0)$ and continuity of
+$h_1$ give the upper bound.  Together with
+$F_0^*(m)=m/4-m^2/16+o(m^2)$, this proves (46).
+
+Now let $\beta=1/2$, write $d=1/2-a$, and put
+$A_\delta=1-\alpha(1-\delta)/2$.  As $d\downarrow0$,
 \[
- \max_c\{f_2(c)+mf_3(c)+o(m)\}
- =f_2(1/16)+mf_3(1/16)+o(m).
+ H_0^\delta(1/2)-H_0^\delta(1/2-d)
+ =A_\delta d^2+O(d^3).
 \]
-Since $f_3(1/16)=-3/1024+\alpha/2048$, subtracting the flat expansion
-proves (48) without assuming a higher-order expansion of the optimizer
-itself.
+Uniform convergence first implies $d_m\to0$ for every maximizing sequence.
+Writing $\bar J_m^\delta=H_0^\delta+mh_1^\delta+O(m^2)$ uniformly and using
+local Lipschitz continuity of $h_1^\delta$, comparison with the feasible
+endpoint gives constants independent of the sequence such that
+\[
+ c_1d_m^2\le c_2m d_m+c_3m^2.
+\]
+Hence $d_m=O(m)$, so $a_m=1/2-c_m m$ with $c_m$ in one fixed compact
+interval.  On that interval (51)--(53) give (54) uniformly.  For
+$\delta<1$, maximizing its strict quadratic at
+$c_\delta=1/(16A_\delta)$ and subtracting the flat expansion proves (47).
+At $\delta=1$, let $c_0=1/16$.  If $L$ is a Lipschitz constant for $f_3$ on
+the localization interval, then
+\[
+ f_2(c)+mf_3(c)\le f_2(c_0)+mf_3(c_0)
+ -(c-c_0)^2+mL|c-c_0|.
+\]
+The displacement terms have supremum $O(m^2)$, while evaluation at $c_0$
+gives the matching lower bound.  Thus (54a)--(54b) prove (48) without
+postulating a higher-order expansion of the optimizer.
 
 If $\beta<1/2$, $P_0^\delta(a)\ge a$ and $\alpha\le1$ imply the bound stated
 after (54).  Its right side is increasing on $[0,\beta]$ and ends at
 $\beta(1-\beta)<1/4$.  Uniform convergence and $p_F(m)\to1/2>\beta$ make the
 flat term the exact winner for all sufficiently small $m$, proving (49).
 
-For $m\to\infty$, (55) is exact.  With $x=\log\log m$ and $a=x/m$, the
-tangent construction gives $p_2=O(\log m/m)$,
-$p_1-a=O(\delta a e^{-x})$, and $1-T=O(\log m/m)$, yielding the feasible upper
-loss $(1+o(1))\log\log m/m$.  For the policy-uniform lower bound, if
-$Q_m(a)\le\beta/2$, then
+\paragraph{Uniform thick-market bound.}
+Put $x=ma$, $q=Q_m(a)$, and $y=\beta-q$.  Equations (51) imply
 \[
- m[1-J_m^\delta(a)]\ge
- x(1-e^{-x})+
- \frac{\log(1+\alpha m\beta/2)}{\alpha\beta}e^{-x}.
+ q-a=\frac{\log(1+\alpha my)}{\alpha m},\qquad
+ 1-T_m(a)=\frac q\beta+\frac{y}{\beta(1+\alpha my)}.
 \]
-Its minimum is asymptotic to $\log\log m$.  If $Q_m(a)>\beta/2$, the
-envelope bound makes the first loss in (55) larger.  This proves the dynamic
-rate.  The flat first-order condition gives
-$1-F_0^*(m)\sim\log m/m$; subtraction proves the value rate.  The lower
-bound uses only $P_m^\delta(a)\ge a$.  For the feasible upper construction,
-$R_\delta=\delta R_1$ implies $P_m^\delta(a)\le P_m^1(a)$, while
-$T_m(a)$ is independent of $\delta$.  Hence the estimate is uniform over
-$\delta\in(0,1]$ for each fixed positive $(\alpha,\beta)$; only sequences
-with $\alpha\downarrow0$ or $\beta\downarrow0$ fall outside this uniformity.
+For the feasible cutoff $x_m=\log\log m$, the first identity gives
+$q=O(\log m/m)=o(1)$, so $y\ge\beta/2$ eventually and
+$1-T_m=O(\log m/m)$.  Since the tangent lower root satisfies $p_1\le q$, its
+implementation equation gives, uniformly over $0<\delta\le1$,
+\[
+ 0\le p_1-a\le\frac{2a}{e^{x_m}-1}
+ =O\!\left(\frac{a}{\log m}\right).
+\]
+Substitution into (55) gives
+\[
+ 1-M_R^*(m)\le(1+o(1))\frac{\log\log m}{m}.
+\]
+
+For the matching policy-uniform lower bound, first suppose $q\le\beta/2$.
+Then $y\ge\beta/2$, $p_1\ge a=x/m$, and the exact identities imply
+\[
+ m[1-J_m^\delta(a)]\ge x(1-e^{-x})+C_m e^{-x},\qquad
+ C_m=\frac{\log(1+\alpha m\beta/2)}{\alpha\beta}.
+\]
+For $C\to\infty$,
+$\inf_{x\ge0}\{x(1-e^{-x})+Ce^{-x}\}\sim\log C$: evaluation at
+$x=\log C$ supplies the upper bound, and splitting at
+$x=(1-\varepsilon)\log C$ supplies the lower bound.  Since
+$\log C_m\sim\log\log m$, this proves the required rate on this branch.
+If instead $q>\beta/2$, then
+\[
+ a=q-\frac{\log(1+\alpha my)}{\alpha m}
+ >\frac\beta2-\frac{\log(1+\alpha m\beta)}{\alpha m}
+ >\frac\beta4
+\]
+eventually.  Since $P_m^\delta(a)\ge a$, (55) gives
+\[
+ 1-J_m^\delta(a)\ge\frac\beta4(1-e^{-m\beta/4}),
+\]
+which dominates $\log\log m/m$.  The separate flat branch $p\ge\beta$ has
+loss at least $\beta$.  Thus the lower bound is uniform over the full policy
+domain, proving the first relation in (50).
+
+Finally, if $x_F=mp_F(m)$, the flat first-order condition is
+$e^{x_F}=1+m-x_F$ and gives the exact identity
+\[
+ 1-M_F^*(m)=\frac{x_F+1-e^{-x_F}}m.
+\]
+Since $x_F\sim\log m$, the second relation in (50) follows, and subtracting
+the two losses gives the third.  The dynamic lower bound is independent of
+$\delta$, while the feasible upper bound used only $\delta\le1$; this proves
+the stated uniformity and its primitive-boundary qualification.
 \Halmos\end{proof}
 
 \begin{proof}{Proof of Corollary~\ref{cor:bestm}.}

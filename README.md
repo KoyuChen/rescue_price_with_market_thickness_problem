@@ -17,21 +17,18 @@ common-discount specification is the restriction \(\delta=\beta\). Discounting
 changes incumbent incentives, not physical survival, entry, terminal
 eligibility, or completion.
 
-## Formal paper and empirical placeholder
+## Formal theory paper
 
 The formal manuscript is rebuilt independently from the group-meeting note.
-The restart adds a journal-style literature review, an explicit
-surviving-incumbent plus fresh-entry extension, and a pre-specified empirical
-calibration package. No observed dataset is currently present, so all
-empirical entries are visibly marked **DATA REQUIRED** and the synthetic mode
-tests schema and timing only.
+It uses a general-distribution equilibrium foundation, an exact uniform
+no-entry design core, market-thickness results, and a surviving-incumbent plus
+fresh-entry extension.  The current version is theory-only; no empirical
+package is active.
 
-- [Formal restart PDF](paper/formal/main.pdf)
-- [Formal restart source](paper/formal/main.tex)
-- [Formal restart bibliography](paper/formal/references.bib)
-- [Empirical calibration contract](empirical/README.md)
-- [Required data dictionary](empirical/data_dictionary.md)
-- [Reusable formal-manuscript prompt](prompt/formal_manuscript_restart_prompt.md)
+- [Formal theory PDF](paper/formal/main.pdf)
+- [Formal theory source](paper/formal/main.tex)
+- [Formal bibliography](paper/formal/references.bib)
+- [Reusable theory-manuscript prompt](prompt/formal_theory_manuscript_prompt.md)
 
 The current paper uses the requested official Management Science
 `informs3`/`blindrev` template. Superseded rendered manuscript drafts and their
@@ -50,39 +47,46 @@ group-meeting note remains a separate document:
 
 ## Main results
 
-Within anonymous symmetric pure driver-cutoff WPBE:
+Within anonymous symmetric independently mixed WPBE:
 
-1. Every announced menu admits an equilibrium. In the no-fresh-entry model,
-   every menu has a unique equilibrium cutoff value.
-2. A flat menu retains the unique cutoff \(a=p_1\), and its physical completion
+1. For general continuous full-support \(F,G\), cutoff behavior is endogenous:
+   every equilibrium strategy is almost everywhere a pure cutoff, and the
+   cutoff set is nonempty and compact.
+2. Under smooth \(F,G\) and no fresh entry, a small rescue increase at any
+   active flat price strictly raises completion on every nearby equilibrium
+   branch.  Convex \(F\) extends same-\(p_1\) dominance globally; a concave-CDF
+   counterexample shows why the shape condition matters.
+3. A flat menu retains the unique cutoff \(a=p_1\), and its physical completion
    probability is independent of \(\delta\).
-3. Active marginal rescue raises completion. The local wedge decomposes as
+4. In the uniform no-entry core, every menu has a unique cutoff and the global
+   policy problem reduces to a continuous one-dimensional maximum.  The local
+   wedge decomposes as
    \[
    \phi(mp_1)-\delta e^{-mp_1}
    =\{\phi(mp_1)-e^{-mp_1}\}+(1-\delta)e^{-mp_1},
    \]
    separating assignment competition from incumbent impatience.
-4. With surviving incumbents and fresh entrants, a small announced rescue
+5. With surviving incumbents and fresh entrants, a small announced rescue
    strictly beats optimized flat pricing whenever at least one optimized flat
    price is below \(\beta\) and satisfies the rider-activity inequality. Strict
    failure of that inequality makes the same small perturbation exactly
    ineffective.
-5. Holding either flat-failure continuation headcount or price-marginal
+6. Holding either flat-failure continuation headcount or price-marginal
    capacity fixed, a larger incumbent share strictly increases first-order
    cutoff erosion in the active local region. Its marginal completion effect
    is generally nonmonotone; the two pure endpoints have a closed-form
    patience threshold.
-6. With \(\gamma=0\), \(\alpha>0\), and \(\beta\ge 1/2\), the globally
+7. With \(\gamma=0\), \(\alpha>0\), and \(\beta\ge 1/2\), the globally
    optimized announced menu strictly dominates the optimized flat payment for
    every finite \(m>0\) and every \(0<\delta\le1\).
-7. Incumbent impatience changes the thin-market order. For \(\beta>1/2\),
+8. Incumbent impatience changes the thin-market order. For \(\beta>1/2\),
    the gain is order \(m\) when \(\delta<1\), versus order \(m^2\) at
    \(\delta=1\). At \(\beta=1/2\), it is order \(m^3\) when \(\delta<1\),
    versus \(\alpha m^4/2048\) at \(\delta=1\).
-8. For fixed positive \((\alpha,\beta)\), the thick-market rates are uniform
+9. For fixed positive \((\alpha,\beta)\), the thick-market rates are uniform
    over \(\delta\in(0,1]\): dynamic loss is \((\log\log m)/m\), and the gain
    over optimized flat is \((\log m)/m\).
-9. In the public deterministic-\(n\) benchmark, for positive survival and an
+10. In the public deterministic-\(n\) benchmark, for positive survival and an
    interior first payment, rescue is locally productive for every \(n\ge1\)
    when \(\delta<1\). At \(\delta=1\), the derivative is zero for \(n=1\) and
    positive for \(n\ge2\).
@@ -97,14 +101,13 @@ thickness remain open.
 ```text
 paper/formal/ independent journal manuscript, PDF, tables, figures, and scripts
 paper/        formal paper and exact INFORMS3 class/bibliography style
-empirical/    data contract, identification ledger, schema checks, placeholders
 group_meeting/ standalone eight-page benchmark, numerical thickness, and WPBE note
 figures/     extensive-form source and rendered formats
 analysis/    claim ledger, counterexample registry, numerical reports
 audits/      independent derivations and adversarial proof checks
 code/        baseline and incumbent-discount falsification engines
 literature/  adversarial nearest-literature and contribution memo
-prompt/      proof-audit and formal-manuscript restart prompts
+prompt/      proof-audit and theory-manuscript prompts
 archive/     original theory-source foundations retained for provenance
 ```
 
@@ -117,7 +120,7 @@ history rather than duplicated in the working tree.
 Create an environment with Python 3.11+ and install the dependencies:
 
 ```bash
-python -m pip install -r code/requirements.txt
+python -m pip install -r paper/formal/requirements.txt
 ```
 
 Run all 20 regression tests:
@@ -154,13 +157,11 @@ bundles the exact `informs3` class used by the requested Management Science
 template and the bibliography style. A full TeX installation should provide
 the remaining standard packages.
 
-Regenerate and build the independent formal restart, then validate its
-empirical schema with:
+Regenerate and build the independent formal theory paper with:
 
 ```bash
 make formal-figures
 make formal
-make empirical-test
 ```
 
 ## Verification record

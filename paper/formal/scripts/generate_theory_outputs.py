@@ -1,8 +1,7 @@
 """Generate formal-paper-only theoretical figures and tables.
 
-These outputs use assumed parameters and are deliberately labeled numerical
-illustrations. They do not read empirical data and must not be presented as a
-calibration.
+These outputs use assumed parameters and are theoretical numerical
+illustrations of the model's mechanisms and conjectured shapes.
 """
 
 from __future__ import annotations
