@@ -245,6 +245,10 @@ ablation finds no detectable anticipation before that bonus, although the
 future path is not described as disclosed and committed.  This evidence is an
 important institutional contrast: our strategic channel requires the complete
 failure-contingent menu to be credible before first-window decisions.
+Their operational objective---maximizing accepted orders subject to a bonus
+budget---also provides a direct precedent for treating service completion as
+the primary outcome rather than reducing every dispatch decision to
+unconstrained per-order profit.
 \citet{SiggEtAl2025} model
 workers who reject a delivery request so that it is reoffered at a higher
 payment.  Broadcast, supplier-menu, and notification models also study
@@ -284,6 +288,52 @@ either foundation: after failure, a driver's continuation payoff depends on
 the rider's endogenous choice among abandon, repeat, and rescue.  The affine
 accept-versus-wait margin lets us prove directly that anonymous symmetric
 independent equilibrium behavior is almost everywhere a pure cutoff.
+
+Table~\ref{tab:closest} makes the contribution boundary explicit.  The
+closest papers each contain an important component, but optimize a different
+object or remove one of the two endogenous responses that defines the present
+problem.
+
+\begin{table}
+\TABLE
+{Closest-design comparison.\label{tab:closest}}
+{\begin{tabularx}{\textwidth}{L{28mm}L{37mm}L{35mm}>{\raggedright\arraybackslash}X}
+\toprule
+Paper & Committed design & Primary objective & Boundary relative to this paper\\
+\midrule
+\citet{LiKuo2013}
+& Discrete Dutch bid levels with Poisson bidder count
+& Expected auction revenue
+& No private rider continuation, screened incumbent pool, or optimized rescue-versus-flat completion value\\
+\citet{CorreaEtAl2016}
+& Inventory-contingent preannounced price menu
+& Seller revenue
+& Strategic buyers face inventory; suppliers do not wait for higher compensation under assignment competition\\
+\citet{LeeLi2023}
+& Reserve-price and search-intensity schedule
+& Seller's optimal search payoff
+& Screening of long-lived bidders is close, but allocation is by auction and there is no abandon--repeat--rescue rider response\\
+\citet{WuEtAl2022}
+& Multistage order-specific bonus allocation
+& Accepted orders under a bonus budget
+& Production relevance is direct, but later bonuses are not modeled as an ex ante disclosed contract and anticipation is absent in their ablation\\
+\bottomrule
+\end{tabularx}}
+{The comparison is about the joint model object, not priority over any
+individual ingredient.}
+\end{table}
+
+The strongest reduction test is therefore constructive.  If rider
+continuation is fixed exogenously, the problem approaches a procurement
+clock with uncertain participation.  If suppliers do not anticipate the
+later payment, it approaches a multistage bonus-allocation problem.  If
+continuation supply is chosen directly and allocation occurs by auction, it
+approaches compound bidder search.  Our object survives these reductions only
+when all three endogenous margins remain together: incumbent acceptance
+today, rider continuation after failure, and the screened composition of
+supply tomorrow.  This is also why a separate one-driver benchmark is not
+needed for the contribution claim; it removes the latent-competition state
+whose interaction with screening generates the market-thickness result.
 
 Against these literatures, we characterize the
 endogenous cutoff-WPBE and completion-design problem created jointly by an ex ante
@@ -767,108 +817,13 @@ When \(\beta<p^0(m)\), a low-price optimizer and \(p^0(m)\) can tie for some
 \(\gamma>0\); the theorem below therefore requires one active optimizer, not
 a unique optimizer.
 
-\section{Rescue Pricing Beyond Uniform Distributions}
-\label{sec:generalrescue}
-
-The general equilibrium foundation permits a selection-robust local result.
-It preserves the central economic comparison without assuming a uniform cost
-or value distribution and without requiring nearby cutoff uniqueness.
-
-\begin{theorem}[Local rescue improvement]
-\label{thm:generallocal}
-Suppose $\gamma=0$, $0<p<\beta$, and $\alpha>0$.  Let $F$ be differentiable
-at $p$ with $f(p)>0$, and let $G$ be continuous with full support.  Define
-\[
- R=e^{-mF(p)},\qquad \sigma=\ph(mF(p)),\qquad
- \rho_G(p)=\frac{1-G(p/\beta)}{1-G(p)}.
-\]
-For the menu $(p,p+\varepsilon)$, every equilibrium cutoff satisfies,
-uniformly across equilibrium branches,
-\[
- a_\varepsilon=p-\kappa(p)\varepsilon+o(\varepsilon),
- \qquad
- \kappa(p)=
- \frac{\delta\alpha R\rho_G(p)}
- {\sigma-\delta\alpha R\rho_G(p)}.                       \tag{G1}
-\]
-Moreover,
-\[
-\begin{aligned}
- &\min_{a_\varepsilon\in\calE_{F,G}(p,p+\varepsilon)}
- M_{F,G}^{\alpha,0}(p,p+\varepsilon;a_\varepsilon)\\
- &\quad=M^{\mathrm{flat}}_{F,G,0}(m,p)
- +L_{F,G}(p)\varepsilon+o(\varepsilon),\\
- &L_{F,G}(p)=[1-G(p)]mf(p)R
- \frac{\alpha\rho_G(p)[\sigma-\delta R]}
- {\sigma-\delta\alpha R\rho_G(p)}>0.
-\end{aligned}                                             \tag{G2}
-\]
-Consequently, if an optimal flat price $p_F^*$ is strictly below $\beta$,
-then $(p_F^*,p_F^*+\varepsilon)$ strictly improves on the optimized flat
-policy for every sufficiently small $\varepsilon>0$, even under worst-cutoff
-selection.
-\end{theorem}
-
-The denominator in (G1) is positive because $\rho_G(p)<1$ and
-$\ph(mF(p))>e^{-mF(p)}$.  The same inequality gives the strict numerator
-wedge $\sigma-\delta R$.  Thus the local gain combines assignment competition,
-which is present at $\delta=1$, with incumbent impatience, which strengthens
-the gain when $\delta<1$.  Fresh entry is excluded here because an entrant
-pool already creates terminal completion under the flat policy; Section
-\ref{sec:localentry} rederives the appropriate local condition for that case.
-
-Convexity of the cost CDF turns the local statement into a global comparison
-for any active menu.  Convex $F$ means that successively higher cost intervals
-contain weakly more probability mass per unit of payment.
-
-\begin{theorem}[Global same-payment dominance under convex supply]
-\label{thm:convexF}
-Suppose $\gamma=0$ and $F$ is atomless, strictly increasing, and convex.
-Fix a strict menu $p_1<p_2$ and an equilibrium cutoff $a<p_1$ for which a
-positive mass of riders activates rescue.  Then
-\[
- M_{F,G}^{\alpha,0}(p_1,p_2;a)
- >[1-G(p_1)]\{1-e^{-mF(p_1)}\}.                          \tag{G3}
-\]
-Hence every active strict menu beats the flat policy with the same first
-payment, branch by branch; cutoff uniqueness is unnecessary.
-\end{theorem}
-
-To see the role of convexity, let
-\[
- s_j(a)=\frac{F(p_j)-F(a)}{p_j-a},\qquad j\in\{1,2\}.
-\]
-Convexity gives $s_2(a)\ge s_1(a)$.  Cutoff indifference then converts the
-terminal-coverage term into at least the supply mass lost below $p_1$, while
-$a<p_1$ makes the comparison strict.  Appendix~\ref{app:general} gives the
-complete inequality.
-
-The condition is substantive.  With
-\[
- F(c)=\sqrt c,\quad G(v)=v,\quad
- (m,\alpha,\beta,\delta,\gamma)=(0.5,0.75,0.3,1,0),
-\]
-the menu $(p_1,p_2)=(0.06,0.17)$ has an equilibrium cutoff
-$a=0.02031336$.  Dynamic completion is $0.10348314$, whereas the flat payment
-$p_1=0.06$ completes $0.10835523$; a large rescue loses $0.4872$ percentage
-points.  This does not contradict Theorem~\ref{thm:generallocal}, which concerns
-sufficiently small rescue increments.
-
-General distributions also permit equilibrium multiplicity.  Appendix
-\ref{app:general} constructs continuous full-support $F$ and $G$ for which one
-menu has three transversal cutoffs, with completion probabilities $0.6926$,
-$0.7398$, and $0.7587$.  The $6.61$ percentage-point selection spread explains
-why (10) uses a conservative minimum and why the unrestricted design problem
-retains a supremum.  Neither multiplicity nor concavity affects the exact
-uniform no-entry results below.
-
 \section{Global menu design without fresh entry}
 \label{sec:global}
 
 We now impose the exact-core specialization
 \[
  F(c)=c,\qquad G(v)=v,\qquad
- \gamma\ge0,\qquad m>0,\qquad \alpha\in(0,1],\qquad
+ \gamma=0,\qquad m>0,\qquad \alpha\in(0,1],\qquad
  \beta\in(0,1),\qquad \delta\in(0,1].
  \tag{U}
 \]
@@ -887,7 +842,8 @@ $\rho(p)=[1-p/\beta]^+/(1-p)$, and use
  \quad\text{under (U)}.
 \end{aligned}                                             \tag{U1}
 \]
-The notation in (U1) applies to the uniform model for arbitrary $\gamma$.
+The definitions in (U1) extend to the uniform model with arbitrary $\gamma$
+when fresh entry is reintroduced later.
 For the global analysis in this section and Section~\ref{sec:thickness}, we
 now impose $\gamma=0$.  Uniformity together with no fresh entry produces the
 exact envelope and global one-dimensional reduction; it is not the source of
@@ -896,6 +852,16 @@ Let $k=\alpha m$.  Menus with $p_1\ge\beta$ or
 $p_2\ge\beta$ cannot induce positive-mass rescue and are outcome-equivalent to
 the flat first payment.  The nontrivial region is therefore
 $0\le p_1<p_2<\beta$.
+
+The theorem chain follows the design logic used in the closest dynamic-pricing
+and search papers, but keeps equilibrium selection explicit.  The fixed-menu
+cutoff theorem first licenses a scalar response.  The flat benchmark then
+provides the policy-class comparison.  The results below establish,
+in order, uniqueness for every uniform no-entry menu, the optimal $p_2$ for a
+fixed $p_1$, the one-dimensional joint optimum, the rider-patience threshold,
+and finally the topology of $V(m)$.  Distributional robustness and fresh
+entry are deliberately placed after this exact chain so that local extensions
+cannot be mistaken for inputs to the global theorem.
 
 For $a\in[0,p_1]$, put
 \[
@@ -1445,6 +1411,14 @@ cutoff and then optimizes $p_2$ conditional on $p_1$ before optimizing $p_1$.
 Figure~\ref{fig:sensitivity} repeats that full optimization while varying
 rider patience, incumbent patience, and survival.  It is therefore a
 policy-class comparison, rather than the response to holding one menu fixed.
+The exhibits are organized as diagnostics for the theorem chain:
+Figure~\ref{fig:theoryprofiles} checks the global-design and thickness
+profiles; Figure~\ref{fig:sensitivity} checks the comparative-static
+directions; Figure~\ref{fig:designmaps} exposes the patience region and the
+implemented payment gap; and Figure~\ref{fig:boundaries} targets the two
+places where an overgeneralized theorem would fail---concave supply and
+inactive rescue with fresh entry.  None is used as evidence for an unproved
+shape claim.
 
 \begin{figure}
 \FIGURE
@@ -1483,6 +1457,24 @@ attractive.\label{fig:sensitivity}}
 {}
 \end{figure}
 
+Figure~\ref{fig:designmaps} reports the joint $(\beta,\delta)$ design
+surface at the intermediate thickness $m=10$.  This is the comparison a
+single baseline curve hides: rider patience moves both the optimized gain and
+the rescue increment substantially, whereas incumbent patience changes the
+gain more than it changes the optimal payment gap over the displayed region.
+
+\begin{figure}
+\FIGURE
+{\includegraphics[width=\textwidth]{figures/design_maps.pdf}}
+{Joint patience maps for optimized rescue design.
+At every grid point the equilibrium cutoff and both payments are reoptimized.
+Parameters are $m=10$, $\alpha=1$, and $\gamma=0$.  Panel (a) reports
+$100V(m)$ in percentage points; panel (b) reports the optimal payment
+increment $p_2^*-p_1^*$.  Contours are visual guides, not additional
+monotonicity theorems.\label{fig:designmaps}}
+{}
+\end{figure}
+
 Figure~\ref{fig:boundaries} visualizes two boundaries that the baseline
 profile alone cannot show.  Panel (a) uses the exact concave-CDF example from
 Section~\ref{sec:generalrescue}.  A small rescue is beneficial, as the local
@@ -1504,6 +1496,102 @@ the blue region satisfies the strict activity condition.
 \label{fig:boundaries}}
 {}
 \end{figure}
+
++\section{Rescue Pricing Beyond Uniform Distributions}
+\label{sec:generalrescue}
+
+The general equilibrium foundation permits a selection-robust local result.
+It preserves the central economic comparison without assuming a uniform cost
+or value distribution and without requiring nearby cutoff uniqueness.
+
+\begin{theorem}[Local rescue improvement]
+\label{thm:generallocal}
+Suppose $\gamma=0$, $0<p<\beta$, and $\alpha>0$.  Let $F$ be differentiable
+at $p$ with $f(p)>0$, and let $G$ be continuous with full support.  Define
+\[
+ R=e^{-mF(p)},\qquad \sigma=\ph(mF(p)),\qquad
+ \rho_G(p)=\frac{1-G(p/\beta)}{1-G(p)}.
+\]
+For the menu $(p,p+\varepsilon)$, every equilibrium cutoff satisfies,
+uniformly across equilibrium branches,
+\[
+ a_\varepsilon=p-\kappa(p)\varepsilon+o(\varepsilon),
+ \qquad
+ \kappa(p)=
+ \frac{\delta\alpha R\rho_G(p)}
+ {\sigma-\delta\alpha R\rho_G(p)}.                       \tag{G1}
+\]
+Moreover,
+\[
+\begin{aligned}
+ &\min_{a_\varepsilon\in\calE_{F,G}(p,p+\varepsilon)}
+ M_{F,G}^{\alpha,0}(p,p+\varepsilon;a_\varepsilon)\\
+ &\quad=M^{\mathrm{flat}}_{F,G,0}(m,p)
+ +L_{F,G}(p)\varepsilon+o(\varepsilon),\\
+ &L_{F,G}(p)=[1-G(p)]mf(p)R
+ \frac{\alpha\rho_G(p)[\sigma-\delta R]}
+ {\sigma-\delta\alpha R\rho_G(p)}>0.
+\end{aligned}                                             \tag{G2}
+\]
+Consequently, if an optimal flat price $p_F^*$ is strictly below $\beta$,
+then $(p_F^*,p_F^*+\varepsilon)$ strictly improves on the optimized flat
+policy for every sufficiently small $\varepsilon>0$, even under worst-cutoff
+selection.
+\end{theorem}
+
+The denominator in (G1) is positive because $\rho_G(p)<1$ and
+$\ph(mF(p))>e^{-mF(p)}$.  The same inequality gives the strict numerator
+wedge $\sigma-\delta R$.  Thus the local gain combines assignment competition,
+which is present at $\delta=1$, with incumbent impatience, which strengthens
+the gain when $\delta<1$.  Fresh entry is excluded here because an entrant
+pool already creates terminal completion under the flat policy; Section
+\ref{sec:localentry} rederives the appropriate local condition for that case.
+
+Convexity of the cost CDF turns the local statement into a global comparison
+for any active menu.  Convex $F$ means that successively higher cost intervals
+contain weakly more probability mass per unit of payment.
+
+\begin{theorem}[Global same-payment dominance under convex supply]
+\label{thm:convexF}
+Suppose $\gamma=0$ and $F$ is atomless, strictly increasing, and convex.
+Fix a strict menu $p_1<p_2$ and an equilibrium cutoff $a<p_1$ for which a
+positive mass of riders activates rescue.  Then
+\[
+ M_{F,G}^{\alpha,0}(p_1,p_2;a)
+ >[1-G(p_1)]\{1-e^{-mF(p_1)}\}.                          \tag{G3}
+\]
+Hence every active strict menu beats the flat policy with the same first
+payment, branch by branch; cutoff uniqueness is unnecessary.
+\end{theorem}
+
+To see the role of convexity, let
+\[
+ s_j(a)=\frac{F(p_j)-F(a)}{p_j-a},\qquad j\in\{1,2\}.
+\]
+Convexity gives $s_2(a)\ge s_1(a)$.  Cutoff indifference then converts the
+terminal-coverage term into at least the supply mass lost below $p_1$, while
+$a<p_1$ makes the comparison strict.  Appendix~\ref{app:general} gives the
+complete inequality.
+
+The condition is substantive.  With
+\[
+ F(c)=\sqrt c,\quad G(v)=v,\quad
+ (m,\alpha,\beta,\delta,\gamma)=(0.5,0.75,0.3,1,0),
+\]
+the menu $(p_1,p_2)=(0.06,0.17)$ has an equilibrium cutoff
+$a=0.02031336$.  Dynamic completion is $0.10348314$, whereas the flat payment
+$p_1=0.06$ completes $0.10835523$; a large rescue loses $0.4872$ percentage
+points.  This does not contradict Theorem~\ref{thm:generallocal}, which concerns
+sufficiently small rescue increments.
+
+General distributions also permit equilibrium multiplicity.  Appendix
+\ref{app:general} constructs continuous full-support $F$ and $G$ for which one
+menu has three transversal cutoffs, with completion probabilities $0.6926$,
+$0.7398$, and $0.7587$.  The $6.61$ percentage-point selection spread explains
+why (10) uses a conservative minimum and why the unrestricted design problem
+retains a supremum.  Neither multiplicity nor concavity affects the exact
+uniform no-entry results established above.
+
 
 \section{Extension: Surviving Incumbents and Fresh Driver Entry}
 \label{sec:localentry}

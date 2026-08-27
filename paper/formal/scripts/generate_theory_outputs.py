@@ -269,6 +269,33 @@ def main() -> None:
     fig.savefig(figure_dir / "boundary_diagnostics.png", dpi=220, bbox_inches="tight")
     plt.close(fig)
 
+    # Two-dimensional design maps expose the region where rescue is used and
+    # how far the optimal contract departs from flat pricing.
+    beta_map = np.linspace(0.25, 0.95, 29)
+    delta_map = np.linspace(0.3, 1.0, 29)
+    gain_map = np.empty((len(delta_map), len(beta_map)))
+    gap_map = np.empty_like(gain_map)
+    for i, delta in enumerate(delta_map):
+        for j, beta in enumerate(beta_map):
+            result = solve_noentry(10.0, beta=float(beta), delta=float(delta))
+            gain_map[i, j] = 100 * result.gain
+            gap_map[i, j] = result.point.q - result.point.p
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.7), constrained_layout=True)
+    extent = [beta_map[0], beta_map[-1], delta_map[0], delta_map[-1]]
+    g = axes[0].imshow(gain_map, origin="lower", aspect="auto", extent=extent, cmap="Blues")
+    axes[0].contour(beta_map, delta_map, gain_map, levels=[1, 3, 5], colors="black", linewidths=0.6)
+    fig.colorbar(g, ax=axes[0], label="Gain (pp)")
+    h = axes[1].imshow(gap_map, origin="lower", aspect="auto", extent=extent, cmap="Oranges")
+    axes[1].contour(beta_map, delta_map, gap_map, levels=[0.02, 0.08, 0.16], colors="black", linewidths=0.6)
+    fig.colorbar(h, ax=axes[1], label=r"$p_2^*-p_1^*$")
+    for ax, title in zip(axes, ("(a) Optimized completion gain", "(b) Optimal rescue increment")):
+        ax.set_xlabel(r"Rider patience $\beta$")
+        ax.set_ylabel(r"Driver patience $\delta$")
+        ax.set_title(title)
+    fig.savefig(figure_dir / "design_maps.pdf", bbox_inches="tight")
+    fig.savefig(figure_dir / "design_maps.png", dpi=220, bbox_inches="tight")
+    plt.close(fig)
+
     selected = [(m, solve_noentry(m)) for m in (1.0, 5.0, 10.0, 20.0)]
     write_table(selected, table_dir / "theory_selected_m.tex")
     print(
