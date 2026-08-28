@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -10,8 +11,8 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "results" / "csv" / "regime_comparison.csv"
-METADATA = ROOT / "results" / "regime_metadata.json"
+DATA = ROOT / "results" / "csv" / "regime_comparison_committed.csv"
+METADATA = ROOT / "results" / "regime_metadata_committed.json"
 
 
 def _require(condition: bool, message: str) -> None:
@@ -19,9 +20,17 @@ def _require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=Path, default=DATA)
+    parser.add_argument("--metadata", type=Path, default=METADATA)
+    return parser.parse_args()
+
+
 def main() -> None:
-    data = pd.read_csv(DATA)
-    metadata = json.loads(METADATA.read_text())
+    args = parse_args()
+    data = pd.read_csv(args.data)
+    metadata = json.loads(args.metadata.read_text())
     mechanisms = {"incumbent_only", "fixed_arrivals", "expanded_search"}
     keys = ["m", "beta", "delta"]
 
@@ -32,6 +41,18 @@ def main() -> None:
     _require(bool(data["certification_stable"].all()), "a final root set is uncertified")
     _require(bool((data["equilibrium_count"] >= 1).all()), "a row has no cutoff-WPBE")
     _require(bool(data["completion"].between(0, 1).all()), "completion leaves [0,1]")
+    _require(
+        bool(
+            np.allclose(
+                data["completion"],
+                data["first_completion"]
+                + data["repeat_completion"]
+                + data["rescue_completion"],
+                atol=2e-10,
+            )
+        ),
+        "completion does not equal first plus terminal components",
+    )
     _require(bool((data["p1"] <= data["p2"] + 1e-10).all()), "p1 exceeds p2")
     _require(bool((data["s"] >= 1 - 1e-10).all()), "search multiplier below one")
     adversarial_seeds = int(metadata["search_config"]["adversarial_seeds"])
@@ -49,11 +70,20 @@ def main() -> None:
         "adversarial improvement is negative",
     )
 
-    kappa = float(metadata["outer_contact_cost"])
-    reconstructed_value = data["completion"] - kappa * data["expected_extra_notifications"]
+    kappa = float(metadata["search_cost"])
+    basis = metadata["search_cost_basis"]
+    _require(
+        bool(data["search_cost_basis"].eq(basis).all()),
+        "row-level search cost basis differs from metadata",
+    )
+    resource_column = {
+        "committed_reach": "expected_committed_outer_capacity",
+        "executed_contacts": "expected_extra_notifications",
+    }[basis]
+    reconstructed_value = data["completion"] - kappa * data[resource_column]
     _require(
         bool(np.allclose(data["design_value"], reconstructed_value, atol=2e-10)),
-        "design value does not equal completion minus outer-contact cost",
+        "design value does not equal completion minus the selected search resource",
     )
 
     total = (
@@ -85,10 +115,24 @@ def main() -> None:
     _require(
         bool(np.allclose(incumbent["expected_extra_notifications"], 0))
         and bool(np.allclose(fixed["expected_extra_notifications"], 0)),
-        "a non-expanded regime pays outer-contact cost",
+        "a non-expanded regime pays outer-search cost",
+    )
+    _require(
+        bool(np.allclose(incumbent["expected_committed_outer_capacity"], 0))
+        and bool(np.allclose(fixed["expected_committed_outer_capacity"], 0)),
+        "a non-expanded regime reserves outer capacity",
+    )
+    _require(
+        bool(
+            (
+                data["expected_extra_notifications"]
+                <= data["expected_committed_outer_capacity"] + 2e-10
+            ).all()
+        ),
+        "executed outer contacts exceed committed outer capacity",
     )
 
-    expected_outer = (
+    expected_executed = (
         (1 - expanded["p1"])
         * np.exp(-expanded["m"] * np.clip(expanded["cutoff"], 0, 1))
         * expanded["rescue_mass"]
@@ -98,10 +142,30 @@ def main() -> None:
     _require(
         bool(
             np.allclose(
-                expanded["expected_extra_notifications"], expected_outer, atol=2e-9
+                expanded["expected_extra_notifications"], expected_executed, atol=2e-9
             )
         ),
-        "outer-contact accounting does not match execution probability",
+        "executed outer-contact accounting does not match execution probability",
+    )
+    expected_committed = (
+        (1 - expanded["p1"])
+        * np.exp(-expanded["m"] * np.clip(expanded["cutoff"], 0, 1))
+        * expanded["m"]
+        * (expanded["s"] - 1)
+    )
+    _require(
+        bool(
+            np.allclose(
+                expanded["expected_committed_outer_capacity"],
+                expected_committed,
+                atol=2e-9,
+            )
+        ),
+        "committed outer-capacity accounting does not match the promised footprint",
+    )
+    _require(
+        bool(np.allclose(data["search_resource"], data[resource_column], atol=2e-10)),
+        "reported search resource does not match the selected cost basis",
     )
 
     value_pivot = data.pivot_table(index=keys, columns="mechanism", values="design_value")
@@ -123,6 +187,7 @@ def main() -> None:
                 "maximum_adversarial_improvement": float(
                     data["adversarial_improvement"].max()
                 ),
+                "search_cost_basis": basis,
             },
             indent=2,
         )

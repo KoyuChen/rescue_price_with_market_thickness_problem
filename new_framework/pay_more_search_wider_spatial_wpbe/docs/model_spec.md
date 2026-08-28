@@ -149,6 +149,42 @@ with indifference at an interior cutoff. The payoff difference is piecewise
 affine in type, so the solver checks the full type domain at the affine
 interval endpoints and certifies the root set under grid refinement.
 
+### Unique cutoff in the maintained model
+
+For the maintained uniform-cost, type-independent-retention, and
+assignment-contingent-pickup specification, every admissible policy in all
+three regimes induces exactly one cutoff-WPBE. The key restrictions are that
+fresh volunteer intensity is independent of the conjectured incumbent cutoff
+and that terminal incumbent retention is the constant `omega`.
+
+Let
+
+\[
+\mathcal A(a)=h(ma)(p_1-a),\qquad
+Y_j(a)=e^{-ma}h(\Lambda_j(a))(p_j-a).
+\]
+
+At every nondegenerate holdout root,
+
+\[
+h(\Lambda_2)(p_2-a)>h(\Lambda_1)(p_1-a).
+\]
+
+On an active repeat--rescue branch the rescue mass is weakly increasing in
+the proposed cutoff. Together with
+
+\[
+-\omega Y_j'(a)\le e^{-ma},
+\qquad
+-\mathcal A'(a)>e^{-ma},
+\]
+
+this makes the cutoff residual cross zero strictly downward at every root.
+Two roots are therefore impossible. Existence follows from the endpoint
+signs. Consequently the equilibrium set below is a singleton and the
+conservative and optimistic selections coincide analytically; numerical root
+certification remains an implementation audit.
+
 ## 6. Completion and search-resource objective
 
 Posting probability is \(1-p_1\) and first-window universal rejection
@@ -162,28 +198,59 @@ M_r(\mu,a)
 \right].
 \]
 
-Driver-paid pickup cost affects willingness but is not a platform search cost.
-Expected incremental outer contacts are
+For uniform riders, terminal self-selection can also be integrated out
+exactly. Define
 
 \[
-Q_E^O(\mu,a)
-=(1-p_1)e^{-mF(a)}\eta_2^E(a)m(s-1),
-\qquad Q_I^O=Q_A^O=0.
+q=e^{-ma},\qquad
+\rho_j=1-\frac{p_j}{\beta},\qquad
+A_j=\rho_j C_j.
+\]
+
+Then every cutoff-WPBE outcome satisfies
+
+\[
+M=(1-p_1)(1-q)+q\max\{0,A_1,A_2\},
+\]
+
+and, when `C_2>C_1`, expected executed outer contacts are
+
+\[
+Q_E^{\mathrm{ex}}
+=q m(s-1)\frac{[A_2-A_1]_+}{C_2-C_1}.
+\]
+
+The max formula removes rider-composition notation from completion, but the
+composition remains economically relevant in the incumbent incentive
+constraint and in search-resource use.
+
+Driver-paid pickup cost affects willingness but is not a platform search cost.
+The maintained platform resource is the failure-contingent capacity needed to
+honor the promised outer footprint, purchased after first-window failure but
+before the rider's terminal action:
+
+\[
+Q_E^{\mathrm{com}}(\mu,a)
+=(1-p_1)e^{-mF(a)}m(s-1),
+\qquad Q_I^{\mathrm{com}}=Q_A^{\mathrm{com}}=0.
 \]
 
 The maintained outer objective is
 
 \[
-J_r(\mu,a)=B M_r(\mu,a)-\kappa Q_r^O(\mu,a).
+J_r(\mu,a)=B M_r(\mu,a)-\kappa Q_r^{\mathrm{com}}(\mu,a).
 \]
 
-This is completion net of notification opportunity cost, not platform profit.
-Core notifications are treated as installed infrastructure and normalized to
-zero incremental cost. If core activation is also a platform choice, use
+This is completion net of committed search capacity, not platform profit.
+Unlike \(Q^{\mathrm{ex}}\), it does not vanish at a rider rescue-activation
+boundary. Core notifications are treated as installed infrastructure and
+normalized to zero incremental cost. The executed-contact specification is
+retained only as a robustness objective. If core activation is also a platform
+choice, use
 
 \[
 J_{\kappa_C,\kappa_O}
-=BM-\kappa_CQ^C-\kappa_OQ^O,
+=BM-\kappa_CQ^C-\kappa_OQ^{\mathrm{com}},
 \qquad
 Q^C=(1-p_1)e^{-mF(a)}(\eta_1+\eta_2)m.
 \]
@@ -198,6 +265,12 @@ V_r(\theta)
 \min_{a\in\mathcal E_r^{\mathrm{WPBE}}(\mu_r;\theta)}
 J_r(\mu_r,a).
 \]
+
+The inner set is a singleton in the maintained model. The unique cutoff is
+continuous in policies and primitives, so the equilibrium-reduced objective
+is continuous. Compact policy sets and Berge's maximum theorem imply that the
+outer optimum exists and that each optimized value is continuous in the
+environment.
 
 The computation literally fixes \(p_1\), optimizes the allowed \(p_2,s\)
 while re-solving the complete WPBE at every evaluation, and then optimizes

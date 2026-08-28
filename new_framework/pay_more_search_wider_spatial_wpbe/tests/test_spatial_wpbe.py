@@ -22,9 +22,13 @@ from spatial_wpbe import (  # noqa: E402
     Policy,
     cutoff_residual,
     extra_pickup_cost,
+    find_cutoff_equilibria,
+    find_unique_cutoff,
     fresh_accept_intensity,
     fresh_pickup_cost_intensity,
     is_cutoff_best_response,
+    rider_action_masses,
+    rider_terminal_completion_mass,
     solve_policy,
     solve_policy_certified,
     solve_terminal_market,
@@ -239,6 +243,67 @@ class InnerWPBETests(unittest.TestCase):
         )
         self.assertAlmostEqual(outcome.completion, calculated, places=12)
 
+    def test_exact_rider_envelope_survives_tiny_posting_support(self):
+        policy = Policy(1.0 - 5e-15, 1.0 - 5e-15, 1.0)
+        repeat, rescue, abandon = rider_action_masses(
+            policy, Params(1.0, 1.0, 0.8), 0.2, 0.2
+        )
+        self.assertAlmostEqual(repeat, 1.0, places=12)
+        self.assertAlmostEqual(rescue, 0.0, places=12)
+        self.assertAlmostEqual(abandon, 0.0, places=12)
+        self.assertGreater(
+            rider_terminal_completion_mass(
+                policy, Params(1.0, 1.0, 0.8), 0.2, 0.2
+            ),
+            0.0,
+        )
+
+    def test_exact_rider_envelope_survives_tiny_coverages(self):
+        params = Params(1e-14, 0.8, 0.8, pickup_rate=0.25)
+        policy = Policy(0.2, 0.3, 2.0, regime="expanded_search")
+        c1, c2 = 2.8e-15, 7.05e-15
+        repeat, rescue, abandon = rider_action_masses(policy, params, c1, c2)
+        crossing = (c2 * policy.p2 - c1 * policy.p1) / (
+            params.beta * (c2 - c1)
+        )
+        self.assertAlmostEqual(repeat, (crossing - 0.25) / 0.8, places=11)
+        self.assertAlmostEqual(rescue, (1.0 - crossing) / 0.8, places=11)
+        self.assertAlmostEqual(abandon, 0.05 / 0.8, places=11)
+
+    def test_equal_price_rider_crossing_avoids_cancellation(self):
+        params = Params(1.0, 0.8, 0.8)
+        policy = Policy(0.3, 0.3, 1.0)
+        c1 = 0.5
+        c2 = np.nextafter(c1, np.inf)
+        repeat, rescue, abandon = rider_action_masses(policy, params, c1, c2)
+        self.assertAlmostEqual(repeat, 0.0, places=12)
+        self.assertAlmostEqual(rescue, (1.0 - 0.3 / 0.8) / 0.7, places=12)
+        self.assertAlmostEqual(abandon, (0.3 / 0.8 - 0.3) / 0.7, places=12)
+
+    def test_scale_aware_unique_cutoff_at_tiny_nonflat_prices(self):
+        params = Params(2.0, 0.8, 0.8, pickup_rate=0.25, incumbent_retention=0.8)
+        for p2 in (1.1e-10, 1.5e-10):
+            policy = Policy(1e-10, p2, 1.0, regime="core_arrivals")
+            fast = find_unique_cutoff(policy, params, validate=True)
+            enumerated = find_cutoff_equilibria(
+                policy, params, grid_size=4097, validate=True
+            )
+            self.assertEqual(len(enumerated), 1)
+            self.assertAlmostEqual(fast / policy.p1, enumerated[0] / policy.p1, places=9)
+            self.assertLess(fast, policy.p1)
+
+    def test_committed_capacity_does_not_vanish_when_rescue_is_inactive(self):
+        params = Params(2.0, 0.8, 0.8, pickup_rate=0.25)
+        outcome = solve_policy(
+            Policy(0.30, 0.95, 2.0, regime="expanded_search"),
+            params,
+            grid_size=301,
+            validate=True,
+        ).selected
+        self.assertAlmostEqual(outcome.rescue_mass, 0.0, places=12)
+        self.assertAlmostEqual(outcome.expected_extra_notifications, 0.0, places=12)
+        self.assertGreater(outcome.expected_committed_outer_capacity, 0.0)
+
     def test_cutoff_correspondence_is_stable_under_grid_doubling(self):
         certificate = solve_policy_certified(
             Policy(0.28, 0.53, 2.2, regime="expanded_search"),
@@ -260,7 +325,7 @@ class OuterMechanismDesignTests(unittest.TestCase):
             0.8,
             pickup_rate=0.25,
             incumbent_retention=0.8,
-            outer_contact_cost=0.01,
+            search_cost=0.01,
         )
         config = SearchConfig(
             s_bar=2.0,
@@ -316,14 +381,14 @@ class OuterMechanismDesignTests(unittest.TestCase):
         self.assertAlmostEqual(fixed.design_value, expanded.design_value, places=8)
         self.assertAlmostEqual(expanded.s, 1.0, places=10)
 
-    def test_high_outer_contact_cost_can_make_no_expansion_optimal(self):
+    def test_high_committed_reach_cost_can_make_no_expansion_optimal(self):
         environment = Environment(
             4.0,
             0.8,
             0.8,
             pickup_rate=0.25,
             incumbent_retention=0.8,
-            outer_contact_cost=1.0,
+            search_cost=1.0,
         )
         config = SearchConfig(
             s_bar=3.0,
@@ -349,7 +414,8 @@ class OuterMechanismDesignTests(unittest.TestCase):
             0.8,
             pickup_rate=0.25,
             incumbent_retention=0.8,
-            outer_contact_cost=0.0125,
+            search_cost=0.0125,
+            search_cost_basis="executed_contacts",
         )
         config = SearchConfig(
             s_bar=4.0,
@@ -379,9 +445,7 @@ class OuterMechanismDesignTests(unittest.TestCase):
             validate=True,
         )
         known_value = min(
-            environment.completion_value * equilibrium.completion
-            - environment.outer_contact_cost
-            * equilibrium.expected_extra_notifications
+            environment.outcome_value(equilibrium)
             for equilibrium in known_policy.equilibria
         )
         self.assertGreaterEqual(expanded.design_value + 2e-6, known_value)
@@ -389,7 +453,7 @@ class OuterMechanismDesignTests(unittest.TestCase):
 
     def test_reported_search_never_exceeds_physical_willingness_support(self):
         environment = Environment(
-            2.0, 0.8, 0.8, pickup_rate=0.25, outer_contact_cost=0.0
+            2.0, 0.8, 0.8, pickup_rate=0.25, search_cost=0.0
         )
         solver = SpatialMechanismSolver(
             environment,

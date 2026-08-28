@@ -38,6 +38,7 @@ Mechanism = Literal[
     "fixed_arrivals",
     "expanded_search",
 ]
+SearchCostBasis = Literal["committed_reach", "executed_contacts"]
 
 
 @dataclass(frozen=True)
@@ -48,13 +49,19 @@ class Environment:
     pickup_rate: float = 0.25
     incumbent_retention: float = 1.0
     completion_value: float = 1.0
-    outer_contact_cost: float = 0.0
+    search_cost: float = 0.0
+    search_cost_basis: SearchCostBasis = "committed_reach"
 
     def __post_init__(self) -> None:
         if self.completion_value <= 0:
             raise ValueError("completion_value must be strictly positive")
-        if self.outer_contact_cost < 0:
-            raise ValueError("outer_contact_cost must be nonnegative")
+        if self.search_cost < 0:
+            raise ValueError("search_cost must be nonnegative")
+        if self.search_cost_basis not in {
+            "committed_reach",
+            "executed_contacts",
+        }:
+            raise ValueError(f"unknown search cost basis: {self.search_cost_basis}")
 
     def params(self) -> Params:
         return Params(
@@ -63,6 +70,19 @@ class Environment:
             self.delta,
             self.pickup_rate,
             self.incumbent_retention,
+        )
+
+    def search_resource(self, outcome) -> float:
+        """Failure-contingent resource charged by the outer objective."""
+
+        if self.search_cost_basis == "committed_reach":
+            return float(outcome.expected_committed_outer_capacity)
+        return float(outcome.expected_extra_notifications)
+
+    def outcome_value(self, outcome) -> float:
+        return float(
+            self.completion_value * outcome.completion
+            - self.search_cost * self.search_resource(outcome)
         )
 
 
@@ -141,12 +161,11 @@ class MechanismResult:
 
     @property
     def design_value(self) -> float:
-        outcome = self.solution.selected
-        return (
-            self.environment.completion_value * outcome.completion
-            - self.environment.outer_contact_cost
-            * outcome.expected_extra_notifications
-        )
+        return self.environment.outcome_value(self.solution.selected)
+
+    @property
+    def search_resource(self) -> float:
+        return self.environment.search_resource(self.solution.selected)
 
 
 def _chebyshev_lobatto(lower: float, upper: float, count: int) -> np.ndarray:
@@ -178,11 +197,7 @@ class SpatialMechanismSolver:
         return self._evaluation_count
 
     def _outcome_value(self, outcome) -> float:
-        return float(
-            self.environment.completion_value * outcome.completion
-            - self.environment.outer_contact_cost
-            * outcome.expected_extra_notifications
-        )
+        return self.environment.outcome_value(outcome)
 
     def _reselect(self, solution: PolicySolution) -> PolicySolution:
         """Apply conservative selection to the platform's actual objective."""
@@ -192,12 +207,13 @@ class SpatialMechanismSolver:
 
     def _solution_key(
         self, solution: PolicySolution
-    ) -> tuple[float, float, float, float, float]:
+    ) -> tuple[float, float, float, float, float, float]:
         policy = solution.policy
         return (
             self._outcome_value(solution.selected),
-            solution.selected.completion,
             -policy.s,
+            -self.environment.search_resource(solution.selected),
+            solution.selected.completion,
             -(policy.p2 - policy.p1),
             -policy.p1,
         )
@@ -238,8 +254,8 @@ class SpatialMechanismSolver:
         if mechanism == "expanded_search" and self.params.pickup_rate > 0:
             # Rings beyond this area contain no willing driver because even a
             # zero-base-cost winner would pay more than p2.  Truncating there
-            # is without loss under nonnegative contact cost and implements
-            # the smallest-s tie break when contacts are free.
+            # is without loss under nonnegative search cost and implements
+            # the smallest-s tie break when committed reach is free.
             saturation = (1.0 + p2 / self.params.pickup_rate) ** 2
             search = min(search, saturation)
         regime = "core_arrivals" if mechanism == "fixed_arrivals" else mechanism
@@ -560,7 +576,9 @@ def mechanism_record(result: MechanismResult) -> dict[str, float | int | str | b
             "mechanism": result.mechanism,
             "design_value": result.design_value,
             "completion_value": result.environment.completion_value,
-            "outer_contact_cost": result.environment.outer_contact_cost,
+            "search_cost": result.environment.search_cost,
+            "search_cost_basis": result.environment.search_cost_basis,
+            "search_resource": result.search_resource,
             "exploration_evaluations": result.exploration_evaluations,
             "certification_stable": result.certification_stable,
             "certification_grids": ",".join(

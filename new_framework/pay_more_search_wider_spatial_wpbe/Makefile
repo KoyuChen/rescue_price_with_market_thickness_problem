@@ -8,17 +8,19 @@ test:
 
 quick:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/run_regime_numerics.py \
-		--quick --main-slice-only --workers 1 --kappa 0.0125 --retention 0.8 \
-		--output results/csv/regime_comparison_quick.csv \
-		--metadata results/regime_metadata_quick.json
+		--quick --main-slice-only --workers 1 --kappa 0.0125 \
+		--cost-basis committed_reach --retention 0.8 \
+		--output results/csv/regime_comparison_committed_quick.csv \
+		--metadata results/regime_metadata_committed_quick.json
 
 numerics:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/run_regime_numerics.py \
-		--workers 1 --kappa 0.0125 --retention 0.8
+		--workers 1 --kappa 0.0125 --cost-basis committed_reach --retention 0.8
 
 free-search:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/run_regime_numerics.py \
-		--main-slice-only --workers 1 --kappa 0 --retention 0.8 \
+		--main-slice-only --workers 1 --kappa 0 \
+		--cost-basis committed_reach --retention 0.8 \
 		--output results/csv/regime_comparison_free_search.csv \
 		--metadata results/regime_metadata_free_search.json
 
@@ -26,7 +28,7 @@ audit:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/audit_regime_results.py
 
 figures:
-	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/plot_regime_comparison.py
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/plot_group_meeting_five_page.py
 
 group-note:
 	latexmk -cd -pdf -interaction=nonstopmode -halt-on-error -outdir=build group_meeting/group_meeting_spatial_pickup_extension.tex

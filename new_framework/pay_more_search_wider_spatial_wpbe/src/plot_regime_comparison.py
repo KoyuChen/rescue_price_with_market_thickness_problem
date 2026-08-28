@@ -11,7 +11,7 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-COSTLY_DATA = ROOT / "results" / "csv" / "regime_comparison.csv"
+COSTLY_DATA = ROOT / "results" / "csv" / "regime_comparison_committed.csv"
 FREE_DATA = ROOT / "results" / "csv" / "regime_comparison_free_search.csv"
 FIGURES = ROOT / "figures"
 
@@ -151,11 +151,11 @@ def plot_search_decision(costly: pd.DataFrame, free: pd.DataFrame) -> None:
     fig, axes = plt.subplots(1, 2, figsize=(8.7, 3.55))
     axes[0].plot(
         free_expanded["m"], free_expanded["s"], color=GRAY, marker="o",
-        linestyle="--", label=r"Free outer contacts: $\kappa=0$",
+        linestyle="--", label=r"Free committed reach: $\kappa=0$",
     )
     axes[0].plot(
         merged["m"], merged["s"], color=BLUE, marker="o",
-        label=r"Costly outer contacts: $\kappa=0.0125$",
+        label=r"Costly committed reach: $\kappa=0.0125$",
     )
     axes[0].axhline(1, color=GREEN, linestyle=":", linewidth=1.2)
     axes[0].axhline(4, color=GRAY, linestyle=":", linewidth=1.0)
@@ -187,7 +187,7 @@ def plot_search_decision(costly: pd.DataFrame, free: pd.DataFrame) -> None:
     for ax in axes:
         _finish_m_axis(ax)
     fig.suptitle(
-        "Incremental outer-contact cost turns reach into an economic choice",
+        "Committed outer-capacity cost turns reach into an economic choice",
         y=1.02,
         fontsize=12.5,
     )

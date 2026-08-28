@@ -1,4 +1,9 @@
-# Numerical results: three supply regimes
+# Numerical results: three supply regimes (legacy executed-contact objective)
+
+> This file documents the earlier cost per executed outer contact. It is kept
+> for robustness and provenance only. The maintained committed-reach results
+> are in `committed_reach_results.md` and
+> `results/csv/regime_comparison_committed.csv`.
 
 ## Design and calibration
 

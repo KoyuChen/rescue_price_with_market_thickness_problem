@@ -33,11 +33,12 @@ from dataclasses import dataclass
 from typing import Iterable, Literal
 
 import numpy as np
-from scipy.optimize import brentq, minimize_scalar
+from scipy.optimize import brentq
 
 
 Selection = Literal["conservative", "optimistic", "stable"]
 SupplyRegime = Literal["incumbent_only", "core_arrivals", "expanded_search"]
+RootMethod = Literal["unique", "enumerate"]
 
 
 @dataclass(frozen=True)
@@ -74,7 +75,11 @@ class Params:
 
 @dataclass(frozen=True)
 class Policy:
-    """Committed driver-payment, search, and notification regime."""
+    """Committed anonymous transaction prices and notification regime.
+
+    The rider pays ``p_j`` and the assigned driver receives the same ``p_j``;
+    a profit extension would separate fare from wage.
+    """
 
     p1: float
     p2: float
@@ -137,6 +142,7 @@ class EquilibriumOutcome:
     expected_pickup_cost: float
     expected_notifications: float
     expected_extra_notifications: float
+    expected_committed_outer_capacity: float
 
 
 @dataclass(frozen=True)
@@ -306,60 +312,100 @@ def solve_terminal_market(
 def _choose_rider_action(
     value: float, policy: Policy, params: Params, c_repeat: float, c_rescue: float
 ) -> int:
-    """Return 0 abandon, 1 repeat, or 2 rescue with deterministic ties."""
+    """Return 0 abandon, 1 repeat, or 2 rescue with deterministic ties.
+
+    The closure follows the theory note: abandon before repeat before rescue.
+    Comparisons are exact rather than tolerance based.  A fixed absolute
+    utility tolerance is unsafe in very thin markets because every continuation
+    utility is then small even when the rider has a strict preference.
+    """
 
     u_repeat = c_repeat * (params.beta * value - policy.p1)
     u_rescue = c_rescue * (params.beta * value - policy.p2)
-    best = max(0.0, u_repeat, u_rescue)
-    tolerance = 1e-12
-    if best <= tolerance:
-        return 1 if params.beta * value - policy.p1 >= -tolerance else 0
-    if u_rescue >= best - tolerance:
-        return 2
-    return 1
+    if 0.0 >= u_repeat and 0.0 >= u_rescue:
+        return 0
+    if u_repeat >= u_rescue:
+        return 1
+    return 2
 
 
 def rider_action_masses(
     policy: Policy, params: Params, c_repeat: float, c_rescue: float
 ) -> tuple[float, float, float]:
-    """Exact rider action masses conditional on first-window posting."""
+    """Exact ordered-envelope action masses conditional on posting.
+
+    Maintained terminal supply implies ``0 <= c_repeat <= c_rescue``.  Scaling
+    both coverages before forming the repeat-rescue crossing keeps the formula
+    accurate even when market thickness, and hence both coverages, approach
+    zero.
+    """
 
     if policy.p1 >= 1:
         return 0.0, 0.0, 1.0
 
     lower, upper = policy.p1, 1.0
-    points = [lower, upper]
-    for threshold in (policy.p1 / params.beta, policy.p2 / params.beta):
-        if lower < threshold < upper:
-            points.append(float(threshold))
+    posted = upper - lower
+    c1 = max(float(c_repeat), 0.0)
+    c2 = max(float(c_rescue), 0.0)
+    scale = max(c1, c2)
+    if scale == 0.0:
+        return 0.0, 0.0, 1.0
 
-    lines = [
-        (0.0, 0.0),
-        (params.beta * c_repeat, -c_repeat * policy.p1),
-        (params.beta * c_rescue, -c_rescue * policy.p2),
-    ]
-    for left_idx in range(len(lines)):
-        for right_idx in range(left_idx + 1, len(lines)):
-            slope = lines[left_idx][0] - lines[right_idx][0]
-            intercept = lines[left_idx][1] - lines[right_idx][1]
-            if abs(slope) > 1e-14:
-                crossing = -intercept / slope
-                if lower < crossing < upper:
-                    points.append(float(crossing))
+    c1_scaled, c2_scaled = c1 / scale, c2 / scale
+    if c2_scaled < c1_scaled:
+        if c1_scaled - c2_scaled <= 32 * np.finfo(float).eps:
+            c2_scaled = c1_scaled
+        else:
+            raise ValueError("maintained model requires rescue coverage >= repeat coverage")
 
-    points = sorted(set(round(point, 14) for point in points))
-    lengths = np.zeros(3)
-    for left, right in zip(points[:-1], points[1:]):
-        if right <= left:
-            continue
-        action = _choose_rider_action(
-            (left + right) / 2.0, policy, params, c_repeat, c_rescue
-        )
-        lengths[action] += right - left
+    repeat_start = max(lower, policy.p1 / params.beta)
+    repeat_length = 0.0
+    rescue_length = 0.0
+    coverage_gap = c2_scaled - c1_scaled
 
-    lengths = np.maximum(lengths, 0.0)
-    lengths /= lengths.sum()
-    return float(lengths[1]), float(lengths[2]), float(lengths[0])
+    if coverage_gap > 0.0:
+        # Algebraically equivalent to (C2*p2-C1*p1)/(beta*(C2-C1)),
+        # but avoids catastrophic cancellation when prices or coverages are
+        # nearly equal.  It is exact at p2=p1.
+        crossing = policy.p1 / params.beta + (
+            c2_scaled * (policy.p2 - policy.p1)
+        ) / (params.beta * coverage_gap)
+        rescue_start = max(lower, crossing)
+        if rescue_start < upper:
+            rescue_length = upper - rescue_start
+            if c1 > 0.0 and repeat_start < rescue_start:
+                repeat_length = min(rescue_start, upper) - repeat_start
+        elif c1 > 0.0 and repeat_start < upper:
+            repeat_length = upper - repeat_start
+    elif c1 > 0.0 and repeat_start < upper:
+        # Equal coverage: repeat weakly dominates because p1 <= p2, with the
+        # deterministic tie closure selecting repeat when prices are equal.
+        repeat_length = upper - repeat_start
+
+    repeat_mass = max(repeat_length / posted, 0.0)
+    rescue_mass = max(rescue_length / posted, 0.0)
+    abandon_mass = max(1.0 - repeat_mass - rescue_mass, 0.0)
+    total = repeat_mass + rescue_mass + abandon_mass
+    return (
+        float(repeat_mass / total),
+        float(rescue_mass / total),
+        float(abandon_mass / total),
+    )
+
+
+def rider_terminal_completion_mass(
+    policy: Policy, params: Params, c_repeat: float, c_rescue: float
+) -> float:
+    """Unconditional rider mass completed after first-window failure.
+
+    This is the exact upper-envelope formula from the theory note.  It remains
+    valid on the full price domain and avoids reconstructing completion from
+    potentially tie-dependent action labels.
+    """
+
+    repeat_value = (1.0 - policy.p1 / params.beta) * c_repeat
+    rescue_value = (1.0 - policy.p2 / params.beta) * c_rescue
+    return float(max(0.0, repeat_value, rescue_value))
 
 
 def continuation_at_cutoff(
@@ -450,20 +496,26 @@ def is_cutoff_best_response(cutoff: float, policy: Policy, params: Params) -> bo
             eta_rescue,
         )
 
-    tolerance = 2e-7
-    accept_points = [0.0, cutoff] if cutoff > 1e-12 else []
+    payoff_scale = max(policy.p1, policy.p2, np.finfo(float).tiny)
+    tolerance = 256 * np.finfo(float).eps * payoff_scale
+    accept_points = [0.0, cutoff] if cutoff > 0.0 else []
     wait_points = [cutoff, policy.p1, policy.p2, 1.0]
     wait_points = [
-        point for point in wait_points if cutoff - 1e-12 <= point <= 1.0 + 1e-12
+        point for point in wait_points if cutoff <= point <= 1.0
     ]
     accept_ok = all(difference(point) >= -tolerance for point in accept_points)
     wait_ok = all(difference(point) <= tolerance for point in wait_points)
     return bool(accept_ok and wait_ok)
 
 
-def _deduplicate(values: Iterable[float], tolerance: float = 2e-7) -> list[float]:
+def _deduplicate(values: Iterable[float]) -> list[float]:
+    values = sorted(values)
+    if not values:
+        return []
+    scale = max(max(abs(value) for value in values), np.finfo(float).tiny)
+    tolerance = 64 * np.finfo(float).eps * scale
     result: list[float] = []
-    for value in sorted(values):
+    for value in values:
         if not result or abs(value - result[-1]) > tolerance:
             result.append(float(value))
     return result
@@ -475,20 +527,31 @@ def find_cutoff_equilibria(
     grid_size: int = 301,
     validate: bool = True,
 ) -> list[float]:
-    """Enumerate all boundary, crossing, and tangential cutoff-WPBE roots."""
+    """Enumerate boundary and sign-changing roots for independent audit.
 
+    Under the maintained unique-cutoff theorem every interior root crosses
+    strictly downward, so tangential-root heuristics are neither needed nor
+    desirable for certification.
+    """
+
+    if (
+        policy.p1 == policy.p2
+        or policy.p1 >= params.beta
+        or params.incumbent_retention == 0
+    ):
+        return [policy.p1]
     if policy.p1 == 0:
         candidates = (
-            [0.0] if cutoff_residual(0.0, policy, params) <= 1e-8 else []
+            [0.0] if cutoff_residual(0.0, policy, params) <= 0.0 else []
         )
     else:
         grid = np.linspace(0.0, policy.p1, grid_size)
         values = np.array([cutoff_residual(point, policy, params) for point in grid])
         candidates: list[float] = []
 
-        if values[0] <= 1e-9:
+        if values[0] <= 0.0:
             candidates.append(0.0)
-        if abs(values[-1]) <= 1e-8 and is_cutoff_best_response(
+        if values[-1] == 0.0 and is_cutoff_best_response(
             policy.p1, policy, params
         ):
             candidates.append(policy.p1)
@@ -497,27 +560,17 @@ def find_cutoff_equilibria(
             grid[:-1], grid[1:], values[:-1], values[1:]
         ):
             if f_left * f_right < 0:
-                candidates.append(
-                    brentq(
-                        lambda point: cutoff_residual(point, policy, params),
-                        left,
-                        right,
-                        xtol=1e-11,
-                        rtol=1e-11,
-                    )
+                left_unit, right_unit = left / policy.p1, right / policy.p1
+                root_unit = brentq(
+                    lambda unit: cutoff_residual(
+                        policy.p1 * unit, policy, params
+                    ),
+                    left_unit,
+                    right_unit,
+                    xtol=1e-14,
+                    rtol=1e-14,
                 )
-
-        absolute = np.abs(values)
-        for index in range(1, len(grid) - 1):
-            if absolute[index] <= absolute[index - 1] and absolute[index] <= absolute[index + 1]:
-                optimum = minimize_scalar(
-                    lambda point: abs(cutoff_residual(point, policy, params)),
-                    bounds=(grid[index - 1], grid[index + 1]),
-                    method="bounded",
-                    options={"xatol": 1e-12},
-                )
-                if optimum.fun <= 2e-8:
-                    candidates.append(float(optimum.x))
+                candidates.append(float(policy.p1 * root_unit))
 
     candidates = _deduplicate(candidates)
     if validate:
@@ -531,6 +584,59 @@ def find_cutoff_equilibria(
             f"No cutoff-WPBE found for policy={policy}, params={params}"
         )
     return candidates
+
+
+def find_unique_cutoff(
+    policy: Policy,
+    params: Params,
+    validate: bool = True,
+) -> float:
+    """Solve the unique maintained-model cutoff by endpoint bracketing.
+
+    The unique-cutoff theorem applies to the maintained uniform-cost,
+    type-independent-retention, cutoff-independent-fresh-supply model.  Dense
+    all-root enumeration remains available as an independent certification
+    method through ``find_cutoff_equilibria``.
+    """
+
+    if (
+        policy.p1 == 0.0
+        or policy.p1 == policy.p2
+        or policy.p1 >= params.beta
+        or params.incumbent_retention == 0.0
+    ):
+        cutoff = policy.p1
+    else:
+        left_value = cutoff_residual(0.0, policy, params)
+        if left_value <= 0.0:
+            cutoff = 0.0
+        else:
+            right_value = cutoff_residual(policy.p1, policy, params)
+            if right_value > 0.0:
+                raise RuntimeError(
+                    "Unique-cutoff bracket failed: residual is positive at p1 "
+                    f"for policy={policy}, params={params}"
+                )
+            if right_value == 0.0:
+                cutoff = policy.p1
+            else:
+                root_unit = brentq(
+                    lambda unit: cutoff_residual(
+                        policy.p1 * unit, policy, params
+                    ),
+                    0.0,
+                    1.0,
+                    xtol=1e-14,
+                    rtol=1e-14,
+                )
+                cutoff = float(policy.p1 * root_unit)
+    if validate and not is_cutoff_best_response(cutoff, policy, params):
+        raise RuntimeError(
+            "Bracketed cutoff fails the full best-response test: "
+            f"cutoff={cutoff}, policy={policy}, params={params}, "
+            f"residual={cutoff_residual(cutoff, policy, params)}"
+        )
+    return float(cutoff)
 
 
 def outcome_at_cutoff(
@@ -579,7 +685,10 @@ def outcome_at_cutoff(
         * rescue.fresh_accept_intensity
         * rescue.assignment_probability
     )
-    completion = first + repeat_completion + rescue_completion
+    terminal_completion = universal_rejection * rider_terminal_completion_mass(
+        policy, params, repeat.coverage, rescue.coverage
+    )
+    completion = first + terminal_completion
 
     transfer = posted * (
         policy.p1 * (1.0 - universal_rejection)
@@ -604,6 +713,7 @@ def outcome_at_cutoff(
     if policy.regime == "incumbent_only":
         notifications = 0.0
         extra_notifications = 0.0
+        committed_outer_capacity = 0.0
     else:
         core_notifications = (
             posted
@@ -621,6 +731,14 @@ def outcome_at_cutoff(
             else 0.0
         )
         notifications = core_notifications + extra_notifications
+        committed_outer_capacity = (
+            posted
+            * universal_rejection
+            * params.m
+            * (policy.s - 1.0)
+            if policy.regime == "expanded_search"
+            else 0.0
+        )
 
     step = max(1e-5, min(1e-3, policy.p1 / 100 if policy.p1 > 0 else 1e-4))
     left = max(0.0, cutoff - step)
@@ -658,6 +776,7 @@ def outcome_at_cutoff(
         expected_pickup_cost=pickup_cost,
         expected_notifications=notifications,
         expected_extra_notifications=extra_notifications,
+        expected_committed_outer_capacity=committed_outer_capacity,
     )
 
 
@@ -667,10 +786,16 @@ def solve_policy(
     selection: Selection = "conservative",
     grid_size: int = 301,
     validate: bool = True,
+    root_method: RootMethod = "unique",
 ) -> PolicySolution:
     """Solve the complete inner cutoff-WPBE correspondence for one mechanism."""
 
-    cutoffs = find_cutoff_equilibria(policy, params, grid_size, validate)
+    if root_method == "unique":
+        cutoffs = [find_unique_cutoff(policy, params, validate)]
+    elif root_method == "enumerate":
+        cutoffs = find_cutoff_equilibria(policy, params, grid_size, validate)
+    else:
+        raise ValueError(f"unknown root method: {root_method}")
     equilibria = tuple(outcome_at_cutoff(cutoff, policy, params) for cutoff in cutoffs)
     if selection == "conservative":
         selected = min(equilibria, key=lambda outcome: outcome.completion)
@@ -717,6 +842,7 @@ def solve_policy_certified(
             selection=selection,
             grid_size=grid,
             validate=True,
+            root_method="enumerate",
         )
         roots = tuple(equilibrium.cutoff for equilibrium in solution.equilibria)
         grids.append(grid)
@@ -783,4 +909,7 @@ def outcome_record(solution: PolicySolution) -> dict[str, float | int | bool | s
         "expected_pickup_cost": outcome.expected_pickup_cost,
         "expected_notifications": outcome.expected_notifications,
         "expected_extra_notifications": outcome.expected_extra_notifications,
+        "expected_committed_outer_capacity": (
+            outcome.expected_committed_outer_capacity
+        ),
     }

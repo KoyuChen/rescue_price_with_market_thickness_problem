@@ -2,7 +2,7 @@
 
 Every reported row re-optimizes the permitted policy outside the complete
 cutoff-WPBE correspondence.  The main run varies ``(m,beta,delta)`` and holds
-the spatial pickup technology, incumbent retention, and outer-contact cost
+the spatial pickup technology, incumbent retention, and outer-search cost
 fixed.
 """
 
@@ -26,8 +26,8 @@ from spatial_design import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "results" / "csv" / "regime_comparison.csv"
-DEFAULT_METADATA = ROOT / "results" / "regime_metadata.json"
+DEFAULT_OUTPUT = ROOT / "results" / "csv" / "regime_comparison_committed.csv"
+DEFAULT_METADATA = ROOT / "results" / "regime_metadata_committed.json"
 
 M_GRID = (0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0, 8.0, 12.0, 16.0)
 BETA_GRID = (0.6, 0.8, 0.9)
@@ -52,20 +52,23 @@ def _config(quick: bool, s_bar: float) -> SearchConfig:
         s_bar=s_bar,
         cutoff_grid=61,
         final_cutoff_grid=401,
-        p1_nodes=9,
+        p1_nodes=11,
         p1_refine_levels=2,
         inner_refine_levels=2,
-        certify_top_k=7,
-        certify_finalists=3,
+        certify_top_k=10,
+        certify_finalists=4,
         certification_max_grid=1601,
-        adversarial_seeds=1,
-        adversarial_maxiter=16,
-        adversarial_popsize=8,
+        adversarial_seeds=3,
+        adversarial_maxiter=30,
+        adversarial_popsize=10,
+        adversarial_tol=5e-6,
     )
 
 
-def _solve_one(task: tuple[float, float, float, float, float, float, float, bool]):
-    m, beta, delta, pickup_rate, retention, kappa, s_bar, quick = task
+def _solve_one(
+    task: tuple[float, float, float, float, float, float, str, float, bool]
+):
+    m, beta, delta, pickup_rate, retention, kappa, cost_basis, s_bar, quick = task
     environment = Environment(
         m=m,
         beta=beta,
@@ -73,7 +76,8 @@ def _solve_one(task: tuple[float, float, float, float, float, float, float, bool
         pickup_rate=pickup_rate,
         incumbent_retention=retention,
         completion_value=1.0,
-        outer_contact_cost=kappa,
+        search_cost=kappa,
+        search_cost_basis=cost_basis,
     )
     solver = SpatialMechanismSolver(environment, _config(quick, s_bar))
     results = solver.optimize_all()
@@ -89,6 +93,11 @@ def _solve_one(task: tuple[float, float, float, float, float, float, float, bool
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--kappa", type=float, default=0.01)
+    parser.add_argument(
+        "--cost-basis",
+        choices=("committed_reach", "executed_contacts"),
+        default="committed_reach",
+    )
     parser.add_argument("--pickup-rate", type=float, default=0.25)
     parser.add_argument("--retention", type=float, default=0.8)
     parser.add_argument("--s-bar", type=float, default=4.0)
@@ -117,6 +126,7 @@ def main() -> None:
             args.pickup_rate,
             args.retention,
             args.kappa,
+            args.cost_basis,
             args.s_bar,
             args.quick,
         )
@@ -147,7 +157,8 @@ def main() -> None:
         "delta_grid": list(delta_grid),
         "pickup_rate": args.pickup_rate,
         "incumbent_retention": args.retention,
-        "outer_contact_cost": args.kappa,
+        "search_cost": args.kappa,
+        "search_cost_basis": args.cost_basis,
         "completion_value": 1.0,
         "s_bar": args.s_bar,
         "quick": args.quick,

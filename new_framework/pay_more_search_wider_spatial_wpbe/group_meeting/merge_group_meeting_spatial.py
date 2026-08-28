@@ -18,8 +18,8 @@ def main() -> None:
     extension = PdfReader(EXTENSION)
     if len(source_page_1.pages) != 1 or len(source_page_2.pages) != 1:
         raise ValueError("Each preserved source PDF must contain exactly one page.")
-    if len(extension.pages) != 6:
-        raise ValueError("The replacement extension must contain exactly six pages.")
+    if len(extension.pages) != 3:
+        raise ValueError("The replacement extension must contain exactly three pages.")
 
     writer = PdfWriter()
     writer.add_page(source_page_1.pages[0])
@@ -36,4 +36,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
