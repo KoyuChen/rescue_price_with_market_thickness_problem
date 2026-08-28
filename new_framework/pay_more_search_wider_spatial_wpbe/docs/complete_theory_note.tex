@@ -1,0 +1,1213 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\e}{\mathrm e}
+\newcommand{\com}{\mathrm{com}}
+\newcommand{\ex}{\mathrm{ex}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\pos}[1]{\left[#1\right]_+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Order-Level Rescue after Universal Rejection}
+\fancyhead[R]{Theory Note}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\title{\bfseries Pay More or Search Wider after Universal Rejection?\\
+\large A Complete Theory Note for a Spatial Rescue Mechanism}
+\author{}
+\date{28 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note develops and audits an order-level rescue mechanism for a
+representative ride request.  The platform commits to an anonymous
+transaction-price path $(p_1,p_2)$ and, when allowed, a rescue-footprint
+multiplier $s$.  First-window incumbents have already seen the focal order and
+may reject strategically in anticipation of the same order's rescue terms.
+Universal rejection therefore screens incumbent costs, becomes public
+information for the rider, and triggers competition among retained rejectors,
+time-homogeneous fresh arrivals, and newly reached outer drivers.  Every
+policy is evaluated at its induced cutoff weak perfect Bayesian equilibrium
+(WPBE) before the platform optimizes.
+
+Under the maintained uniform-Poisson, type-independent-retention, anonymous-
+lottery model, each feasible policy has a unique incumbent cutoff and a unique
+completion outcome, up to payoff-equivalent action labels.  We derive an exact
+rider aggregation, prove that the incremental values of fixed-footprint
+replenishment and expanded reach vanish in both the thin and thick limits, and
+show that any strictly positive gap must attain an interior maximum.  A closed-
+form ordering of the two peaks is valid in a frozen-hazard Poisson benchmark,
+but it is not a general theorem of the full WPBE model; a maintained-primitives
+fixed-menu counterexample reverses the order.  Finally, a failure-contingent
+committed-reach capacity cost yields a finite global no-search threshold under
+a uniform regularity condition and a complete-WPBE local search index.  An
+executed-notification cost does not generally have this property at a rider
+rescue-activation boundary.
+
+The note also records the exact contribution boundary after an adversarial
+literature search through 28 August 2026.  Two-round radius adjustment, joint
+pricing and spatial matching, strategic driver rejection, and rejection-aware
+notifications each exist in prior work.  The defensible object is their
+interaction at a focal order's public universal-rejection node.
+\end{abstract}
+
+\section{Research object and audited contribution boundary}
+
+The model studies a constrained posted mechanism, not an unrestricted direct
+mechanism.  Before the order is posted, the platform commits to an anonymous
+menu that may depend on the public event of universal first-window rejection,
+but not on realized driver counts, retention realizations, or private costs.
+The central question is when recovery should rely on a higher common second-
+window transaction price, a wider notification footprint, or both.
+
+The closest literatures meet at the post-failure node but abstract from
+different sides of it.  Hu, Hu, and Zhu~\cite{HuHuZhu2022} provide the closest
+temporal-pricing benchmark: they study a two-period price path, strategic
+temporal responses, and incoming drivers, but explicitly remove matched-driver
+rejection from their main mechanism.  Qin, Yang, and Liu~\cite{QinYangLiu2025}
+already propose adaptive two-round broadcasting radii, so expanded radius
+after first-round nonresponse is not new.  Ekbatani et al.~\cite{LyftI2026,LyftII2026}
+optimize non-exclusive notification sets under rejection uncertainty and
+study long-run thickness, while explicitly holding driver acceptance behavior
+fixed under the notification intervention.  The new working paper by Wang,
+Zhang, Feng, and Ke~\cite{WangZhangFengKe2026} studies pricing and matching
+under broadcasting with endogenous distance-sensitive driver response.  It
+eliminates any broad claim that joint price and broadcast-footprint design is
+new.  Its full text remains the highest-priority manual overlap check.
+
+\begin{longtable}{@{}p{0.20\textwidth}p{0.34\textwidth}p{0.40\textwidth}@{}}
+\caption{Adversarial closest-paper map.}\label{tab:lit}\\
+\toprule
+Paper & Central overlap & Main missing element relative to this note \\
+\midrule
+\endfirsthead
+\toprule
+Paper & Central overlap & Main missing element relative to this note \\
+\midrule
+\endhead
+Hu et al. (2022) & Two-period price, strategic temporal response, incoming
+drivers & No focal-order rejection screening or rescue footprint \\
+Qin et al. (2025) & Two-round broadcast radii and heterogeneous acceptance &
+No announced $p_1\to p_2$ same-order holdout equilibrium in the public record \\
+Ekbatani et al. (2026) & Rejection-aware notifications, fresh availability,
+and long-run thickness & Acceptance response is stochastic/exogenous, not a
+price-induced WPBE \\
+Wang et al. (2026) & Broadcasting with endogenous distance response; pricing
+and matching & Public abstract is one-shot/steady-state, not
+failure-contingent same-order rescue \\
+Chen and Hu (2020) & Forward-looking two-sided pricing with Poisson arrivals &
+Market-level waiting, not rejection of a focal order \\
+Castro et al. (2022) & Strategic decline and request reoffer & Priority/reoffer
+mechanism, not a common $p_2$ plus spatial scope \\
+Xu and Yan (2026) & Joint state-dependent spatial dispatch and pricing &
+Binding dispatch/MDP, not nonbinding broadcast and holdout \\
+\textbf{This note} & Same-order holdout, fresh supply, rider failure decision,
+and reach & Cutoff-WPBE nested inside posted $(p_1,p_2,s)$ design \\
+\bottomrule
+\end{longtable}
+
+The resulting contribution claim is intentionally joint rather than
+ingredient-by-ingredient:
+
+\begin{quote}
+We study an order-level recovery mechanism in which public universal
+rejection simultaneously screens incumbent private costs, governs rider
+continuation, and triggers a common second-window transaction price that pools
+retained rejectors with fixed-footprint fresh arrivals and, when chosen, a
+newly reached outer annulus.  The platform designs $(p_1,p_2,s)$ subject to the
+induced cutoff-WPBE.
+\end{quote}
+
+We do \emph{not} claim the first two-period ride-hailing price, the first
+strategic driver rejection, the first two-round broadcast, the first matching-
+radius decision, or the first joint pricing-and-spatial-matching problem.
+
+\section{Environment}
+
+\subsection{Prices, types, and local thickness}
+
+There is one representative order and two equal-length response windows.
+Rider value and drivers' persistent order costs are independent and uniform:
+\[
+v,c\sim U[0,1].
+\]
+The rider and incumbent delay factors are $\beta,\delta\in(0,1]$.
+
+The variable $p_j$ has one economic meaning throughout: it is the anonymous
+full-pass-through transaction price in window $j$.  The rider pays $p_j$ and
+the assigned driver receives $p_j$.
+Thus the current two-price model is neither a platform-profit model nor a
+separate fare-and-wage model.  Separating the rider fare and driver wage would
+enlarge the mechanism to at least four monetary instruments.  The platform's
+objective below values completion and charges a search-resource cost.
+
+The first-window incumbent cohort and second-window fresh core cohort are
+independent:
+\[
+N_1\sim\operatorname{Pois}(m),\qquad
+N_2^C\sim\operatorname{Pois}(m),\qquad N_1\perp N_2^C.
+\]
+Here $m$ is a \emph{local per-window driver intensity} faced by a
+representative order.  Because simultaneous orders and overlapping
+notifications are not modeled, $m$ should not be interpreted as system-wide
+market thickness without a separate sparse/mean-field foundation.
+
+\subsection{Supply architectures}
+
+We compare three supply environments.
+
+\begin{enumerate}[label=\textup{\Roman*.},leftmargin=2.4em]
+\item \textbf{Retained incumbents only} ($I$): the terminal pool contains
+first-window rejectors who remain available.  The platform chooses
+$(p_1,p_2)$.
+\item \textbf{Fixed footprint with fresh arrivals} ($A$): the same retained
+rejectors compete with an independent, time-homogeneous fresh core cohort in
+the second window.  The platform chooses $(p_1,p_2)$.
+\item \textbf{Expanded rescue search} ($E$): the fixed-footprint fresh cohort
+is present under both repeat and rescue, and rescue can additionally reach an
+outer annulus.  The platform chooses $(p_1,p_2,s)$.
+\end{enumerate}
+
+Architectures $I$ and $A$ are supply counterfactuals, not nested mechanism
+sets.  Architecture $A$ is nested in $E$ because $s=1$ exactly reproduces the
+fixed footprint.
+
+Let $\omega\in[0,1]$ be the probability that a first-window rejector remains
+physically available and eligible for the focal order's terminal lottery.
+Retention is independent of cost and of the rider's terminal action.  The
+same $\omega$ enters the aggregate pool and the focal incumbent's continuation
+payoff.
+
+\subsection{Search multiplier and winner-paid pickup cost}
+
+Normalize the core radius to $R_0$.  The search control $s\in[1,\bar s]$ is an
+\emph{area multiplier}:
+\[
+R(s)=R_0\sqrt{s}.
+\]
+Spatial Poisson independent increments therefore give an outer fresh cohort
+\[
+N_2^O(s)\sim\operatorname{Pois}(m(s-1)),
+\qquad N_2^O(s)\perp N_2^C.
+\]
+Let $u=(\ell/R_0)^2$ denote area rank.  A selected outer driver pays the extra
+pickup cost
+\[
+d(u)=\tau(\sqrt u-1)_+,
+\qquad \tau\ge0,
+\]
+after assignment.  Core pickup cost is absorbed into $c$.  This timing is a
+maintained assumption: an unassigned notified driver pays no sunk relocation
+cost.  If pickup or activation cost were paid before assignment, fresh entry
+would require a congestion fixed point rather than the Poisson thinning below.
+
+\subsection{Timing and information}
+
+\begin{enumerate}[leftmargin=2em]
+\item The platform publicly commits to the feasible anonymous menu.
+\item A rider observes $v$ and posts iff $v\ge p_1$.
+\item The $N_1$ incumbents receive the focal order.  Each observes the order,
+$(p_1,p_2,s)$, and own $c$, but not other costs or realized driver counts.
+\item Incumbents simultaneously accept at $p_1$ or reject and wait.  If at
+least one accepts, the order is assigned by an anonymous lottery.
+\item Universal rejection is publicly observed.  The rider does not observe
+the number of first-window drivers, retention, future arrivals, or volunteers.
+She chooses abandon, repeat, or rescue using equilibrium beliefs.
+\item Only after the terminal action is selected do fresh drivers first see
+the order.  They volunteer when the assigned-order surplus is nonnegative.
+Retained incumbents and fresh volunteers enter a common anonymous lottery.
+\end{enumerate}
+
+The platform may condition on public universal rejection but not on hidden or
+realized counts.  The reach commitment must be verifiable or technologically
+enforceable.
+
+\section{Conditional supply and assignment}
+
+For a generic cost distribution $F$, let $a$ be a proposed first-window
+incumbent cutoff.  A retained incumbent can volunteer at terminal price $p_j$
+only when $a<c\le p_j$, so define
+\[
+I_j^\omega(a)=\omega m\,[F(p_j)-F(a)]_+.
+\]
+Under the maintained uniform distribution, write $F(x)=[x]_0^1$.
+
+Define the fresh willing-driver intensities
+\[
+e_j^I=0,
+\qquad
+e_j^A=mF(p_j),
+\]
+and, in the expanded architecture,
+\[
+e_1^E=mF(p_1),
+\qquad
+e_2^E=mF(p_2)+m\sigma_{p_2}(s),
+\]
+where
+\[
+\sigma_p(s)=\int_1^s F(p-d(u))\,du.
+\]
+The total terminal willing-driver intensity and coverage are
+\[
+\Lambda_j^r(a)=I_j^\omega(a)+e_j^r,
+\qquad
+C_j^r(a)=1-\e^{-\Lambda_j^r(a)}.
+\]
+
+\begin{lemma}[Conditional Poisson supply decomposition]
+\label{lem:poisson}
+Under a first-window cutoff $a$, conditioning on universal rejection leaves
+the number of terminal-eligible rejectors Poisson with mean
+$I_j^\omega(a)$.  Independent fresh core and outer-annulus volunteers add
+their respective Poisson means.  Hence the terminal volunteer count is
+Poisson with mean $\Lambda_j^r(a)$ in architecture $r$.
+\end{lemma}
+
+\begin{proof}
+Mark $N_1$ by driver cost.  Poisson splitting makes the counts with $c\le a$
+and $a<c\le p_j$ independent, with means $mF(a)$ and
+$m[F(p_j)-F(a)]$.  Universal rejection sets the first count to zero but does
+not change the second count's conditional distribution.  Independent
+$\omega$-retention thins the latter to mean $I_j^\omega(a)$.  The fresh core
+flow is independent.  Spatial independent increments and cost thinning give
+outer mean $m\sigma_{p_2}(s)$.  Sums of independent Poisson variables are
+Poisson with the sum of their means.
+\end{proof}
+
+If a focal volunteer faces $N\sim\operatorname{Pois}(z)$ opponents in an
+anonymous lottery, her expected assignment probability is
+\[
+h(z)=\E\left[\frac1{N+1}\right]
+=\frac{1-\e^{-z}}{z},\qquad h(0)=1.
+\]
+An outer fresh driver's expected payoff is
+\[
+h(\Lambda_2)[p_2-c-d(u)].
+\]
+Because the pickup cost is assignment-contingent, $h(\Lambda_2)>0$ scales the
+payoff without changing its sign.  Thus volunteering is equivalent to
+$c+d(u)\le p_2$, which validates the thinning formula for $\sigma_{p_2}(s)$.
+
+\section{Rider continuation and exact aggregation}
+
+After universal rejection, a rider of value $v$ compares
+\[
+0,\qquad C_1(a)(\beta v-p_1),\qquad
+C_2(a)(\beta v-p_2).
+\]
+Let $\eta_j(a)$ be the conditional mass of posted riders selecting terminal
+action $j\in\{0,1,2\}$.  Ties at a single rider type are immaterial.  If two
+terminal actions are payoff-identical for a positive measure, we use the
+deterministic convention abandon before repeat before rescue.  This convention
+selects labels only; completion and incumbent waiting payoffs coincide across
+payoff-identical terminal actions.
+
+Set
+\[
+P=1-p_1,\qquad q=\e^{-ma},\qquad
+\rho_j=1-\frac{p_j}{\beta},\qquad A_j=\rho_j C_j.
+\]
+
+\begin{lemma}[Exact rider aggregation]
+\label{lem:rider}
+Suppose $0\le C_1\le C_2\le1$.  If $C_2>C_1$, the repeat-rescue crossing is
+\[
+v^{12}=\frac{C_2p_2-C_1p_1}{\beta(C_2-C_1)},
+\qquad
+v^{12}-\frac{p_2}{\beta}
+=\frac{C_1(p_2-p_1)}{\beta(C_2-C_1)}\ge0.
+\]
+On the active domain $p_2\le\beta$, rescue has positive mass iff $A_2>A_1$
+and
+\[
+P\eta_2=\frac{[A_2-A_1]_+}{C_2-C_1}.
+\]
+On the full price domain, terminal completion integrated over the original
+rider population is
+\[
+P(\eta_1C_1+\eta_2C_2)=\max\{0,A_1,A_2\}.
+\]
+Consequently every equilibrium completion outcome satisfies
+\begin{equation}
+M=P(1-q)+q\max\{0,A_1,A_2\}.
+\label{eq:completion}
+\end{equation}
+If $C_2=C_1$ and $p_2>p_1$, repeat dominates rescue.  If both coverage and
+price are equal, action labels are tie-rule dependent but completion is not.
+\end{lemma}
+
+\begin{proof}
+The three continuation payoffs are affine in $v$ and their upper envelope has
+the order abandon, repeat, rescue.  On a strict rescue branch, riders in
+$(v^{12},1]$ rescue and direct algebra gives
+\[
+1-v^{12}=\frac{A_2-A_1}{C_2-C_1}.
+\]
+Moreover,
+\[
+C_1\left(v^{12}-\frac{p_1}{\beta}\right)
++C_2(1-v^{12})=A_2.
+\]
+If rescue is inactive, repeat contributes $[A_1]_+$; if repeat is also
+inactive, terminal completion is zero.  Multiplying by the first-window
+failure probability yields \eqref{eq:completion}.
+\end{proof}
+
+For later reference, expected executed outer notifications on a strict rescue
+branch are
+\begin{equation}
+Q^{\ex}=Pq\eta_2m(s-1)
+=qm(s-1)\frac{[A_2-A_1]_+}{C_2-C_1}.
+\label{eq:qex}
+\end{equation}
+The ratio in \eqref{eq:qex} is not defined by continuity at a joint
+price-coverage degeneracy; this is one reason not to use executed contacts as
+the main cost primitive.
+
+\section{Cutoff-WPBE}
+
+Under a proposed aggregate cutoff $a$, a type-$c$ incumbent's accept-minus-
+wait payoff in architecture $r$ is
+\begin{equation}
+D_r(c;a)=h(ma)(p_1-c)
+-\delta\omega\e^{-ma}
+\sum_{j=1}^2\eta_j^r(a)h(\Lambda_j^r(a))[p_j-c]_+.
+\label{eq:D}
+\end{equation}
+The first term incorporates first-window assignment competition.  The second
+requires universal rejection by other incumbents, survival, rider
+continuation, and terminal assignment.
+
+\begin{definition}[Cutoff-WPBE]
+A symmetric cutoff $a\in[0,p_1]$, together with rider and fresh-driver
+strategies, is a cutoff-WPBE if: (i) incumbents accept for $c<a$ and reject for
+$c>a$, with the appropriate weak inequalities at $a$; (ii) riders and fresh
+drivers are sequentially rational; and (iii) on-path beliefs after universal
+rejection are generated by the cutoff and Lemma~\ref{lem:poisson}.
+\end{definition}
+
+\begin{theorem}[Unique incumbent cutoff and completion outcome]
+\label{thm:unique}
+Fix a feasible policy in $I,A$, or $E$.  Under uniform driver costs,
+type-independent retention, cutoff-independent fresh intensities, and the
+anonymous lottery, there is exactly one incumbent cutoff
+$a^*\in[0,p_1]$.  The cutoff and completion outcome are continuous in policy
+and primitives when fresh intensities are continuous.  Full strategies are
+unique only up to payoff-equivalent rider labels and measure-zero driver ties.
+\end{theorem}
+
+The proof is in Appendix~\ref{app:unique}.  The key inequality is that at every
+interior cutoff root, the immediate-acceptance residual crosses zero strictly
+downward.  The restrictions in the theorem are substantive.  Type-dependent
+retention, pre-assignment entry costs, priority assignment, or general $F$
+may destroy the derivative ordering and require a new equilibrium analysis.
+
+\begin{corollary}[Flat price]
+\label{cor:flat}
+For $p_1=p_2=p$ and $s=1$, the unique incumbent cutoff is $a=p$ in every
+architecture.
+\end{corollary}
+
+\begin{proof}
+For $a<p$, terminal service has the same price and weakly worse timing and
+assignment odds than immediate acceptance.  Formally, the residual factors as
+$(p-a)$ times a strictly positive bracket because $h(ma)\ge\e^{-ma}$,
+$\delta\omega\le1$, and terminal competition cannot improve the focal
+driver's assignment probability.  Thus no $a<p$ is a root; at $a=p$, all
+lower types accept and higher types have no positive surplus.
+\end{proof}
+
+\section{Outer posted-mechanism design}
+
+The feasible policy sets are compact:
+\[
+\cM_I=\cM_A=\{(p_1,p_2):0\le p_1\le p_2\le1\},
+\]
+\[
+\cM_E=\{(p_1,p_2,s):0\le p_1\le p_2\le1,
+\ 1\le s\le\bar s\}.
+\]
+Policies with active delayed service may impose $p_2\le\beta$ without loss;
+the inactive closure is retained for existence.
+
+Free, unbounded reach would make completion weakly favor the largest feasible
+scope.  We therefore distinguish the driver's winner-paid pickup cost from a
+platform search resource.  The main specification prices the capacity needed
+to honor the promised outer footprint after first-window failure:
+\begin{equation}
+Q^{\com}=(1-p_1)\e^{-ma}m(s-1).
+\label{eq:qcom}
+\end{equation}
+This cost is failure-contingent but does not vanish merely because the rider is
+exactly indifferent at the rescue-activation boundary.  It can represent
+reserved notification bandwidth, dispatch attention, or the shadow cost of
+shared capacity omitted from the representative-order partial equilibrium.
+Core notification infrastructure is normalized to zero incremental cost.
+
+For completion value $B>0$ and per-unit capacity cost $\kappa\ge0$, define
+\[
+J_r^{\com}(\mu,a)=BM_r(\mu,a)-\kappa Q_r^{\com}(\mu,a),
+\qquad Q_I^{\com}=Q_A^{\com}=0.
+\]
+The equilibrium-constrained value is
+\begin{equation}
+\mathcal V_r(m;\kappa)
+=\max_{\mu\in\cM_r}
+\min_{a\in\cE_r^{\mathrm{WPBE}}(\mu;m)}J_r^{\com}(\mu,a).
+\label{eq:outer}
+\end{equation}
+Theorem~\ref{thm:unique} makes the inner set a singleton, but writing the
+problem this way makes clear that the platform does not optimize at a fixed
+cutoff.  Computationally, one may fix $p_1$, optimize $p_2$ and $s$ while
+re-solving the WPBE at every evaluation, and then optimize $p_1$.
+
+The objective is completion net of a search-resource cost.  It is not
+platform profit or total welfare.  A profit model would separate rider fare
+and driver wage and would also include pickup-time cancellation or other
+service costs.
+
+\section{What market thickness guarantees}
+
+Let $V_I(m)$ and $V_A(m)$ denote optimized completion in architectures $I$
+and $A$.  Define
+\[
+\Delta_A(m)=B[V_A(m)-V_I(m)],
+\qquad
+\Delta_E(m;\kappa)=\mathcal V_E(m;\kappa)-BV_A(m).
+\]
+The first difference compares two supply environments and need not be
+nonnegative by set inclusion.  The second is nonnegative because $s=1$
+reproduces architecture $A$ at zero outer-capacity cost.
+
+\begin{theorem}[Endpoint collapse under WPBE and full reoptimization]
+\label{thm:endpoint}
+For finite $\bar s$ and compact policy sets,
+\[
+\lim_{m\downarrow0}V_I(m)=\lim_{m\downarrow0}V_A(m)=0,
+\qquad
+\lim_{m\downarrow0}\mathcal V_E(m;\kappa)=0,
+\]
+and
+\[
+\lim_{m\to\infty}V_I(m)=\lim_{m\to\infty}V_A(m)=1,
+\qquad
+\lim_{m\to\infty}\mathcal V_E(m;\kappa)=B.
+\]
+Consequently both incremental gaps vanish as $m\downarrow0$ and
+$m\to\infty$.  For all sufficiently large $m$,
+\[
+0\le\Delta_E(m;\kappa)
+\le B[1-V_A(m)]
+\le B\left(\frac{\log m}{m}+\frac1m-
+\frac{\log m}{m^2}\right).
+\]
+If $\kappa>0$, any expanded-search optimizer satisfies
+\[
+Q_m^{\com,*}
+\le\frac{B[1-V_A(m)]}{\kappa}
+=O\!\left(\frac{\log m}{\kappa m}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+Completion requires at least one available driver in a reached cohort whose
+total mean is no more than $(1+\bar s)m$.  Hence completion is at most
+$1-\e^{-(1+\bar s)m}$, and the optimized nonnegative objective vanishes in
+the thin limit.
+
+For $m>\e$, choose the feasible flat policy
+\[
+p_1=p_2=p_m=\frac{\log m}{m},\qquad s=1.
+\]
+Corollary~\ref{cor:flat} gives $a=p_m$.  First-window completion alone is
+\[
+\left(1-\frac{\log m}{m}\right)
+\left(1-\frac1m\right)\longrightarrow1,
+\]
+and this policy uses no outer capacity.  Completion is at most one, proving
+the thick limits.  Subtraction yields endpoint collapse.  Nesting gives
+$\Delta_E\ge0$, and the displayed flat-policy lower bound yields the rate.
+Optimality relative to $s=1$ implies
+$BM_E-\kappa Q_m^{\com,*}\ge BV_A$; using $M_E\le1$ gives the resource bound.
+\end{proof}
+
+\begin{corollary}[Existence, not uniqueness, of an interior peak]
+\label{cor:peakexist}
+If $\Delta_E(m_0;\kappa)>0$ at some finite $m_0$, then it has a positive
+global maximizer in $(0,\infty)$.  The same statement holds for $\Delta_A$ if
+$\Delta_A(m_0)>0$.  Neither conclusion implies a unique peak.
+\end{corollary}
+
+\begin{proof}
+Continuity follows from Theorem~\ref{thm:unique}, the deterministic tie
+closure, and Berge's maximum theorem.  Choose thin and thick endpoints at
+which the gap is less than half its value at $m_0$.  A maximum on the
+intervening compact interval cannot occur at either endpoint.
+\end{proof}
+
+This theorem gives a robust scarce-intermediate-thick support result.  It does
+not by itself identify the shape inside that support.
+
+\section{The two-peak question}
+
+\subsection{A valid frozen-hazard theorem}
+
+The clean closed forms arise only when normalized hazards and activation
+weights are held fixed as $m$ changes.  This is a useful Poisson benchmark,
+not an endogenous full-design WPBE comparative static.
+
+\begin{theorem}[Ordered peaks in a frozen-hazard Poisson benchmark]
+\label{thm:frozen}
+Let $A(m)>0$ be differentiable, nonincreasing, and log-concave, and let
+\[
+0\le\lambda_I<\lambda_A<\lambda_E
+\]
+be constants.  Define gross adjacent gains
+\[
+\Delta_A^0(m)=A(m)\e^{-\lambda_I m}
+\left(1-\e^{-(\lambda_A-\lambda_I)m}\right),
+\]
+\[
+\Delta_E^0(m)=A(m)\e^{-\lambda_A m}
+\left(1-\e^{-(\lambda_E-\lambda_A)m}\right).
+\]
+If both gains vanish at the endpoints, each is strictly log-concave with a
+unique interior maximizer, and
+\[
+\arg\max_m\Delta_E^0(m)<\arg\max_m\Delta_A^0(m).
+\]
+If $A(m)=\e^{-\varphi m}$ and $\varphi+\lambda_I>0$, the maximizers are
+\[
+m_A^*=\frac{\log[(\varphi+\lambda_A)/(\varphi+\lambda_I)]}
+{\lambda_A-\lambda_I},
+\]
+\[
+m_E^*=\frac{\log[(\varphi+\lambda_E)/(\varphi+\lambda_A)]}
+{\lambda_E-\lambda_A},
+\]
+with
+\[
+m_E^*<\frac1{\varphi+\lambda_A}<m_A^*.
+\]
+\end{theorem}
+
+\begin{proof}
+For $d>0$, $\log(1-\e^{-dm})$ has strictly negative second derivative.
+Hence both gains are strictly log-concave.  Put
+$d_A=\lambda_A-\lambda_I$ and $d_E=\lambda_E-\lambda_A$.  Their log-slope
+difference is
+\[
+(\log\Delta_A^0)'-(\log\Delta_E^0)'
+=\frac{d_A}{1-\e^{-d_A m}}
+-\frac{d_E}{\e^{d_E m}-1}>0,
+\]
+because
+\[
+\frac{d_A}{1-\e^{-d_A m}}>\frac1m>
+\frac{d_E}{\e^{d_E m}-1}.
+\]
+At the search peak, the search log slope is zero, while the arrival log slope
+is positive; the arrival peak lies to its right.  Under exponential
+activation, each gain is a difference of two exponentials.  Solving its first-
+order condition yields the two closed forms.  The middle inequality follows
+from
+$\log(b/a)=\int_a^b t^{-1}dt$.
+\end{proof}
+
+\subsection{Why the full WPBE does not inherit the order automatically}
+
+In the full model, prices, cutoffs, rider action masses, and per-unit hazards
+typically vary with $m$ and differ across supply architectures:
+\[
+p_j=p_j^r(m),\qquad a=a^r(m),\qquad
+\eta_j=\eta_j^r(m),\qquad \lambda_j=\lambda_j^r(m).
+\]
+Theorem~\ref{thm:frozen} therefore does not prove an ordered peak after
+equilibrium response and reoptimization.
+
+\begin{remark}[Maintained-primitives fixed-menu reversal]
+The absence of a primitive theorem is not merely abstract.  At
+\[
+(\beta,\delta,\omega,\tau,\kappa)
+=(.1510729,.4580650,.1790836,.8263075,.0100430)
+\]
+and the fixed menu
+\[
+(p_1,p_2,s)=(.0371029,.0864844,2.4731078),
+\]
+re-solving the architecture-specific cutoff-WPBE at every $m$ gives
+\[
+m_A^*=12.59214,\quad \Delta_A(m_A^*)=.167859,
+\]
+\[
+m_E^*=15.50563,\quad \Delta_E(m_E^*)=.002470.
+\]
+Thus $m_E^*>m_A^*$, and the search gap changes sign and has multiple lobes.
+These gaps use the archived executed-contact objective.  The solver-certified
+counterexample lies inside the maintained primitives and is sufficient to make
+the corresponding universal fixed-menu peak-order claim unsafe.  It is not an
+interval proof, a symbolic characterization of when reversal occurs, or a
+counterexample to every alternative search-cost specification.
+\end{remark}
+
+One can nevertheless certify an ordering for a particular calibrated model
+by a uniform separation condition.
+
+\begin{proposition}[Uniform separation certificate]
+Let a compact set $K$ contain the reference peaks, all full-gap maximizers,
+and a separator $\bar m\in(m_E^0,m_A^0)$.  Define
+\[
+\Gamma_A=\Delta_A^0(m_A^0)-
+\sup_{m\in K:m\le\bar m}\Delta_A^0(m)>0,
+\]
+\[
+\Gamma_E=\Delta_E^0(m_E^0)-
+\sup_{m\in K:m\ge\bar m}\Delta_E^0(m)>0.
+\]
+If
+\[
+\|\Delta_A-\Delta_A^0\|_{\infty,K}<\Gamma_A/2,
+\qquad
+\|\Delta_E-\Delta_E^0\|_{\infty,K}<\Gamma_E/2,
+\]
+then every full search-gap maximizer is below $\bar m$, and every full
+arrival-gap maximizer is above $\bar m$.
+\end{proposition}
+
+\begin{proof}
+At $m_A^0$, the full arrival gap is at least
+$\Delta_A^0(m_A^0)-\varepsilon_A$.  Anywhere weakly below $\bar m$, it is at
+most the displayed restricted supremum plus $\varepsilon_A$.  The former is
+strictly larger when $2\varepsilon_A<\Gamma_A$.  The search argument is
+symmetric.
+\end{proof}
+
+This proposition is a robustness certificate, not a primitive sufficient
+condition.  It should be verified numerically rather than advertised as the
+main source of economic intuition.
+
+\section{Costly search and the no-expansion boundary}
+
+\subsection{Global committed-reach threshold}
+
+Let $\widehat M(p_1,p_2,s;m)$ denote equilibrium-reduced completion and
+\[
+M_A^*(m)=\max_{(p_1,p_2)\in\cM_A}
+\widehat M(p_1,p_2,1;m).
+\]
+Define
+\begin{equation}
+\kappa_{\com}^*(m)
+=B\sup_{\mu\in\cM_E:Q^{\com}(\mu)>0}
+\frac{[\widehat M(\mu)-M_A^*(m)]_+}{Q^{\com}(\mu)}.
+\label{eq:kappastar}
+\end{equation}
+
+\begin{theorem}[Exact and finite committed-reach no-search threshold]
+\label{thm:kappa}
+Use the smallest-$s$ policy when outcomes tie.  Then
+\[
+\mathcal V_E(m;\kappa)=BM_A^*(m)
+\quad\Longleftrightarrow\quad
+\kappa\ge\kappa_{\com}^*(m).
+\]
+Moreover, optimal committed outer capacity is weakly decreasing in $\kappa$.
+If $\widehat M$ is uniformly Lipschitz in $s$ on the compact policy set,
+\[
+|\widehat M(p_1,p_2,s)-\widehat M(p_1,p_2,1)|\le L(s-1),
+\]
+then $\kappa_{\com}^*(m)<\infty$ for every fixed $m>0$.
+\end{theorem}
+
+\begin{proof}
+For every positive-resource outcome,
+\[
+B\widehat M-\kappa Q^{\com}\le BM_A^*
+\quad\Longleftrightarrow\quad
+\kappa\ge B\frac{\widehat M-M_A^*}{Q^{\com}}.
+\]
+Taking the positive part and supremum proves the threshold, while $s=1$
+attains $BM_A^*$.  For resource monotonicity, add the two optimality
+inequalities at costs $\kappa_1<\kappa_2$ to obtain
+$(\kappa_2-\kappa_1)(Q_1-Q_2)\ge0$.
+
+For finiteness, note $M_A^*(m)>0$.  Whenever $\widehat M>M_A^*$,
+completion cannot exceed posting mass, so
+$P=1-p_1\ge\widehat M>M_A^*$.  Also $q=\e^{-ma}\ge\e^{-m}$ because
+$a\le1$.  The same $(p_1,p_2)$ at $s=1$ is feasible in $A$, so
+\[
+\widehat M(p_1,p_2,s)-M_A^*
+\le\widehat M(p_1,p_2,s)-\widehat M(p_1,p_2,1)
+\le L(s-1).
+\]
+Therefore
+\[
+\frac{B[\widehat M-M_A^*]}{Q^{\com}}
+\le\frac{BLe^m}{mM_A^*(m)}<\infty.
+\]
+\end{proof}
+
+The uniform Lipschitz condition is a regularity assumption on the
+equilibrium-reduced map.  Unique continuity alone is not enough to deliver a
+finite ratio bound.
+
+\subsection{Complete-WPBE local search index}
+
+Let $(p_1^A,p_2^A)$ be a unique interior fixed-arrival optimum with a regular
+cutoff, $p_2>p_1$, and strict rescue activity at $s=1$.  Evaluate all objects
+at this policy and write
+\[
+g=P\eta_2=\frac{A_2-A_1}{C_2-C_1},
+\qquad
+K=\frac{p_2}{\beta}-p_1+(1-\omega)\rho_2\e^{-\Lambda_2}.
+\]
+Let $\mathcal R(a,s)=D_E(a;a)$ and
+\[
+a_s=-\frac{\mathcal R_s}{\mathcal R_a}
+\]
+be the cutoff response along the regular WPBE branch.
+
+\begin{theorem}[Local no-search index with equilibrium cutoff response]
+\label{thm:local}
+At $s=1$, the right derivatives are
+\[
+M_s=\e^{-ma}m
+\left[\rho_2\e^{-\Lambda_2}p_2+K a_s\right],
+\]
+\[
+Q_s^{\com}=P\e^{-ma}m,
+\qquad
+Q_s^{\ex}=g\e^{-ma}m.
+\]
+Hence the complete-WPBE local break-even indices are
+\[
+\boxed{
+\kappa_{\mathrm{loc}}^{\com}
+=\frac{B}{P}
+\left[\rho_2\e^{-\Lambda_2}p_2+K a_s\right] }
+\]
+and, for executed contacts on a strict rescue branch,
+\[
+\boxed{
+\kappa_{\mathrm{loc}}^{\ex}
+=\frac{B}{g}
+\left[\rho_2\e^{-\Lambda_2}p_2+K a_s\right] . }
+\]
+Expansion is locally valuable precisely when the applicable $\kappa$ lies
+below its index.  A global conclusion additionally requires a nonincreasing
+profile derivative or a single positive-to-negative crossing.
+\end{theorem}
+
+\begin{proof}
+The implicit-function theorem gives $a_s=-\mathcal R_s/\mathcal R_a$.
+Differentiate the rescue branch of \eqref{eq:completion}.  At $s=1$,
+$\Lambda_{2,s}=mp_2$ and $\Lambda_{2,a}=-\omega m$.  Collecting the cutoff
+terms gives $K$ and the displayed $M_s$.  Differentiating
+\eqref{eq:qcom} and \eqref{eq:qex} gives the resource derivatives.  Because
+prices are optimized at the fixed-arrival interior optimum, the envelope
+theorem removes their first-order response when $s$ is opened.
+\end{proof}
+
+The cutoff term is economically important.  Direct reach has two opposing
+effects on incumbent waiting.  Greater rescue coverage can move more riders
+into rescue, raising waiting value, while more fresh competition lowers the
+incumbent's assignment probability.  Thus $a_s$ is not signed globally.
+
+\subsection{Why executed contacts are not the main cost}
+
+Suppose at fixed $(a,p_1,p_2)$ that $p_2>p_1$, $p_2<\beta$,
+$C_2(1)>C_1$, and $A_2(1)=A_1$.  Let $x=s-1$.  Then rescue activation gives
+\[
+M(s)-M(1)=\Theta(x),\qquad
+P\eta_2(s)=\Theta(x),\qquad
+Q^{\ex}(s)=\Theta(x^2).
+\]
+If the profiled equilibrium completion retains a strictly positive right
+derivative, no finite per-executed-contact cost can implement $s=1$.  This
+argument does not apply when $p_1=p_2$, where the rescue mass may already be
+first order.  Committed reach instead has
+$Q^{\com}(s)=\Theta(x)$ and removes this denominator failure.
+
+\section{Computational falsification and implementation status}
+
+The analytical model is accompanied by an exact Poisson solver that evaluates
+every candidate policy at the full type-domain cutoff conditions and then
+performs the outer search.  The currently archived numerical tables use the
+earlier executed-contact objective, whereas the main theory above recommends
+committed reach.  They support the following equilibrium and implementation
+claims but are not a committed-cost comparative-static audit:
+
+\begin{itemize}[leftmargin=1.6em]
+\item all 20 unit tests pass, including regime identities, independent core
+arrivals, incumbent retention, spatial thinning, full best responses, and
+outer nestedness;
+\item the formal audit contains 99 environments and 297 architecture rows;
+all are cutoff-certified and the maximum certified equilibrium-cutoff count
+is one;
+\item the minimum numerical $E$-minus-$A$ value gap is
+$-1.22\times10^{-10}$, which is optimization tolerance, and the maximum is
+$0.123759$;
+\item none of the 99 archived fixed-arrival optima is close to zero rescue
+mass (the minimum is approximately $0.0678$), so the current figures are not
+mechanically generated by the executed-contact activation loophole;
+\item the maintained-primitives fixed-menu reversal reported above was found
+by adversarial search and re-solves the cutoff-WPBE at every thickness.
+\end{itemize}
+
+The earlier claim of 48 primitive vectors and 1,344 environments is not
+supported by an archived script and result table in the current folder and is
+therefore not used in this note.
+
+Two numerical boundary issues remain in the implementation rather than in the
+analytical equilibrium engine.  An absolute rider-utility tolerance of
+$10^{-12}$ can convert a strict choice into a tie at extremely small $m$, and
+rounded rider breakpoints can collapse the conditional support as
+$p_1\uparrow1$.  These cases should be replaced by the closed-form upper-
+envelope formulas in Lemma~\ref{lem:rider} before the code is used for extreme-
+boundary comparative statics.
+
+\section{Interpretation, limitations, and theorem agenda}
+
+The model is internally coherent under its maintained assumptions, but those
+assumptions define the scope of every theorem.
+
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{Representative-order partial equilibrium.}  Independent local
+Poisson pools ignore capacity competition across simultaneous orders.  A
+system-wide thick-market claim requires a sparse/mean-field extension.
+\item \textbf{Anonymous lottery.}  Search affects the assignment probability
+of retained rejectors through competition.  Nearest-driver or history-priority
+assignment can change this discipline channel.
+\item \textbf{Winner-paid pickup.}  The clean outer thinning relies on the
+pickup cost being borne only by the selected driver.  Pre-assignment
+relocation requires endogenous entry and congestion.
+\item \textbf{Type-independent exit.}  Retention $\omega$ is an availability
+shock independent of $c$ and has zero outside payoff.  Selection in exit may
+change the posterior and uniqueness proof.
+\item \textbf{No rider pickup disutility.}  The rider discounts only across
+windows through $\beta$; longer outer pickup distance does not directly lower
+rider utility.  Adding that channel would strengthen the case for costly or
+interior reach.
+\item \textbf{Pass-through price.}  The current objective is not profit.  A
+profit paper must separate fare and wage or justify the direct-transfer
+institution.
+\end{enumerate}
+
+The next genuinely nontrivial theorem is not another endpoint argument.  It is
+a primitive region in which the fully profiled scope derivative single-crosses
+or in which the separation margins can be verified analytically.  Such a
+result could deliver a scarce-intermediate-thick search window after full WPBE
+response and reoptimization.  Until then, the correct hierarchy is:
+
+\begin{enumerate}[leftmargin=2em]
+\item unique incumbent cutoff and exact completion aggregation: proved;
+\item endpoint collapse and existence of a positive interior maximizer:
+proved;
+\item finite committed-reach no-search threshold under uniform regularity:
+proved;
+\item ordered peaks with frozen hazards: proved as a benchmark;
+\item ordered peaks after full WPBE reoptimization: numerical conjecture,
+not a theorem;
+\item global unique peaks and monotone $s^*(m)$: false or unproved.
+\end{enumerate}
+
+\section{Conclusion}
+
+Universal rejection is the organizing economic event.  It screens the
+incumbent pool, informs the rider, and activates a recovery market in which
+one common transaction price changes both retained-driver eligibility and
+fresh-driver willingness.  Fixed-footprint arrivals and geographic expansion
+restore supply through different channels: the former changes the supply
+environment in every terminal action, while the latter changes who first sees
+rescue and adds pickup friction.  The platform's menu must therefore be solved
+as an equilibrium-constrained posted mechanism.
+
+The strongest currently valid theoretical result is a chain rather than a
+single closed form: conditional Poisson supply, unique cutoff-WPBE outcome,
+exact rider aggregation, full-design endpoint collapse, and a committed-reach
+cost threshold.  The elegant closed-form peak order identifies an important
+Poisson force but is not universal once equilibrium composition and policy
+reoptimization are allowed.  That boundary is a result of the adversarial
+audit, not a defect to conceal.
+
+\appendix
+
+\section{Proof of the unique-cutoff theorem}
+\label{app:unique}
+
+For uniform costs and $a\le p_1\le p_j$,
+\[
+\Lambda_j(a)=\omega m(p_j-a)+e_j,
+\qquad \Lambda_{j,a}=-\omega m.
+\]
+In all three architectures, $e_2\ge e_1$, so
+\[
+\Lambda_2(a)-\Lambda_1(a)
+=\omega m(p_2-p_1)+(e_2-e_1)\ge0
+\]
+is independent of $a$.
+
+\paragraph{Step 1: type single crossing and existence.}
+Away from the kinks $p_1,p_2$,
+\[
+\frac{\partial D_r(c;a)}{\partial c}
+=-h(ma)+\delta\omega\e^{-ma}
+\sum_{j:c<p_j}\eta_jh(\Lambda_j)
+\le-h(ma)+\e^{-ma}\le0.
+\]
+The final inequality uses $h(x)\ge\e^{-x}$, equivalent to
+$\e^x-1\ge x$.  Thus the type payoff difference is globally single crossing.
+Let $R(a)=D_r(a;a)$.  At $a=p_1$, immediate surplus is zero and waiting
+surplus is nonnegative, so $R(p_1)\le0$.  If $R(0)\le0$, $a=0$ is a cutoff
+best response.  Otherwise continuity and the intermediate value theorem give
+a root in $(0,p_1]$, and type single crossing supplies the full best-response
+inequalities.
+
+\paragraph{Step 2: derivative bounds.}
+On the active domain $p_1<\beta$, total rider continuation mass is
+\[
+\ell=\frac{1-p_1/\beta}{1-p_1}\le1.
+\]
+On a strict repeat-rescue branch,
+\[
+\eta_{2,a}=
+\frac{\omega m(p_2-p_1)}
+{\beta(1-p_1)(C_2-C_1)}\ge0,
+\qquad \eta_1=\ell-\eta_2.
+\]
+Define
+\[
+\mathcal A(a)=h(ma)(p_1-a),
+\qquad
+Y_j(a)=\e^{-ma}h(\Lambda_j(a))(p_j-a).
+\]
+The integral representation $h(z)=\int_0^1\e^{-zt}dt$ gives
+$h'<0$, $h+h'>0$, and $h(z)+zh'(z)=\e^{-z}$.  Put
+$y_j=\omega m(p_j-a)\le\Lambda_j$.  Then
+\begin{align*}
+-\omega\e^{ma}Y_j'
+&=\omega h(\Lambda_j)
++y_j[h(\Lambda_j)+\omega h'(\Lambda_j)]\\
+&\le \omega h(\Lambda_j)
++\Lambda_j[h(\Lambda_j)+\omega h'(\Lambda_j)]\\
+&=1-(1-\omega)\e^{-\Lambda_j}\le1.
+\end{align*}
+Hence
+\begin{equation}
+-\omega Y_j'(a)\le\e^{-ma}.
+\label{eq:Ybound}
+\end{equation}
+Also
+\begin{equation}
+-\mathcal A'(a)
+=h(ma)-m(p_1-a)h'(ma)>\e^{-ma}.
+\label{eq:Abound}
+\end{equation}
+
+\paragraph{Step 3: every interior root is a strict downward crossing.}
+At any nondegenerate interior residual root on an active rescue branch,
+\[
+h(\Lambda_2)(p_2-a)>h(\Lambda_1)(p_1-a).
+\]
+Otherwise discounted waiting is at most
+$\delta\omega\e^{-ma}\ell(p_1-a)$, strictly below
+$h(ma)(p_1-a)$, contradicting indifference.  Therefore $Y_2>Y_1$ at a root.
+Let
+\[
+\mathcal T(a)=(\ell-\eta_2)Y_1+\eta_2Y_2.
+\]
+The composition derivative $\eta_{2,a}(Y_2-Y_1)$ is nonnegative.  Applying
+\eqref{eq:Ybound} gives
+\[
+-\omega\mathcal T'(a)\le\ell\e^{-ma}.
+\]
+Since $R=\mathcal A-\delta\omega\mathcal T$, equation
+\eqref{eq:Abound} yields at every interior root
+\[
+R'(a)<-\e^{-ma}+\delta\ell\e^{-ma}\le0.
+\]
+
+Before rescue activates, only repeat at $p_1$ is relevant and, for every
+$a<p_1$,
+\[
+R(a)=(p_1-a)
+\left[h(ma)-\delta\omega\ell\e^{-ma}h(\Lambda_1)\right]>0.
+\]
+Thus the rescue-activation point cannot itself be a root.  Starting from the
+positive inactive branch, a continuous scalar residual whose every active
+root crosses strictly downward can have at most one root.  Existence therefore
+implies uniqueness.
+
+The boundary cases follow directly: if $p_1=0$, the cutoff domain is the
+singleton $a=0$; if $p_1\ge\beta$ or $\omega=0$, waiting has no positive
+value and $a=p_1$; if $p_2=p_1$, delay and weakly worse assignment dominate
+waiting, again giving $a=p_1$.  The point $p_1=1$ is the continuous zero-
+demand closure.
+
+For continuity, take any convergent sequence of policies and primitives and
+their unique cutoffs.  Every subsequential cutoff limit satisfies the closed
+best-response inequalities of the limiting problem.  Uniqueness identifies
+that limit, so the full sequence converges.  Lemma~\ref{lem:rider} then gives
+continuity of completion.  Under the deterministic closure,
+$Q^{\com}$ is continuous as well.
+
+\section{Audited claim ledger}
+
+\begin{longtable}{@{}p{0.48\textwidth}p{0.46\textwidth}@{}}
+\toprule
+Claim & Status after adversarial audit \\
+\midrule
+\endfirsthead
+\toprule
+Claim & Status after adversarial audit \\
+\midrule
+\endhead
+Conditional Poisson supply after universal rejection & Proved under marked
+Poisson costs and type-independent retention. \\
+Unique full WPBE in every action label & Too strong.  Unique incumbent cutoff
+and completion; payoff-equivalent labels may differ. \\
+Exact rider completion formula & Proved globally with
+$\max\{0,A_1,A_2\}$. \\
+Outer optimum exists & Proved for compact policies and the continuous
+committed-reach objective. \\
+Both incremental gaps vanish in thin and thick limits & Proved after full
+WPBE response and reoptimization. \\
+Any positive gap has an interior maximum & Proved; uniqueness is not implied. \\
+Expanded-search value always peaks first & False as a universal fixed-menu
+claim; maintained-primitives numerical reversal exists. \\
+Frozen-hazard Poisson peaks are ordered & Proved with closed forms. \\
+Uniform separation preserves the order & Proved as a robustness certificate,
+not a primitive condition. \\
+Finite no-search threshold under committed reach & Proved under uniform
+Lipschitz regularity. \\
+Finite no-search threshold under executed contacts & False at a qualifying
+rescue-activation boundary. \\
+$s^*(m)$ is globally monotone & False in numerical examples; an off-on-off
+pattern can arise. \\
+The current objective is profit or welfare & False.  It is completion value
+net of a search-resource cost. \\
+$I\subset A\subset E$ as mechanism sets & False.  Only $A\subset E$ through
+$s=1$; $I$ and $A$ are supply environments. \\
+\bottomrule
+\end{longtable}
+
+\begin{thebibliography}{99}
+
+\bibitem{HuHuZhu2022}
+Hu, B., Hu, M., and Zhu, H. (2022).
+Surge pricing and two-sided temporal responses in ride hailing.
+\emph{Manufacturing \& Service Operations Management}, 24(1), 91--109.
+\href{https://doi.org/10.1287/msom.2020.0960}{doi:10.1287/msom.2020.0960}.
+
+\bibitem{QinYangLiu2025}
+Qin, X., Yang, H., and Liu, Y. (2025).
+A two-round broadcasting matching mechanism in ride-sourcing markets:
+Implication and optimization.
+\emph{Transportation Research Part C}, 180, 105318.
+\href{https://doi.org/10.1016/j.trc.2025.105318}{doi:10.1016/j.trc.2025.105318}.
+
+\bibitem{LyftI2026}
+Ekbatani, F., Niazadeh, R., Golari, M., et al. (2026a).
+Non-exclusive notifications for ride-hailing at Lyft I: Single-cycle
+approximation algorithms.
+\href{https://arxiv.org/abs/2603.21533}{arXiv:2603.21533}.
+
+\bibitem{LyftII2026}
+Ekbatani, F., Niazadeh, R., Golari, M., et al. (2026b).
+Non-exclusive notifications for ride-hailing at Lyft II: Simulations and
+marketplace analysis.
+\href{https://arxiv.org/abs/2603.21531}{arXiv:2603.21531}.
+
+\bibitem{WangZhangFengKe2026}
+Wang, C., Zhang, K., Feng, S., and Ke, J. (2026).
+Pricing and matching for ride-hailing markets under the broadcasting
+mechanism.
+SSRN Working Paper 7240784.
+\href{https://doi.org/10.2139/ssrn.7240784}{doi:10.2139/ssrn.7240784}.
+
+\bibitem{XuYan2026}
+Xu, A., and Yan, C. (2026).
+Dispatching and pricing in two-sided spatial queues.
+\emph{Transportation Science}, Articles in Advance.
+\href{https://doi.org/10.1287/trsc.2025.0319}{doi:10.1287/trsc.2025.0319}.
+
+\bibitem{ChenHu2020}
+Chen, Y., and Hu, M. (2020).
+Pricing and matching with forward-looking buyers and sellers.
+\emph{Manufacturing \& Service Operations Management}, 22(4), 717--734.
+\href{https://doi.org/10.1287/msom.2018.0769}{doi:10.1287/msom.2018.0769}.
+
+\bibitem{CastroEtAl2022}
+Castro, F., Ma, H., Nazerzadeh, H., and Yan, C. (2022).
+Randomized FIFO mechanisms.
+\emph{Proceedings of the 23rd ACM Conference on Economics and Computation}.
+\href{https://doi.org/10.1145/3490486.3538353}{doi:10.1145/3490486.3538353}.
+
+\bibitem{GargNazerzadeh2022}
+Garg, N., and Nazerzadeh, H. (2022).
+Driver surge pricing.
+\emph{Management Science}, 68(5), 3219--3235.
+\href{https://doi.org/10.1287/mnsc.2021.4058}{doi:10.1287/mnsc.2021.4058}.
+
+\bibitem{YangQinKeYe2020}
+Yang, H., Qin, X., Ke, J., and Ye, J. (2020).
+Optimizing matching time interval and matching radius in on-demand
+ride-sourcing markets.
+\emph{Transportation Research Part B}, 131, 84--105.
+\href{https://doi.org/10.1016/j.trb.2019.11.005}{doi:10.1016/j.trb.2019.11.005}.
+
+\bibitem{VarmaEtAl2023}
+Varma, S. M., Bumpensanti, P., Maguluri, S. T., and Wang, H. (2023).
+Dynamic pricing and matching for two-sided queues.
+\emph{Operations Research}, 71(1), 83--100.
+\href{https://doi.org/10.1287/opre.2021.2233}{doi:10.1287/opre.2021.2233}.
+
+\bibitem{AfecheEtAl2023}
+Af\`eche, P., Liu, Z., and Maglaras, C. (2023).
+Ride-hailing networks with strategic drivers: The impact of platform control
+capabilities on performance.
+\emph{Manufacturing \& Service Operations Management}.
+\href{https://doi.org/10.1287/msom.2023.1221}{doi:10.1287/msom.2023.1221}.
+
+\bibitem{TripathyEtAl2023}
+Tripathy, M., Bai, J., and Heese, H. S. (2023).
+Driver collusion in ride-hailing platforms.
+\emph{Decision Sciences}, 54(4), 434--446.
+\href{https://doi.org/10.1111/deci.12561}{doi:10.1111/deci.12561}.
+
+\bibitem{TuEtAl2026}
+Tu, W., et al. (2026).
+Effect of trip attributes on ridehailing driver trip request acceptance.
+\emph{International Journal of Sustainable Transportation}.
+\href{https://doi.org/10.1080/15568318.2025.2580366}{doi:10.1080/15568318.2025.2580366}.
+
+\end{thebibliography}
+
+\end{document}
