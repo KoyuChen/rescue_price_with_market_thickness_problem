@@ -1,0 +1,129 @@
+{
+  "observed_at_utc": "2026-09-05T23:06:26.523645+00:00",
+  "scope": "Observation only; not a guarantee of future process liveness or completion",
+  "outer_optimum_available": false,
+  "runs": [
+    {
+      "m": 1,
+      "run": "runs/m1_outer_search_20260906",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/m1_outer_search_20260906/m1/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:06:24.894355+00:00",
+      "iteration": 205,
+      "stage_index": 3,
+      "next_step": 5,
+      "fingerprint": "b595f5a9eefe3a4a4c782fdb1a1caf718669ddedfaacfe247ab70a8d7a81204f",
+      "completed_audits": 0
+    },
+    {
+      "m": 3,
+      "run": "runs/m3_outer_search_20260906",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/m3_outer_search_20260906/m3/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:05:56.211597+00:00",
+      "iteration": 256,
+      "stage_index": 4,
+      "next_step": 0,
+      "fingerprint": "f8f3a1a8ff3a88f4b669562859fecae4747ae6c35fe513f7e2fdb74dce9df9ae",
+      "completed_audits": 0
+    },
+    {
+      "m": 6,
+      "run": "runs/thick_checkpointed_20260905",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/thick_checkpointed_20260905/m6/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:05:28.900726+00:00",
+      "iteration": 208,
+      "stage_index": 3,
+      "next_step": 8,
+      "fingerprint": "3d47e7ab309ebf4eb07747e369c8ccdeccdb8188dd1f8f74af8528196648523e",
+      "completed_audits": 0
+    },
+    {
+      "m": 12,
+      "run": "runs/thick_checkpointed_20260905",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/thick_checkpointed_20260905/m12/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:04:42.358783+00:00",
+      "iteration": 144,
+      "stage_index": 2,
+      "next_step": 44,
+      "fingerprint": "63cf51aab878462c08d573d127e035cb9510af651a11e8a5c71105d139ece501",
+      "completed_audits": 0
+    },
+    {
+      "m": 24,
+      "run": "runs/thick_checkpointed_20260905",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/thick_checkpointed_20260905/m24/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:04:26.623496+00:00",
+      "iteration": 126,
+      "stage_index": 2,
+      "next_step": 26,
+      "fingerprint": "d180c785ec108dd6b60afd8ddf95a9dbf76753babc4efc316e3cd84641a2b05e",
+      "completed_audits": 0
+    },
+    {
+      "m": 48,
+      "run": "runs/thick_checkpointed_20260905",
+      "phase": "validation_gate",
+      "menu": "menu_00000",
+      "checkpoint": "runs/thick_checkpointed_20260905/m48/menu_00000/checkpoint.npz",
+      "checkpoint_utc": "2026-09-05T23:05:33.660517+00:00",
+      "iteration": 78,
+      "stage_index": 1,
+      "next_step": 38,
+      "fingerprint": "ae6967725172c55364153ee078c3d174aa9bb289d883b5d5cce0be258453c672",
+      "completed_audits": 0
+    }
+  ],
+  "processes": [
+    {
+      "pid": 640476,
+      "state": "R",
+      "cpu_seconds": 828.3,
+      "command": "python -u run_accelerated_m3_search.py --gate-root runs/m3_reactivated_20260906 --model-request runs/research_gate_20260905/request.json --output runs/m3_outer_search_20260906"
+    },
+    {
+      "pid": 643593,
+      "state": "S",
+      "cpu_seconds": 0.22,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 643612,
+      "state": "R",
+      "cpu_seconds": 654.72,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 643613,
+      "state": "R",
+      "cpu_seconds": 654.81,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 643614,
+      "state": "R",
+      "cpu_seconds": 654.66,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 643615,
+      "state": "R",
+      "cpu_seconds": 654.82,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 651120,
+      "state": "R",
+      "cpu_seconds": 266.4,
+      "command": "python -u run_accelerated_price_search.py --m 1 --gate-root runs/research_refined_strict_20260905 --model-request runs/research_gate_20260905/request.json --output runs/m1_outer_search_20260906"
+    }
+  ]
+}
