@@ -1,26 +1,9 @@
-# LaTeX build products
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex.gz
-*.toc
-
-# Python environments and caches
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.mypy_cache/
+*.egg-info/
 .venv/
-venv/
-
-# The numerical engine uses the declared PyPI dependency instead
-code/_vendor/
-
-# Editors and operating systems
-.DS_Store
-*.swp
-*~
+build/
+dist/
+runs/
+.coverage
+.pytest_cache/

@@ -1,17 +1,10 @@
-.PHONY: paper figure test quick clean
-
-paper:
-	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error announced_escalation_theory_overhaul.tex
-
-figure:
-	cd figures && latexmk -pdf -interaction=nonstopmode -halt-on-error extensive_form_diagram.tex
+.PHONY: test smoke help
 
 test:
-	PYTHONPATH=code python -m unittest discover -s code -p 'test_*.py' -v
+	OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -v
 
-quick:
-	PYTHONPATH=code python code/run_discount_falsification.py --quick
+smoke:
+	OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m rescue_solver menu --m 1 --p1 .3 --p2 .5 --config configs/small.json --smoke --route-seed 42 --selection-markets 1000 --report-markets 2000 --output runs/make_smoke; rc=$$?; test $$rc -eq 0 -o $$rc -eq 2
 
-clean:
-	cd paper && latexmk -c announced_escalation_theory_overhaul.tex
-	cd figures && latexmk -c extensive_form_diagram.tex
+help:
+	python -m rescue_solver --help
