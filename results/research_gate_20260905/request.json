@@ -1,0 +1,165 @@
+{
+  "config": {
+    "model": {
+      "beta": 0.96,
+      "cost_probability_edges": [
+        0,
+        0.001,
+        0.003,
+        0.006,
+        0.012,
+        0.022,
+        0.038,
+        0.06,
+        0.09,
+        0.13,
+        0.18,
+        0.25,
+        0.34,
+        0.45,
+        0.58,
+        0.72,
+        0.86,
+        1
+      ],
+      "delta": 0.9,
+      "driver_length_high": 1.75,
+      "driver_length_low": 0.45,
+      "driver_origin_high": 0.75,
+      "driver_origin_low": -0.75,
+      "ell": 0.35,
+      "kappa": 0.18,
+      "omega_hidden": 0.005,
+      "omega_old": 0.004,
+      "p_bar": 1.0,
+      "route_draws": 1200000,
+      "route_positive_quantile_edges": [
+        0,
+        0.08,
+        0.16,
+        0.24,
+        0.32,
+        0.4,
+        0.48,
+        0.56,
+        0.64,
+        0.72,
+        0.8,
+        0.86,
+        0.9,
+        0.93,
+        0.95,
+        0.97,
+        0.98,
+        0.99,
+        0.995,
+        0.998,
+        0.999,
+        0.9995,
+        0.9998,
+        1
+      ],
+      "same_direction_probability": 0.82,
+      "seed": 20260904
+    }
+  },
+  "gate_is_not_type_or_price_convergence_certificate": true,
+  "menus": [
+    [
+      1.0,
+      0.45,
+      0.45
+    ],
+    [
+      1.0,
+      0.425,
+      0.49
+    ],
+    [
+      3.0,
+      0.37,
+      0.37
+    ],
+    [
+      3.0,
+      0.365,
+      0.535
+    ]
+  ],
+  "next_search": {
+    "flat_global_step": 0.005,
+    "refine_steps": [
+      0.02,
+      0.01,
+      0.005
+    ],
+    "report_markets": 2000000,
+    "rerank_markets": 500000,
+    "rescue_global_step": 0.05
+  },
+  "route_seed": 20260904,
+  "settings": {
+    "alpha": 0.00625,
+    "audit_counts": 100000,
+    "audit_replicates": 2,
+    "count_batch_size": 256,
+    "count_cap": 12,
+    "max_states": 50000,
+    "mode": "sample",
+    "regret_tol": 0.00075,
+    "response_tie_tol": 1e-08,
+    "schedule": [
+      [
+        0.02,
+        40,
+        0.35
+      ],
+      [
+        0.004,
+        60,
+        0.25
+      ],
+      [
+        0.0005,
+        100,
+        0.15
+      ],
+      [
+        0.0,
+        500,
+        0.1
+      ]
+    ],
+    "seed": 2026090601,
+    "support_tol": 0.0015,
+    "train_counts": 10000
+  },
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3"
+    }
+  },
+  "stage": "fixed_menu_validation_gate",
+  "target_thicknesses": [
+    1,
+    3,
+    6,
+    12,
+    24,
+    48
+  ],
+  "workers": 2
+}

@@ -1,0 +1,697 @@
+{
+  "audits": [
+    {
+      "alpha": 0.00625,
+      "bounded_checks_pass": true,
+      "completion": 0.2794811498951621,
+      "count_draws": 100000,
+      "count_states": 2154,
+      "family_size": 7368,
+      "full_plan_regret_upper": 9.716720403336704e-07,
+      "initial_support_gap_upper": 0.0,
+      "max_regret_upper": 9.716720403336704e-07,
+      "method": "direct_payoff_empirical_Bernstein",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "regrets": {
+        "full_plan_minus_legacy_max": 0.0,
+        "full_plan_regret_max": 9.584284897854421e-07,
+        "initial_support_gap_max": 0.0,
+        "legacy_initial_regret_max": 9.584284897854421e-07,
+        "max_regret": 9.584284897854421e-07,
+        "retention_regret_max": 0.0,
+        "retention_support_gap_max": 0.0,
+        "sample_checks_pass": true,
+        "witness": {
+          "cost": 0.29500000000000004,
+          "cost_index": 11,
+          "fit": 0.6009029576632084,
+          "route_index": 6
+        }
+      },
+      "retention_regret_upper": 0.0,
+      "retention_support_gap_upper": 0.0,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 2027090604,
+      "unresolved_histories": [],
+      "wpbe_certified": false
+    },
+    {
+      "alpha": 0.00625,
+      "bounded_checks_pass": true,
+      "completion": 0.2795017645356294,
+      "count_draws": 100000,
+      "count_states": 2106,
+      "family_size": 7368,
+      "full_plan_regret_upper": 9.744608762395228e-07,
+      "initial_support_gap_upper": 0.0,
+      "max_regret_upper": 9.744608762395228e-07,
+      "method": "direct_payoff_empirical_Bernstein",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ],
+        [
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "regrets": {
+        "full_plan_minus_legacy_max": 0.0,
+        "full_plan_regret_max": 9.61231998627618e-07,
+        "initial_support_gap_max": 0.0,
+        "legacy_initial_regret_max": 9.61231998627618e-07,
+        "max_regret": 9.61231998627618e-07,
+        "retention_regret_max": 0.0,
+        "retention_support_gap_max": 0.0,
+        "sample_checks_pass": true,
+        "witness": {
+          "cost": 0.29500000000000004,
+          "cost_index": 11,
+          "fit": 0.6009029576632084,
+          "route_index": 6
+        }
+      },
+      "retention_regret_upper": 0.0,
+      "retention_support_gap_upper": 0.0,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 2027195333,
+      "unresolved_histories": [],
+      "wpbe_certified": false
+    }
+  ],
+  "branch_rule": "Common homotopy cold start, zero-temperature polishing; no outcome-based branch choice.",
+  "complementarity": {
+    "initial_complementarity_residual": 9.525129098075288e-07,
+    "payoff_units": true,
+    "posterior_uncertainty_not_included": true,
+    "retention_complementarity_residual": 0.0,
+    "simplex_residual": 0.0
+  },
+  "continuous_type_convergence_verified": false,
+  "cost_points": 17,
+  "elapsed_seconds": 160.0742943080004,
+  "equilibrium_uniqueness_proved": false,
+  "external_price_optimized": false,
+  "fixed_menu_validation": true,
+  "iteration_history": [
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.0003149001357313497,
+        "full_plan_regret_max": 0.008410767500927563,
+        "initial_support_gap_max": 0.13519825480802924,
+        "legacy_initial_regret_max": 0.008402242633456878,
+        "max_regret": 0.008410767500927563,
+        "retention_regret_max": 0.0021841879119312564,
+        "retention_support_gap_max": 0.004986907688960486,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.29500000000000004,
+          "cost_index": 11,
+          "fit": 0.9235382200268633,
+          "route_index": 16
+        }
+      },
+      "iteration": 40,
+      "temperature": 0.02
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.00020616615787567502,
+        "full_plan_regret_max": 0.0018407674122227647,
+        "initial_support_gap_max": 0.027008296406531938,
+        "legacy_initial_regret_max": 0.0018407674122227647,
+        "max_regret": 0.0018407674122227647,
+        "retention_regret_max": 0.0010757658069639193,
+        "retention_support_gap_max": 0.004,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.215,
+          "cost_index": 10,
+          "fit": 0.3150135900354043,
+          "route_index": 2
+        }
+      },
+      "iteration": 100,
+      "temperature": 0.004
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 1.9840631203249526e-07,
+        "full_plan_regret_max": 0.00012136577461006317,
+        "initial_support_gap_max": 0.0013587871844994053,
+        "legacy_initial_regret_max": 0.00012136577461006317,
+        "max_regret": 0.00012136577461006317,
+        "retention_regret_max": 1.341511094969231e-06,
+        "retention_support_gap_max": 0.0,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.29500000000000004,
+          "cost_index": 11,
+          "fit": 0.6009029576632084,
+          "route_index": 6
+        }
+      },
+      "iteration": 200,
+      "temperature": 0.0005
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.0,
+        "full_plan_regret_max": 9.525129098075357e-07,
+        "initial_support_gap_max": 0.0,
+        "legacy_initial_regret_max": 9.525129098075357e-07,
+        "max_regret": 9.525129098075357e-07,
+        "retention_regret_max": 0.0,
+        "retention_support_gap_max": 0.0,
+        "sample_checks_pass": true,
+        "witness": {
+          "cost": 0.29500000000000004,
+          "cost_index": 11,
+          "fit": 0.6009029576632084,
+          "route_index": 6
+        }
+      },
+      "iteration": 246,
+      "temperature": 0.0
+    }
+  ],
+  "m": 3.0,
+  "not_a_price_search_result": true,
+  "numerical_checks_passed": true,
+  "p1": 0.37,
+  "p2": 0.37,
+  "profile_sha256": "837d83903edf0b4afbe20034fc790b0dfde188024ef83b752ef7fe907198a2ae",
+  "quadrature_convergence_verified": false,
+  "route_points": 24,
+  "route_seed": 20260904,
+  "settings": {
+    "alpha": 0.00625,
+    "audit_counts": 100000,
+    "audit_replicates": 2,
+    "count_batch_size": 256,
+    "count_cap": 12,
+    "max_states": 50000,
+    "mode": "sample",
+    "regret_tol": 0.00075,
+    "response_tie_tol": 1e-08,
+    "schedule": [
+      [
+        0.02,
+        40,
+        0.35
+      ],
+      [
+        0.004,
+        60,
+        0.25
+      ],
+      [
+        0.0005,
+        100,
+        0.15
+      ],
+      [
+        0.0,
+        500,
+        0.1
+      ]
+    ],
+    "seed": 2026090601,
+    "support_tol": 0.0015,
+    "train_counts": 10000
+  },
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3"
+    }
+  },
+  "status": "finite_support_checks_passed",
+  "tie_quadrature_order": 32,
+  "training_regrets": {
+    "full_plan_minus_legacy_max": 0.0,
+    "full_plan_regret_max": 9.525129098075357e-07,
+    "initial_support_gap_max": 0.0,
+    "legacy_initial_regret_max": 9.525129098075357e-07,
+    "max_regret": 9.525129098075357e-07,
+    "retention_regret_max": 0.0,
+    "retention_support_gap_max": 0.0,
+    "sample_checks_pass": true,
+    "witness": {
+      "cost": 0.29500000000000004,
+      "cost_index": 11,
+      "fit": 0.6009029576632084,
+      "route_index": 6
+    }
+  },
+  "unknown_training_histories": 0,
+  "wpbe_certified": false
+}

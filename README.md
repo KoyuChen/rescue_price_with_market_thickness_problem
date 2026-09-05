@@ -7,8 +7,22 @@
 **当前是数值原型与诊断工具，不是连续类型 WPBE 或连续价格全局最优性的证明器。**
 小 regret、退出码 0、软件测试通过，均不等于理论认证。未解决的条件后验会保留为
 `insufficient_evidence`。不会为了得到单峰而改变结果。
-特别注意：当前统一 Hoeffding 审计界在常用大模型预算下过于保守，不能达到默认 regret
-门槛；这不是单靠更多迭代即可解决的问题。具体量化限制见 [docs/PRECISION.md](docs/PRECISION.md)。
+旧探索入口 `python -m rescue_solver` 的统一 Hoeffding 界在常用大模型预算下过于保守。
+新入口 `run_research.py` 使用直接收益差的经验 Bernstein 界、结构性离轨历史证明和
+零温度支持清理；它先运行高预算验证门，未通过就不展开厚度搜索。
+具体范围和限制见 [docs/RESEARCH_RERUN.md](docs/RESEARCH_RERUN.md) 与
+[docs/PRECISION.md](docs/PRECISION.md)。
+
+## 本轮高预算重跑
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python run_research.py \
+  --workers 2 --output runs/research_gate_20260905
+```
+
+统一 17 个成本点、24 个顺路点；120 万 OD 抽样；10000 个训练计数样本；
+两组各 100000 个独立审计计数样本；32 点并列积分。验证门使用固定菜单，
+不是外层最优价格，不输出认证的 `V(m)`。审计失败及其完整策略同样保存。
 
 ## 安装与测试
 

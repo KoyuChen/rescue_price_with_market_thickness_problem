@@ -13,4 +13,4 @@ dependencies = ["numpy>=1.25,<3"]
 rescue-solver = "rescue_solver.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["rescue_solver*"]
+include = ["rescue_solver*", "research_solver*"]

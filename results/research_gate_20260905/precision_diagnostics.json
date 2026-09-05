@@ -1,0 +1,231 @@
+{
+  "continuous_cost_solver_implemented": false,
+  "diagnostic_script_sha256": "c2f553e7e587a4264b9484331362635cb118c5a3c9be8e8efb51f9617f7ad784",
+  "fixed_flat_crosschecks": [
+    {
+      "full_market_MC_report_not_a_regret_certificate": true,
+      "m": 1.0,
+      "outcome": {
+        "base_continuation_activation": 0.0,
+        "completed_surplus": 0.047710914828235335,
+        "completion": 0.120181,
+        "completion_se": 0.00022993208479788114,
+        "early_share": 0.3607346841526752,
+        "hidden_share": 0.0,
+        "high_new_completion": 0.0,
+        "high_new_success_given_activation": 0.0,
+        "high_rescue_activation": 0.0,
+        "m": 1.0,
+        "max_regret": 7.083277971951839e-07,
+        "mean_effective_cost_completed": 0.2643805413571798,
+        "mean_overlap_completed": 0.6378383511884738,
+        "mean_surplus_high_new": 0.0,
+        "new_period2_completion": 0.0,
+        "new_period2_surplus": 0.0,
+        "objective_formula": "E[1{match}]",
+        "objective_name": "completion_probability",
+        "objective_value": 0.120181,
+        "old_period2_completion": 0.0,
+        "old_period2_surplus": 0.0,
+        "p1": 0.45,
+        "p2": 0.45,
+        "period1_completion": 0.120181,
+        "period1_surplus": 0.047710914828235335,
+        "period2_completion": 0.0
+      },
+      "p": 0.45,
+      "price_optimized": false,
+      "profile_sha256": "535b4d4b48c53091f83fcfc53c13ff54d4b378905181613483263263547756a0",
+      "quadrature_32_vs_64_max_difference": {
+        "completion": 0.0,
+        "retain_advantage": 0.0,
+        "u_e": 0.0,
+        "u_h": 0.0
+      },
+      "report_markets": 2000000,
+      "report_seed": 2026395330
+    },
+    {
+      "full_market_MC_report_not_a_regret_certificate": true,
+      "m": 3.0,
+      "outcome": {
+        "base_continuation_activation": 0.0,
+        "completed_surplus": 0.11390711018882363,
+        "completion": 0.2800845,
+        "completion_se": 0.00031751942685428715,
+        "early_share": 0.27921145462614183,
+        "hidden_share": 0.0,
+        "high_new_completion": 0.0,
+        "high_new_success_given_activation": 0.0,
+        "high_rescue_activation": 0.0,
+        "m": 3.0,
+        "max_regret": 9.61231998627618e-07,
+        "mean_effective_cost_completed": 0.21869467599974296,
+        "mean_overlap_completed": 0.6597092577805402,
+        "mean_surplus_high_new": 0.0,
+        "new_period2_completion": 0.0,
+        "new_period2_surplus": 0.0,
+        "objective_formula": "E[1{match}]",
+        "objective_name": "completion_probability",
+        "objective_value": 0.2800845,
+        "old_period2_completion": 0.0,
+        "old_period2_surplus": 0.0,
+        "p1": 0.37,
+        "p2": 0.37,
+        "period1_completion": 0.2800845,
+        "period1_surplus": 0.11390711018882364,
+        "period2_completion": 0.0
+      },
+      "p": 0.37,
+      "price_optimized": false,
+      "profile_sha256": "837d83903edf0b4afbe20034fc790b0dfde188024ef83b752ef7fe907198a2ae",
+      "quadrature_32_vs_64_max_difference": {
+        "completion": 0.0,
+        "retain_advantage": 0.0,
+        "u_e": 0.0,
+        "u_h": 0.0
+      },
+      "report_markets": 2000000,
+      "report_seed": 2026604788
+    }
+  ],
+  "scope": "Fixed-menu / named branch diagnostics; NOT optimized rescue prices or V(m).",
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/analytic.py": "1cbb8f55d968c11d0ef00a278aec8fdc39105d792b04d19f8db0acdc92586f42",
+      "research_solver/conditional.py": "cbfbdff572dbcf869fb93a34a9e431451c71efcfb34403458c293e02b2ec95a2",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/posterior.py": "553d1a76c85d54a29447f1015ea57d2483cb3a8a158894ef0a8d5a9922f6e391",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3"
+    }
+  },
+  "type_diagnostic": [
+    {
+      "absolute_error_pp": {
+        "128": 0.012686184610120887,
+        "17": 0.2239001786372069,
+        "2048": 0.00047443026492677287,
+        "512": 0.007867010404223607
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.11848696094493141,
+      "finite_cost_completion": {
+        "128": 0.11861382279103262,
+        "17": 0.12072596273130348,
+        "2048": 0.11849170524758068,
+        "512": 0.11856563104897365
+      },
+      "m": 1,
+      "p": 0.45,
+      "price_optimized": false
+    },
+    {
+      "absolute_error_pp": {
+        "128": 0.01241343642236492,
+        "17": 0.25191733050975995,
+        "2048": 0.0013609696315974862,
+        "512": 0.013073535587354579
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.2774525104497106,
+      "finite_cost_completion": {
+        "128": 0.27732837608548694,
+        "17": 0.2799716837548082,
+        "2048": 0.2774389007533946,
+        "512": 0.27758324580558413
+      },
+      "m": 3,
+      "p": 0.37,
+      "price_optimized": false
+    },
+    {
+      "absolute_error_pp": {
+        "128": 0.07566356143351993,
+        "17": 0.5968323602912384,
+        "2048": 0.0018060215079440667,
+        "512": 0.034190652139837185
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.41670220542516406,
+      "finite_cost_completion": {
+        "128": 0.41745884103949926,
+        "17": 0.42267052902807645,
+        "2048": 0.4166841452100846,
+        "512": 0.4163602989037657
+      },
+      "m": 6,
+      "p": 0.35,
+      "price_optimized": false
+    },
+    {
+      "absolute_error_pp": {
+        "128": 0.07575203346852355,
+        "17": 0.46389245936381274,
+        "2048": 0.005157268477717913,
+        "512": 0.053312634993729624
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.5538180741812406,
+      "finite_cost_completion": {
+        "128": 0.5545755945159259,
+        "17": 0.5584569987748788,
+        "2048": 0.5537665014964634,
+        "512": 0.5532849478313033
+      },
+      "m": 12,
+      "p": 0.27,
+      "price_optimized": false
+    },
+    {
+      "absolute_error_pp": {
+        "128": 0.0194149941373567,
+        "17": 0.3259133256139135,
+        "2048": 0.0027519641153661567,
+        "512": 0.024184798645521255
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.6667935032671608,
+      "finite_cost_completion": {
+        "128": 0.6669876532085344,
+        "17": 0.6635343700110217,
+        "2048": 0.6668210229083145,
+        "512": 0.6665516552807056
+      },
+      "m": 24,
+      "p": 0.215,
+      "price_optimized": false
+    },
+    {
+      "absolute_error_pp": {
+        "128": 0.06111420588092997,
+        "17": 0.28784199688054457,
+        "2048": 0.0034989806220409037,
+        "512": 0.017008140854568587
+      },
+      "branch": "all_early_no_hidden",
+      "continuous_cost_completion": 0.7496594727906893,
+      "finite_cost_completion": {
+        "128": 0.7502706148494986,
+        "17": 0.7467810528218839,
+        "2048": 0.7496944625969097,
+        "512": 0.7494893913821437
+      },
+      "m": 48,
+      "p": 0.17,
+      "price_optimized": false
+    }
+  ],
+  "wpbe_certified": false
+}
