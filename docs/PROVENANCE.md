@@ -41,6 +41,8 @@ Every run records all module hashes and Python/NumPy versions.
 - End-to-end complete small grids retaining unresolved candidates.
 - Serial and parallel thickness execution producing identical fixed-design summaries.
 - Price-order violations and statistically inconclusive interior peaks are preserved.
+- The low-markup flat construction in `PRICE_AND_THICKNESS.md` matches an explicit
+  Poisson completion formula and has zero measured deviation on an enumerated toy support.
 
 As an extraction check, the standalone economic kernel and original v1.1.1
 kernel were evaluated with identical support draws and seeds at three menus

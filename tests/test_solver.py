@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from rescue_solver import core as engine
 from rescue_solver.storage import source_identity
+from rescue_solver.diagnostics import regret_diagnostics
 from rescue_solver.solver import (Settings, ValueIntegratedEvaluator, poisson_states, solve_menu,
                     best_response, price_grid, grid_summary, complementarity_diagnostics)
 from rescue_solver.cli import create_model, clean_json
@@ -178,6 +179,26 @@ class SolverTests(unittest.TestCase):
         self.assertGreater(profile.sigma_h[0, 0], .98)
         self.assertGreater(result['audits'][0]['completion'], .16)
         self.assertFalse(result['wpbe_certified'])
+
+    def test_low_markup_flat_construction_for_thick_limit(self):
+        model = toy()
+        a0 = float(model.a.min())
+        epsilon = .0001
+        price = round(a0 + epsilon, 12)
+        profile = initial(model, price, price)
+        profile.sigma_e[:] = model.a < price
+        profile.sigma_h[:] = 0
+        profile.retain[:] = 0
+        self.assertLess(epsilon, model.par.omega_hidden)
+        self.assertLess(model.par.delta*epsilon, model.par.omega_old)
+        eligible_mass = float(np.sum(model.type_mass*(model.a < price)))
+        evaluator = ValueIntegratedEvaluator(model, Settings(mode='enumerate', count_cap=60))
+        for m in (1, 3, 48):
+            ev = evaluator.evaluate(m, price, price, profile, 1, 17)
+            diagnostic = regret_diagnostics(model, price, profile, ev)
+            self.assertLess(diagnostic['max_regret'], 1e-12)
+            expected = (1-math.exp(-m*eligible_mass))*(1-price-model.par.ell*(1-model.s[-1]))
+            self.assertAlmostEqual(ev['completion'], expected, places=10)
 
     def test_complementarity_detects_mixing_on_bad_action(self):
         model = toy(one=True); p = initial(model)

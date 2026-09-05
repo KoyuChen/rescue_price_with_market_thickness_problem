@@ -175,6 +175,8 @@ Hoeffding 条件概率界较保守，稀有信息集即使有较小的样本 reg
 
 完整时序、信息集、收益、Bayes 比率、互补条件、Poisson 计数与平台目标见
 [docs/MODEL.md](docs/MODEL.md)。来源和验证范围见 [docs/PROVENANCE.md](docs/PROVENANCE.md)。
+价格关系与薄/厚端极限的条件推导见 [docs/PRICE_AND_THICKNESS.md](docs/PRICE_AND_THICKNESS.md)：
+本模型的两端增益趋零提供内部峰值的可能性，但不等于单峰证明。
 
 本问题是非凸均衡约束的双层随机优化，不是 LP/MIP。当前采用温度延拓、阻尼最优反应、
 零温度阶段和独立审计，未保证找到均衡或找到所有均衡。
