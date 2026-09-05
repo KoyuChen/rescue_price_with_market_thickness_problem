@@ -1,0 +1,17 @@
+{"m": 48, "stage": "menu_started", "phase": "validation_gate", "ordinal": 0, "p1": 0.15, "p2": 0.35, "cost_points": 2048, "route_points": 48, "train_counts": 50000, "audit_counts": 1000000}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 1, "max_regret": 0.0622334521898395, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 6, "max_regret": 0.010701784297589258, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 11, "max_regret": 0.00918522626153881, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 16, "max_regret": 0.009161612477364401, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 21, "max_regret": 0.009178132462389858, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 26, "max_regret": 0.009169608643049592, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 31, "max_regret": 0.009179671622599559, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.02, "iteration": 36, "max_regret": 0.009178457301084415, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "temperature_finished", "temperature": 0.02, "iteration": 40, "diagnostics": {"legacy_initial_regret_max": 0.009134045174834578, "full_plan_regret_max": 0.009178455822580922, "retention_regret_max": 0.0018006640540456575, "max_regret": 0.009178455822580922, "initial_support_gap_max": 0.12628419521323916, "retention_support_gap_max": 0.004, "full_plan_minus_legacy_max": 0.00010358231770679193, "witness": {"cost_index": 9, "route_index": 28, "cost": 0.004638671875, "fit": 0.7532448225241845}, "sample_checks_pass": false}}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 41, "max_regret": 0.00917770665907221, "unknown": 3}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 46, "max_regret": 0.0027675748435770937, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 51, "max_regret": 0.0019022825191849944, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 56, "max_regret": 0.0018696277943272303, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 61, "max_regret": 0.00188611625314271, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 66, "max_regret": 0.0018887202285730736, "unknown": 2}
+{"m": 48, "p1": 0.15, "p2": 0.35, "stage": "iteration", "temperature": 0.004, "iteration": 71, "max_regret": 0.001890313948226736, "unknown": 2}

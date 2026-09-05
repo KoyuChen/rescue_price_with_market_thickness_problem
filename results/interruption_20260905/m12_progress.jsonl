@@ -1,0 +1,31 @@
+{"m": 12, "stage": "menu_started", "phase": "validation_gate", "ordinal": 0, "p1": 0.23, "p2": 0.46, "cost_points": 2048, "route_points": 48, "train_counts": 50000, "audit_counts": 1000000}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 1, "max_regret": 0.07689232074978203, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 6, "max_regret": 0.011956398459477824, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 11, "max_regret": 0.008446708961212496, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 16, "max_regret": 0.008400918060105532, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 21, "max_regret": 0.00839823516104788, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 26, "max_regret": 0.00839917537387102, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 31, "max_regret": 0.0083992075918468, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 36, "max_regret": 0.008399209676572587, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "temperature_finished", "temperature": 0.02, "iteration": 40, "diagnostics": {"legacy_initial_regret_max": 0.00817436363742563, "full_plan_regret_max": 0.008399209683394259, "retention_regret_max": 0.0031627589175459063, "max_regret": 0.008399209683394259, "initial_support_gap_max": 0.1370470883597833, "retention_support_gap_max": 0.00784449677354243, "full_plan_minus_legacy_max": 0.00031095064898126884, "witness": {"cost_index": 0, "route_index": 13, "cost": 0.000244140625, "fit": 0.4843581612695443}, "sample_checks_pass": false}}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 41, "max_regret": 0.008399209674368958, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 46, "max_regret": 0.0024293137146959307, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 51, "max_regret": 0.002034865419765116, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 56, "max_regret": 0.0019563889556193457, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 61, "max_regret": 0.0019366185059978016, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 66, "max_regret": 0.0019297209365902938, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 71, "max_regret": 0.0019279061417144467, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 76, "max_regret": 0.0019272776526225817, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 81, "max_regret": 0.0019275992958556094, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 86, "max_regret": 0.0019272173232996355, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 91, "max_regret": 0.001927177047287741, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.004, "iteration": 96, "max_regret": 0.0019272312916786072, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "temperature_finished", "temperature": 0.004, "iteration": 100, "diagnostics": {"legacy_initial_regret_max": 0.0018505066709954892, "full_plan_regret_max": 0.0019271365976582305, "retention_regret_max": 0.0010757657662006795, "max_regret": 0.0019271365976582305, "initial_support_gap_max": 0.027608940664404058, "retention_support_gap_max": 0.004, "full_plan_minus_legacy_max": 0.00010875125483611513, "witness": {"cost_index": 24, "route_index": 1, "cost": 0.011962890625, "fit": 0.06857636442431801}, "sample_checks_pass": false}}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 101, "max_regret": 0.0019271189135971496, "unknown": 2}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 106, "max_regret": 0.0028638608002513827, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 111, "max_regret": 0.0015196731600005606, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 116, "max_regret": 0.0007917340634269413, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 121, "max_regret": 0.00036063254782392647, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 126, "max_regret": 0.00023588511533153558, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 131, "max_regret": 0.00023349557637825362, "unknown": 1}
+{"m": 12, "p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.0005, "iteration": 136, "max_regret": 0.00023282047539113782, "unknown": 1}
