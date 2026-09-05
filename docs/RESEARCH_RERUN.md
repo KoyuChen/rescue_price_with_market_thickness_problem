@@ -51,6 +51,17 @@ python refine_research.py \
 最终至少千万独立配对市场。规范文件明确标为尚未完成的验收目标。
 千万样本并不自动保证 V 的 0.01 个百分点半宽；实际区间过宽仍须加算。
 
+成本支撑细化时，`lift_profile` 在新的成本单元上先强制 early/hidden 可行性与
+留存正毛利条件，再迭代求解，不能直接把旧单元均值处的可行动作赋给整段新成本。
+
+已通过的同精度固定菜单可运行独立报告（报告不触发重新选价）：
+
+```bash
+python report_fixed_menus.py --root runs/research_refined_strict_20260905 \
+  --gate runs/research_gate_20260905 --m 1 --markets 10000000 \
+  --output runs/research_refined_strict_20260905/fixed_menu_m1_report.json
+```
+
 ## 本轮固定菜单验证
 
 | 项目 | 设置 |

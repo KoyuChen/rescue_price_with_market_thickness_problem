@@ -19,6 +19,7 @@ from rescue_solver.storage import atomic_write_json,digest,load_profile,save_pro
 from rescue_solver.cli import clean_json
 from research_solver.certified import CertifiedPayoffEvaluator
 from research_solver.solve import polish_support
+from research_solver.types import lift_profile
 from run_research import source_identity,check_source
 
 
@@ -39,16 +40,14 @@ def main():
     request=json.loads((root/'request.json').read_text());support=json.loads((root/'support.json').read_text())
     check_source(request['source_identity'])
     if digest(input_dir/'profile.npz')!=old['profile_sha256']: raise ValueError('Profile checksum mismatch')
-    profile=load_profile(input_dir/'profile.npz')
+    original_profile=load_profile(input_dir/'profile.npz')
     params=build_model_params(request['config']['model'])
     edges=np.linspace(0,1,args.cost_points+1)
     costs=(edges[:-1]+edges[1:])/2
     original_edges=np.asarray(params.cost_probability_edges)
-    indices=np.minimum(np.searchsorted(original_edges,costs,side='right')-1,len(support['c'])-1)
-    profile=Profile(profile.sigma_e[indices].copy(),profile.sigma_h[indices].copy(),
-                    profile.retain[:,indices].copy(),profile.q_values.copy(),{})
     model=FixedSupportRescueModel(replace(params,cost_probability_edges=tuple(edges)),
         costs,np.diff(edges),np.asarray(support['s']),np.asarray(support['fs']))
+    profile=lift_profile(model,original_edges,original_profile,old['p1'],old['p2'])
     x,w=np.polynomial.legendre.leggauss(64);model.tie_t=(x+1)/2;model.tie_w=w/2
     settings=Settings(train_counts=args.train_counts,audit_counts=args.audit_counts,seed=args.seed,
         alpha=.05/8,schedule=((0.,args.steps,.1),))
@@ -63,7 +62,8 @@ def main():
     atomic_write_json(output/'request.json',dict(m=m,p1=p1,p2=p2,settings=asdict(settings),
         input_profile_sha256=old['profile_sha256'],input_menu=str(input_dir),source_identity=identity,
         input_source_identity=old['source_identity'],cost_points=args.cost_points,route_points=model.S,
-        price_optimized=False,branch_rule='Prior common cold start, interval lift, common zero-temperature refinement.'))
+        price_optimized=False,lift_feasibility_enforced=True,
+        branch_rule='Prior common cold start, feasible interval lift, common zero-temperature refinement.'))
     atomic_write_json(output/'support.json',{k:getattr(model,k).tolist() for k in ('c','fc','s','fs')})
     for step in range(args.steps):
         ev=evaluator.evaluate(m,p1,p2,profile,args.train_counts,args.seed)
@@ -96,7 +96,8 @@ def main():
         cost_points=model.C,route_points=model.S,tie_quadrature_order=64,settings=asdict(settings),
         input_profile_sha256=old['profile_sha256'],profile_sha256=digest(output/'profile.npz'),
         source_identity=identity,elapsed_seconds=time.monotonic()-started,
-        price_optimized=False,wpbe_certified=False,continuous_type_convergence_verified=False)
+        price_optimized=False,lift_feasibility_enforced=True,
+        wpbe_certified=False,continuous_type_convergence_verified=False)
     atomic_write_json(output/'result.json',clean_json(result))
     record(dict(stage='refinement_finished',status=result['status']))
     return 0 if passed else 2

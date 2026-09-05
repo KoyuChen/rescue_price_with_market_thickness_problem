@@ -11,6 +11,7 @@ from research_solver.conditional import old_conditional_moments
 from research_solver.supported import SupportedHistoryEvaluator
 from research_solver.certified import CertifiedPayoffEvaluator
 from research_solver.types import lift_profile
+from research_solver.outcomes import completion_rates,paired_count_comparison
 
 
 def toy():
@@ -216,6 +217,22 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(np.all(out.sigma_h[target.a>.5]==0))
         self.assertTrue(np.all(out.retain[:,target.par.delta*.3-target.a<=0]==0))
         self.assertTrue(np.all(out.sigma_e+out.sigma_h<=1))
+
+    def test_count_outcome_matches_joint_evaluator(self):
+        model=toy();p=initial(model)
+        evaluator=JointPayoffEvaluator(model,Settings())
+        lam,_,_=model._belief_objects(1,.3,p.q_values,p.sigma_e,p.sigma_h,p.retain)
+        counts=np.random.default_rng(154).poisson(lam,size=(200,model.S))
+        a=completion_rates(model,1,.3,p,counts).mean()
+        b=evaluator.evaluate(1,.3,.5,p,200,154)['completion']
+        self.assertAlmostEqual(a,b,places=14)
+
+    def test_identical_policies_have_zero_coupled_count_difference(self):
+        model=toy();p=initial(model)
+        out=paired_count_comparison(model,model,1,(.3,p),(.3,p),1000,180)
+        self.assertEqual(out['difference_a_minus_b'],0)
+        self.assertEqual(out['difference_se'],0)
+        self.assertFalse(out['raw_market_report'])
 
 
 if __name__=='__main__': unittest.main()

@@ -1,0 +1,82 @@
+{
+  "fixed_menu_gate_passed": false,
+  "high_precision_search_started": false,
+  "next_action": "Repair remaining diagnosed failures before expanding thickness",
+  "optimized_prices_available": false,
+  "rows": [
+    {
+      "audit_full_plan_upper": [
+        7.135996495959237e-07,
+        7.126514973379305e-07
+      ],
+      "audit_retention_upper": [
+        0.0,
+        0.0
+      ],
+      "m": 1.0,
+      "p1": 0.45,
+      "p2": 0.45,
+      "status": "finite_support_checks_passed",
+      "unresolved_histories": [
+        0,
+        0
+      ]
+    },
+    {
+      "audit_full_plan_upper": [
+        0.00025149950422030697,
+        0.00018770270411548064
+      ],
+      "audit_retention_upper": [
+        0.12439944860615529,
+        0.1243873433119795
+      ],
+      "m": 1.0,
+      "p1": 0.425,
+      "p2": 0.49,
+      "status": "validation_blocked",
+      "unresolved_histories": [
+        104,
+        104
+      ]
+    },
+    {
+      "audit_full_plan_upper": [
+        9.716720403336704e-07,
+        9.744608762395228e-07
+      ],
+      "audit_retention_upper": [
+        0.0,
+        0.0
+      ],
+      "m": 3.0,
+      "p1": 0.37,
+      "p2": 0.37,
+      "status": "finite_support_checks_passed",
+      "unresolved_histories": [
+        0,
+        0
+      ]
+    },
+    {
+      "audit_full_plan_upper": [
+        0.00048290984967207934,
+        0.0004122931028054156
+      ],
+      "audit_retention_upper": [
+        0.029590152519227968,
+        0.02961924469340348
+      ],
+      "m": 3.0,
+      "p1": 0.365,
+      "p2": 0.535,
+      "status": "validation_blocked",
+      "unresolved_histories": [
+        112,
+        112
+      ]
+    }
+  ],
+  "stage": "gate_finished",
+  "wpbe_certified": false
+}
