@@ -13,8 +13,9 @@
 具体范围和限制见 [docs/RESEARCH_RERUN.md](docs/RESEARCH_RERUN.md) 与
 [docs/PRECISION.md](docs/PRECISION.md)。
 
-最新实际结果见 [docs/RESULTS_STATUS.md](docs/RESULTS_STATUS.md)：m=1 同精度固定菜单的
-千万配对市场增益为 +0.17967 个百分点；尚不是外层优化结果或多厚度单峰结论。
+最新实际结果见 [docs/M3_RESULTS_20260906.md](docs/M3_RESULTS_20260906.md)：m=3 的
+rescue/flat 均已通过两组百万样本审计，千万配对市场固定菜单增益为 +1.14485 个百分点。
+m=3 外层搜索已另行启动；上述固定菜单比较不是优化后的 V*(3)，也不是单峰结论。
 
 ## 本轮高预算重跑
 

@@ -1,0 +1,11 @@
+{
+  "fixed_menu_report": "/workspace/scratch/bbdd6b24e692/rescue_solver_repo/runs/m3_reactivated_20260906/fixed_menu_m3_report.json",
+  "m": 3.0,
+  "menus": {
+    "m3_flat": "finite_support_checks_passed",
+    "m3_rescue": "finite_support_checks_passed"
+  },
+  "price_optimized": false,
+  "status": "validation_finished",
+  "wpbe_certified": false
+}

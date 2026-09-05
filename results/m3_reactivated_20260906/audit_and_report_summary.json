@@ -1,0 +1,62 @@
+{
+  "completion_gain": 0.0114485,
+  "completion_gain_percentage_points": 1.14485,
+  "fixed_menus": true,
+  "gain_ci95_percentage_points": [
+    1.1356924919452773,
+    1.1540075080547227
+  ],
+  "m": 3,
+  "menus": {
+    "flat": {
+      "audit_max_regret_upper": [
+        1.4020502978404474e-06,
+        1.402903086843741e-06
+      ],
+      "completion": 0.2773897,
+      "cost_points": 2048,
+      "first_period_completion": 0.2773897,
+      "high_price_activation": 0.0,
+      "p1": 0.37,
+      "p2": 0.37,
+      "profile_sha256": "b8eb2e0114c4b8c38e39e013c36f755f645be870c0ffdac0be03ed0a9e2d0cc9",
+      "result_json_sha256": "6d6743197a7017997c125a3b5b8cb5dbf5fd2ce69223eca336c3832a371bfb29",
+      "route_points": 24,
+      "second_period_completion": 0.0,
+      "status": "finite_support_checks_passed",
+      "training_max_regret": 1.3973194949508817e-06,
+      "unresolved_histories": [
+        0,
+        0
+      ]
+    },
+    "rescue": {
+      "audit_max_regret_upper": [
+        0.0002123508820197111,
+        0.0002449109036966032
+      ],
+      "completion": 0.2888382,
+      "cost_points": 2048,
+      "first_period_completion": 0.2284779,
+      "high_price_activation": 0.0898668,
+      "p1": 0.365,
+      "p2": 0.535,
+      "profile_sha256": "c04c8a00683a1086636b08cfd5066cfcf05595376f5c6bd81ab2059dcb8fd51b",
+      "result_json_sha256": "ca3a9d43c4bf9920821f0f39360fb7a1bcbb15fbafdc7c2d80109387dc6fffb0",
+      "route_points": 24,
+      "second_period_completion": 0.0603603,
+      "status": "finite_support_checks_passed",
+      "training_max_regret": 6.578633389610256e-06,
+      "unresolved_histories": [
+        0,
+        0
+      ]
+    }
+  },
+  "prices_optimized": false,
+  "raw_metadata_note": "The raw paired report inherits max_regret from the input Profile.meta; use this summary or each result.json for CURRENT training and audit diagnostics. Outcome probabilities are unaffected.",
+  "report_markets": 10000000,
+  "report_seed": 2926090636,
+  "uncertainty_scope": "Fixed-profile report Monte Carlo error only; excludes type, equilibrium selection and price search errors.",
+  "wpbe_certified": false
+}
