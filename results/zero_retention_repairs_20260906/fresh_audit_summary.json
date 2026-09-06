@@ -1,0 +1,51 @@
+{
+  "all_repairs_passed": true,
+  "external_price_optimized": false,
+  "rows": [
+    {
+      "m": 1,
+      "max_regret_upper": [
+        4.245057003345983e-07,
+        4.245057003345983e-07
+      ],
+      "ordinal": 120,
+      "p1": 0.15,
+      "p2": 0.2,
+      "passed": true,
+      "unresolved": [
+        0,
+        0
+      ]
+    },
+    {
+      "m": 3,
+      "max_regret_upper": [
+        1.334077658255491e-07,
+        1.334077658255491e-07
+      ],
+      "ordinal": 120,
+      "p1": 0.15,
+      "p2": 0.2,
+      "passed": true,
+      "unresolved": [
+        0,
+        0
+      ]
+    },
+    {
+      "m": 3,
+      "max_regret_upper": [
+        3.098755539389318e-07,
+        3.098755539389318e-07
+      ],
+      "ordinal": 121,
+      "p1": 0.15,
+      "p2": 0.25,
+      "passed": true,
+      "unresolved": [
+        0,
+        0
+      ]
+    }
+  ]
+}

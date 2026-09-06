@@ -1,0 +1,67 @@
+{
+  "all_repairs_passed": true,
+  "external_price_optimized": false,
+  "replaces_active_search_results": false,
+  "rows": [
+    {
+      "audits": [
+        {
+          "max_regret_upper": 4.2449648366151296e-07,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 4.2449648366151296e-07,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "m": 1,
+      "ordinal": 120,
+      "p1": 0.15,
+      "p2": 0.2,
+      "passed": true,
+      "unknown_training_histories": 0
+    },
+    {
+      "audits": [
+        {
+          "max_regret_upper": 1.3340512618635376e-07,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 1.3340512618635376e-07,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "m": 3,
+      "ordinal": 120,
+      "p1": 0.15,
+      "p2": 0.2,
+      "passed": true,
+      "unknown_training_histories": 0
+    },
+    {
+      "audits": [
+        {
+          "max_regret_upper": 3.098608820053939e-07,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 3.098608820053939e-07,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "m": 3,
+      "ordinal": 121,
+      "p1": 0.15,
+      "p2": 0.25,
+      "passed": true,
+      "unknown_training_histories": 0
+    }
+  ]
+}
