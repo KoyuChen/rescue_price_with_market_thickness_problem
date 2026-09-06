@@ -1,0 +1,1595 @@
+{
+  "observed_utc": "2026-09-06T11:19:57.830600+00:00",
+  "m": 3,
+  "ordinal": 162,
+  "p1": 0.2,
+  "p2": 0.5,
+  "original_directory": "runs/m3_outer_search_20260906/m3/menu_00162",
+  "original_result_sha256": "19a45d5a76a1b04cc32016725b7a963b612a49225c05034a99acb2104ed3053e",
+  "profile_sha256": "4b208303c6de7f0d960187bf10723dfe8bcb960abfffb45a7de7cbd51bae4dd0",
+  "training": {
+    "full_plan_minus_legacy_max": 0.000039194112617151056,
+    "full_plan_regret_max": 0.0012355098770435238,
+    "initial_support_gap_max": 0.01883112143032349,
+    "legacy_initial_regret_max": 0.0012355098770435238,
+    "max_regret": 0.0016065876221003327,
+    "retention_regret_max": 0.0016065876221003327,
+    "retention_support_gap_max": 0.02448693220698571,
+    "sample_checks_pass": false,
+    "witness": {
+      "cost": 0.003662109375,
+      "cost_index": 7,
+      "fit": 0.3150135900354043,
+      "route_index": 2
+    }
+  },
+  "audit_summary": [
+    {
+      "passed": false,
+      "unresolved": 0,
+      "retention_regret_upper": 0.0016103051039621176,
+      "full_plan_regret_upper": 0.001240587322493864
+    },
+    {
+      "passed": false,
+      "unresolved": 0,
+      "retention_regret_upper": 0.0016102186653466667,
+      "full_plan_regret_upper": 0.0012403561982406012
+    }
+  ],
+  "diagnosis": "No unknown histories; training did not converge by 700 iterations. Repeated late regret spikes are observed; mechanism of cycling is not yet proven. This is not a rare-history-only failure or Monte Carlo uncertainty alone.",
+  "acceptance": false,
+  "repair_attempt_started": false,
+  "progress": [
+    {
+      "stage": "menu_started",
+      "phase": "global",
+      "ordinal": 162,
+      "p1": 0.2,
+      "p2": 0.5,
+      "resume": false,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 1,
+      "max_regret": 0.07370203151946743,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 6,
+      "max_regret": 0.012898467673461422,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 11,
+      "max_regret": 0.009358484647829506,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 16,
+      "max_regret": 0.009266587990549652,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 21,
+      "max_regret": 0.009262920805089878,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 26,
+      "max_regret": 0.00926032379463533,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 31,
+      "max_regret": 0.009259881543661749,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.02,
+      "iteration": 36,
+      "max_regret": 0.009259515661998799,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "temperature_finished",
+      "temperature": 0.02,
+      "iteration": 40,
+      "diagnostics": {
+        "legacy_initial_regret_max": 0.009259757549831393,
+        "full_plan_regret_max": 0.009259757549831393,
+        "retention_regret_max": 0.0018006640006088643,
+        "max_regret": 0.009259757549831393,
+        "initial_support_gap_max": 0.13378614557894908,
+        "retention_support_gap_max": 0.004,
+        "full_plan_minus_legacy_max": 0.00014585440473335529,
+        "witness": {
+          "cost_index": 325,
+          "route_index": 10,
+          "cost": 0.158935546875,
+          "fit": 0.7733921404500937
+        },
+        "sample_checks_pass": false
+      },
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 41,
+      "max_regret": 0.009259747586959605,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 46,
+      "max_regret": 0.0020837455203007275,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 51,
+      "max_regret": 0.0015675132499152044,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 56,
+      "max_regret": 0.001483848558760971,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 61,
+      "max_regret": 0.0014610411347335851,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 66,
+      "max_regret": 0.0014551055907139811,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 71,
+      "max_regret": 0.001453552060192223,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 76,
+      "max_regret": 0.0014544527524212886,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 81,
+      "max_regret": 0.0014547021874051335,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 86,
+      "max_regret": 0.001454773544992339,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 91,
+      "max_regret": 0.0014548641802312832,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.004,
+      "iteration": 96,
+      "max_regret": 0.0014549285828789876,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "temperature_finished",
+      "temperature": 0.004,
+      "iteration": 100,
+      "diagnostics": {
+        "legacy_initial_regret_max": 0.0014549634662557407,
+        "full_plan_regret_max": 0.0014549634662557407,
+        "retention_regret_max": 0.00111608622661492,
+        "max_regret": 0.0014549634662557407,
+        "initial_support_gap_max": 0.02762623382139856,
+        "retention_support_gap_max": 0.006370678851508172,
+        "full_plan_minus_legacy_max": 0.00011959647021315273,
+        "witness": {
+          "cost_index": 40,
+          "route_index": 0,
+          "cost": 0.019775390625,
+          "fit": 0
+        },
+        "sample_checks_pass": false
+      },
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 101,
+      "max_regret": 0.0014549702949461056,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 106,
+      "max_regret": 0.0010250936312091088,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 111,
+      "max_regret": 0.0012361106191828707,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 116,
+      "max_regret": 0.001039311691403701,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 121,
+      "max_regret": 0.0006234211096888854,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 126,
+      "max_regret": 0.0004866178088592382,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 131,
+      "max_regret": 0.000304382661476324,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 136,
+      "max_regret": 0.00025566910524123937,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 141,
+      "max_regret": 0.00023062846183719325,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 146,
+      "max_regret": 0.000213168543874765,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 151,
+      "max_regret": 0.00020283769840275304,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 156,
+      "max_regret": 0.00019564464453291448,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 161,
+      "max_regret": 0.0002158493895430879,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 166,
+      "max_regret": 0.00038762921344085897,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 171,
+      "max_regret": 0.0006830566953097584,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 176,
+      "max_regret": 0.0008264840601477817,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 181,
+      "max_regret": 0.0006844603175346813,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 186,
+      "max_regret": 0.0004782050754659035,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 191,
+      "max_regret": 0.00033316104850065976,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0.0005,
+      "iteration": 196,
+      "max_regret": 0.00024492100920694374,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "temperature_finished",
+      "temperature": 0.0005,
+      "iteration": 200,
+      "diagnostics": {
+        "legacy_initial_regret_max": 0.00013923551939118762,
+        "full_plan_regret_max": 0.00014108254693816213,
+        "retention_regret_max": 0.00019348501195712666,
+        "max_regret": 0.00019348501195712666,
+        "initial_support_gap_max": 0.003453253396142192,
+        "retention_support_gap_max": 0.011701698699759084,
+        "full_plan_minus_legacy_max": 0.0000048748533317266585,
+        "witness": {
+          "cost_index": 50,
+          "route_index": 6,
+          "cost": 0.024658203125,
+          "fit": 0.6009029576632084
+        },
+        "sample_checks_pass": false
+      },
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 201,
+      "max_regret": 0.0032684268261954225,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 206,
+      "max_regret": 0.00160666131616026,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 211,
+      "max_regret": 0.0016304636357747423,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 216,
+      "max_regret": 0.0012605504220537314,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 221,
+      "max_regret": 0.0008953748431855535,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 226,
+      "max_regret": 0.000596368383885923,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 231,
+      "max_regret": 0.0003823734533933282,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 236,
+      "max_regret": 0.0002765628926961611,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 241,
+      "max_regret": 0.00018326769948601163,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 246,
+      "max_regret": 0.0034076729739283143,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 251,
+      "max_regret": 0.0016066761962285278,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 256,
+      "max_regret": 0.0010114477649971858,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 261,
+      "max_regret": 0.0006259133093350563,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 266,
+      "max_regret": 0.00038023778518583504,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 271,
+      "max_regret": 0.00022836312760214986,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 276,
+      "max_regret": 0.00013621822863873687,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 281,
+      "max_regret": 0.0000809201206243837,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 286,
+      "max_regret": 0.0014120884727076913,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 291,
+      "max_regret": 0.0034187819818910863,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 296,
+      "max_regret": 0.0016063735753311416,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 301,
+      "max_regret": 0.001017123695495576,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 306,
+      "max_regret": 0.0006299531760468081,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 311,
+      "max_regret": 0.00038293324871406173,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 316,
+      "max_regret": 0.00023009339405681561,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 321,
+      "max_regret": 0.00013727957982019243,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 326,
+      "max_regret": 0.00008155384609548691,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 331,
+      "max_regret": 0.00004832895776809773,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 336,
+      "max_regret": 0.0034179489751847846,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 341,
+      "max_regret": 0.0016065876205442892,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 346,
+      "max_regret": 0.0010114137600869093,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 351,
+      "max_regret": 0.0006258867610542812,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 356,
+      "max_regret": 0.0015599230551073505,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 361,
+      "max_regret": 0.0011840440274520497,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 366,
+      "max_regret": 0.0008288332006828325,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 371,
+      "max_regret": 0.00054643360551071,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 376,
+      "max_regret": 0.00036150651648035603,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 381,
+      "max_regret": 0.0034179844436252856,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 386,
+      "max_regret": 0.001606694357833647,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 391,
+      "max_regret": 0.0010115125028651376,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 396,
+      "max_regret": 0.0006259436861934982,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 401,
+      "max_regret": 0.0003802700127844838,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 406,
+      "max_regret": 0.00022837750364195983,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 411,
+      "max_regret": 0.00013621958555885827,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 416,
+      "max_regret": 0.0000809206036923478,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 421,
+      "max_regret": 0.00004795327231605501,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 426,
+      "max_regret": 0.0037001347252506034,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 431,
+      "max_regret": 0.0016062468385352677,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 436,
+      "max_regret": 0.0010108334270383657,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 441,
+      "max_regret": 0.000649538716848478,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 446,
+      "max_regret": 0.00041704188486096916,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 451,
+      "max_regret": 0.00029705045621064574,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 456,
+      "max_regret": 0.0001998147086505614,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 461,
+      "max_regret": 0.00012719957186835273,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 466,
+      "max_regret": 0.00007843441184925137,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 471,
+      "max_regret": 0.003417914069443748,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 476,
+      "max_regret": 0.0016066019591741143,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 481,
+      "max_regret": 0.0010114150274901888,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 486,
+      "max_regret": 0.0006259005007765023,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 491,
+      "max_regret": 0.00038022280966593103,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 496,
+      "max_regret": 0.00022835802234548105,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 501,
+      "max_regret": 0.0014869250898694904,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 506,
+      "max_regret": 0.001108792822598563,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 511,
+      "max_regret": 0.0007656360496681516,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 516,
+      "max_regret": 0.0034179726693356694,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 521,
+      "max_regret": 0.0016066284691899774,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 526,
+      "max_regret": 0.0010114878044628038,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 531,
+      "max_regret": 0.0006259515723148444,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 536,
+      "max_regret": 0.00038030256675000707,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 541,
+      "max_regret": 0.00022838718438349115,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 546,
+      "max_regret": 0.00013622985327901502,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 551,
+      "max_regret": 0.00008092202850929972,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 556,
+      "max_regret": 0.00004795377412140922,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 561,
+      "max_regret": 0.003417924458024674,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 566,
+      "max_regret": 0.0016065811564529298,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 571,
+      "max_regret": 0.0016302202056996257,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 576,
+      "max_regret": 0.0012602616154613298,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 581,
+      "max_regret": 0.0008951999227195147,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 586,
+      "max_regret": 0.000596271502353491,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 591,
+      "max_regret": 0.00038239745742246756,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 596,
+      "max_regret": 0.0002765942456019882,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 601,
+      "max_regret": 0.00018327568671554217,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 606,
+      "max_regret": 0.0034178970679980517,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 611,
+      "max_regret": 0.0016066321741795633,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 616,
+      "max_regret": 0.0010114644233965402,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 621,
+      "max_regret": 0.0006259194399263167,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 626,
+      "max_regret": 0.0003802398252492345,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 631,
+      "max_regret": 0.0002283638158307004,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 636,
+      "max_regret": 0.00013621845946337752,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 641,
+      "max_regret": 0.00008092020221227639,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 646,
+      "max_regret": 0.0014120914825916375,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 651,
+      "max_regret": 0.0034188705966722768,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 656,
+      "max_regret": 0.0016063737538923803,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 661,
+      "max_regret": 0.001017123861945489,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 666,
+      "max_regret": 0.0006299532303779311,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 671,
+      "max_regret": 0.00038293326676565667,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 676,
+      "max_regret": 0.00023009340014557012,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 681,
+      "max_regret": 0.00013727958189951525,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 686,
+      "max_regret": 0.00008155384681142464,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 691,
+      "max_regret": 0.00004832895801581971,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "iteration",
+      "temperature": 0,
+      "iteration": 696,
+      "max_regret": 0.0034179497484012585,
+      "unknown": 0,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "temperature_finished",
+      "temperature": 0,
+      "iteration": 700,
+      "diagnostics": {
+        "legacy_initial_regret_max": 0.0013733227605947015,
+        "full_plan_regret_max": 0.0013733227605947015,
+        "retention_regret_max": 0.0017851650478382629,
+        "max_regret": 0.0017851650478382629,
+        "initial_support_gap_max": 0.01883844664738961,
+        "retention_support_gap_max": 0.024487860738522153,
+        "full_plan_minus_legacy_max": 0.000046595000018093136,
+        "witness": {
+          "cost_index": 7,
+          "route_index": 2,
+          "cost": 0.003662109375,
+          "fit": 0.3150135900354043
+        },
+        "sample_checks_pass": false
+      },
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "audit_started",
+      "replicate": 1,
+      "count_draws": 1000000,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "audit_finished",
+      "replicate": 1,
+      "passed": false,
+      "unresolved": 0,
+      "full_plan_upper": 0.001240587322493864,
+      "retention_upper": 0.0016103051039621176,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "audit_started",
+      "replicate": 2,
+      "count_draws": 1000000,
+      "m": 3
+    },
+    {
+      "p1": 0.2,
+      "p2": 0.5,
+      "stage": "audit_finished",
+      "replicate": 2,
+      "passed": false,
+      "unresolved": 0,
+      "full_plan_upper": 0.0012403561982406012,
+      "retention_upper": 0.0016102186653466667,
+      "m": 3
+    },
+    {
+      "stage": "menu_finished",
+      "p1": 0.2,
+      "p2": 0.5,
+      "passed": false,
+      "m": 3
+    }
+  ]
+}
