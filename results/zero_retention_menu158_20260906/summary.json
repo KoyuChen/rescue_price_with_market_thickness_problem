@@ -1,0 +1,27 @@
+{
+  "all_repairs_passed": true,
+  "external_price_optimized": false,
+  "replaces_active_search_results": false,
+  "rows": [
+    {
+      "audits": [
+        {
+          "max_regret_upper": 6.64984200466898e-07,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 6.64984200466898e-07,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "m": 1,
+      "ordinal": 158,
+      "p1": 0.2,
+      "p2": 0.3,
+      "passed": true,
+      "unknown_training_histories": 0
+    }
+  ]
+}

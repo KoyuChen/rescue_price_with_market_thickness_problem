@@ -1,0 +1,21 @@
+{
+  "all_repairs_passed": true,
+  "external_price_optimized": false,
+  "rows": [
+    {
+      "m": 1,
+      "max_regret_upper": [
+        6.863615790237173e-07,
+        6.863615790237173e-07
+      ],
+      "ordinal": 158,
+      "p1": 0.2,
+      "p2": 0.3,
+      "passed": true,
+      "unresolved": [
+        0,
+        0
+      ]
+    }
+  ]
+}
