@@ -1,0 +1,70 @@
+{
+  "rows": [
+    {
+      "audits": [
+        {
+          "max_regret_upper": 1.5010689537830003e-06,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 1.5010689537830003e-06,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "external_price_optimized": false,
+      "ordinal": 194,
+      "original_search_cache_replaced": false,
+      "p1": 0.25,
+      "p2": 0.35,
+      "passed": true,
+      "training_max_regret": 1.3350174261232395e-07,
+      "unknown_training_histories": 0
+    },
+    {
+      "audits": [
+        {
+          "max_regret_upper": 0.0003421808694912088,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 0.00029149744134037835,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "external_price_optimized": false,
+      "ordinal": 193,
+      "original_search_cache_replaced": false,
+      "p1": 0.25,
+      "p2": 0.3,
+      "passed": true,
+      "training_max_regret": 4.823082673716117e-06,
+      "unknown_training_histories": 0
+    },
+    {
+      "audits": [
+        {
+          "max_regret_upper": 4.528678485664069e-07,
+          "passed": true,
+          "unresolved": 0
+        },
+        {
+          "max_regret_upper": 4.528678485664069e-07,
+          "passed": true,
+          "unresolved": 0
+        }
+      ],
+      "external_price_optimized": false,
+      "ordinal": 195,
+      "original_search_cache_replaced": false,
+      "p1": 0.25,
+      "p2": 0.4,
+      "passed": true,
+      "training_max_regret": 1.3321336952087058e-07,
+      "unknown_training_histories": 0
+    }
+  ]
+}

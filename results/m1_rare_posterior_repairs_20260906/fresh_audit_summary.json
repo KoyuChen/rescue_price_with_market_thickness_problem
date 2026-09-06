@@ -1,0 +1,54 @@
+{
+  "all_repairs_passed": true,
+  "count_draws_per_replicate": 1000000,
+  "external_price_optimized": false,
+  "original_search_cache_replaced": false,
+  "policy_frozen": true,
+  "rows": [
+    {
+      "max_regret_upper": [
+        0.00028502545022411006,
+        0.00033684411575232633
+      ],
+      "ordinal": 193,
+      "p1": 0.25,
+      "p2": 0.3,
+      "passed": true,
+      "profile_sha256": "fef2b5e61e144e9024374e66f6224251fa5fb3a0766aac4cd78903695e58b544",
+      "unresolved": [
+        0,
+        0
+      ]
+    },
+    {
+      "max_regret_upper": [
+        1.5384622991156303e-06,
+        1.5384622991156303e-06
+      ],
+      "ordinal": 194,
+      "p1": 0.25,
+      "p2": 0.35,
+      "passed": true,
+      "profile_sha256": "2f8ee5d54ae976e717abea7d53621e6ed443e6b61097ed98f24e799b97381c4f",
+      "unresolved": [
+        0,
+        0
+      ]
+    },
+    {
+      "max_regret_upper": [
+        4.996439818567527e-07,
+        4.996439818567527e-07
+      ],
+      "ordinal": 195,
+      "p1": 0.25,
+      "p2": 0.4,
+      "passed": true,
+      "profile_sha256": "bb7eae90a53465bacfc2657d0cffe221329342ba853933331408161dc259f320",
+      "unresolved": [
+        0,
+        0
+      ]
+    }
+  ]
+}

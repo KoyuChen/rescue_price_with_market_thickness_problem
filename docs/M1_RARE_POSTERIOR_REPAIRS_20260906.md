@@ -1,5 +1,30 @@
 # m=1 new unresolved menus and independent cold-start repairs
 
+## Completed repair and held-out audit
+
+All three common-full-support cold starts completed and passed the unchanged
+finite-support numerical gates.  The profiles were then frozen and audited
+again with two new, independent one-million-draw count samples per menu.  The
+fresh seeds were disjoint from training and from the two original audit seeds.
+
+| Ordinal | Menu | Training max regret | Fresh audit max regret uppers | Fresh unresolved checks |
+|---:|---:|---:|---:|---:|
+| 193 | (0.25,0.30) | 0.0000048231 | 0.0002850255 / 0.0003368441 | 0 / 0 |
+| 194 | (0.25,0.35) | 0.0000001335 | 0.0000015385 / 0.0000015385 | 0 / 0 |
+| 195 | (0.25,0.40) | 0.0000001332 | 0.0000004996 / 0.0000004996 | 0 / 0 |
+
+Every upper bound is below the original regret tolerance of `0.00075`; all
+support checks also pass.  `audit_m1_rare_posterior_repairs.py` verifies the
+profile, support and source hashes and checks that audit evaluation does not
+change the frozen profile.  Complete original failures, cold-start checkpoints,
+repaired profiles, original audits and fresh audits are preserved in
+`results/m1_rare_posterior_repairs_20260906`.
+
+These results repair three individual coarse-grid candidates.  They do not
+replace their failed records in the still-active outer-search cache, optimize
+prices, compare completion rates, establish continuous-type convergence or
+certify WPBE.  Any outer-search aggregation must link this evidence explicitly.
+
 This work concerns three completed failures from the still-active outer search:
 
 | Ordinal | Menu | Original unknown histories | Original audit issue |
@@ -37,13 +62,15 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -u \
   --output runs/m1_rare_posterior_repairs_20260906 --workers 3
 ```
 
-The three cold starts began on 2026-09-06. Initial posterior-aware evaluations
-had no unknown histories. No repaired menu has completed training or audit yet;
-the existence of a process or checkpoint is not an acceptance result. Original
-outer-search caches remain unchanged. If a repair passes, aggregation must link
-its separate evidence explicitly rather than silently relabeling the old cache.
+The repair runner is resumable, but this run is now finished.  To reproduce the
+held-out audits after reproducing the repairs:
 
-Two runner tests and the prior frozen-audit tests pass. The complete suite passed
-**117 tests** after adding this runner. This work does not optimize prices,
-compare completion rates, or certify continuous-type WPBE. A completed repair
-result will receive its own archive and status update.
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -u \
+  audit_m1_rare_posterior_repairs.py \
+  --root runs/m1_rare_posterior_repairs_20260906
+```
+
+The complete suite passed **119 tests** after adding the fresh-audit provenance
+tests.  This work does not optimize prices, compare completion rates, or certify
+continuous-type WPBE.

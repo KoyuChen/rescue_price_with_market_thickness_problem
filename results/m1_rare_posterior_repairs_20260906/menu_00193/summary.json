@@ -1,0 +1,22 @@
+{
+  "audits": [
+    {
+      "max_regret_upper": 0.0003421808694912088,
+      "passed": true,
+      "unresolved": 0
+    },
+    {
+      "max_regret_upper": 0.00029149744134037835,
+      "passed": true,
+      "unresolved": 0
+    }
+  ],
+  "external_price_optimized": false,
+  "ordinal": 193,
+  "original_search_cache_replaced": false,
+  "p1": 0.25,
+  "p2": 0.3,
+  "passed": true,
+  "training_max_regret": 4.823082673716117e-06,
+  "unknown_training_histories": 0
+}
