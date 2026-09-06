@@ -1,0 +1,164 @@
+{
+  "observed_utc": "2026-09-06T10:37:48.542853+00:00",
+  "runs": [
+    {
+      "root": "runs/m1_outer_search_20260906",
+      "source_hashes_match": true,
+      "lock_held": true,
+      "active_checkpoints": [
+        {
+          "path": "runs/m1_outer_search_20260906/m1/menu_00174/checkpoint.npz",
+          "iteration": 172,
+          "stage_index": 2,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:37:47.946629+00:00"
+        }
+      ]
+    },
+    {
+      "root": "runs/m3_outer_search_20260906",
+      "source_hashes_match": true,
+      "lock_held": true,
+      "active_checkpoints": [
+        {
+          "path": "runs/m3_outer_search_20260906/m3/menu_00160/checkpoint.npz",
+          "iteration": 208,
+          "stage_index": 3,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:37:43.562812+00:00"
+        }
+      ]
+    },
+    {
+      "root": "runs/thick_checkpointed_20260905",
+      "source_hashes_match": true,
+      "lock_held": true,
+      "active_checkpoints": [
+        {
+          "path": "runs/thick_checkpointed_20260905/m12/menu_00000/checkpoint.npz",
+          "iteration": 339,
+          "stage_index": 3,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:31:53.705542+00:00"
+        },
+        {
+          "path": "runs/thick_checkpointed_20260905/m24/menu_00000/checkpoint.npz",
+          "iteration": 295,
+          "stage_index": 3,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:31:40.362103+00:00"
+        },
+        {
+          "path": "runs/thick_checkpointed_20260905/m48/menu_00000/checkpoint.npz",
+          "iteration": 207,
+          "stage_index": 3,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:24:28.768379+00:00"
+        },
+        {
+          "path": "runs/thick_checkpointed_20260905/m6/menu_00000/checkpoint.npz",
+          "iteration": 511,
+          "stage_index": 3,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:34:09.867788+00:00"
+        }
+      ]
+    },
+    {
+      "root": "runs/thick_rare_cold_gate_20260906",
+      "source_hashes_match": true,
+      "lock_held": true,
+      "active_checkpoints": [
+        {
+          "path": "runs/thick_rare_cold_gate_20260906/m12/checkpoint.npz",
+          "iteration": 2,
+          "stage_index": 0,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:35:44.571801+00:00"
+        },
+        {
+          "path": "runs/thick_rare_cold_gate_20260906/m24/checkpoint.npz",
+          "iteration": 5,
+          "stage_index": 0,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:37:26.215537+00:00"
+        },
+        {
+          "path": "runs/thick_rare_cold_gate_20260906/m6/checkpoint.npz",
+          "iteration": 4,
+          "stage_index": 0,
+          "audits": 0,
+          "mtime_utc": "2026-09-06T10:36:15.810492+00:00"
+        }
+      ]
+    }
+  ],
+  "processes": [
+    {
+      "host_pid": 1114058,
+      "command": "python -u run_accelerated_price_search.py --m 1 --gate-root runs/research_refined_strict_20260905 --model-request runs/research_gate_20260905/request.json --output runs/m1_outer_search_20260906 ",
+      "state": "R",
+      "cpu_ticks": 1495213
+    },
+    {
+      "host_pid": 1114089,
+      "command": "python -u run_accelerated_m3_search.py --gate-root runs/m3_reactivated_20260906 --model-request runs/research_gate_20260905/request.json --output runs/m3_outer_search_20260906 ",
+      "state": "R",
+      "cpu_ticks": 1489752
+    },
+    {
+      "host_pid": 1114139,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4 ",
+      "state": "S",
+      "cpu_ticks": 16
+    },
+    {
+      "host_pid": 1114142,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4 ",
+      "state": "R",
+      "cpu_ticks": 1486583
+    },
+    {
+      "host_pid": 1114143,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4 ",
+      "state": "R",
+      "cpu_ticks": 1493096
+    },
+    {
+      "host_pid": 1114144,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4 ",
+      "state": "R",
+      "cpu_ticks": 1500234
+    },
+    {
+      "host_pid": 1114145,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4 ",
+      "state": "R",
+      "cpu_ticks": 1494822
+    },
+    {
+      "host_pid": 1378865,
+      "command": "python -u run_rare_history_cold_gate.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_cold_gate_20260906 --m 6 12 24 --workers 3 ",
+      "state": "S",
+      "cpu_ticks": 23
+    },
+    {
+      "host_pid": 1378884,
+      "command": "python -u run_rare_history_cold_gate.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_cold_gate_20260906 --m 6 12 24 --workers 3 ",
+      "state": "R",
+      "cpu_ticks": 19732
+    },
+    {
+      "host_pid": 1378885,
+      "command": "python -u run_rare_history_cold_gate.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_cold_gate_20260906 --m 6 12 24 --workers 3 ",
+      "state": "R",
+      "cpu_ticks": 23324
+    },
+    {
+      "host_pid": 1378886,
+      "command": "python -u run_rare_history_cold_gate.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_cold_gate_20260906 --m 6 12 24 --workers 3 ",
+      "state": "R",
+      "cpu_ticks": 29230
+    }
+  ]
+}

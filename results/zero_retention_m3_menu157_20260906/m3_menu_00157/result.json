@@ -1,0 +1,7267 @@
+{
+  "audits": [
+    {
+      "alpha": 6.088037792962133e-07,
+      "bounded_checks_pass": false,
+      "completion": 0.21254480072193047,
+      "conditional_retention_audit": [
+        {
+          "conditional_event_lower": [
+            0.3629090077189805,
+            0.31220499604512314,
+            0.25601630488438953,
+            0.46327546890371885,
+            0.28209722606463816,
+            0.16426339946845206,
+            0.13822601003117957,
+            0.11666324895181164,
+            0.09729061524681003,
+            0.0829369712907225,
+            0.07115453900490572,
+            0.0587980064326345,
+            0.048025450449756736,
+            0.039007945242246475,
+            0.03133120629376955,
+            0.02377219676070357,
+            0.016786841506308756,
+            0.010697922341010527,
+            0.004636838925141193,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.3633945750595479,
+            0.31260878675094833,
+            0.2563302680061681,
+            0.4639235424082395,
+            0.28245277534234703,
+            0.1644351464090828,
+            0.13836186327189604,
+            0.11677247579220836,
+            0.09737928675998991,
+            0.08301358829953778,
+            0.07122423744758116,
+            0.058863076807140036,
+            0.048090520824262274,
+            0.039073015630220975,
+            0.03139627666827509,
+            0.023837267142985414,
+            0.016851911884702447,
+            0.010762992715516066,
+            0.004701909299646732,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 62,
+          "log_probability_factor": -0.0,
+          "q": 0.2,
+          "seed": 64783400022882021
+        },
+        {
+          "conditional_event_lower": [
+            0.03050781418133627,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.030622747669647975,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 56,
+          "log_probability_factor": -2.531230670609416e-27,
+          "q": 0.25,
+          "seed": 64783400022986750
+        }
+      ],
+      "count_draws": 1000000,
+      "count_envelope_certificates": [],
+      "count_states": 60,
+      "exact_arithmetic_certificate": false,
+      "family_size": 1376304,
+      "floating_point_envelope_verified_with_margin": true,
+      "full_plan_regret_upper": 0.0006375678212011353,
+      "initial_support_gap_upper": 0.009717540332283777,
+      "max_regret_upper": null,
+      "method": "direct_payoff_Bernstein_with_structural_zero_wins_and_conditional_counts_and_all_counts_continuation_envelopes_and_zero_old_retention_all_count_envelope",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.3634982343329632,
+          0.030630703129854206
+        ],
+        [
+          0.3126932385491126,
+          0.0
+        ],
+        [
+          0.25639343494705324,
+          0.0
+        ],
+        [
+          0.4640665862605994,
+          0.0
+        ],
+        [
+          0.2825245008824601,
+          0.0
+        ],
+        [
+          0.16445874707727318,
+          0.0
+        ],
+        [
+          0.13837641760264652,
+          0.0
+        ],
+        [
+          0.11678106667267746,
+          0.0
+        ],
+        [
+          0.09738443468215853,
+          0.0
+        ],
+        [
+          0.08301603221541534,
+          0.0
+        ],
+        [
+          0.07122436136986077,
+          0.0
+        ],
+        [
+          0.05886307680714007,
+          0.0
+        ],
+        [
+          0.048090520824262295,
+          0.0
+        ],
+        [
+          0.03907301563022097,
+          0.0
+        ],
+        [
+          0.031396276668275096,
+          0.0
+        ],
+        [
+          0.02383726714298542,
+          0.0
+        ],
+        [
+          0.016851911884702434,
+          0.0
+        ],
+        [
+          0.010762992715516074,
+          0.0
+        ],
+        [
+          0.004701909299646729,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "old_win_certified_zero": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.054621996342173726,
+          0.7084574335748538
+        ],
+        [
+          0.09009838799509488,
+          null
+        ],
+        [
+          0.07371023664304763,
+          null
+        ],
+        [
+          0.4427658524944797,
+          null
+        ],
+        [
+          0.28992380390754846,
+          null
+        ],
+        [
+          0.030697140529787094,
+          0.0
+        ],
+        [
+          0.01133691712186456,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "original_unconditional_retention_upper": 0.0016389394645239623,
+      "regrets": {
+        "full_plan_minus_legacy_max": 4.9722114839376164e-05,
+        "full_plan_regret_max": 0.0006342919826531901,
+        "initial_support_gap_max": 0.00892951550278237,
+        "legacy_initial_regret_max": 0.0005858655121375525,
+        "max_regret": 0.0016330491467824101,
+        "retention_regret_max": 0.0016330491467824101,
+        "retention_support_gap_max": 0.024890247626618046,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.007080078125,
+          "cost_index": 14,
+          "fit": 0.3936929327926888,
+          "route_index": 3
+        }
+      },
+      "retention_regret_upper": 0.07141601060054509,
+      "retention_support_gap_upper": 0.07977192300727644,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 64783400019882004,
+      "unresolved_histories": [
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 116,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 116,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 117,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 117,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 118,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 118,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 119,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 119,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 120,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 120,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 121,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 121,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 122,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 122,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 123,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 123,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 124,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 124,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 125,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 125,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 126,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 126,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 127,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 127,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 128,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 128,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 129,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 129,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 130,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 130,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 131,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 131,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 132,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 132,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 133,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 133,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 134,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 134,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 135,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 135,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 136,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 136,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 137,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 137,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 138,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 138,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 139,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 139,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 140,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 140,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 141,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 141,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 142,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 142,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 143,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 143,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 144,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 144,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 145,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 146,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 147,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 148,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 149,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 150,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 151,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 152,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 153,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 154,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 155,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 156,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 157,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 158,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 159,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 160,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 161,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 162,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 163,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 164,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 165,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 166,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 167,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 168,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 169,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 170,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 171,
+          "q": 0.25,
+          "route_index": 4
+        }
+      ],
+      "wpbe_certified": false,
+      "zero_retention_envelope_certificates": []
+    },
+    {
+      "alpha": 6.088037792962133e-07,
+      "bounded_checks_pass": false,
+      "completion": 0.21262189300045742,
+      "conditional_retention_audit": [
+        {
+          "conditional_event_lower": [
+            0.36292851170592483,
+            0.31222245089264433,
+            0.25603145174997044,
+            0.4633017724066525,
+            0.2821134453403395,
+            0.1642678994386449,
+            0.13822539955088944,
+            0.11666387426671179,
+            0.09729289627789159,
+            0.08293842579928011,
+            0.07115465882884764,
+            0.05879800643263448,
+            0.048025450449756736,
+            0.039007945249691964,
+            0.03133120629376954,
+            0.023772196762456378,
+            0.01678684150773782,
+            0.010697922341010526,
+            0.004636838924526419,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.3634137953042828,
+            0.31262603836248576,
+            0.2563453380672365,
+            0.4639494352898382,
+            0.28246882505094917,
+            0.16443959336014566,
+            0.13836120298140128,
+            0.11677302159278162,
+            0.09738148438448774,
+            0.0830149966465236,
+            0.07122434897763275,
+            0.058863076807140015,
+            0.048090520824262274,
+            0.039073015630221,
+            0.031396276668275075,
+            0.023837267142985417,
+            0.016851911884702444,
+            0.010762992715516064,
+            0.004701909299646729,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 55,
+          "log_probability_factor": -0.0,
+          "q": 0.2,
+          "seed": 64783400022986750
+        },
+        {
+          "conditional_event_lower": [
+            0.03051511713972565,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.03062993324660844,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 60,
+          "log_probability_factor": -2.531230670609416e-27,
+          "q": 0.25,
+          "seed": 64783400023091479
+        }
+      ],
+      "count_draws": 1000000,
+      "count_envelope_certificates": [],
+      "count_states": 62,
+      "exact_arithmetic_certificate": false,
+      "family_size": 1376304,
+      "floating_point_envelope_verified_with_margin": true,
+      "full_plan_regret_upper": 0.0006374190749561396,
+      "initial_support_gap_upper": 0.009715273204635617,
+      "max_regret_upper": null,
+      "method": "direct_payoff_Bernstein_with_structural_zero_wins_and_conditional_counts_and_all_counts_continuation_envelopes_and_zero_old_retention_all_count_envelope",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.36345804419285305,
+          0.030625698888756738
+        ],
+        [
+          0.3126613485922134,
+          0.0
+        ],
+        [
+          0.25637074287861816,
+          0.0
+        ],
+        [
+          0.46401112759954105,
+          0.0
+        ],
+        [
+          0.282499319439822,
+          0.0
+        ],
+        [
+          0.16444996346623394,
+          0.0
+        ],
+        [
+          0.13837113842863355,
+          0.0
+        ],
+        [
+          0.11677962912206663,
+          0.0
+        ],
+        [
+          0.09738508678831967,
+          0.0
+        ],
+        [
+          0.08301666970532626,
+          0.0
+        ],
+        [
+          0.07122453486105211,
+          0.0
+        ],
+        [
+          0.05886307680714003,
+          0.0
+        ],
+        [
+          0.04809052082426225,
+          0.0
+        ],
+        [
+          0.03907301563022097,
+          0.0
+        ],
+        [
+          0.0313962766682751,
+          0.0
+        ],
+        [
+          0.023837267142985424,
+          0.0
+        ],
+        [
+          0.01685191188470241,
+          0.0
+        ],
+        [
+          0.010762992715516069,
+          0.0
+        ],
+        [
+          0.0047019092996467265,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "old_win_certified_zero": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.05461910183103832,
+          0.7084574335748538
+        ],
+        [
+          0.09009285437620039,
+          null
+        ],
+        [
+          0.07370483983774832,
+          null
+        ],
+        [
+          0.44274608577318497,
+          null
+        ],
+        [
+          0.28990584985298606,
+          null
+        ],
+        [
+          0.030694655421214273,
+          0.0
+        ],
+        [
+          0.01133533283606539,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "original_unconditional_retention_upper": 0.0016388634395926502,
+      "regrets": {
+        "full_plan_minus_legacy_max": 4.971359655290414e-05,
+        "full_plan_regret_max": 0.0006341407201405982,
+        "initial_support_gap_max": 0.008927336613913907,
+        "legacy_initial_regret_max": 0.0005857225552388864,
+        "max_regret": 0.0016329645250676358,
+        "retention_regret_max": 0.0016329645250676358,
+        "retention_support_gap_max": 0.024888957858064865,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.007080078125,
+          "cost_index": 14,
+          "fit": 0.3936929327926888,
+          "route_index": 3
+        }
+      },
+      "retention_regret_upper": 0.07141601060054509,
+      "retention_support_gap_upper": 0.07977192300727644,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 64783400019986733,
+      "unresolved_histories": [
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 0,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 1,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 2,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 3,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 4,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 5,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 6,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 7,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 8,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 9,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 10,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 11,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 12,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 13,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 14,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 15,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 16,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 17,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 18,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 19,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 20,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 21,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 22,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 23,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 24,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 25,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 26,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 27,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 28,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 29,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 30,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 31,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 32,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 33,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 34,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 35,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 36,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 37,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 38,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 39,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 40,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 41,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 42,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 43,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 44,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 45,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 46,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 47,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 48,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 49,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 50,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 51,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 52,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 53,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 54,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 55,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 56,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 57,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 58,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 59,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 60,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 61,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 62,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 1
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 63,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 64,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 65,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 66,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 67,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 68,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 69,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 70,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 71,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 72,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 73,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 74,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 75,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 76,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 77,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 78,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 79,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 80,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 81,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 82,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 83,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 84,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 85,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 86,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 87,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 88,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 89,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 90,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 91,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 92,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 93,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 94,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 95,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 96,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 97,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 98,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 99,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 100,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 101,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 102,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 103,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 104,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 105,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 106,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 107,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 108,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 109,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 110,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 111,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 112,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 113,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 114,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 2
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 115,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 116,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 116,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 117,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 117,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 118,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 118,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 119,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 119,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 120,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 120,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 121,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 121,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 122,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 122,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 123,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 123,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 124,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 124,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 125,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 125,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 126,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 126,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 127,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 127,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 128,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 128,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 129,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 129,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 130,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 130,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 131,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 131,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 132,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 132,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 133,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 133,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 134,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 134,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 135,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 135,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 136,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 136,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 137,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 137,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 138,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 138,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 139,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 139,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 140,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 140,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 141,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 141,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 142,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 142,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 143,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 143,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 144,
+          "q": 0.25,
+          "route_index": 3
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 144,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 145,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 146,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 147,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 148,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 149,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 150,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 151,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 152,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 153,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 154,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 155,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 156,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 157,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 158,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 159,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 160,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 161,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 162,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 163,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 164,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 165,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 166,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 167,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 168,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 169,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 170,
+          "q": 0.25,
+          "route_index": 4
+        },
+        {
+          "conditional_event_mean": 0.0,
+          "cost_index": 171,
+          "q": 0.25,
+          "route_index": 4
+        }
+      ],
+      "wpbe_certified": false,
+      "zero_retention_envelope_certificates": []
+    }
+  ],
+  "branch_rule": "Common homotopy cold start, zero-temperature polishing; no outcome-based branch choice.",
+  "complementarity": {
+    "initial_complementarity_residual": 0.0005864784481866211,
+    "payoff_units": true,
+    "posterior_uncertainty_not_included": true,
+    "retention_complementarity_residual": 0.0016334039578385325,
+    "simplex_residual": 1.1102230246251565e-16
+  },
+  "continuous_type_convergence_verified": false,
+  "cost_points": 2048,
+  "equilibrium_uniqueness_proved": false,
+  "external_price_optimized": false,
+  "iteration_history": [
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.00015910315556298162,
+        "full_plan_regret_max": 0.007962547450959298,
+        "initial_support_gap_max": 0.12515370870729348,
+        "legacy_initial_regret_max": 0.007962547450959298,
+        "max_regret": 0.007962547450959298,
+        "retention_regret_max": 0.0018006640006088643,
+        "retention_support_gap_max": 0.004,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.185791015625,
+          "cost_index": 380,
+          "fit": 0.9954043147241,
+          "route_index": 23
+        }
+      },
+      "iteration": 40,
+      "temperature": 0.02
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 9.807379811424544e-05,
+        "full_plan_regret_max": 0.001694266147735394,
+        "initial_support_gap_max": 0.027425736324238205,
+        "legacy_initial_regret_max": 0.001694266147735394,
+        "max_regret": 0.001694266147735394,
+        "retention_regret_max": 0.0010757657163041673,
+        "retention_support_gap_max": 0.004,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.019775390625,
+          "cost_index": 40,
+          "fit": 0.0,
+          "route_index": 0
+        }
+      },
+      "iteration": 100,
+      "temperature": 0.004
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 2.1888800989203205e-05,
+        "full_plan_regret_max": 0.00014809605191758862,
+        "initial_support_gap_max": 0.0034510167217991832,
+        "legacy_initial_regret_max": 0.00013943964824218724,
+        "max_regret": 0.00016673466292909528,
+        "retention_regret_max": 0.00016673466292909528,
+        "retention_support_gap_max": 0.0035810898299575636,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.021240234375,
+          "cost_index": 43,
+          "fit": 0.5359554102266708,
+          "route_index": 5
+        }
+      },
+      "iteration": 200,
+      "temperature": 0.0005
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 5.969241793717106e-05,
+        "full_plan_regret_max": 0.0006914508181842874,
+        "initial_support_gap_max": 0.008687473557954344,
+        "legacy_initial_regret_max": 0.0006333168223748645,
+        "max_regret": 0.0017897784940041732,
+        "retention_regret_max": 0.0017897784940041732,
+        "retention_support_gap_max": 0.024551145322416663,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.007080078125,
+          "cost_index": 14,
+          "fit": 0.3936929327926888,
+          "route_index": 3
+        }
+      },
+      "iteration": 700,
+      "temperature": 0.0
+    }
+  ],
+  "m": 3,
+  "numerical_checks_passed": false,
+  "original_directory": "/workspace/scratch/bbdd6b24e692/rescue_solver_repo/runs/m3_outer_search_20260906/m3/menu_00157",
+  "original_profile_sha256": "8e443f208d7d2e296a2013a23c4841d982a816c9211ddff38229f40e37c59afa",
+  "original_result_sha256": "b9d4eba41552444ff6fa7d5a9bf4560d361631a8b5fff52cdcfc3c9c64524f32",
+  "p1": 0.2,
+  "p2": 0.25,
+  "profile_sha256": "79418f55eee94b786c59abcb2fbfaddfe8abc44c080efae9949f7794b6c3804e",
+  "quadrature_convergence_verified": false,
+  "replaces_active_search_results": false,
+  "route_points": 24,
+  "settings": {
+    "alpha": 6.088037792962133e-07,
+    "audit_counts": 1000000,
+    "audit_replicates": 2,
+    "count_batch_size": 64,
+    "count_cap": 12,
+    "max_states": 50000,
+    "mode": "sample",
+    "regret_tol": 0.00075,
+    "response_tie_tol": 1e-08,
+    "schedule": [
+      [
+        0.02,
+        40,
+        0.35
+      ],
+      [
+        0.004,
+        60,
+        0.25
+      ],
+      [
+        0.0005,
+        100,
+        0.15
+      ],
+      [
+        0.0,
+        500,
+        0.1
+      ]
+    ],
+    "seed": 64783400018882001,
+    "support_tol": 0.0015,
+    "train_counts": 50000
+  },
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "accelerated_evaluator.py": "81cce00ff4af3ffe547fac4869b8ac08fa2cc521394ab0f4b8f501230bf75954",
+      "history_envelope.py": "5fe155aaf4062e0fa98ef702b6c2ef128dd93d8f7c7a4883f28570a0b9f48dd0",
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/analytic.py": "1cbb8f55d968c11d0ef00a278aec8fdc39105d792b04d19f8db0acdc92586f42",
+      "research_solver/certified.py": "d3cd3175706cd6688eb5789b1fd41e1c4ef7b35acd14a7515e75e70f0bca9ce9",
+      "research_solver/conditional.py": "cbfbdff572dbcf869fb93a34a9e431451c71efcfb34403458c293e02b2ec95a2",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/high_precision.py": "01142677df68786566d5e95e8a50db61be07dccdb2ee7e21b3964cb7a4427248",
+      "research_solver/outcomes.py": "b547b78de4385040a55f25f1350afcda1d96020e4b70d9eb2212c033ea61cb0f",
+      "research_solver/posterior.py": "022cc660a3ba3f61e0442cbc9eda7460d41ae3112c0b2d3056c03b6c6ba93f1d",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "research_solver/supported.py": "6254957db7a51604a234718fad3ef299e623002586c3ba4a7208365a8edb0c9f",
+      "research_solver/types.py": "c441573c6747c91ca74e8d9f7cab1da80cf2508522effde133992734ffb8ff51",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3",
+      "run_zero_retention_repair_m3_menu157.py": "f3d1b5aadecfb4bb41013e8120253950322ab605f038bcbd316021ea89ef505e",
+      "zero_retention_checkpoint_solver.py": "f169e099522744e8da7dd1c251046f891569f0455c43146941fb5d13ddcd77bd",
+      "zero_retention_envelope.py": "61494720d908e6ed8d58a356f23e8937d22eda84200836786522baac07c7b575"
+    }
+  },
+  "status": "validation_blocked",
+  "support_sha256": "2dd5a78b5749446247b922ee09676a84aae11a1de482582520761c10d55cb127",
+  "tie_quadrature_order": 64,
+  "training_regrets": {
+    "full_plan_minus_legacy_max": 4.976140535353779e-05,
+    "full_plan_regret_max": 0.0006349432243935929,
+    "initial_support_gap_max": 0.008938857616013124,
+    "legacy_initial_regret_max": 0.0005864784481866211,
+    "max_regret": 0.0016334039578385327,
+    "retention_regret_max": 0.0016334039578385327,
+    "retention_support_gap_max": 0.02489565550736982,
+    "sample_checks_pass": false,
+    "witness": {
+      "cost": 0.007080078125,
+      "cost_index": 14,
+      "fit": 0.3936929327926888,
+      "route_index": 3
+    }
+  },
+  "unknown_training_histories": 4,
+  "wpbe_certified": false
+}
