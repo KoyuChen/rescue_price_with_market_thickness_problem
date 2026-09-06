@@ -1,0 +1,14 @@
+....{"stage": "worker_started", "pid": 7, "m": 6}
+{"stage": "menu_started", "phase": "validation_gate", "ordinal": 0, "p1": 0.3, "p2": 0.49, "resume": false, "m": 6}
+{"stage": "menu_finished", "p1": 0.3, "p2": 0.49, "passed": false, "m": 6}
+{"stage": "menu_started", "phase": "validation_gate", "ordinal": 1, "p1": 0.35, "p2": 0.35, "resume": false, "m": 6}
+{"stage": "menu_finished", "p1": 0.35, "p2": 0.35, "passed": false, "m": 6}
+{"m": 6, "status": "gate_blocked", "rows": [{"m": 6, "p1": 0.3, "p2": 0.49, "passed": false, "directory": "/tmp/tmpdpcaifh0/m6/menu_00000", "score": null, "profile_sha256": "794ba02a4ea727356abde0f469a583aeec09679dd93370be837b2d98457ab30d"}, {"m": 6, "p1": 0.35, "p2": 0.35, "passed": false, "directory": "/tmp/tmpdpcaifh0/m6/menu_00001", "score": null, "profile_sha256": "105168495323eb2d1897517942e5937ef2e5299502cdb674928d846e18523916"}], "price_search_started": false, "reason": "Unresolved inner incentives; preserve failed candidates and diagnose.", "wpbe_certified": false}
+{"stage": "worker_started", "pid": 7, "m": 6}
+{"m": 6, "status": "gate_blocked", "rows": [{"m": 6, "p1": 0.3, "p2": 0.49, "passed": false, "directory": "/tmp/tmpdpcaifh0/m6/menu_00000", "score": null, "profile_sha256": "794ba02a4ea727356abde0f469a583aeec09679dd93370be837b2d98457ab30d"}, {"m": 6, "p1": 0.35, "p2": 0.35, "passed": false, "directory": "/tmp/tmpdpcaifh0/m6/menu_00001", "score": null, "profile_sha256": "105168495323eb2d1897517942e5937ef2e5299502cdb674928d846e18523916"}], "price_search_started": false, "reason": "Unresolved inner incentives; preserve failed candidates and diagnose.", "wpbe_certified": false}
+{"stage": "worker_started", "pid": 7, "m": 6}
+................................................................................................
+----------------------------------------------------------------------
+Ran 100 tests in 26.267s
+
+OK

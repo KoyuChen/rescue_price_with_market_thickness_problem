@@ -1,0 +1,1288 @@
+{
+  "audit": {
+    "all_count_tails_retained": true,
+    "alpha": 0.05,
+    "bounded_checks_pass": false,
+    "completion": 0.5753537871302495,
+    "conditional_retention_audit": [
+      {
+        "conditional_event_lower": [
+          0.09740841353514773,
+          0.09333745089059196,
+          0.08528280427993194,
+          0.08136126087975673,
+          0.07903339952634231,
+          0.07611484051780294,
+          0.07340885026666191,
+          0.07167311503108517,
+          0.06994964554643691,
+          0.06820995991384113,
+          0.06558360690014998,
+          0.06288728857812441,
+          0.06107781706031423,
+          0.0583338816809994,
+          0.054494546821281936,
+          0.05152446775906804,
+          0.049540195472536935,
+          0.04652821117612674,
+          0.042459051341450976,
+          0.0397045970364997,
+          0.0378894478456099,
+          0.03600071121655213,
+          0.0340801908972903,
+          0.0320914666892132,
+          0.03004636597161016,
+          0.026924968996015694,
+          0.023740667908157792,
+          0.021738494246375237,
+          0.020295744468696975,
+          0.018738046307441095,
+          0.017027057071552852,
+          0.015168634056632123,
+          0.013163439141330252,
+          0.010382425137135984,
+          0.006474436671214369,
+          0.0026728116381839265,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditional_event_mean": [
+          0.16302045654835312,
+          0.1572750169759377,
+          0.1460389836597997,
+          0.14064273975710603,
+          0.13746624896761306,
+          0.1335131439296207,
+          0.1298778338427817,
+          0.12756104991390288,
+          0.12527211896121815,
+          0.12297339992484613,
+          0.11952559095355689,
+          0.11601401041010981,
+          0.1136735560574973,
+          0.1101497043308085,
+          0.105267586175782,
+          0.10152831174683447,
+          0.09904889016054108,
+          0.09531474833635883,
+          0.0903276234595961,
+          0.08699118525797073,
+          0.08480955797859806,
+          0.08255297550334154,
+          0.08027209137631383,
+          0.07792492285337994,
+          0.07552715614381655,
+          0.07190008083091762,
+          0.0682414238680591,
+          0.06596139988893387,
+          0.06432746967803919,
+          0.06257164757952141,
+          0.0606523394813136,
+          0.05857798083765525,
+          0.05635133476284271,
+          0.05328277082871766,
+          0.04900520691627937,
+          0.04487839870837332,
+          0.0411222505702523,
+          0.03552549388416754,
+          0.028724988350040812,
+          0.021914155669400755,
+          0.015303957974098217,
+          0.009417829120095374,
+          0.0034843399163909947,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count_draws": 1000,
+        "count_states": 444,
+        "log_probability_factor": -0.009479792173618036,
+        "q": 0.23,
+        "seed": 202613061851
+      }
+    ],
+    "count_draws": 1000,
+    "count_states": 440,
+    "exact_arithmetic_certificate": false,
+    "family_size": 2752608,
+    "full_plan_regret_upper": 0.023666155470599547,
+    "initial_support_gap_upper": 0.02366616506855969,
+    "max_regret_upper": 0.09381995972116544,
+    "method": "joint_payoff_Bernstein_and_conditional_counts_and_bounded_rare_posteriors",
+    "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+    "offpath_certified": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ]
+    ],
+    "old_history_probability": [
+      [
+        0.16784861658939612,
+        0.004095652690510032
+      ],
+      [
+        0.16178501541715762,
+        3.936839407227322e-23
+      ],
+      [
+        0.15005656629832037,
+        0.0
+      ],
+      [
+        0.14432040151986647,
+        0.0
+      ],
+      [
+        0.14094767963913069,
+        0.0
+      ],
+      [
+        0.136740018594904,
+        0.0
+      ],
+      [
+        0.13283838542478016,
+        0.0
+      ],
+      [
+        0.13038144019059553,
+        0.0
+      ],
+      [
+        0.12796445715664173,
+        0.0
+      ],
+      [
+        0.12554724744829177,
+        0.0
+      ],
+      [
+        0.12192589104556177,
+        0.0
+      ],
+      [
+        0.11825572299370096,
+        0.0
+      ],
+      [
+        0.11581157762546637,
+        0.0
+      ],
+      [
+        0.11210283244398218,
+        0.0
+      ],
+      [
+        0.10696673126354969,
+        0.0
+      ],
+      [
+        0.10302143620490808,
+        0.0
+      ],
+      [
+        0.1003740321263184,
+        0.0
+      ],
+      [
+        0.09645464566856052,
+        0.0
+      ],
+      [
+        0.09119322892357583,
+        0.0
+      ],
+      [
+        0.0876911519459832,
+        0.0
+      ],
+      [
+        0.08543531965710809,
+        0.0
+      ],
+      [
+        0.08317383156777493,
+        0.0
+      ],
+      [
+        0.0808977696059206,
+        0.0
+      ],
+      [
+        0.07855543064784871,
+        0.0
+      ],
+      [
+        0.07614327733802795,
+        0.0
+      ],
+      [
+        0.0724526929243195,
+        0.0
+      ],
+      [
+        0.06871391938563197,
+        0.0
+      ],
+      [
+        0.0664143746532608,
+        0.0
+      ],
+      [
+        0.06477224746806397,
+        0.0
+      ],
+      [
+        0.06301642536954619,
+        0.0
+      ],
+      [
+        0.061085102823149315,
+        0.0
+      ],
+      [
+        0.058988743405997586,
+        0.0
+      ],
+      [
+        0.05672607805644545,
+        0.0
+      ],
+      [
+        0.05359166511085845,
+        0.0
+      ],
+      [
+        0.04925085764595135,
+        0.0
+      ],
+      [
+        0.04504468774173941,
+        0.0
+      ],
+      [
+        0.0412280316410464,
+        0.0
+      ],
+      [
+        0.035644506058238476,
+        0.0
+      ],
+      [
+        0.028851641541565796,
+        0.0
+      ],
+      [
+        0.021950698615977933,
+        0.0
+      ],
+      [
+        0.015291691444022305,
+        0.0
+      ],
+      [
+        0.009393438740680634,
+        0.0
+      ],
+      [
+        0.0034599495369762564,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "old_win_certified_zero": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ]
+    ],
+    "old_win_probability": [
+      [
+        0.03823917143670111,
+        0.4600079165752025
+      ],
+      [
+        0.04083815698424184,
+        0.2503085535007379
+      ],
+      [
+        0.03497295531934423,
+        0.0
+      ],
+      [
+        0.031990603981255014,
+        0.0
+      ],
+      [
+        0.030233116803854418,
+        0.0
+      ],
+      [
+        0.028174999669703157,
+        0.0
+      ],
+      [
+        0.025689665548745796,
+        0.0
+      ],
+      [
+        0.024035458511956258,
+        0.0
+      ],
+      [
+        0.02238489907673992,
+        0.0
+      ],
+      [
+        0.020665823891199406,
+        0.0
+      ],
+      [
+        0.018123083315589112,
+        0.0
+      ],
+      [
+        0.01505916746280579,
+        0.0
+      ],
+      [
+        0.013184405579743506,
+        0.0
+      ],
+      [
+        0.010217267725102227,
+        0.0
+      ],
+      [
+        0.005219023656337715,
+        0.0
+      ],
+      [
+        0.0010030838669921234,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "rare_posterior_records": [
+      {
+        "conditional_event_measure_lower": 0.014766060736722559,
+        "conditional_event_measure_upper": 0.014766060736722559,
+        "conditional_win_probability_estimate": 0.4600079165752025,
+        "conditional_win_probability_lower": 0.4600079165752025,
+        "conditional_win_probability_upper": 0.4600079165752025,
+        "conditioned_zero_probability_factor": 0.2773693514834542,
+        "count_tail_discarded": false,
+        "exact_arithmetic_certificate": false,
+        "explicit_count_cap": 12,
+        "explicit_count_mass": 1.0000000000000002,
+        "explicit_count_states": 91,
+        "explicit_count_tail": 4.667679298286339e-22,
+        "floating_point_verified": true,
+        "marginalized_zero_retention_routes": [
+          2,
+          3,
+          4
+        ],
+        "price_index": 1,
+        "q": 0.46,
+        "relevant_routes": [
+          0,
+          1
+        ],
+        "resolved": true,
+        "structurally_off_path": false,
+        "structurally_zero_routes": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "tag_route": 0,
+        "tagged_win_measure_lower": 0.0067925048355226446,
+        "tagged_win_measure_upper": 0.0067925048355226446
+      },
+      {
+        "conditional_event_measure_lower": 1.419349104784623e-22,
+        "conditional_event_measure_upper": 1.4193491047858164e-22,
+        "conditional_win_probability_estimate": 0.2503085535007379,
+        "conditional_win_probability_lower": 0.25030855350052744,
+        "conditional_win_probability_upper": 0.2503085535013682,
+        "conditioned_zero_probability_factor": 0.2773693514834542,
+        "count_tail_discarded": false,
+        "exact_arithmetic_certificate": false,
+        "explicit_count_cap": 18,
+        "explicit_count_mass": 1.0000000000000002,
+        "explicit_count_states": 190,
+        "explicit_count_tail": 1.1934489054461671e-34,
+        "floating_point_verified": true,
+        "marginalized_zero_retention_routes": [
+          2,
+          3,
+          4
+        ],
+        "price_index": 1,
+        "q": 0.46,
+        "relevant_routes": [
+          0,
+          1
+        ],
+        "resolved": true,
+        "structurally_off_path": false,
+        "structurally_zero_routes": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "tag_route": 1,
+        "tagged_win_measure_lower": 3.552752213312062e-23,
+        "tagged_win_measure_upper": 3.5527522133239964e-23
+      }
+    ],
+    "regrets": {
+      "full_plan_minus_legacy_max": 1.1396707464469275e-08,
+      "full_plan_regret_max": 0.0010807050797137854,
+      "initial_support_gap_max": 0.0010807097655648884,
+      "legacy_initial_regret_max": 0.0010807050797137854,
+      "max_regret": 0.003370571212209187,
+      "retention_regret_max": 0.003370571212209187,
+      "retention_support_gap_max": 0.005786965562835703,
+      "sample_checks_pass": false,
+      "witness": {
+        "cost": 0.187744140625,
+        "cost_index": 384,
+        "fit": 0.9235928995112598,
+        "route_index": 40
+      }
+    },
+    "retention_regret_upper": 0.09381995972116544,
+    "retention_support_gap_upper": 0.09381995972116544,
+    "scope": "Fixed finite-support profile; count-law uncertainty only.",
+    "seed": 202610061834,
+    "unresolved_histories": [],
+    "wpbe_certified": false
+  },
+  "frozen_checkpoint_sha256": "08fbaea4027f367f1275e9947aee1bf3c50e8db1bd45b7f571011da20063002d",
+  "m": 12,
+  "p1": 0.23,
+  "p2": 0.46,
+  "posteriors": [
+    {
+      "conditional_event_measure_lower": 0.014766060736722559,
+      "conditional_event_measure_upper": 0.014766060736722559,
+      "conditional_win_probability_estimate": 0.4600079165752025,
+      "conditional_win_probability_lower": 0.4600079165752025,
+      "conditional_win_probability_upper": 0.4600079165752025,
+      "conditioned_zero_probability_factor": 0.2773693514834542,
+      "count_tail_discarded": false,
+      "exact_arithmetic_certificate": false,
+      "explicit_count_cap": 12,
+      "explicit_count_mass": 1.0000000000000002,
+      "explicit_count_states": 91,
+      "explicit_count_tail": 4.667679298286339e-22,
+      "floating_point_verified": true,
+      "marginalized_zero_retention_routes": [
+        2,
+        3,
+        4
+      ],
+      "price_index": 1,
+      "q": 0.46,
+      "relevant_routes": [
+        0,
+        1
+      ],
+      "resolved": true,
+      "structurally_off_path": false,
+      "structurally_zero_routes": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "tag_route": 0,
+      "tagged_win_measure_lower": 0.0067925048355226446,
+      "tagged_win_measure_upper": 0.0067925048355226446
+    },
+    {
+      "conditional_event_measure_lower": 1.419349104784623e-22,
+      "conditional_event_measure_upper": 1.4193491047858164e-22,
+      "conditional_win_probability_estimate": 0.2503085535007379,
+      "conditional_win_probability_lower": 0.25030855350052744,
+      "conditional_win_probability_upper": 0.2503085535013682,
+      "conditioned_zero_probability_factor": 0.2773693514834542,
+      "count_tail_discarded": false,
+      "exact_arithmetic_certificate": false,
+      "explicit_count_cap": 18,
+      "explicit_count_mass": 1.0000000000000002,
+      "explicit_count_states": 190,
+      "explicit_count_tail": 1.1934489054461671e-34,
+      "floating_point_verified": true,
+      "marginalized_zero_retention_routes": [
+        2,
+        3,
+        4
+      ],
+      "price_index": 1,
+      "q": 0.46,
+      "relevant_routes": [
+        0,
+        1
+      ],
+      "resolved": true,
+      "structurally_off_path": false,
+      "structurally_zero_routes": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "tag_route": 1,
+      "tagged_win_measure_lower": 3.552752213312062e-23,
+      "tagged_win_measure_upper": 3.5527522133239964e-23
+    }
+  ],
+  "scope": "1000-count integration regression only; these old policies must FAIL, not acceptance evidence",
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "accelerated_evaluator.py": "81cce00ff4af3ffe547fac4869b8ac08fa2cc521394ab0f4b8f501230bf75954",
+      "bounded_rare_posterior.py": "41b85930cbe2958276d6e49528fa31d06685401ff2218d8fd7813bcf5bad92ae",
+      "check_rare_posterior_integration.py": "352534e545fbb7da52f8247832af00b9c25bfae96c9347ad9c2157cfc4b9ce1e",
+      "history_envelope.py": "5fe155aaf4062e0fa98ef702b6c2ef128dd93d8f7c7a4883f28570a0b9f48dd0",
+      "rare_posterior_evaluator.py": "cb40e681373b051f164f4a4d17fb0f6c3e70127b592d140700455bdbb7e3d935",
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/analytic.py": "1cbb8f55d968c11d0ef00a278aec8fdc39105d792b04d19f8db0acdc92586f42",
+      "research_solver/certified.py": "d3cd3175706cd6688eb5789b1fd41e1c4ef7b35acd14a7515e75e70f0bca9ce9",
+      "research_solver/conditional.py": "cbfbdff572dbcf869fb93a34a9e431451c71efcfb34403458c293e02b2ec95a2",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/high_precision.py": "01142677df68786566d5e95e8a50db61be07dccdb2ee7e21b3964cb7a4427248",
+      "research_solver/outcomes.py": "b547b78de4385040a55f25f1350afcda1d96020e4b70d9eb2212c033ea61cb0f",
+      "research_solver/posterior.py": "022cc660a3ba3f61e0442cbc9eda7460d41ae3112c0b2d3056c03b6c6ba93f1d",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "research_solver/supported.py": "6254957db7a51604a234718fad3ef299e623002586c3ba4a7208365a8edb0c9f",
+      "research_solver/types.py": "c441573c6747c91ca74e8d9f7cab1da80cf2508522effde133992734ffb8ff51",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3",
+      "strict_multi_route_envelope.py": "4eb139a2a8b393caf0a724ff61f647ea15963d4f79dadfb17d59130d81b57f22",
+      "zero_retention_envelope.py": "61494720d908e6ed8d58a356f23e8937d22eda84200836786522baac07c7b575"
+    }
+  },
+  "support_sha256": "06421f0a79b9592bda914b881475e4edb8729473738c02fb51740d71a3cf981b",
+  "training_regrets": {
+    "full_plan_minus_legacy_max": 1.1396707464469275e-08,
+    "full_plan_regret_max": 0.00032748886908177954,
+    "initial_support_gap_max": 0.0003274898246488772,
+    "legacy_initial_regret_max": 0.00032748886908177954,
+    "max_regret": 0.003370571212209187,
+    "retention_regret_max": 0.003370571212209187,
+    "retention_support_gap_max": 0.005786965562835703,
+    "sample_checks_pass": false,
+    "witness": {
+      "cost": 0.200439453125,
+      "cost_index": 410,
+      "fit": 0.9953986642951244,
+      "route_index": 47
+    }
+  },
+  "unknown_training_histories": 0
+}

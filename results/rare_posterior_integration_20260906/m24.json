@@ -1,0 +1,1395 @@
+{
+  "audit": {
+    "all_count_tails_retained": true,
+    "alpha": 0.05,
+    "bounded_checks_pass": false,
+    "completion": 0.6752732781404106,
+    "conditional_retention_audit": [
+      {
+        "conditional_event_lower": [
+          0.06158459299119545,
+          0.06158459299119545,
+          0.06158459299119545,
+          0.05932717302165942,
+          0.05793729032501261,
+          0.05620301885327579,
+          0.05457251205262623,
+          0.05354802638408607,
+          0.052535051457039066,
+          0.0515159240232144,
+          0.04993493369220234,
+          0.048286152547440425,
+          0.047157848527793415,
+          0.045424752729837294,
+          0.042959034801851835,
+          0.04103849515569,
+          0.03972730552095504,
+          0.037729905345014324,
+          0.03488906551289178,
+          0.032915655665701996,
+          0.031610772370490044,
+          0.030253123552415113,
+          0.02885140209992293,
+          0.02738274859755207,
+          0.025865347889699228,
+          0.02347181972190871,
+          0.020965654081004467,
+          0.019363567493981312,
+          0.018187260976111237,
+          0.01690107909710483,
+          0.015504677826764734,
+          0.01393361573014211,
+          0.012241565711389055,
+          0.00986152930942761,
+          0.006538559098924868,
+          0.0031907495598997443,
+          7.805016112121671e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditional_event_mean": [
+          0.12066775027416658,
+          0.12066775027416658,
+          0.12066775027416658,
+          0.11721273241943676,
+          0.11511131920903572,
+          0.11251634370233182,
+          0.11010435037914737,
+          0.10860268367700987,
+          0.10712899542232615,
+          0.10565789493040385,
+          0.10339798299456417,
+          0.10106857416822589,
+          0.09949020661823121,
+          0.09709003614900508,
+          0.09372270533343176,
+          0.09113759563776089,
+          0.08939195395139928,
+          0.0867628818409655,
+          0.08308300781251597,
+          0.08056587209222113,
+          0.0789182574872372,
+          0.07721783182256325,
+          0.07547659487326595,
+          0.07366763837077016,
+          0.07181533927590474,
+          0.06892750548516587,
+          0.06594637258538813,
+          0.06406166651699209,
+          0.06268718134339525,
+          0.06119264855454966,
+          0.05957961891570867,
+          0.05777568889973662,
+          0.055844451272470196,
+          0.053148006664973525,
+          0.04942075088562258,
+          0.04570544764467209,
+          0.04228303721509666,
+          0.03716383790013929,
+          0.030764694301599182,
+          0.024174474244739102,
+          0.01768619869657724,
+          0.01188254970278835,
+          0.005962517926849369,
+          0.0013358453634755019,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count_draws": 1000,
+        "count_states": 513,
+        "log_probability_factor": -0.005679781704219121,
+        "q": 0.17,
+        "seed": 202613061863
+      },
+      {
+        "conditional_event_lower": [
+          0.09668957081585916,
+          0.042760312543513604,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditional_event_mean": [
+          0.1468709149503874,
+          0.08905177945825837,
+          0.00020689779280819252,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count_draws": 1000,
+        "count_states": 14,
+        "log_probability_factor": -1.5847400588788303,
+        "q": 0.36,
+        "seed": 202613166592
+      }
+    ],
+    "count_draws": 1000,
+    "count_states": 514,
+    "exact_arithmetic_certificate": false,
+    "family_size": 2752608,
+    "full_plan_regret_upper": 0.01964221693256979,
+    "initial_support_gap_upper": 0.019807920492857522,
+    "max_regret_upper": 0.07977215548546422,
+    "method": "joint_payoff_Bernstein_and_conditional_counts_and_bounded_rare_posteriors",
+    "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+    "offpath_certified": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ]
+    ],
+    "old_history_probability": [
+      [
+        0.12420122760337723,
+        0.02973290736305505
+      ],
+      [
+        0.12420122760337723,
+        0.018011927461479633
+      ],
+      [
+        0.12420122760337723,
+        4.144217516601987e-05
+      ],
+      [
+        0.12045656753328085,
+        1.6469490797949192e-21
+      ],
+      [
+        0.11827109779446379,
+        0.0
+      ],
+      [
+        0.11558815701634621,
+        0.0
+      ],
+      [
+        0.11309793688268008,
+        0.0
+      ],
+      [
+        0.1115397558422901,
+        0.0
+      ],
+      [
+        0.10999551868179705,
+        0.0
+      ],
+      [
+        0.10842376394569059,
+        0.0
+      ],
+      [
+        0.10606164493737573,
+        0.0
+      ],
+      [
+        0.10357619915616313,
+        0.0
+      ],
+      [
+        0.10191014452005766,
+        0.0
+      ],
+      [
+        0.09940234308808596,
+        0.0
+      ],
+      [
+        0.09590873736692863,
+        0.0
+      ],
+      [
+        0.09318973752765726,
+        0.0
+      ],
+      [
+        0.09135647676051305,
+        0.0
+      ],
+      [
+        0.0885410152094142,
+        0.0
+      ],
+      [
+        0.08464690193958233,
+        0.0
+      ],
+      [
+        0.08202588442765626,
+        0.0
+      ],
+      [
+        0.08031799123956318,
+        0.0
+      ],
+      [
+        0.0785676997196202,
+        0.0
+      ],
+      [
+        0.07677250894935878,
+        0.0
+      ],
+      [
+        0.07489964909215523,
+        0.0
+      ],
+      [
+        0.0729596095138488,
+        0.0
+      ],
+      [
+        0.07001416307890569,
+        0.0
+      ],
+      [
+        0.0669784556638002,
+        0.0
+      ],
+      [
+        0.06504593464229474,
+        0.0
+      ],
+      [
+        0.06365750945679528,
+        0.0
+      ],
+      [
+        0.06214266263004306,
+        0.0
+      ],
+      [
+        0.06046535666783271,
+        0.0
+      ],
+      [
+        0.058600655959833256,
+        0.0
+      ],
+      [
+        0.05657618617125051,
+        0.0
+      ],
+      [
+        0.053723490634511484,
+        0.0
+      ],
+      [
+        0.04977492904326154,
+        0.0
+      ],
+      [
+        0.04589902191581467,
+        0.0
+      ],
+      [
+        0.04235404582347207,
+        0.0
+      ],
+      [
+        0.037048209033490216,
+        0.0
+      ],
+      [
+        0.030487548589313865,
+        0.0
+      ],
+      [
+        0.02380684496187907,
+        0.0
+      ],
+      [
+        0.017430436233513074,
+        0.0
+      ],
+      [
+        0.01171177791536545,
+        0.0
+      ],
+      [
+        0.005882082331327885,
+        0.0
+      ],
+      [
+        0.0013251586005676968,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "old_win_certified_zero": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        false,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ],
+      [
+        true,
+        true
+      ]
+    ],
+    "old_win_probability": [
+      [
+        0.0,
+        0.2722134627870725
+      ],
+      [
+        0.0,
+        0.3216160434413742
+      ],
+      [
+        0.031100944356833204,
+        0.4751114175298861
+      ],
+      [
+        0.02874836664299763,
+        0.32841045280248843
+      ],
+      [
+        0.027526715026419322,
+        0.0
+      ],
+      [
+        0.026276815275645765,
+        0.0
+      ],
+      [
+        0.024742720711343365,
+        0.0
+      ],
+      [
+        0.023987371904575363,
+        0.0
+      ],
+      [
+        0.023258801191703836,
+        0.0
+      ],
+      [
+        0.02241173091163837,
+        0.0
+      ],
+      [
+        0.02152047973590786,
+        0.0
+      ],
+      [
+        0.019750076856371142,
+        0.0
+      ],
+      [
+        0.018421978014541512,
+        0.0
+      ],
+      [
+        0.017029557738216905,
+        0.0
+      ],
+      [
+        0.014211779021337755,
+        0.0
+      ],
+      [
+        0.01159102335476482,
+        0.0
+      ],
+      [
+        0.010046311889612669,
+        0.0
+      ],
+      [
+        0.007270718148054477,
+        0.0
+      ],
+      [
+        0.0026304430326542045,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "rare_posterior_records": [
+      {
+        "conditional_event_measure_lower": 0.00020215589253465204,
+        "conditional_event_measure_upper": 0.00020215589253465204,
+        "conditional_win_probability_estimate": 0.4751114175298861,
+        "conditional_win_probability_lower": 0.4751114175298861,
+        "conditional_win_probability_upper": 0.4751114175298861,
+        "conditioned_zero_probability_factor": 0.20500107440061965,
+        "count_tail_discarded": false,
+        "exact_arithmetic_certificate": false,
+        "explicit_count_cap": 12,
+        "explicit_count_mass": 0.9999999999999999,
+        "explicit_count_states": 13,
+        "explicit_count_tail": 1.7335629672826617e-35,
+        "floating_point_verified": true,
+        "marginalized_zero_retention_routes": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "price_index": 1,
+        "q": 0.36,
+        "relevant_routes": [
+          3
+        ],
+        "resolved": true,
+        "structurally_off_path": false,
+        "structurally_zero_routes": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "tag_route": 2,
+        "tagged_win_measure_lower": 9.604657266415786e-05,
+        "tagged_win_measure_upper": 9.604657266415786e-05
+      },
+      {
+        "conditional_event_measure_lower": 8.033855844952299e-21,
+        "conditional_event_measure_upper": 8.033855844952317e-21,
+        "conditional_win_probability_estimate": 0.32841045280248843,
+        "conditional_win_probability_lower": 0.3284104528024877,
+        "conditional_win_probability_upper": 0.32841045280248987,
+        "conditioned_zero_probability_factor": 0.20500107440061965,
+        "count_tail_discarded": false,
+        "exact_arithmetic_certificate": false,
+        "explicit_count_cap": 12,
+        "explicit_count_mass": 0.9999999999999999,
+        "explicit_count_states": 13,
+        "explicit_count_tail": 1.7335629672826617e-35,
+        "floating_point_verified": true,
+        "marginalized_zero_retention_routes": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "price_index": 1,
+        "q": 0.36,
+        "relevant_routes": [
+          3
+        ],
+        "resolved": true,
+        "structurally_off_path": false,
+        "structurally_zero_routes": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "tag_route": 3,
+        "tagged_win_measure_lower": 2.638402235790703e-21,
+        "tagged_win_measure_upper": 2.63840223579072e-21
+      }
+    ],
+    "regrets": {
+      "full_plan_minus_legacy_max": 0.0,
+      "full_plan_regret_max": 0.0003140932532791525,
+      "initial_support_gap_max": 0.00036981289392237077,
+      "legacy_initial_regret_max": 0.0003140932532791525,
+      "max_regret": 0.0015838542817506328,
+      "retention_regret_max": 0.0015838542817506328,
+      "retention_support_gap_max": 0.003959635704376582,
+      "sample_checks_pass": false,
+      "witness": {
+        "cost": 0.136962890625,
+        "cost_index": 280,
+        "fit": 0.9235928995112598,
+        "route_index": 40
+      }
+    },
+    "retention_regret_upper": 0.07977215548546422,
+    "retention_support_gap_upper": 0.07977215548546422,
+    "scope": "Fixed finite-support profile; count-law uncertainty only.",
+    "seed": 202610061846,
+    "unresolved_histories": [],
+    "wpbe_certified": false
+  },
+  "frozen_checkpoint_sha256": "a9dc8ea7183e929f140e290c60fd6daa99a7176201cebd969647e5863e20ddd7",
+  "m": 24,
+  "p1": 0.17,
+  "p2": 0.36,
+  "posteriors": [
+    {
+      "conditional_event_measure_lower": 0.00020215589253465204,
+      "conditional_event_measure_upper": 0.00020215589253465204,
+      "conditional_win_probability_estimate": 0.4751114175298861,
+      "conditional_win_probability_lower": 0.4751114175298861,
+      "conditional_win_probability_upper": 0.4751114175298861,
+      "conditioned_zero_probability_factor": 0.20500107440061965,
+      "count_tail_discarded": false,
+      "exact_arithmetic_certificate": false,
+      "explicit_count_cap": 12,
+      "explicit_count_mass": 0.9999999999999999,
+      "explicit_count_states": 13,
+      "explicit_count_tail": 1.7335629672826617e-35,
+      "floating_point_verified": true,
+      "marginalized_zero_retention_routes": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "price_index": 1,
+      "q": 0.36,
+      "relevant_routes": [
+        3
+      ],
+      "resolved": true,
+      "structurally_off_path": false,
+      "structurally_zero_routes": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "tag_route": 2,
+      "tagged_win_measure_lower": 9.604657266415786e-05,
+      "tagged_win_measure_upper": 9.604657266415786e-05
+    },
+    {
+      "conditional_event_measure_lower": 8.033855844952299e-21,
+      "conditional_event_measure_upper": 8.033855844952317e-21,
+      "conditional_win_probability_estimate": 0.32841045280248843,
+      "conditional_win_probability_lower": 0.3284104528024877,
+      "conditional_win_probability_upper": 0.32841045280248987,
+      "conditioned_zero_probability_factor": 0.20500107440061965,
+      "count_tail_discarded": false,
+      "exact_arithmetic_certificate": false,
+      "explicit_count_cap": 12,
+      "explicit_count_mass": 0.9999999999999999,
+      "explicit_count_states": 13,
+      "explicit_count_tail": 1.7335629672826617e-35,
+      "floating_point_verified": true,
+      "marginalized_zero_retention_routes": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "price_index": 1,
+      "q": 0.36,
+      "relevant_routes": [
+        3
+      ],
+      "resolved": true,
+      "structurally_off_path": false,
+      "structurally_zero_routes": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "tag_route": 3,
+      "tagged_win_measure_lower": 2.638402235790703e-21,
+      "tagged_win_measure_upper": 2.63840223579072e-21
+    }
+  ],
+  "scope": "1000-count integration regression only; these old policies must FAIL, not acceptance evidence",
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "accelerated_evaluator.py": "81cce00ff4af3ffe547fac4869b8ac08fa2cc521394ab0f4b8f501230bf75954",
+      "bounded_rare_posterior.py": "41b85930cbe2958276d6e49528fa31d06685401ff2218d8fd7813bcf5bad92ae",
+      "check_rare_posterior_integration.py": "352534e545fbb7da52f8247832af00b9c25bfae96c9347ad9c2157cfc4b9ce1e",
+      "history_envelope.py": "5fe155aaf4062e0fa98ef702b6c2ef128dd93d8f7c7a4883f28570a0b9f48dd0",
+      "rare_posterior_evaluator.py": "cb40e681373b051f164f4a4d17fb0f6c3e70127b592d140700455bdbb7e3d935",
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/analytic.py": "1cbb8f55d968c11d0ef00a278aec8fdc39105d792b04d19f8db0acdc92586f42",
+      "research_solver/certified.py": "d3cd3175706cd6688eb5789b1fd41e1c4ef7b35acd14a7515e75e70f0bca9ce9",
+      "research_solver/conditional.py": "cbfbdff572dbcf869fb93a34a9e431451c71efcfb34403458c293e02b2ec95a2",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/high_precision.py": "01142677df68786566d5e95e8a50db61be07dccdb2ee7e21b3964cb7a4427248",
+      "research_solver/outcomes.py": "b547b78de4385040a55f25f1350afcda1d96020e4b70d9eb2212c033ea61cb0f",
+      "research_solver/posterior.py": "022cc660a3ba3f61e0442cbc9eda7460d41ae3112c0b2d3056c03b6c6ba93f1d",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "research_solver/supported.py": "6254957db7a51604a234718fad3ef299e623002586c3ba4a7208365a8edb0c9f",
+      "research_solver/types.py": "c441573c6747c91ca74e8d9f7cab1da80cf2508522effde133992734ffb8ff51",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3",
+      "strict_multi_route_envelope.py": "4eb139a2a8b393caf0a724ff61f647ea15963d4f79dadfb17d59130d81b57f22",
+      "zero_retention_envelope.py": "61494720d908e6ed8d58a356f23e8937d22eda84200836786522baac07c7b575"
+    }
+  },
+  "support_sha256": "06421f0a79b9592bda914b881475e4edb8729473738c02fb51740d71a3cf981b",
+  "training_regrets": {
+    "full_plan_minus_legacy_max": 0.0,
+    "full_plan_regret_max": 0.00030503376374541036,
+    "initial_support_gap_max": 0.00046927896695378793,
+    "legacy_initial_regret_max": 0.00030503376374541036,
+    "max_regret": 0.0015838542817506328,
+    "retention_regret_max": 0.0015838542817506328,
+    "retention_support_gap_max": 0.003959635704376582,
+    "sample_checks_pass": false,
+    "witness": {
+      "cost": 0.118408203125,
+      "cost_index": 242,
+      "fit": 0.7986588713463808,
+      "route_index": 33
+    }
+  },
+  "unknown_training_histories": 0
+}

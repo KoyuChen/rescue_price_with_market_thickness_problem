@@ -1,0 +1,154 @@
+{
+  "observed_at_utc": "2026-09-06T10:36:50.628399+00:00",
+  "runs": [
+    {
+      "run": "runs/m1_outer_search_20260906",
+      "m": 1,
+      "menu": "menu_00174",
+      "iteration": 111,
+      "stage": 2,
+      "checkpoint_age_seconds": 0,
+      "completed_menus": 174
+    },
+    {
+      "run": "runs/m3_outer_search_20260906",
+      "m": 3,
+      "menu": "menu_00160",
+      "iteration": 184,
+      "stage": 2,
+      "checkpoint_age_seconds": 1,
+      "completed_menus": 160
+    },
+    {
+      "run": "runs/thick_checkpointed_20260905",
+      "m": 12,
+      "menu": "menu_00000",
+      "iteration": 339,
+      "stage": 3,
+      "checkpoint_age_seconds": 297,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_checkpointed_20260905",
+      "m": 24,
+      "menu": "menu_00000",
+      "iteration": 295,
+      "stage": 3,
+      "checkpoint_age_seconds": 310,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_checkpointed_20260905",
+      "m": 48,
+      "menu": "menu_00000",
+      "iteration": 207,
+      "stage": 3,
+      "checkpoint_age_seconds": 742,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_checkpointed_20260905",
+      "m": 6,
+      "menu": "menu_00000",
+      "iteration": 511,
+      "stage": 3,
+      "checkpoint_age_seconds": 161,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_rare_solver_20260906",
+      "m": 12,
+      "menu": "menu_00000",
+      "iteration": 1,
+      "stage": 0,
+      "checkpoint_age_seconds": 18,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_rare_solver_20260906",
+      "m": 24,
+      "menu": "menu_00000",
+      "iteration": 1,
+      "stage": 0,
+      "checkpoint_age_seconds": 32,
+      "completed_menus": 0
+    },
+    {
+      "run": "runs/thick_rare_solver_20260906",
+      "m": 6,
+      "menu": "menu_00000",
+      "iteration": 1,
+      "stage": 0,
+      "checkpoint_age_seconds": 28,
+      "completed_menus": 0
+    }
+  ],
+  "processes": [
+    {
+      "pid": 1114058,
+      "state": "R",
+      "cpu_seconds": 14904.88,
+      "command": "python -u run_accelerated_price_search.py --m 1 --gate-root runs/research_refined_strict_20260905 --model-request runs/research_gate_20260905/request.json --output runs/m1_outer_search_20260906"
+    },
+    {
+      "pid": 1114089,
+      "state": "R",
+      "cpu_seconds": 14872.79,
+      "command": "python -u run_accelerated_m3_search.py --gate-root runs/m3_reactivated_20260906 --model-request runs/research_gate_20260905/request.json --output runs/m3_outer_search_20260906"
+    },
+    {
+      "pid": 1114139,
+      "state": "S",
+      "cpu_seconds": 0.16,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 1114142,
+      "state": "R",
+      "cpu_seconds": 14840.45,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 1114143,
+      "state": "R",
+      "cpu_seconds": 14905.41,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 1114144,
+      "state": "R",
+      "cpu_seconds": 14953.67,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 1114145,
+      "state": "R",
+      "cpu_seconds": 14923.56,
+      "command": "python -u run_checkpointed_markets.py --source-run runs/thick_high_precision_20260905 --output runs/thick_checkpointed_20260905 --workers 4"
+    },
+    {
+      "pid": 1382840,
+      "state": "S",
+      "cpu_seconds": 0.34,
+      "command": "python -u run_rare_posterior_markets.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_solver_20260906 --m 6 12 24 --workers 3"
+    },
+    {
+      "pid": 1382847,
+      "state": "R",
+      "cpu_seconds": 26.97,
+      "command": "python -u run_rare_posterior_markets.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_solver_20260906 --m 6 12 24 --workers 3"
+    },
+    {
+      "pid": 1382848,
+      "state": "R",
+      "cpu_seconds": 41.02,
+      "command": "python -u run_rare_posterior_markets.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_solver_20260906 --m 6 12 24 --workers 3"
+    },
+    {
+      "pid": 1382849,
+      "state": "R",
+      "cpu_seconds": 42.59,
+      "command": "python -u run_rare_posterior_markets.py --source-run runs/thick_checkpointed_20260905 --output runs/thick_rare_solver_20260906 --m 6 12 24 --workers 3"
+    }
+  ]
+}

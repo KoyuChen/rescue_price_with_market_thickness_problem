@@ -1,0 +1,3 @@
+{"stage": "worker_started", "pid": 9, "m": 12}
+{"stage": "menu_started", "phase": "validation_gate", "ordinal": 0, "p1": 0.23, "p2": 0.46, "resume": false, "m": 12}
+{"p1": 0.23, "p2": 0.46, "stage": "iteration", "temperature": 0.02, "iteration": 1, "max_regret": 0.07702351089480447, "unknown": 1, "rare_resolved": 0, "m": 12}
