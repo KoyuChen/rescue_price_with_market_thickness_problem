@@ -1,0 +1,1898 @@
+{
+  "audits": [
+    {
+      "alpha": 5.650720384574163e-07,
+      "bounded_checks_pass": false,
+      "completion": 0.20747439754443062,
+      "conditional_retention_audit": [
+        {
+          "conditional_event_lower": [
+            0.381131659233929,
+            0.30491251662381624,
+            0.41880460654301443,
+            0.3378824670766798,
+            0.3758120572234395,
+            0.16228199024673556,
+            0.13703395880632113,
+            0.11598746250657792,
+            0.09695942837006924,
+            0.08278389750756919,
+            0.07109228369611664,
+            0.058784108177315664,
+            0.0480252765164071,
+            0.039007771311918855,
+            0.0313310323604199,
+            0.023772022826252022,
+            0.016786667572582303,
+            0.010697748405528396,
+            0.004636664991791538,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.3817316998291503,
+            0.3053665574730734,
+            0.41947760802440565,
+            0.3384001317368723,
+            0.37640180701380127,
+            0.16247129324644663,
+            0.1371826750759657,
+            0.11610599554258888,
+            0.09705453802735384,
+            0.08286513440452614,
+            0.07116527427916905,
+            0.05885168722214857,
+            0.048090520824262295,
+            0.039073015630220996,
+            0.03139627666827509,
+            0.02383726714298541,
+            0.016851911884702444,
+            0.010762992715516062,
+            0.004701909299646731,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 102,
+          "log_probability_factor": -0.0,
+          "q": 0.2,
+          "seed": 16696585291292000969
+        }
+      ],
+      "count_draws": 1000000,
+      "count_envelope_certificates": [
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 0,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.010401502481540655,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 1,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009707333295320468,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 2,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.01641937664325513,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 3,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.014060171083885825,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 4,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.016708298338374616,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 5,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008548269631964863,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 6,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008387487865795698,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 7,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009096162043031115,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 8,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009027917501992777,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 9,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008855127475309602,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 10,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008768974872074613,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 11,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008797402155197864,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 12,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008744766082263255,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 13,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008683136200176605,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 14,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008634089460475908,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 15,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008631974762706541,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 16,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008610676453027193,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 17,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008576003666846552,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 18,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008575427830021718,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 19,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.00852253257768167,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 20,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008468517772411926,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 21,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.00840752453255091,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 22,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008395190887504164,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 23,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008394261392518323,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        }
+      ],
+      "count_states": 93,
+      "exact_arithmetic_certificate": false,
+      "family_size": 1376304,
+      "floating_point_envelope_verified_with_margin": true,
+      "full_plan_regret_upper": 0.00039467975954218804,
+      "initial_support_gap_upper": 0.006015542745651422,
+      "max_regret_upper": 0.0012329662934530204,
+      "method": "direct_payoff_Bernstein_with_structural_zero_wins_and_conditional_counts_and_all_counts_continuation_envelopes",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.38184209226062443,
+          0.0
+        ],
+        [
+          0.3054480924181509,
+          0.0
+        ],
+        [
+          0.4195959000583393,
+          0.0
+        ],
+        [
+          0.33848971019655466,
+          0.0
+        ],
+        [
+          0.3765098560545229,
+          0.0
+        ],
+        [
+          0.1625074528161005,
+          0.0
+        ],
+        [
+          0.1372090704628212,
+          0.0
+        ],
+        [
+          0.11612455683188401,
+          0.0
+        ],
+        [
+          0.09706487014601972,
+          0.0
+        ],
+        [
+          0.0828703218174529,
+          0.0
+        ],
+        [
+          0.07116775790404245,
+          0.0
+        ],
+        [
+          0.05885237651649454,
+          0.0
+        ],
+        [
+          0.048090520824262274,
+          0.0
+        ],
+        [
+          0.03907301563022097,
+          0.0
+        ],
+        [
+          0.03139627666827509,
+          0.0
+        ],
+        [
+          0.023837267142985414,
+          0.0
+        ],
+        [
+          0.016851911884702427,
+          0.0
+        ],
+        [
+          0.010762992715516072,
+          0.0
+        ],
+        [
+          0.004701909299646727,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "old_win_certified_zero": [
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.09891649459953877,
+          0.0
+        ],
+        [
+          0.0830765910737857,
+          0.0
+        ],
+        [
+          0.36038516562706757,
+          0.0
+        ],
+        [
+          0.3216024652115177,
+          0.0
+        ],
+        [
+          0.4306243248177622,
+          0.0
+        ],
+        [
+          0.026265347550225377,
+          0.0
+        ],
+        [
+          0.008032608456393985,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "original_unconditional_retention_upper": 0.0012332580858097186,
+      "regrets": {
+        "full_plan_minus_legacy_max": 2.952584633762051e-05,
+        "full_plan_regret_max": 0.0003907324558401516,
+        "initial_support_gap_max": 0.00569913429515596,
+        "legacy_initial_regret_max": 0.00037392020110518093,
+        "max_regret": 0.001227678243134786,
+        "retention_regret_max": 0.001227678243134786,
+        "retention_support_gap_max": 0.01871175496318832,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.019775390625,
+          "cost_index": 40,
+          "fit": 0.3150135900354043,
+          "route_index": 2
+        }
+      },
+      "retention_regret_upper": 0.0012329662934530204,
+      "retention_support_gap_upper": 0.018792353200015568,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 16696585291289000952,
+      "unresolved_histories": [],
+      "wpbe_certified": false
+    },
+    {
+      "alpha": 5.650720384574163e-07,
+      "bounded_checks_pass": false,
+      "completion": 0.20731807227285512,
+      "conditional_retention_audit": [
+        {
+          "conditional_event_lower": [
+            0.38132904536998535,
+            0.30505365268376444,
+            0.41903010181222455,
+            0.33804520063506893,
+            0.37600402089263424,
+            0.16231825453346843,
+            0.1370567389832398,
+            0.11600517700735268,
+            0.09696905553681003,
+            0.0827887638656268,
+            0.07109411869698046,
+            0.05878472929973429,
+            0.04802527651640711,
+            0.039007771310302704,
+            0.03133103236041989,
+            0.023772022831647914,
+            0.01678666757295391,
+            0.010697748407660874,
+            0.004636664991791539,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "conditional_event_mean": [
+            0.3819264814507861,
+            0.3055058251166412,
+            0.4197001712155726,
+            0.33856065326489954,
+            0.3765912148952716,
+            0.16250688048188672,
+            0.13720491346971708,
+            0.116123290731119,
+            0.09706388032436447,
+            0.08286981158701064,
+            0.07116698678177051,
+            0.05885223650358055,
+            0.0480905208242623,
+            0.03907301563022099,
+            0.03139627666827508,
+            0.02383726714298542,
+            0.01685191188470245,
+            0.010762992715516066,
+            0.004701909299646732,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count_draws": 1000000,
+          "count_states": 97,
+          "log_probability_factor": -0.0,
+          "q": 0.2,
+          "seed": 16696585291292105698
+        }
+      ],
+      "count_draws": 1000000,
+      "count_envelope_certificates": [
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 0,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.010401502481540655,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 1,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009707333295320468,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 2,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.01641937664325513,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 3,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.014060171083885825,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 4,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.016708298338374616,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 5,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008548269631964863,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 6,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008387487865795698,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 7,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009096162043031115,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 8,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.009027917501992777,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 9,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008855127475309602,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 10,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008768974872074613,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 11,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008797402155197864,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 12,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008744766082263255,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 13,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008683136200176605,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 14,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008634089460475908,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 15,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008631974762706541,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 16,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008610676453027193,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 17,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008576003666846552,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 18,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 1,
+            "k": 1,
+            "minimum_active_margin": 0.008575427830021718,
+            "passed": true,
+            "points": 52
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 19,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.00852253257768167,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 20,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008468517772411926,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 21,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.00840752453255091,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 22,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008395190887504164,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        },
+        {
+          "comparator_q": 0.2,
+          "finite_checks": [],
+          "q": 0.55,
+          "route_index": 23,
+          "tail_check": {
+            "certain_high": true,
+            "competitor_crossings": 0,
+            "k": 1,
+            "minimum_active_margin": 0.008394261392518323,
+            "passed": true,
+            "points": 51
+          },
+          "tail_from_k": 1
+        }
+      ],
+      "count_states": 95,
+      "exact_arithmetic_certificate": false,
+      "family_size": 1376304,
+      "floating_point_envelope_verified_with_margin": true,
+      "full_plan_regret_upper": 0.0003949184520681275,
+      "initial_support_gap_upper": 0.006019180796648823,
+      "max_regret_upper": 0.0012333234204227215,
+      "method": "direct_payoff_Bernstein_with_structural_zero_wins_and_conditional_counts_and_all_counts_continuation_envelopes",
+      "offpath_belief": "At structurally impossible old histories: v=0 and no rivals; retain=0 is optimal.",
+      "offpath_certified": [
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_history_probability": [
+        [
+          0.3819317439008425,
+          0.0
+        ],
+        [
+          0.30551035390178916,
+          0.0
+        ],
+        [
+          0.4197087250755793,
+          0.0
+        ],
+        [
+          0.3385714431342889,
+          0.0
+        ],
+        [
+          0.3765985508377018,
+          0.0
+        ],
+        [
+          0.16250531582313693,
+          0.0
+        ],
+        [
+          0.1371993628842907,
+          0.0
+        ],
+        [
+          0.11611264246530831,
+          0.0
+        ],
+        [
+          0.09705530415187774,
+          0.0
+        ],
+        [
+          0.08286582786371478,
+          0.0
+        ],
+        [
+          0.07116498346463651,
+          0.0
+        ],
+        [
+          0.05885197801820077,
+          0.0
+        ],
+        [
+          0.048090520824262274,
+          0.0
+        ],
+        [
+          0.039073015630220954,
+          0.0
+        ],
+        [
+          0.03139627666827508,
+          0.0
+        ],
+        [
+          0.023837267142985417,
+          0.0
+        ],
+        [
+          0.016851911884702423,
+          0.0
+        ],
+        [
+          0.010762992715516067,
+          0.0
+        ],
+        [
+          0.0047019092996467265,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "old_win_certified_zero": [
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "old_win_probability": [
+        [
+          0.09892899791977885,
+          0.0
+        ],
+        [
+          0.08309046869992669,
+          0.0
+        ],
+        [
+          0.3604268258031224,
+          0.0
+        ],
+        [
+          0.3216692744748146,
+          0.0
+        ],
+        [
+          0.4307060964585752,
+          0.0
+        ],
+        [
+          0.026273553002282922,
+          0.0
+        ],
+        [
+          0.008034017589656951,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "original_unconditional_retention_upper": 0.0012335569098382963,
+      "regrets": {
+        "full_plan_minus_legacy_max": 2.9538035025672427e-05,
+        "full_plan_regret_max": 0.000390974398051306,
+        "initial_support_gap_max": 0.005702710612044137,
+        "legacy_initial_regret_max": 0.0003741548432562164,
+        "max_regret": 0.0012279877982931502,
+        "retention_regret_max": 0.0012279877982931502,
+        "retention_support_gap_max": 0.01871647307259794,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.019775390625,
+          "cost_index": 40,
+          "fit": 0.3150135900354043,
+          "route_index": 2
+        }
+      },
+      "retention_regret_upper": 0.0012333234204227215,
+      "retention_support_gap_upper": 0.01879779637894715,
+      "scope": "Fixed finite-support profile; count-law uncertainty only.",
+      "seed": 16696585291289105681,
+      "unresolved_histories": [],
+      "wpbe_certified": false
+    }
+  ],
+  "branch_rule": "Common homotopy cold start, zero-temperature polishing; no outcome-based branch choice.",
+  "complementarity": {
+    "initial_complementarity_residual": 0.0003737834886140526,
+    "payoff_units": true,
+    "posterior_uncertainty_not_included": true,
+    "retention_complementarity_residual": 0.0012275670362209502,
+    "simplex_residual": 1.1102230246251565e-16
+  },
+  "continuous_type_convergence_verified": false,
+  "cost_points": 2048,
+  "equilibrium_uniqueness_proved": false,
+  "external_price_optimized": false,
+  "iteration_history": [
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.00015955621361078004,
+        "full_plan_regret_max": 0.009260035893753994,
+        "initial_support_gap_max": 0.1313877201568885,
+        "legacy_initial_regret_max": 0.009260035893753994,
+        "max_regret": 0.009260035893753994,
+        "retention_regret_max": 0.0018006640006088643,
+        "retention_support_gap_max": 0.004,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.197998046875,
+          "cost_index": 405,
+          "fit": 0.9910523105172737,
+          "route_index": 22
+        }
+      },
+      "iteration": 40,
+      "temperature": 0.02
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 0.00011800292640092025,
+        "full_plan_regret_max": 0.0018517199976520364,
+        "initial_support_gap_max": 0.027590600323099505,
+        "legacy_initial_regret_max": 0.0018517199976520364,
+        "max_regret": 0.0018517199976520364,
+        "retention_regret_max": 0.0010757657163041673,
+        "retention_support_gap_max": 0.004,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.019775390625,
+          "cost_index": 40,
+          "fit": 0.0,
+          "route_index": 0
+        }
+      },
+      "iteration": 100,
+      "temperature": 0.004
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 1.2551807597488418e-05,
+        "full_plan_regret_max": 0.00014358197956440902,
+        "initial_support_gap_max": 0.003464686875808108,
+        "legacy_initial_regret_max": 0.00013924723354976316,
+        "max_regret": 0.00014358197956440902,
+        "retention_regret_max": 0.00013912261106485354,
+        "retention_support_gap_max": 0.0034518682556438805,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.000244140625,
+          "cost_index": 0,
+          "fit": 0.18332598142843137,
+          "route_index": 1
+        }
+      },
+      "iteration": 200,
+      "temperature": 0.0005
+    },
+    {
+      "diagnostics": {
+        "full_plan_minus_legacy_max": 3.4034824687619036e-05,
+        "full_plan_regret_max": 0.00041033372990369535,
+        "initial_support_gap_max": 0.005364568907267792,
+        "legacy_initial_regret_max": 0.0003910770733398204,
+        "max_regret": 0.0013038624786678825,
+        "retention_regret_max": 0.0013038624786678825,
+        "retention_support_gap_max": 0.017885630708750117,
+        "sample_checks_pass": false,
+        "witness": {
+          "cost": 0.019775390625,
+          "cost_index": 40,
+          "fit": 0.3150135900354043,
+          "route_index": 2
+        }
+      },
+      "iteration": 700,
+      "temperature": 0.0
+    }
+  ],
+  "m": 3.0,
+  "numerical_checks_passed": false,
+  "p1": 0.2,
+  "p2": 0.55,
+  "phase": "global",
+  "profile_sha256": "334bae4d458ac35ef83b338f9f65d4d3a29efbff53aa4a3ae81d102f97b43347",
+  "quadrature_convergence_verified": false,
+  "route_points": 24,
+  "settings": {
+    "alpha": 5.650720384574163e-07,
+    "audit_counts": 1000000,
+    "audit_replicates": 2,
+    "count_batch_size": 64,
+    "count_cap": 12,
+    "max_states": 50000,
+    "mode": "sample",
+    "regret_tol": 0.00075,
+    "response_tie_tol": 1e-08,
+    "schedule": [
+      [
+        0.02,
+        40,
+        0.35
+      ],
+      [
+        0.004,
+        60,
+        0.25
+      ],
+      [
+        0.0005,
+        100,
+        0.15
+      ],
+      [
+        0.0,
+        500,
+        0.1
+      ]
+    ],
+    "seed": 16696585291288000949,
+    "support_tol": 0.0015,
+    "train_counts": 50000
+  },
+  "source_identity": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "sha256": {
+      "accelerated_checkpoint_solver.py": "04e3d2b84869c264c01415794b937a4280b28ed621dba2bb3e42d6aafab3807c",
+      "accelerated_evaluator.py": "81cce00ff4af3ffe547fac4869b8ac08fa2cc521394ab0f4b8f501230bf75954",
+      "history_envelope.py": "5fe155aaf4062e0fa98ef702b6c2ef128dd93d8f7c7a4883f28570a0b9f48dd0",
+      "rescue_solver/__init__.py": "422747e593ca168f536301322e568f3408a5b3843208ad5300602573358ebaef",
+      "rescue_solver/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "rescue_solver/cli.py": "6a032c57a15ad46760f1e151ee9322ab090b4a9df739b61d71fe5a258820c1d2",
+      "rescue_solver/config.py": "03e1fb14f26280ee816ed59f14cfc61fa15f4338c5f22fcd24c2396ba05743fe",
+      "rescue_solver/core.py": "01b9ccc450a4044d5d0acc08aec9a008c48db151e620a094e760448079880df6",
+      "rescue_solver/diagnostics.py": "7c51581c8904fb651b170a16fd889a4a468728bf75b4f7f5b5f9f2a5ee67fc36",
+      "rescue_solver/solver.py": "d5ccd7c774c6aac0f6b693012dda80147e7b7f9d02e66d13fb9ca2071ac72f7c",
+      "rescue_solver/storage.py": "03caae207d217037acb822fff6f2b7ba76fa148d1eaf84b56ab767a60e9c1332",
+      "research_solver/__init__.py": "d5c1c3d7cc0770196dda443ecb9a7097a5e58764e7089cf6de9bd0f8b4e91776",
+      "research_solver/analytic.py": "1cbb8f55d968c11d0ef00a278aec8fdc39105d792b04d19f8db0acdc92586f42",
+      "research_solver/certified.py": "d3cd3175706cd6688eb5789b1fd41e1c4ef7b35acd14a7515e75e70f0bca9ce9",
+      "research_solver/conditional.py": "cbfbdff572dbcf869fb93a34a9e431451c71efcfb34403458c293e02b2ec95a2",
+      "research_solver/evaluator.py": "288d188eb63cdac0accf8b22a322670a6695573745c2119274987617c0e744db",
+      "research_solver/high_precision.py": "01142677df68786566d5e95e8a50db61be07dccdb2ee7e21b3964cb7a4427248",
+      "research_solver/outcomes.py": "b547b78de4385040a55f25f1350afcda1d96020e4b70d9eb2212c033ea61cb0f",
+      "research_solver/posterior.py": "022cc660a3ba3f61e0442cbc9eda7460d41ae3112c0b2d3056c03b6c6ba93f1d",
+      "research_solver/solve.py": "47b8ec72318874ef61db26791cb55eb7dc3e25f8a276552bc33c7d335eb04070",
+      "research_solver/supported.py": "6254957db7a51604a234718fad3ef299e623002586c3ba4a7208365a8edb0c9f",
+      "research_solver/types.py": "c441573c6747c91ca74e8d9f7cab1da80cf2508522effde133992734ffb8ff51",
+      "run_accelerated_m3_search.py": "d7e9f233b6d9be51aab810c4e3b7c4f91c154ed1756b0e6a981eaf85cbacfa5f",
+      "run_research.py": "3c99a5a108f06c7b113a7f7c5d91fc6d745f1dc9c1d2a864428eb7987edb60e3",
+      "run_thick_markets.py": "b1c73ba3c18279ef85240dea1a9c2415d059f379ade7b9be5a5ab249745c455c"
+    }
+  },
+  "status": "validation_blocked",
+  "training_regrets": {
+    "full_plan_minus_legacy_max": 2.952129087901989e-05,
+    "full_plan_regret_max": 0.00039059289640177436,
+    "initial_support_gap_max": 0.005697050580918343,
+    "legacy_initial_regret_max": 0.00037378348861405106,
+    "max_regret": 0.0012275670362209487,
+    "retention_regret_max": 0.0012275670362209487,
+    "retention_support_gap_max": 0.0187100599942227,
+    "sample_checks_pass": false,
+    "witness": {
+      "cost": 0.019775390625,
+      "cost_index": 40,
+      "fit": 0.3150135900354043,
+      "route_index": 2
+    }
+  },
+  "unknown_training_histories": 0,
+  "wpbe_certified": false
+}
